@@ -1,272 +1,170 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Refka — Built on Belonging</title>
-<meta name="description" content="Refka matches gym members with compatible training partners. Churn isn't a motivation problem — it's a belonging problem. B2B SaaS for independent gyms.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --bg:#0E0E11;
-    --bg2:#121216;
-    --surface:#1A1A20;
-    --surface-2:#202027;
-    --line:rgba(255,255,255,.08);
-    --line-strong:rgba(255,255,255,.14);
-    --text:#F4F4F6;
-    --muted:#9DA1AC;
-    --violet:#7B4FE0;
-    --blue:#3FA9E8;
-    --grad:linear-gradient(120deg,#7B4FE0 0%,#3FA9E8 100%);
-    --radius:18px;
-  }
-  *{margin:0;padding:0;box-sizing:border-box}
-  html{scroll-behavior:smooth}
-  body{
-    font-family:'Inter',sans-serif;
-    background:var(--bg);
-    color:var(--text);
-    line-height:1.65;
-    -webkit-font-smoothing:antialiased;
-  }
-  h1,h2,h3{font-family:'Sora',sans-serif;line-height:1.15;color:var(--text)}
-  ::selection{background:rgba(123,79,224,.45)}
-  .wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  .grad-text{
-    background:var(--grad);
-    -webkit-background-clip:text;background-clip:text;
-    -webkit-text-fill-color:transparent;color:transparent;
-  }
-  .eyebrow{
-    display:inline-flex;align-items:center;gap:10px;
-    font-family:'Sora',sans-serif;font-size:.72rem;font-weight:600;
-    letter-spacing:.18em;text-transform:uppercase;color:var(--blue);
-    margin-bottom:20px;
-  }
-  .eyebrow::before{content:"";width:26px;height:2px;background:var(--grad);border-radius:2px}
+  <!-- ===== Primary Meta ===== -->
+  <title>Refka — The Community Operating System for Independent Gyms | Built on Belonging</title>
+  <meta name="description" content="Refka matches gym members with compatible training partners, reducing churn through belonging. B2B SaaS for independent gyms. Piloting in Tirana, Albania.">
+  <meta name="keywords" content="gym retention, training partner matching, gym community, B2B SaaS, fitness technology, gym churn, Tirana gym, Albania fitness, gym membership, community platform">
+  <meta name="author" content="Refka">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <link rel="canonical" href="https://refka.tech/">
 
-  /* ---------- Nav ---------- */
-  nav{
-    position:fixed;top:0;left:0;right:0;z-index:50;
-    background:rgba(14,14,17,.82);backdrop-filter:blur(14px);
-    border-bottom:1px solid var(--line);
-  }
-  .nav-inner{max-width:1120px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between}
-  .logo{display:flex;align-items:center;gap:12px;text-decoration:none}
-  .logo svg{width:40px;height:40px;display:block}
-  .logo .word{font-family:'Sora',sans-serif;font-weight:700;font-size:1.2rem;color:var(--text);letter-spacing:-.01em}
-  .nav-links{display:flex;gap:28px;align-items:center;font-size:.9rem;font-weight:500}
-  .nav-links a{text-decoration:none;color:var(--muted);transition:color .2s}
-  .nav-links a:hover{color:var(--text)}
-  .btn{
-    display:inline-block;text-decoration:none;font-family:'Sora',sans-serif;font-weight:600;
-    font-size:.9rem;padding:12px 26px;border-radius:12px;transition:transform .15s, box-shadow .2s, background .2s;
-    cursor:pointer;border:none;
-  }
-  .btn:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
-  .btn-grad{background:var(--grad);color:#fff}
-  .btn-grad:hover{transform:translateY(-1px);box-shadow:0 10px 30px rgba(123,79,224,.4)}
-  .btn-ghost{background:transparent;color:var(--text);border:1.5px solid var(--line-strong)}
-  .btn-ghost:hover{border-color:var(--blue);color:var(--blue)}
-  @media(max-width:720px){.nav-links a:not(.btn){display:none}}
+  <!-- ===== Geo Targeting (Albania) ===== -->
+  <meta name="geo.region" content="AL">
+  <meta name="geo.placename" content="Tirana">
+  <meta name="geo.position" content="41.3275;19.8187">
+  <meta name="ICBM" content="41.3275, 19.8187">
 
-  /* ---------- Hero ---------- */
-  header.hero{padding:160px 0 100px;position:relative;overflow:hidden}
-  .hero::before{
-    content:"";position:absolute;top:-240px;left:50%;transform:translateX(-50%);
-    width:900px;height:600px;border-radius:50%;
-    background:radial-gradient(ellipse at center, rgba(123,79,224,.22), rgba(63,169,232,.08) 55%, transparent 72%);
-    pointer-events:none;
-  }
-  .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center;position:relative}
-  @media(max-width:880px){.hero-grid{grid-template-columns:1fr}}
-  .hero h1{font-size:clamp(2.3rem,5vw,3.7rem);font-weight:800;letter-spacing:-.02em;margin-bottom:24px}
-  .hero p.lede{font-size:1.15rem;color:var(--muted);max-width:520px;margin-bottom:34px}
-  .hero-ctas{display:flex;gap:14px;flex-wrap:wrap}
-  .hero-note{margin-top:22px;font-size:.85rem;color:var(--muted)}
-  .hero-note strong{color:var(--text)}
+  <!-- ===== Language & Alternates ===== -->
+  <link rel="alternate" hreflang="en" href="https://refka.tech/">
+  <link rel="alternate" hreflang="x-default" href="https://refka.tech/">
 
-  /* Signature: matching stage */
-  .bridge-stage{
-    position:relative;aspect-ratio:1/1;max-width:480px;margin-left:auto;
-    background:linear-gradient(160deg,var(--surface) 0%, var(--bg2) 100%);
-    border:1px solid var(--line);border-radius:24px;
-    box-shadow:0 30px 80px rgba(0,0,0,.5), 0 0 0 1px rgba(123,79,224,.08);
-    overflow:hidden;
-  }
-  @media(max-width:880px){.bridge-stage{margin:0 auto}}
-  .bridge-stage svg{width:100%;height:100%;display:block}
-  .stage-caption{
-    position:absolute;bottom:14px;left:0;right:0;text-align:center;
-    font-family:'Sora',sans-serif;font-size:.7rem;font-weight:600;
-    letter-spacing:.16em;text-transform:uppercase;color:var(--muted);
-  }
+  <!-- ===== Open Graph ===== -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://refka.tech/">
+  <meta property="og:title" content="Refka — Built on Belonging">
+  <meta property="og:description" content="Refka matches gym members with compatible training partners. Higher retention. New revenue. One platform for independent gyms.">
+  <meta property="og:image" content="https://refka.tech/assets/images/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Refka — Built on Belonging. The Community Operating System for Independent Gyms.">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:site_name" content="Refka">
 
-  /* ---------- Sections ---------- */
-  section{padding:100px 0}
-  section.tint{background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  <!-- ===== Twitter Cards ===== -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Refka — Built on Belonging">
+  <meta name="twitter:description" content="Refka matches gym members with compatible training partners. Higher retention. New revenue.">
+  <meta name="twitter:image" content="https://refka.tech/assets/images/og-image.png">
+  <meta name="twitter:image:alt" content="Refka — Built on Belonging. The Community Operating System for Independent Gyms.">
 
-  /* ---------- Story ---------- */
-  .story-grid{display:grid;grid-template-columns:190px 1fr;gap:48px}
-  @media(max-width:760px){.story-grid{grid-template-columns:1fr}}
-  .story-kg{
-    font-family:'Sora',sans-serif;font-weight:800;
-    font-size:clamp(3rem,6vw,4.4rem);line-height:1;letter-spacing:-.03em;
-  }
-  .story-kg small{display:block;font-size:.78rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-top:12px}
-  .story-body h2{font-size:clamp(1.7rem,3.4vw,2.4rem);margin-bottom:22px;font-weight:700}
-  .story-body p{color:var(--muted);max-width:640px;margin-bottom:18px;font-size:1.05rem}
-  .story-body p strong{color:var(--text)}
-  .pull{
-    border-left:3px solid;border-image:linear-gradient(180deg,#7B4FE0,#3FA9E8) 1;
-    padding:6px 0 6px 22px;margin:28px 0;
-    font-family:'Sora',sans-serif;font-size:1.25rem;font-weight:600;color:var(--text);max-width:560px;
-  }
-  .name-def{
-    display:inline-flex;align-items:center;gap:14px;margin-top:8px;
-    background:var(--surface);border:1px solid var(--line-strong);border-radius:14px;padding:16px 22px;
-  }
-  .name-def svg{width:34px;height:34px;flex-shrink:0}
-  .name-def .def{font-size:.95rem;color:var(--muted)}
-  .name-def .def b{color:var(--text);font-family:'Sora',sans-serif}
+  <!-- ===== Favicon & Icons ===== -->
+  <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg">
+  <link rel="apple-touch-icon" href="/assets/icons/favicon.svg">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#7B4FE0">
+  <meta name="msapplication-TileColor" content="#0E0E11">
 
-  /* ---------- Thesis ---------- */
-  .thesis h2{font-size:clamp(1.8rem,3.6vw,2.6rem);font-weight:800;max-width:760px;margin-bottom:18px}
-  .thesis h2 .strike{position:relative;color:var(--muted);font-weight:600}
-  .thesis h2 .strike::after{content:"";position:absolute;left:-2%;right:-2%;top:52%;height:3px;background:var(--grad);border-radius:2px;transform:rotate(-1.5deg)}
-  .thesis > .wrap > p{color:var(--muted);max-width:620px;font-size:1.05rem;margin-bottom:48px}
-  .belong-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-  @media(max-width:820px){.belong-cards{grid-template-columns:1fr}}
-  .bcard{
-    background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
-    padding:30px 26px;transition:transform .2s, border-color .2s, box-shadow .2s;
-  }
-  .bcard:hover{transform:translateY(-4px);border-color:rgba(123,79,224,.45);box-shadow:0 18px 44px rgba(0,0,0,.45)}
-  .bcard .glyph{width:46px;height:46px;border-radius:13px;background:rgba(123,79,224,.14);display:flex;align-items:center;justify-content:center;margin-bottom:18px}
-  .bcard h3{font-size:1.1rem;margin-bottom:10px}
-  .bcard p{font-size:.95rem;color:var(--muted)}
+  <!-- ===== Security ===== -->
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
 
-  /* ---------- How it works ---------- */
-  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--line-strong);border-radius:var(--radius);overflow:hidden;background:var(--surface)}
-  @media(max-width:820px){.steps{grid-template-columns:1fr}}
-  .step{padding:36px 30px;border-right:1px solid var(--line)}
-  .step:last-child{border-right:none}
-  @media(max-width:820px){.step{border-right:none;border-bottom:1px solid var(--line)}.step:last-child{border-bottom:none}}
-  .step .snum{
-    font-family:'Sora',sans-serif;font-weight:700;font-size:.76rem;letter-spacing:.16em;
-    text-transform:uppercase;margin-bottom:14px;display:block;
-    background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
-  }
-  .step h3{font-size:1.15rem;margin-bottom:10px}
-  .step p{font-size:.95rem;color:var(--muted)}
-  .native-note{
-    margin-top:26px;display:flex;gap:12px;align-items:flex-start;
-    background:rgba(63,169,232,.07);border:1px solid rgba(63,169,232,.25);
-    border-radius:14px;padding:18px 22px;max-width:720px;font-size:.95rem;color:var(--muted);
-  }
-  .native-note b{color:var(--text)}
+  <!-- ===== Fonts ===== -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
-  /* ---------- Proof funnel ---------- */
-  .funnel-head{max-width:680px;margin-bottom:52px}
-  .funnel-head h2{font-size:clamp(1.8rem,3.4vw,2.4rem);font-weight:700;margin-bottom:16px}
-  .funnel-head p{color:var(--muted);font-size:1.05rem}
-  .funnel{display:flex;flex-direction:column;max-width:760px}
-  .frow{
-    display:grid;grid-template-columns:64px 1fr;gap:24px;align-items:flex-start;
-    padding:26px 0;border-bottom:1px solid var(--line);position:relative;
-  }
-  .frow:last-child{border-bottom:none}
-  .fnode{
-    width:52px;height:52px;border-radius:50%;
-    background:var(--grad);color:#fff;
-    font-family:'Sora',sans-serif;font-weight:700;font-size:1.05rem;
-    display:flex;align-items:center;justify-content:center;position:relative;z-index:1;
-    box-shadow:0 6px 20px rgba(123,79,224,.35);
-  }
-  .frow::before{
-    content:"";position:absolute;left:25px;top:78px;bottom:-26px;width:2px;
-    background:linear-gradient(rgba(123,79,224,.4), rgba(63,169,232,.4));
-  }
-  .frow:last-child::before{display:none}
-  .frow h3{font-size:1.15rem;margin-bottom:6px}
-  .frow .metric{font-family:'Sora',sans-serif;font-size:.76rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;margin-bottom:8px;display:block;color:var(--blue)}
-  .frow p{font-size:.95rem;color:var(--muted);max-width:560px}
-  .funnel-footer{margin-top:36px;font-size:.95rem;color:var(--muted);max-width:640px}
-  .funnel-footer b{color:var(--text)}
+  <!-- ===== Stylesheets ===== -->
+  <link rel="stylesheet" href="/assets/css/variables.css">
+  <link rel="stylesheet" href="/assets/css/reset.css">
+  <link rel="stylesheet" href="/assets/css/typography.css">
+  <link rel="stylesheet" href="/assets/css/layout.css">
+  <link rel="stylesheet" href="/assets/css/components.css">
+  <link rel="stylesheet" href="/assets/css/sections.css">
+  <link rel="stylesheet" href="/assets/css/animations.css">
+  <link rel="stylesheet" href="/assets/css/responsive.css">
 
-  /* ---------- Pilot ---------- */
-  .pilot-band{
-    background:var(--surface);border:1px solid var(--line-strong);border-radius:26px;
-    padding:64px 56px;position:relative;overflow:hidden;
+  <!-- ===== Structured Data (JSON-LD) ===== -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Refka",
+    "url": "https://refka.tech",
+    "logo": "https://refka.tech/assets/images/refka-logo.svg",
+    "description": "Refka matches gym members with compatible training partners, reducing churn through belonging. B2B SaaS for independent gyms.",
+    "foundingDate": "2025",
+    "foundingLocation": {
+      "@type": "Place",
+      "name": "Tirana, Albania"
+    },
+    "areaServed": [
+      { "@type": "Country", "name": "Albania" },
+      { "@type": "Continent", "name": "Europe" }
+    ],
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "email": "hello@refka.ai",
+      "contactType": "customer service",
+      "availableLanguage": ["English", "Albanian"]
+    },
+    "sameAs": []
   }
-  @media(max-width:720px){.pilot-band{padding:44px 28px}}
-  .pilot-band::before{
-    content:"";position:absolute;right:-140px;bottom:-160px;width:460px;height:460px;border-radius:50%;
-    background:radial-gradient(circle, rgba(123,79,224,.18), rgba(63,169,232,.06) 55%, transparent 72%);
-    pointer-events:none;
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Refka",
+    "url": "https://refka.tech",
+    "description": "The Community Operating System for Independent Gyms"
   }
-  .pilot-band h2{font-size:clamp(1.7rem,3.2vw,2.3rem);margin-bottom:16px;max-width:640px}
-  .pilot-band p{color:var(--muted);max-width:600px;margin-bottom:34px;font-size:1.02rem}
-  .pilot-stats{display:flex;gap:44px;flex-wrap:wrap;position:relative}
-  .pstat .pv{font-family:'Sora',sans-serif;font-size:2.2rem;font-weight:800;background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
-  .pstat .pl{font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:4px}
-
-  /* ---------- Vision ---------- */
-  .vision{text-align:center}
-  .vision h2{font-size:clamp(1.9rem,4vw,2.8rem);font-weight:800;max-width:780px;margin:0 auto 20px}
-  .vision > .wrap > p{color:var(--muted);max-width:600px;margin:0 auto;font-size:1.05rem}
-  .vision .horizon{margin:52px auto 0;max-width:860px;display:grid;grid-template-columns:repeat(3,1fr);gap:18px;text-align:left}
-  @media(max-width:760px){.vision .horizon{grid-template-columns:1fr}}
-  .hz{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:26px 24px;transition:border-color .2s}
-  .hz:hover{border-color:rgba(63,169,232,.4)}
-  .hz .ht{font-family:'Sora',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;margin-bottom:10px;color:var(--blue)}
-  .hz h3{font-size:1.05rem;margin-bottom:8px}
-  .hz p{font-size:.9rem;color:var(--muted)}
-
-  /* ---------- Dual CTA ---------- */
-  .cta-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}
-  @media(max-width:820px){.cta-grid{grid-template-columns:1fr}}
-  .cta-card{border-radius:22px;padding:48px 40px;display:flex;flex-direction:column;gap:16px;align-items:flex-start;position:relative;overflow:hidden}
-  @media(max-width:720px){.cta-card{padding:36px 26px}}
-  .cta-card.owners{background:var(--grad);color:#fff}
-  .cta-card.owners h3,.cta-card.owners p{color:#fff}
-  .cta-card.owners p{opacity:.92}
-  .cta-card.investors{background:var(--surface);border:1.5px solid var(--line-strong)}
-  .cta-card h3{font-size:1.5rem}
-  .cta-card p{font-size:.98rem;max-width:420px;color:var(--muted)}
-  .cta-card .btn{margin-top:8px}
-  .cta-card.owners .btn{background:#0E0E11;color:#fff}
-  .cta-card.owners .btn:hover{transform:translateY(-1px);box-shadow:0 10px 26px rgba(0,0,0,.35)}
-  .cta-card.investors .btn{background:var(--grad);color:#fff}
-  .cta-tag{font-family:'Sora',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase}
-  .owners .cta-tag{color:rgba(255,255,255,.85)}
-  .investors .cta-tag{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
-
-  /* ---------- Footer ---------- */
-  footer{border-top:1px solid var(--line);padding:44px 0;background:var(--bg)}
-  .foot{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
-  .foot .fl{display:flex;align-items:center;gap:12px}
-  .foot .fl svg{width:30px;height:30px}
-  .foot .fw{font-family:'Sora',sans-serif;font-weight:700;color:var(--text)}
-  .foot p{font-size:.85rem;color:var(--muted)}
-
-  /* ---------- Reveal ---------- */
-  .reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease, transform .7s ease}
-  .reveal.in{opacity:1;transform:none}
-  @media(prefers-reduced-motion:reduce){
-    .reveal{opacity:1;transform:none;transition:none}
-    html{scroll-behavior:auto}
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Refka",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Web",
+    "description": "B2B SaaS platform that matches gym members with compatible training partners to reduce churn through belonging.",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD",
+      "description": "Free pilot program for qualifying gyms"
+    },
+    "featureList": [
+      "Training partner matching",
+      "Community building",
+      "Retention analytics",
+      "Partner ecosystem marketplace"
+    ]
   }
-</style>
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How does Refka match training partners?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Members join through a simple QR intake at your gym reception. Refka matches them based on schedule, goals, and experience level — the three factors that make a training partnership actually hold."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How does the first training session work?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Refka moves matches to the gym floor: a first shared session, scheduled at a time both members already train. No awkward cold introductions — they were always in the same room."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does Refka integrate with my gym systems?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Refka is designed to work with your team, not around it. Trainers stay central while Refka handles the social layer between members. No integration project required — it starts with a simple QR code at your reception."
+        }
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
 
-<!-- Shared logo mark -->
-<svg width="0" height="0" style="position:absolute">
+<!-- ===== Skip to Content (Accessibility) ===== -->
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
+<!-- ===== Shared SVG Definitions ===== -->
+<svg width="0" height="0" aria-hidden="true" style="position:absolute">
   <defs>
     <linearGradient id="refka-grad" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#7B4FE0"/>
@@ -283,338 +181,468 @@
   </defs>
 </svg>
 
-<nav>
-  <div class="nav-inner">
-    <a class="logo" href="#top" aria-label="Refka home">
-      <svg><use href="#refka-mark"/></svg>
-      <span class="word">Refka</span>
+<!-- ===== Navigation ===== -->
+<nav class="nav" role="navigation" aria-label="Main navigation">
+  <div class="nav__inner">
+    <a class="nav__logo" href="#top" aria-label="Refka — back to top">
+      <svg width="40" height="40" aria-hidden="true"><use href="#refka-mark"/></svg>
+      <span class="nav__logo-text">Refka</span>
     </a>
-    <div class="nav-links">
-      <a href="#story">Story</a>
-      <a href="#how">How it works</a>
-      <a href="#ecosystem">Ecosystem</a>
-      <a href="#proof">Proof</a>
-      <a href="#vision">Vision</a>
-      <a href="#pilot-cta" class="btn btn-grad">Start a pilot</a>
+
+    <button
+      class="nav__toggle"
+      id="nav-toggle"
+      type="button"
+      aria-label="Toggle navigation menu"
+      aria-expanded="false"
+      aria-controls="nav-links"
+    >
+      <span class="nav__toggle-bar" aria-hidden="true"></span>
+    </button>
+
+    <div class="nav__links" id="nav-links" role="menubar">
+      <a class="nav__link" href="#story" role="menuitem">Story</a>
+      <a class="nav__link" href="#how" role="menuitem">How it works</a>
+      <a class="nav__link" href="#ecosystem" role="menuitem">Ecosystem</a>
+      <a class="nav__link" href="#proof" role="menuitem">Proof</a>
+      <a class="nav__link" href="#vision" role="menuitem">Vision</a>
+      <a class="nav__link" href="#contact" role="menuitem">Contact</a>
+      <a class="btn btn--gradient" href="#pilot-cta">Start a pilot</a>
     </div>
   </div>
+  <div class="nav__mobile-overlay" id="nav-overlay" aria-hidden="true"></div>
 </nav>
 
-<!-- ================= HERO ================= -->
-<header class="hero" id="top">
-  <div class="wrap hero-grid">
-    <div>
-      <span class="eyebrow">Built on Belonging</span>
-      <h1>People stay where they <span class="grad-text">belong</span>.</h1>
-      <p class="lede">Refka turns your gym into a community: members are matched with compatible training partners, and your gym gains a partner ecosystem around it — supplements, recovery, apparel, nutrition. Higher retention. New revenue. One platform.</p>
-      <div class="hero-ctas">
-        <a class="btn btn-grad" href="#pilot-cta">Start a free pilot</a>
-        <a class="btn btn-ghost" href="#story">Why Refka exists</a>
-      </div>
-      <p class="hero-note">Piloting now across <strong>Tirana's top 10 gyms</strong>, starting with FitActive and Folè.</p>
-    </div>
+<!-- ===== Main Content ===== -->
+<main id="main-content">
 
-    <!-- Signature: members on the floor, connections forming -->
-    <div class="bridge-stage" aria-label="Animation of gym members being matched into training pairs">
-      <svg viewBox="0 0 480 480" role="img" aria-hidden="true">
-        <defs>
-          <linearGradient id="arc-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="#7B4FE0"/>
-            <stop offset="100%" stop-color="#3FA9E8"/>
-          </linearGradient>
-          <radialGradient id="glow" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stop-color="#3FA9E8" stop-opacity=".4"/>
-            <stop offset="100%" stop-color="#3FA9E8" stop-opacity="0"/>
-          </radialGradient>
-        </defs>
-        <!-- floor grid -->
-        <g stroke="rgba(255,255,255,.05)" stroke-width="1">
-          <line x1="0" y1="120" x2="480" y2="120"/><line x1="0" y1="240" x2="480" y2="240"/><line x1="0" y1="360" x2="480" y2="360"/>
-          <line x1="120" y1="0" x2="120" y2="480"/><line x1="240" y1="0" x2="240" y2="480"/><line x1="360" y1="0" x2="360" y2="480"/>
-        </g>
-        <!-- connections -->
-        <g fill="none" stroke="url(#arc-grad)" stroke-width="2.5" stroke-linecap="round">
-          <path class="bridge b1" d="M110,150 Q170,80 235,135"/>
-          <path class="bridge b2" d="M330,110 Q385,170 350,245"/>
-          <path class="bridge b3" d="M140,330 Q210,395 290,345"/>
-          <path class="bridge b4" d="M300,250 Q245,300 175,265"/>
-        </g>
-        <!-- members -->
-        <g>
-          <circle class="dot" cx="110" cy="150" r="11" fill="#7B4FE0"/>
-          <circle class="dot" cx="235" cy="135" r="11" fill="#3FA9E8"/>
-          <circle class="dot" cx="330" cy="110" r="11" fill="#7B4FE0"/>
-          <circle class="dot" cx="350" cy="245" r="11" fill="#3FA9E8"/>
-          <circle class="dot" cx="140" cy="330" r="11" fill="#7B4FE0"/>
-          <circle class="dot" cx="290" cy="345" r="11" fill="#3FA9E8"/>
-          <circle class="dot" cx="300" cy="250" r="11" fill="#7B4FE0"/>
-          <circle class="dot" cx="175" cy="265" r="11" fill="#3FA9E8"/>
-          <circle class="lone" cx="415" cy="390" r="11" fill="#4B4F5A"/>
-        </g>
-        <circle class="pulse" cx="415" cy="390" r="30" fill="url(#glow)"/>
-      </svg>
-      <div class="stage-caption">A few meters apart · finally connected</div>
-    </div>
-  </div>
-
-  <style>
-    .bridge{stroke-dasharray:260;stroke-dashoffset:260}
-    .in-view .b1{animation:draw 1.2s ease .5s forwards}
-    .in-view .b2{animation:draw 1.2s ease 1.2s forwards}
-    .in-view .b3{animation:draw 1.2s ease 1.9s forwards}
-    .in-view .b4{animation:draw 1.2s ease 2.6s forwards}
-    .in-view .pulse{animation:pulse 2.6s ease 3.4s infinite}
-    @keyframes draw{to{stroke-dashoffset:0}}
-    @keyframes pulse{0%,100%{opacity:.2}50%{opacity:.9}}
-    @media(prefers-reduced-motion:reduce){
-      .bridge{stroke-dashoffset:0;animation:none!important}
-      .pulse{animation:none!important;opacity:.4}
-    }
-  </style>
-</header>
-
-<!-- ================= STORY ================= -->
-<section class="tint" id="story">
-  <div class="wrap story-grid">
-    <div class="reveal">
-      <div class="story-kg grad-text">180<small style="-webkit-text-fill-color:#9DA1AC">kg · Tirana</small></div>
-    </div>
-    <div class="story-body reveal">
-      <span class="eyebrow">Why Refka exists</span>
-      <h2>It started on a gym floor, surrounded by strangers I saw every day.</h2>
-      <p>A 180kg deadlift PR nearly ended with our founder on the floor — dizzy, alone, holding onto a rack, in a room full of people he recognized but didn't actually know. The question that followed wouldn't go away:</p>
-      <div class="pull">Why, in a room full of people training on the same schedule toward the same goals, was I completely alone?</div>
-      <p>He started noticing it everywhere. People training solo — same time slot, same routine, day after day — until some simply stopped showing up. <strong>Not because the gym failed them.</strong> Proximity was never the problem. Nobody had built the bridge between people already standing a few meters apart.</p>
-      <p>That question became Refka.</p>
-      <div class="name-def">
-        <svg><use href="#refka-mark"/></svg>
-        <span class="def"><b>Refka</b> — from an old word for "companionship." Two people, one loop, no end point.</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ================= THESIS ================= -->
-<section class="thesis">
-  <div class="wrap">
-    <span class="eyebrow reveal">The thesis</span>
-    <h2 class="reveal">Churn isn't a <span class="strike">motivation</span> problem. It isn't a <span class="strike">facilities</span> problem. It's a <span class="grad-text">belonging</span> problem.</h2>
-    <p class="reveal">Gyms have solved equipment, programming, and pricing. Nobody has solved churn at the community layer. Members who train with someone show up for someone — and members who are expected don't quietly disappear.</p>
-    <div class="belong-cards">
-      <div class="bcard reveal">
-        <div class="glyph"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#7B4FE0" stroke-width="2" stroke-linecap="round"><circle cx="9" cy="8" r="3.2"/><circle cx="17" cy="10" r="2.6"/><path d="M4 19c0-2.8 2.2-5 5-5s5 2.2 5 5"/><path d="M15.5 14.6c2 .4 3.5 2.2 3.5 4.4"/></svg></div>
-        <h3>Solo is the default</h3>
-        <p>Most members walk in alone, train alone, and leave alone — even when compatible partners train meters away on the same schedule.</p>
-      </div>
-      <div class="bcard reveal">
-        <div class="glyph"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#7B4FE0" stroke-width="2" stroke-linecap="round"><path d="M4 18 L10 12 L14 15 L20 7"/><path d="M20 12 V7 H15"/></svg></div>
-        <h3>Solo quietly churns</h3>
-        <p>Nobody notices when a solo member stops coming — least of all the member. Without a person expecting them, there's nothing to come back to.</p>
-      </div>
-      <div class="bcard reveal">
-        <div class="glyph"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#3FA9E8" stroke-width="2" stroke-linecap="round"><path d="M8 12 C 4 12, 4 17, 8 17 C 12 17, 12 12, 16 12 C 20 12, 20 17, 16 17 C 12 17, 12 12, 8 12"/><circle cx="8" cy="8" r="1.6" fill="#3FA9E8"/><circle cx="16" cy="8" r="1.6" fill="#3FA9E8"/></svg></div>
-        <h3>Belonging retains</h3>
-        <p>A training partner turns attendance into a shared commitment. Refka builds that connection — deliberately, for every member who wants one.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ================= HOW IT WORKS ================= -->
-<section class="tint" id="how">
-  <div class="wrap">
-    <span class="eyebrow reveal">Pillar 1 — Retain</span>
-    <h2 class="reveal" style="font-size:clamp(1.8rem,3.4vw,2.4rem);margin-bottom:14px">Your gym, with a community engine inside.</h2>
-    <p class="reveal" style="color:var(--muted);max-width:620px;margin-bottom:44px">Refka is B2B SaaS: your gym subscribes, your members experience it as a native part of your gym — your brand, your floor, your community. Not another app they have to adopt. Retention is the foundation everything else is built on.</p>
-    <div class="steps reveal">
-      <div class="step">
-        <span class="snum">Step 1 — Match</span>
-        <h3>Compatible partners, not random pairings</h3>
-        <p>Members join through a simple QR intake at your reception. Refka matches them on schedule, goals, and experience level — the three things that make a partnership actually hold.</p>
-      </div>
-      <div class="step">
-        <span class="snum">Step 2 — Meet</span>
-        <h3>From match to first session</h3>
-        <p>Refka moves matches to the floor: a first shared session, on a time both members already train. No awkward cold intros — they were always in the same room.</p>
-      </div>
-      <div class="step">
-        <span class="snum">Step 3 — Stay</span>
-        <h3>Shared commitment compounds</h3>
-        <p>Partners keep each other accountable. You see the result where it matters: members who keep showing up, month after month — and a community your competitors can't copy.</p>
-      </div>
-    </div>
-    <div class="native-note reveal">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#3FA9E8" stroke-width="2" stroke-linecap="round" style="flex-shrink:0;margin-top:2px"><circle cx="12" cy="12" r="9"/><path d="M12 8v5"/><circle cx="12" cy="16.5" r=".5" fill="#3FA9E8"/></svg>
-      <span><b>Built to work with your team, not around it.</b> Trainers stay central — Refka handles the social layer between members, so your staff can focus on coaching.</span>
-    </div>
-  </div>
-</section>
-
-<!-- ================= ECOSYSTEM ================= -->
-<section id="ecosystem">
-  <div class="wrap">
-    <span class="eyebrow reveal">Pillar 2 — Earn</span>
-    <h2 class="reveal" style="font-size:clamp(1.8rem,3.4vw,2.4rem);margin-bottom:14px">A community that spends together, inside your walls.</h2>
-    <p class="reveal" style="color:var(--muted);max-width:640px;margin-bottom:44px">Retained members don't just renew — they buy. Refka opens a partner ecosystem around your gym and routes it through the member experience, so every recommendation earns for you: your gym takes a share of every partner transaction.</p>
-    <div class="eco-grid reveal">
-      <div class="eco">
-        <div class="glyph"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#7B4FE0" stroke-width="2" stroke-linecap="round"><path d="M9 3h6v4a3 3 0 0 1-6 0V3z"/><path d="M8 10h8l1 10a1 1 0 0 1-1 1H8a1 1 0 0 1-1-1l1-10z"/></svg></div>
-        <h3>Supplements</h3>
-        <p>Local supplement shops offer members trusted products with gym-exclusive deals.</p>
-      </div>
-      <div class="eco">
-        <div class="glyph"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#7B4FE0" stroke-width="2" stroke-linecap="round"><path d="M12 4l3-2 4 3-2 4v11H7V9L5 5l4-3 3 2z"/></svg></div>
-        <h3>Apparel</h3>
-        <p>Sportswear partners reach members at the moment they're most engaged.</p>
-      </div>
-      <div class="eco">
-        <div class="glyph"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#3FA9E8" stroke-width="2" stroke-linecap="round"><path d="M12 21s-7-4.6-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.4-7 10-7 10z"/></svg></div>
-        <h3>Physiotherapy &amp; recovery</h3>
-        <p>Recovery clinics keep members training — fewer injury dropouts, longer memberships.</p>
-      </div>
-      <div class="eco">
-        <div class="glyph"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#3FA9E8" stroke-width="2" stroke-linecap="round"><path d="M4 7h16l-1.5 13h-13L4 7z"/><path d="M9 7a3 3 0 0 1 6 0"/></svg></div>
-        <h3>Nutrition &amp; groceries</h3>
-        <p>Healthy food partners support members' goals between sessions.</p>
-      </div>
-    </div>
-    <div class="native-note reveal" style="margin-top:34px">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#3FA9E8" stroke-width="2" stroke-linecap="round" style="flex-shrink:0;margin-top:2px"><circle cx="12" cy="12" r="9"/><path d="M12 8v5"/><circle cx="12" cy="16.5" r=".5" fill="#3FA9E8"/></svg>
-      <span><b>Sequenced deliberately.</b> The ecosystem activates once the community is live — engaged members are what make partners want in. Retention first, revenue on top.</span>
-    </div>
-  </div>
-</section>
-
-<style>
-  .eco-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
-  @media(max-width:960px){.eco-grid{grid-template-columns:repeat(2,1fr)}}
-  @media(max-width:560px){.eco-grid{grid-template-columns:1fr}}
-  .eco{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:26px 22px;transition:transform .2s, border-color .2s}
-  .eco:hover{transform:translateY(-4px);border-color:rgba(63,169,232,.4)}
-  .eco .glyph{width:44px;height:44px;border-radius:12px;background:rgba(123,79,224,.14);display:flex;align-items:center;justify-content:center;margin-bottom:16px}
-  .eco h3{font-size:1.02rem;margin-bottom:8px}
-  .eco p{font-size:.9rem;color:var(--muted)}
-</style>
-
-<!-- ================= PROOF FUNNEL ================= -->
-<section id="proof">
-  <div class="wrap">
-    <div class="funnel-head reveal">
-      <span class="eyebrow">For investors — and for skeptics</span>
-      <h2>We're proving it before we scale it.</h2>
-      <p>Belonging is a nice word. Retention is a number. We track one funnel across our pilot gyms — and we don't scale the product or the narrative until it moves.</p>
-    </div>
-    <div class="funnel">
-      <div class="frow reveal">
-        <div class="fnode">1</div>
-        <div>
-          <span class="metric">Match-to-meetup rate</span>
-          <h3>Does the match convert to action?</h3>
-          <p>A match that never trains together is a contact card. We measure how many matched pairs actually meet on the floor.</p>
+  <!-- ================= HERO ================= -->
+  <header class="hero" id="top">
+    <div class="wrap hero__grid">
+      <div>
+        <span class="eyebrow">Built on Belonging</span>
+        <h1 class="hero__title">People stay where they <span class="grad-text">belong</span>.</h1>
+        <p class="hero__lede">Refka turns your gym into a community: members are matched with compatible training partners, and your gym gains a partner ecosystem around it — supplements, recovery, apparel, nutrition. Higher retention. New revenue. One platform.</p>
+        <div class="hero__ctas">
+          <a class="btn btn--gradient" href="#pilot-cta">Start a free pilot</a>
+          <a class="btn btn--ghost" href="#story">Why Refka exists</a>
         </div>
+        <p class="hero__note">Piloting now across <strong>Tirana's top 10 gyms</strong>, starting with FitActive and Folè.</p>
       </div>
-      <div class="frow reveal">
-        <div class="fnode">2</div>
-        <div>
-          <span class="metric">Repeat training rate</span>
-          <h3>Does it stick?</h3>
-          <p>One shared session is a moment. We measure whether pairs come back and train together again — the habit, not the event.</p>
-        </div>
+
+      <!-- Matching animation stage -->
+      <div class="hero__stage" aria-label="Animation of gym members being matched into training pairs">
+        <svg viewBox="0 0 480 480" role="img" aria-hidden="true">
+          <defs>
+            <linearGradient id="arc-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#7B4FE0"/>
+              <stop offset="100%" stop-color="#3FA9E8"/>
+            </linearGradient>
+            <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#3FA9E8" stop-opacity=".4"/>
+              <stop offset="100%" stop-color="#3FA9E8" stop-opacity="0"/>
+            </radialGradient>
+          </defs>
+          <!-- Floor grid -->
+          <g stroke="rgba(255,255,255,.05)" stroke-width="1">
+            <line x1="0" y1="120" x2="480" y2="120"/>
+            <line x1="0" y1="240" x2="480" y2="240"/>
+            <line x1="0" y1="360" x2="480" y2="360"/>
+            <line x1="120" y1="0" x2="120" y2="480"/>
+            <line x1="240" y1="0" x2="240" y2="480"/>
+            <line x1="360" y1="0" x2="360" y2="480"/>
+          </g>
+          <!-- Connections -->
+          <g fill="none" stroke="url(#arc-grad)" stroke-width="2.5" stroke-linecap="round">
+            <path class="bridge bridge--1" d="M110,150 Q170,80 235,135"/>
+            <path class="bridge bridge--2" d="M330,110 Q385,170 350,245"/>
+            <path class="bridge bridge--3" d="M140,330 Q210,395 290,345"/>
+            <path class="bridge bridge--4" d="M300,250 Q245,300 175,265"/>
+          </g>
+          <!-- Members -->
+          <g>
+            <circle cx="110" cy="150" r="11" fill="#7B4FE0"/>
+            <circle cx="235" cy="135" r="11" fill="#3FA9E8"/>
+            <circle cx="330" cy="110" r="11" fill="#7B4FE0"/>
+            <circle cx="350" cy="245" r="11" fill="#3FA9E8"/>
+            <circle cx="140" cy="330" r="11" fill="#7B4FE0"/>
+            <circle cx="290" cy="345" r="11" fill="#3FA9E8"/>
+            <circle cx="300" cy="250" r="11" fill="#7B4FE0"/>
+            <circle cx="175" cy="265" r="11" fill="#3FA9E8"/>
+            <circle cx="415" cy="390" r="11" fill="#4B4F5A"/>
+          </g>
+          <circle class="pulse-dot" cx="415" cy="390" r="30" fill="url(#glow)"/>
+        </svg>
+        <div class="hero__stage-caption">A few meters apart · finally connected</div>
       </div>
-      <div class="frow reveal">
-        <div class="fnode">3</div>
-        <div>
-          <span class="metric">Retention lift</span>
-          <h3>Does it move the number that matters?</h3>
-          <p>The retention delta between matched and unmatched members. This is the metric gym owners pay for — and the proof the thesis stands on.</p>
+    </div>
+  </header>
+
+  <!-- ================= STORY ================= -->
+  <section class="tint" id="story" aria-labelledby="story-heading">
+    <div class="wrap story__grid">
+      <div class="reveal">
+        <div class="story__stat grad-text">180<span class="story__stat-label">kg · Tirana</span></div>
+      </div>
+      <div class="story__body reveal">
+        <span class="eyebrow">Why Refka exists</span>
+        <h2 id="story-heading">It started on a gym floor, surrounded by strangers I saw every day.</h2>
+        <p>A 180kg deadlift PR nearly ended with our founder on the floor — dizzy, alone, holding onto a rack, in a room full of people he recognized but didn't actually know. The question that followed wouldn't go away:</p>
+        <div class="pull">Why, in a room full of people training on the same schedule toward the same goals, was I completely alone?</div>
+        <p>He started noticing it everywhere. People training solo — same time slot, same routine, day after day — until some simply stopped showing up. <strong>Not because the gym failed them.</strong> Proximity was never the problem. Nobody had built the bridge between people already standing a few meters apart.</p>
+        <p>That question became Refka.</p>
+        <div class="name-def">
+          <svg width="34" height="34" aria-hidden="true"><use href="#refka-mark"/></svg>
+          <span class="name-def__text"><b>Refka</b> — from an old word for "companionship." Two people, one loop, no end point.</span>
         </div>
       </div>
     </div>
-    <p class="funnel-footer reveal">Built by a founder with <b>6+ years of retention and growth product management</b> at Amazon, Uber, and Enpal — applied to an industry that has never solved churn at the community layer.</p>
-  </div>
-</section>
+  </section>
 
-<!-- ================= PILOT ================= -->
-<section class="tint" style="padding-top:80px;padding-bottom:80px">
-  <div class="wrap">
-    <div class="pilot-band reveal">
-      <span class="eyebrow">The pilot</span>
-      <h2>Live in Tirana. Deliberately small. Ruthlessly measured.</h2>
-      <p>Refka is piloting across Tirana's top 10 gyms, starting with FitActive and Folè — validating the belonging thesis with real members, real schedules, and real retention data before scaling anywhere else.</p>
-      <div class="pilot-stats">
-        <div class="pstat"><div class="pv">10</div><div class="pl">Target gyms in Tirana</div></div>
-        <div class="pstat"><div class="pv">2</div><div class="pl">Founding pilot partners</div></div>
-        <div class="pstat"><div class="pv">1</div><div class="pl">Thesis to prove</div></div>
+  <!-- ================= THESIS ================= -->
+  <section id="thesis" aria-labelledby="thesis-heading">
+    <div class="wrap">
+      <span class="eyebrow reveal">The thesis</span>
+      <h2 class="thesis__title reveal" id="thesis-heading">Churn isn't a <span class="strike">motivation</span> problem. It isn't a <span class="strike">facilities</span> problem. It's a <span class="grad-text">belonging</span> problem.</h2>
+      <p class="thesis__subtitle reveal">Gyms have solved equipment, programming, and pricing. Nobody has solved churn at the community layer. Members who train with someone show up for someone — and members who are expected don't quietly disappear.</p>
+      <div class="thesis__cards">
+        <article class="card reveal">
+          <div class="glyph">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#7B4FE0" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+              <circle cx="9" cy="8" r="3.2"/><circle cx="17" cy="10" r="2.6"/>
+              <path d="M4 19c0-2.8 2.2-5 5-5s5 2.2 5 5"/><path d="M15.5 14.6c2 .4 3.5 2.2 3.5 4.4"/>
+            </svg>
+          </div>
+          <h3 class="card__title">Solo is the default</h3>
+          <p class="card__text">Most members walk in alone, train alone, and leave alone — even when compatible partners train meters away on the same schedule.</p>
+        </article>
+        <article class="card reveal">
+          <div class="glyph">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#7B4FE0" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+              <path d="M4 18 L10 12 L14 15 L20 7"/><path d="M20 12 V7 H15"/>
+            </svg>
+          </div>
+          <h3 class="card__title">Solo quietly churns</h3>
+          <p class="card__text">Nobody notices when a solo member stops coming — least of all the member. Without a person expecting them, there's nothing to come back to.</p>
+        </article>
+        <article class="card reveal">
+          <div class="glyph">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#3FA9E8" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+              <path d="M8 12 C 4 12, 4 17, 8 17 C 12 17, 12 12, 16 12 C 20 12, 20 17, 16 17 C 12 17, 12 12, 8 12"/>
+              <circle cx="8" cy="8" r="1.6" fill="#3FA9E8"/><circle cx="16" cy="8" r="1.6" fill="#3FA9E8"/>
+            </svg>
+          </div>
+          <h3 class="card__title">Belonging retains</h3>
+          <p class="card__text">A training partner turns attendance into a shared commitment. Refka builds that connection — deliberately, for every member who wants one.</p>
+        </article>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ================= VISION ================= -->
-<section class="vision" id="vision">
-  <div class="wrap">
-    <span class="eyebrow reveal" style="justify-content:center;display:inline-flex">Where this goes</span>
-    <h2 class="reveal">The <span class="grad-text">Community Operating System</span> for independent gyms.</h2>
-    <p class="reveal">People stay where they belong. Refka starts with training partners — and grows into the operating system for sports communities worldwide: any gym, anywhere, running its own community from day one.</p>
-    <div class="horizon">
-      <div class="hz reveal">
-        <div class="ht">Now</div>
-        <h3>Partner matching</h3>
-        <p>Compatible training partners inside pilot gyms — the belonging loop, proven with retention data.</p>
+  <!-- ================= HOW IT WORKS ================= -->
+  <section class="tint" id="how" aria-labelledby="how-heading">
+    <div class="wrap">
+      <span class="eyebrow reveal">Pillar 1 — Retain</span>
+      <h2 class="how__title reveal" id="how-heading">Your gym, with a community engine inside.</h2>
+      <p class="how__subtitle reveal">Refka is B2B SaaS: your gym subscribes, your members experience it as a native part of your gym — your brand, your floor, your community. Not another app they have to adopt. Retention is the foundation everything else is built on.</p>
+      <div class="steps reveal">
+        <div class="step">
+          <span class="step__num">Step 1 — Match</span>
+          <h3 class="step__title">Compatible partners, not random pairings</h3>
+          <p class="step__text">Members join through a simple QR intake at your reception. Refka matches them on schedule, goals, and experience level — the three things that make a partnership actually hold.</p>
+        </div>
+        <div class="step">
+          <span class="step__num">Step 2 — Meet</span>
+          <h3 class="step__title">From match to first session</h3>
+          <p class="step__text">Refka moves matches to the floor: a first shared session, on a time both members already train. No awkward cold intros — they were always in the same room.</p>
+        </div>
+        <div class="step">
+          <span class="step__num">Step 3 — Stay</span>
+          <h3 class="step__title">Shared commitment compounds</h3>
+          <p class="step__text">Partners keep each other accountable. You see the result where it matters: members who keep showing up, month after month — and a community your competitors can't copy.</p>
+        </div>
       </div>
-      <div class="hz reveal">
-        <div class="ht">Next</div>
-        <h3>Community + marketplace</h3>
-        <p>The infrastructure every independent gym runs on — matching, attendance, member community, and a partner marketplace that turns engagement into revenue.</p>
-      </div>
-      <div class="hz reveal">
-        <div class="ht">Beyond</div>
-        <h3>Sports communities worldwide</h3>
-        <p>The operating system for belonging in sport — wherever people train side by side but haven't met yet.</p>
+      <div class="info-note reveal" style="margin-top:26px">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#3FA9E8" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v5"/><circle cx="12" cy="16.5" r=".5" fill="#3FA9E8"/></svg>
+        <span><b>Built to work with your team, not around it.</b> Trainers stay central — Refka handles the social layer between members, so your staff can focus on coaching.</span>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ================= DUAL CTA ================= -->
-<section class="tint" id="pilot-cta">
-  <div class="wrap cta-grid">
-    <div class="cta-card owners reveal">
-      <span class="cta-tag">Gym owners</span>
-      <h3>Keep the members you already won. Then earn more from them.</h3>
-      <p>Join the pilot free. A QR code at your reception, a matching engine behind it, retention data you can see — and a partner ecosystem that pays you as it grows. No integration project, no risk.</p>
-      <a class="btn" href="mailto:hello@refka.ai?subject=Refka%20pilot%20for%20my%20gym">Start a free pilot</a>
+  <!-- ================= ECOSYSTEM ================= -->
+  <section id="ecosystem" aria-labelledby="eco-heading">
+    <div class="wrap">
+      <span class="eyebrow reveal">Pillar 2 — Earn</span>
+      <h2 class="eco__title-section reveal" id="eco-heading">A community that spends together, inside your walls.</h2>
+      <p class="eco__subtitle reveal">Retained members don't just renew — they buy. Refka opens a partner ecosystem around your gym and routes it through the member experience, so every recommendation earns for you: your gym takes a share of every partner transaction.</p>
+      <div class="eco-grid reveal">
+        <article class="eco">
+          <div class="glyph glyph--sm">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#7B4FE0" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 3h6v4a3 3 0 0 1-6 0V3z"/><path d="M8 10h8l1 10a1 1 0 0 1-1 1H8a1 1 0 0 1-1-1l1-10z"/></svg>
+          </div>
+          <h3 class="eco__title">Supplements</h3>
+          <p class="eco__text">Local supplement shops offer members trusted products with gym-exclusive deals.</p>
+        </article>
+        <article class="eco">
+          <div class="glyph glyph--sm">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#7B4FE0" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 4l3-2 4 3-2 4v11H7V9L5 5l4-3 3 2z"/></svg>
+          </div>
+          <h3 class="eco__title">Apparel</h3>
+          <p class="eco__text">Sportswear partners reach members at the moment they're most engaged.</p>
+        </article>
+        <article class="eco">
+          <div class="glyph glyph--sm">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#3FA9E8" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 21s-7-4.6-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.4-7 10-7 10z"/></svg>
+          </div>
+          <h3 class="eco__title">Physiotherapy &amp; recovery</h3>
+          <p class="eco__text">Recovery clinics keep members training — fewer injury dropouts, longer memberships.</p>
+        </article>
+        <article class="eco">
+          <div class="glyph glyph--sm">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#3FA9E8" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16l-1.5 13h-13L4 7z"/><path d="M9 7a3 3 0 0 1 6 0"/></svg>
+          </div>
+          <h3 class="eco__title">Nutrition &amp; groceries</h3>
+          <p class="eco__text">Healthy food partners support members' goals between sessions.</p>
+        </article>
+      </div>
+      <div class="info-note reveal" style="margin-top:34px">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#3FA9E8" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v5"/><circle cx="12" cy="16.5" r=".5" fill="#3FA9E8"/></svg>
+        <span><b>Sequenced deliberately.</b> The ecosystem activates once the community is live — engaged members are what make partners want in. Retention first, revenue on top.</span>
+      </div>
     </div>
-    <div class="cta-card investors reveal">
-      <span class="cta-tag">Investors</span>
-      <h3>A retention thesis, measured like one.</h3>
-      <p>A B2B SaaS wedge into an industry that churns half its members a year — with a marketplace expansion layer on top. Led by a retention PM proving the thesis gym by gym, metric by metric.</p>
-      <a class="btn" href="mailto:hello@refka.ai?subject=Refka%20investor%20conversation">Get in touch</a>
-    </div>
-  </div>
-</section>
+  </section>
 
-<footer>
-  <div class="wrap foot">
-    <div class="fl">
-      <svg><use href="#refka-mark"/></svg>
-      <span class="fw">Refka</span>
+  <!-- ================= PROOF FUNNEL ================= -->
+  <section class="tint" id="proof" aria-labelledby="proof-heading">
+    <div class="wrap">
+      <div class="funnel-head reveal">
+        <span class="eyebrow">For investors — and for skeptics</span>
+        <h2 id="proof-heading">We're proving it before we scale it.</h2>
+        <p>Belonging is a nice word. Retention is a number. We track one funnel across our pilot gyms — and we don't scale the product or the narrative until it moves.</p>
+      </div>
+      <div class="funnel" role="list">
+        <div class="funnel__row reveal" role="listitem">
+          <div class="funnel__node" aria-hidden="true">1</div>
+          <div>
+            <span class="funnel__metric">Match-to-meetup rate</span>
+            <h3 class="funnel__title">Does the match convert to action?</h3>
+            <p class="funnel__text">A match that never trains together is a contact card. We measure how many matched pairs actually meet on the floor.</p>
+          </div>
+        </div>
+        <div class="funnel__row reveal" role="listitem">
+          <div class="funnel__node" aria-hidden="true">2</div>
+          <div>
+            <span class="funnel__metric">Repeat training rate</span>
+            <h3 class="funnel__title">Does it stick?</h3>
+            <p class="funnel__text">One shared session is a moment. We measure whether pairs come back and train together again — the habit, not the event.</p>
+          </div>
+        </div>
+        <div class="funnel__row reveal" role="listitem">
+          <div class="funnel__node" aria-hidden="true">3</div>
+          <div>
+            <span class="funnel__metric">Retention lift</span>
+            <h3 class="funnel__title">Does it move the number that matters?</h3>
+            <p class="funnel__text">The retention delta between matched and unmatched members. This is the metric gym owners pay for — and the proof the thesis stands on.</p>
+          </div>
+        </div>
+      </div>
+      <p class="funnel__footer reveal">Built by a founder with <b>6+ years of retention and growth product management</b> at Amazon, Uber, and Enpal — applied to an industry that has never solved churn at the community layer.</p>
     </div>
-    <p>Built on Belonging · Tirana, Albania · hello@refka.ai</p>
+  </section>
+
+  <!-- ================= PILOT ================= -->
+  <section id="pilot" aria-labelledby="pilot-heading" style="padding-top:80px;padding-bottom:80px">
+    <div class="wrap">
+      <div class="pilot reveal">
+        <span class="eyebrow">The pilot</span>
+        <h2 class="pilot__title" id="pilot-heading">Live in Tirana. Deliberately small. Ruthlessly measured.</h2>
+        <p class="pilot__text">Refka is piloting across Tirana's top 10 gyms, starting with FitActive and Folè — validating the belonging thesis with real members, real schedules, and real retention data before scaling anywhere else.</p>
+        <div class="pilot__stats">
+          <div>
+            <div class="pilot__stat-value">10</div>
+            <div class="pilot__stat-label">Target gyms in Tirana</div>
+          </div>
+          <div>
+            <div class="pilot__stat-value">2</div>
+            <div class="pilot__stat-label">Founding pilot partners</div>
+          </div>
+          <div>
+            <div class="pilot__stat-value">1</div>
+            <div class="pilot__stat-label">Thesis to prove</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= VISION ================= -->
+  <section class="vision tint" id="vision" aria-labelledby="vision-heading">
+    <div class="wrap">
+      <span class="eyebrow reveal" style="justify-content:center">Where this goes</span>
+      <h2 class="vision__title reveal" id="vision-heading">The <span class="grad-text">Community Operating System</span> for independent gyms.</h2>
+      <p class="vision__subtitle reveal">People stay where they belong. Refka starts with training partners — and grows into the operating system for sports communities worldwide: any gym, anywhere, running its own community from day one.</p>
+      <div class="vision__horizon">
+        <article class="horizon-card reveal">
+          <div class="horizon-card__phase">Now</div>
+          <h3 class="horizon-card__title">Partner matching</h3>
+          <p class="horizon-card__text">Compatible training partners inside pilot gyms — the belonging loop, proven with retention data.</p>
+        </article>
+        <article class="horizon-card reveal">
+          <div class="horizon-card__phase">Next</div>
+          <h3 class="horizon-card__title">Community + marketplace</h3>
+          <p class="horizon-card__text">The infrastructure every independent gym runs on — matching, attendance, member community, and a partner marketplace that turns engagement into revenue.</p>
+        </article>
+        <article class="horizon-card reveal">
+          <div class="horizon-card__phase">Beyond</div>
+          <h3 class="horizon-card__title">Sports communities worldwide</h3>
+          <p class="horizon-card__text">The operating system for belonging in sport — wherever people train side by side but haven't met yet.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= DUAL CTA ================= -->
+  <section id="pilot-cta" aria-labelledby="cta-owners-heading cta-investors-heading">
+    <div class="wrap cta-grid">
+      <div class="cta-card cta-card--primary reveal">
+        <span class="cta-card__tag">Gym owners</span>
+        <h3 class="cta-card__title" id="cta-owners-heading">Keep the members you already won. Then earn more from them.</h3>
+        <p class="cta-card__text">Join the pilot free. A QR code at your reception, a matching engine behind it, retention data you can see — and a partner ecosystem that pays you as it grows. No integration project, no risk.</p>
+        <a class="btn btn--dark" href="#contact">Start a free pilot</a>
+      </div>
+      <div class="cta-card cta-card--secondary reveal">
+        <span class="cta-card__tag">Investors</span>
+        <h3 class="cta-card__title" id="cta-investors-heading">A retention thesis, measured like one.</h3>
+        <p class="cta-card__text">A B2B SaaS wedge into an industry that churns half its members a year — with a marketplace expansion layer on top. Led by a retention PM proving the thesis gym by gym, metric by metric.</p>
+        <a class="btn btn--gradient" href="#contact">Get in touch</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CONTACT ================= -->
+  <section class="tint contact" id="contact" aria-labelledby="contact-heading">
+    <div class="wrap contact__grid">
+      <div class="reveal">
+        <span class="eyebrow">Get in touch</span>
+        <h2 class="contact__heading" id="contact-heading">Let's start a conversation.</h2>
+        <p class="contact__text">Whether you're a gym owner interested in piloting Refka, an investor, or a potential partner — we'd love to hear from you.</p>
+        <div class="contact__detail">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3FA9E8" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          <a href="mailto:hello@refka.ai" style="color:var(--color-blue);text-decoration:none">hello@refka.ai</a>
+        </div>
+        <div class="contact__detail">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3FA9E8" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span>Tirana, Albania</span>
+        </div>
+      </div>
+      <form class="form reveal" id="contact-form" novalidate aria-label="Contact form">
+        <div class="form__row">
+          <div class="form__group">
+            <label class="form__label form__label--required" for="contact-name">Name</label>
+            <input
+              class="form__input"
+              type="text"
+              id="contact-name"
+              name="name"
+              placeholder="Your full name"
+              autocomplete="name"
+              data-validate="required"
+              aria-required="true"
+            >
+            <span class="form__error" aria-live="polite"></span>
+          </div>
+          <div class="form__group">
+            <label class="form__label form__label--required" for="contact-email">Email</label>
+            <input
+              class="form__input"
+              type="email"
+              id="contact-email"
+              name="email"
+              placeholder="you@company.com"
+              autocomplete="email"
+              data-validate="required,email"
+              aria-required="true"
+            >
+            <span class="form__error" aria-live="polite"></span>
+          </div>
+        </div>
+        <div class="form__row">
+          <div class="form__group">
+            <label class="form__label" for="contact-phone">Phone</label>
+            <input
+              class="form__input"
+              type="tel"
+              id="contact-phone"
+              name="phone"
+              placeholder="+355 6X XXX XXXX"
+              autocomplete="tel"
+              data-validate="phone"
+            >
+            <span class="form__error" aria-live="polite"></span>
+          </div>
+          <div class="form__group">
+            <label class="form__label" for="contact-subject">Subject</label>
+            <select class="form__select" id="contact-subject" name="subject">
+              <option value="Pilot Inquiry">Pilot Inquiry</option>
+              <option value="Investment">Investment</option>
+              <option value="Partnership">Partnership</option>
+              <option value="General">General</option>
+            </select>
+          </div>
+        </div>
+        <div class="form__group">
+          <label class="form__label form__label--required" for="contact-message">Message</label>
+          <textarea
+            class="form__textarea"
+            id="contact-message"
+            name="message"
+            placeholder="Tell us about your gym, what you're looking for, or how we can help..."
+            rows="5"
+            data-validate="required,minlength"
+            aria-required="true"
+          ></textarea>
+          <span class="form__error" aria-live="polite"></span>
+        </div>
+
+        <!-- Honeypot (invisible to humans, traps bots) -->
+        <div class="form__honeypot" aria-hidden="true" tabindex="-1">
+          <label for="contact-website">Website</label>
+          <input type="text" id="contact-website" name="website" tabindex="-1" autocomplete="off">
+        </div>
+
+        <button type="submit" class="btn btn--gradient form__submit">Send message</button>
+        <div class="form__status" aria-live="polite"></div>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<!-- ===== Footer ===== -->
+<footer class="footer" role="contentinfo">
+  <div class="wrap footer__inner">
+    <div class="footer__brand">
+      <svg width="30" height="30" aria-hidden="true"><use href="#refka-mark"/></svg>
+      <span class="footer__brand-name">Refka</span>
+    </div>
+    <nav class="footer__links" aria-label="Footer navigation">
+      <a class="footer__link" href="#story">Story</a>
+      <a class="footer__link" href="#how">How it works</a>
+      <a class="footer__link" href="#contact">Contact</a>
+    </nav>
+    <p class="footer__text">Built on Belonging · Tirana, Albania · <a href="mailto:hello@refka.ai" style="color:inherit">hello@refka.ai</a> · © <span id="current-year"></span></p>
   </div>
 </footer>
 
-<script>
-  const io = new IntersectionObserver(entries=>{
-    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
-  },{threshold:.15});
-  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+<!-- ===== Back to Top ===== -->
+<button class="back-to-top" id="back-to-top" aria-label="Back to top" type="button">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true">
+    <path d="M18 15l-6-6-6 6"/>
+  </svg>
+</button>
 
-  const stage = document.querySelector('.bridge-stage');
-  const heroIO = new IntersectionObserver(entries=>{
-    entries.forEach(e=>{ if(e.isIntersecting){ stage.classList.add('in-view'); heroIO.disconnect(); } });
-  },{threshold:.3});
-  heroIO.observe(stage);
-</script>
+<!-- ===== JavaScript ===== -->
+<script type="module" src="/assets/js/main.js"></script>
+
 </body>
 </html>

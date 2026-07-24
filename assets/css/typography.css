@@ -1,0 +1,67 @@
+/* ==========================================================================
+   TYPOGRAPHY — Text Styles & Utilities
+   Gradient text, eyebrow labels, pull quotes, and text utilities.
+   ========================================================================== */
+
+/* ---- Gradient Text ---- */
+.grad-text {
+  background: var(--gradient-brand);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+/* ---- Eyebrow Label ---- */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-heading);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-blue);
+  margin-bottom: var(--space-md);
+}
+
+.eyebrow::before {
+  content: "";
+  width: 26px;
+  height: 2px;
+  background: var(--gradient-brand);
+  border-radius: 2px;
+}
+
+/* ---- Pull Quote ---- */
+.pull {
+  border-left: 3px solid;
+  border-image: var(--gradient-brand-180) 1;
+  padding: 6px 0 6px 22px;
+  margin: var(--space-lg) 0;
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--color-text);
+  max-width: 560px;
+}
+
+/* ---- Strike-through accent ---- */
+.strike {
+  position: relative;
+  color: var(--color-muted);
+  font-weight: 600;
+}
+
+.strike::after {
+  content: "";
+  position: absolute;
+  left: -2%;
+  right: -2%;
+  top: 52%;
+  height: 3px;
+  background: var(--gradient-brand);
+  border-radius: 2px;
+  transform: rotate(-1.5deg);
+}

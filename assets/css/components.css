@@ -1,0 +1,395 @@
+/* ==========================================================================
+   COMPONENTS — Reusable UI Components
+   Nav, buttons, cards, glyphs, notes, and name definitions.
+   ========================================================================== */
+
+/* ==========================================================================
+   Navigation
+   ========================================================================== */
+
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: var(--z-nav);
+  background: rgba(14, 14, 17, 0.82);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--color-line);
+}
+
+.nav__inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: var(--space-sm) var(--gutter);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Logo */
+.nav__logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  z-index: calc(var(--z-nav) + 2);
+}
+
+.nav__logo svg {
+  width: 40px;
+  height: 40px;
+  display: block;
+}
+
+.nav__logo-text {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: var(--color-text);
+  letter-spacing: -0.01em;
+}
+
+/* Desktop nav links */
+.nav__links {
+  display: flex;
+  gap: var(--space-lg);
+  align-items: center;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.nav__link {
+  text-decoration: none;
+  color: var(--color-muted);
+  transition: color var(--transition-base);
+  position: relative;
+}
+
+.nav__link:hover,
+.nav__link:focus-visible {
+  color: var(--color-text);
+}
+
+.nav__link:focus-visible {
+  outline: 2px solid var(--color-blue);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+/* Active nav link indicator */
+.nav__link--active {
+  color: var(--color-text);
+}
+
+/* Hamburger toggle */
+.nav__toggle {
+  display: none;
+  width: 44px;
+  height: 44px;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: calc(var(--z-nav) + 2);
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+.nav__toggle-bar {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--color-text);
+  border-radius: 2px;
+  position: relative;
+  transition: background var(--transition-base);
+}
+
+.nav__toggle-bar::before,
+.nav__toggle-bar::after {
+  content: "";
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--color-text);
+  border-radius: 2px;
+  position: absolute;
+  left: 0;
+  transition: transform var(--transition-slow), top var(--transition-slow);
+}
+
+.nav__toggle-bar::before {
+  top: -7px;
+}
+
+.nav__toggle-bar::after {
+  top: 7px;
+}
+
+/* Hamburger open state */
+.nav__toggle[aria-expanded="true"] .nav__toggle-bar {
+  background: transparent;
+}
+
+.nav__toggle[aria-expanded="true"] .nav__toggle-bar::before {
+  top: 0;
+  transform: rotate(45deg);
+}
+
+.nav__toggle[aria-expanded="true"] .nav__toggle-bar::after {
+  top: 0;
+  transform: rotate(-45deg);
+}
+
+/* Mobile menu overlay */
+.nav__mobile-overlay {
+  display: none;
+}
+
+/* ==========================================================================
+   Buttons
+   ========================================================================== */
+
+.btn {
+  display: inline-block;
+  text-decoration: none;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 0.9rem;
+  padding: 12px 26px;
+  border-radius: var(--radius-md);
+  transition: transform var(--transition-fast),
+              box-shadow var(--transition-base),
+              background var(--transition-base),
+              opacity var(--transition-base);
+  cursor: pointer;
+  border: none;
+  line-height: 1.4;
+  text-align: center;
+}
+
+.btn:focus-visible {
+  outline: 3px solid var(--color-blue);
+  outline-offset: 2px;
+}
+
+/* Gradient button */
+.btn--gradient {
+  background: var(--gradient-brand);
+  color: var(--color-white);
+}
+
+.btn--gradient:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-glow);
+}
+
+/* Ghost button */
+.btn--ghost {
+  background: transparent;
+  color: var(--color-text);
+  border: 1.5px solid var(--color-line-strong);
+}
+
+.btn--ghost:hover {
+  border-color: var(--color-blue);
+  color: var(--color-blue);
+}
+
+/* Dark button (used on gradient backgrounds) */
+.btn--dark {
+  background: var(--color-bg);
+  color: var(--color-white);
+}
+
+.btn--dark:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+/* Button loading state */
+.btn--loading {
+  pointer-events: none;
+  opacity: 0.7;
+  position: relative;
+}
+
+.btn--loading::after {
+  content: "";
+  width: 16px;
+  height: 16px;
+  border: 2px solid transparent;
+  border-top-color: currentColor;
+  border-radius: 50%;
+  animation: btn-spin 0.6s linear infinite;
+  display: inline-block;
+  margin-left: 8px;
+  vertical-align: middle;
+}
+
+@keyframes btn-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ==========================================================================
+   Cards
+   ========================================================================== */
+
+/* Belonging cards (thesis section) */
+.card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-xl);
+  padding: 30px 26px;
+  transition: transform var(--transition-base),
+              border-color var(--transition-base),
+              box-shadow var(--transition-base);
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(123, 79, 224, 0.45);
+  box-shadow: var(--shadow-lg);
+}
+
+.card__title {
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+}
+
+.card__text {
+  font-size: 0.95rem;
+  color: var(--color-muted);
+}
+
+/* ==========================================================================
+   Glyph Icon Container
+   ========================================================================== */
+
+.glyph {
+  width: 46px;
+  height: 46px;
+  border-radius: 13px;
+  background: rgba(123, 79, 224, 0.14);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--space-md);
+  flex-shrink: 0;
+}
+
+.glyph--sm {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-md);
+  margin-bottom: 16px;
+}
+
+/* ==========================================================================
+   Info Note Banner
+   ========================================================================== */
+
+.info-note {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  background: rgba(63, 169, 232, 0.07);
+  border: 1px solid rgba(63, 169, 232, 0.25);
+  border-radius: var(--radius-lg);
+  padding: var(--space-md) 22px;
+  max-width: 720px;
+  font-size: 0.95rem;
+  color: var(--color-muted);
+}
+
+.info-note b,
+.info-note strong {
+  color: var(--color-text);
+}
+
+.info-note svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+/* ==========================================================================
+   Name Definition Box
+   ========================================================================== */
+
+.name-def {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-top: var(--space-xs);
+  background: var(--color-surface);
+  border: 1px solid var(--color-line-strong);
+  border-radius: var(--radius-lg);
+  padding: 16px 22px;
+}
+
+.name-def svg {
+  width: 34px;
+  height: 34px;
+  flex-shrink: 0;
+}
+
+.name-def__text {
+  font-size: 0.95rem;
+  color: var(--color-muted);
+}
+
+.name-def__text b {
+  color: var(--color-text);
+  font-family: var(--font-heading);
+}
+
+/* ==========================================================================
+   Back-to-Top Button
+   ========================================================================== */
+
+.back-to-top {
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  z-index: var(--z-overlay);
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--gradient-brand);
+  color: var(--color-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: none;
+  box-shadow: var(--shadow-md);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(16px);
+  transition: opacity var(--transition-slow),
+              visibility var(--transition-slow),
+              transform var(--transition-slow);
+}
+
+.back-to-top--visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.back-to-top:hover {
+  box-shadow: var(--shadow-glow);
+  transform: translateY(-2px);
+}
+
+.back-to-top:focus-visible {
+  outline: 3px solid var(--color-blue);
+  outline-offset: 2px;
+}
+
+.back-to-top svg {
+  width: 20px;
+  height: 20px;
+}

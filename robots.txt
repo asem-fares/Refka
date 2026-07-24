@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://refka.tech/sitemap.xml
+
+# Disallow admin/system paths
+Disallow: /.git/
+Disallow: /.github/

@@ -1,0 +1,19 @@
+{
+  "name": "Refka — Built on Belonging",
+  "short_name": "Refka",
+  "description": "Refka matches gym members with compatible training partners, reducing churn through belonging. B2B SaaS for independent gyms.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0E0E11",
+  "theme_color": "#7B4FE0",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/assets/icons/favicon.svg",
+      "type": "image/svg+xml",
+      "sizes": "any"
+    }
+  ],
+  "lang": "en",
+  "categories": ["business", "fitness"]
+}
