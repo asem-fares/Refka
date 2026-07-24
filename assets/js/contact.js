@@ -4,6 +4,7 @@
    ========================================================================== */
 
 import { sanitize } from './utils.js';
+import { animateButtonSuccess, animateButtonError } from './motion-system.js';
 
 // Configuration: Recipient email address
 const RECIPIENT_EMAIL = 'mahmoudahmed10197@gmail.com';
@@ -93,6 +94,7 @@ async function handleSubmit(e) {
     if (result.success === 'true' || result.success === true) {
       lastSubmitTime = Date.now();
       showStatus(statusEl, 'success', '✓ Message sent successfully! We\'ll get back to you soon.');
+      animateButtonSuccess(submitBtn);
       form.reset();
     } 
     // Check if form requires initial activation link click
@@ -114,6 +116,7 @@ async function handleSubmit(e) {
       'error',
       'Something went wrong sending the message. Please email us directly at hello@refka.tech'
     );
+    animateButtonError(submitBtn);
   } finally {
     setLoadingState(submitBtn, false);
   }

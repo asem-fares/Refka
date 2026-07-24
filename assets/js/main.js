@@ -4,21 +4,22 @@
    ========================================================================== */
 
 import { initNavbar, initActiveNav } from './navbar.js';
-import { initReveal, initHeroAnimation, initBackToTop } from './animations.js';
+import { initAnimations, initBackToTop } from './animations.js';
 import { initContactForm } from './contact.js';
 import { getCurrentYear } from './utils.js';
 
 /**
  * Initialize the application.
  */
-function init() {
+async function init() {
   // Navigation
   initNavbar();
   initActiveNav();
 
-  // Animations
-  initReveal();
-  initHeroAnimation();
+  // Motion Design System (async — waits for GSAP CDN)
+  await initAnimations();
+
+  // Back to top (after motion system is ready)
   initBackToTop();
 
   // Contact form

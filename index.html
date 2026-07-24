@@ -210,6 +210,8 @@
       <a class="btn btn--gradient" href="#pilot-cta">Start a pilot</a>
     </div>
   </div>
+  <!-- Scroll progress bar -->
+  <div class="nav__progress" id="nav-progress" aria-hidden="true"></div>
   <div class="nav__mobile-overlay" id="nav-overlay" aria-hidden="true"></div>
 </nav>
 
@@ -218,6 +220,11 @@
 
   <!-- ================= HERO ================= -->
   <header class="hero" id="top">
+    <!-- Floating ambient orbs -->
+    <div class="hero__orb hero__orb--1" aria-hidden="true"></div>
+    <div class="hero__orb hero__orb--2" aria-hidden="true"></div>
+    <div class="hero__orb hero__orb--3" aria-hidden="true"></div>
+
     <div class="wrap hero__grid">
       <div>
         <span class="eyebrow">Built on Belonging</span>
@@ -275,6 +282,14 @@
         </svg>
         <div class="hero__stage-caption">A few meters apart · finally connected</div>
       </div>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="scroll-indicator" id="scroll-indicator" aria-hidden="true">
+      <div class="scroll-indicator__mouse">
+        <div class="scroll-indicator__dot"></div>
+      </div>
+      <span class="scroll-indicator__text">Scroll</span>
     </div>
   </header>
 
@@ -640,6 +655,11 @@
     <path d="M18 15l-6-6-6 6"/>
   </svg>
 </button>
+
+<!-- ===== Animation Libraries (GSAP + SplitType) ===== -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+<script src="https://unpkg.com/split-type@0.3.4/umd/index.min.js" defer></script>
 
 <!-- ===== JavaScript ===== -->
 <script type="module" src="/assets/js/main.js"></script>

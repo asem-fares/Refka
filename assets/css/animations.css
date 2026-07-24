@@ -1,29 +1,256 @@
 /* ==========================================================================
-   ANIMATIONS — Keyframes, Transitions & Reveal System
+   ANIMATIONS — Motion Design System CSS
+   Keyframes, initial states, transitions, and reduced-motion overrides.
+   All JS-driven animations reference these classes.
    ========================================================================== */
 
-/* ---- Scroll Reveal ---- */
+/* ==========================================================================
+   Scroll Reveal System
+   Elements start hidden and are revealed by JS (GSAP ScrollTrigger).
+   Each class defines a unique starting state.
+   ========================================================================== */
+
+/* Default reveal — fade up (fallback for elements without specific direction) */
+.anim-reveal {
+  opacity: 0;
+  transform: translateY(28px);
+}
+
+/* Directional reveals */
+.anim-fade-up {
+  opacity: 0;
+  transform: translateY(32px);
+}
+
+.anim-fade-left {
+  opacity: 0;
+  transform: translateX(-40px);
+}
+
+.anim-fade-right {
+  opacity: 0;
+  transform: translateX(40px);
+}
+
+.anim-scale-in {
+  opacity: 0;
+  transform: scale(0.92);
+}
+
+.anim-clip-up {
+  clip-path: inset(100% 0 0 0);
+}
+
+/* Legacy .reveal class — maintained for backward compatibility */
 .reveal {
   opacity: 0;
   transform: translateY(22px);
-  transition: opacity var(--transition-reveal), transform var(--transition-reveal);
 }
 
 .reveal.in {
   opacity: 1;
   transform: none;
+  transition: opacity 0.7s var(--ease-out-quart),
+              transform 0.7s var(--ease-out-quart);
 }
 
-/* ---- SVG Bridge Drawing ---- */
+/* ==========================================================================
+   Hero Section — Initial States
+   These are set by CSS to prevent FOUC, then animated by GSAP on load.
+   ========================================================================== */
+
+.hero__title .word {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(40px) rotate(2deg);
+  transform-origin: left bottom;
+}
+
+.hero__lede {
+  opacity: 0;
+  transform: translateY(24px);
+}
+
+.hero__ctas {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.hero__ctas .btn {
+  opacity: 0;
+  transform: scale(0.85) translateY(10px);
+}
+
+.hero__note {
+  opacity: 0;
+  transform: translateY(14px);
+}
+
+.hero__stage {
+  opacity: 0;
+  transform: translateY(30px) scale(0.96);
+}
+
+/* Eyebrow — initial state for line draw animation */
+.hero .eyebrow::before {
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.5s var(--ease-out-expo);
+}
+
+.hero .eyebrow.anim-active::before {
+  transform: scaleX(1);
+}
+
+/* ==========================================================================
+   Hero Background Motion
+   ========================================================================== */
+
+/* Animated gradient orb */
+.hero::before {
+  animation: hero-gradient-orbit 15s ease-in-out infinite;
+  will-change: transform;
+}
+
+@keyframes hero-gradient-orbit {
+  0%, 100% {
+    transform: translateX(-50%) translateY(0) scale(1);
+  }
+  33% {
+    transform: translateX(-45%) translateY(-20px) scale(1.05);
+  }
+  66% {
+    transform: translateX(-55%) translateY(15px) scale(0.97);
+  }
+}
+
+/* Floating ambient orbs */
+.hero__orb {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  will-change: transform;
+  filter: blur(60px);
+  opacity: 0;
+}
+
+.hero__orb--1 {
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(123, 79, 224, 0.15), transparent 70%);
+  top: 20%;
+  right: -5%;
+  animation: orb-float-1 18s ease-in-out infinite;
+}
+
+.hero__orb--2 {
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(63, 169, 232, 0.12), transparent 70%);
+  bottom: 10%;
+  left: 5%;
+  animation: orb-float-2 22s ease-in-out infinite;
+}
+
+.hero__orb--3 {
+  width: 160px;
+  height: 160px;
+  background: radial-gradient(circle, rgba(123, 79, 224, 0.1), transparent 70%);
+  top: 60%;
+  left: 40%;
+  animation: orb-float-3 20s ease-in-out infinite;
+}
+
+@keyframes orb-float-1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  25% { transform: translate(-30px, 20px) scale(1.08); }
+  50% { transform: translate(15px, -25px) scale(0.95); }
+  75% { transform: translate(-10px, 15px) scale(1.03); }
+}
+
+@keyframes orb-float-2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  30% { transform: translate(25px, -15px) scale(1.06); }
+  60% { transform: translate(-20px, 20px) scale(0.97); }
+}
+
+@keyframes orb-float-3 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  35% { transform: translate(-15px, -20px) scale(1.04); }
+  70% { transform: translate(20px, 10px) scale(0.96); }
+}
+
+/* ==========================================================================
+   Scroll Indicator
+   ========================================================================== */
+
+.scroll-indicator {
+  position: absolute;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  opacity: 0;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.scroll-indicator__mouse {
+  width: 24px;
+  height: 38px;
+  border: 2px solid rgba(255, 255, 255, 0.25);
+  border-radius: 12px;
+  position: relative;
+}
+
+.scroll-indicator__dot {
+  position: absolute;
+  top: 6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 3px;
+  height: 8px;
+  background: var(--gradient-brand);
+  border-radius: 2px;
+  animation: scroll-dot-bounce 1.8s var(--ease-in-out-quart) infinite;
+}
+
+.scroll-indicator__text {
+  font-family: var(--font-heading);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.3);
+}
+
+@keyframes scroll-dot-bounce {
+  0%, 100% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+  50% {
+    opacity: 0.3;
+    transform: translateX(-50%) translateY(14px);
+  }
+}
+
+/* ==========================================================================
+   SVG Bridge Drawing (Hero Stage)
+   ========================================================================== */
+
 .bridge {
   stroke-dasharray: 260;
   stroke-dashoffset: 260;
 }
 
-.in-view .bridge--1 { animation: draw 1.2s ease 0.5s forwards; }
-.in-view .bridge--2 { animation: draw 1.2s ease 1.2s forwards; }
-.in-view .bridge--3 { animation: draw 1.2s ease 1.9s forwards; }
-.in-view .bridge--4 { animation: draw 1.2s ease 2.6s forwards; }
+.in-view .bridge--1 { animation: draw 1.2s var(--ease-out-quart) 0.5s forwards; }
+.in-view .bridge--2 { animation: draw 1.2s var(--ease-out-quart) 1.2s forwards; }
+.in-view .bridge--3 { animation: draw 1.2s var(--ease-out-quart) 1.9s forwards; }
+.in-view .bridge--4 { animation: draw 1.2s var(--ease-out-quart) 2.6s forwards; }
 
 .in-view .pulse-dot {
   animation: pulse 2.6s ease 3.4s infinite;
@@ -38,19 +265,535 @@
   50% { opacity: 0.9; }
 }
 
-/* ---- Reduced Motion Override ---- */
+/* Hero stage tilt on mouse */
+.hero__stage {
+  transition: transform 0.4s var(--ease-smooth);
+  will-change: transform;
+}
+
+/* ==========================================================================
+   Navigation — Scroll Animations
+   ========================================================================== */
+
+/* Nav shrink on scroll */
+.nav {
+  transition: padding 0.35s var(--ease-out-quart),
+              background 0.35s var(--ease-out-quart),
+              box-shadow 0.35s var(--ease-out-quart);
+}
+
+.nav--scrolled {
+  background: rgba(14, 14, 17, 0.95);
+  box-shadow: 0 1px 20px rgba(0, 0, 0, 0.3);
+}
+
+.nav--scrolled .nav__inner {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  transition: padding 0.35s var(--ease-out-quart);
+}
+
+/* Scroll progress bar */
+.nav__progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  background: var(--gradient-brand);
+  width: 0%;
+  transition: none;
+  will-change: width;
+}
+
+/* Nav link animated underline */
+.nav__link::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--gradient-brand);
+  border-radius: 1px;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.3s var(--ease-out-expo);
+}
+
+.nav__link:hover::after,
+.nav__link--active::after {
+  transform: scaleX(1);
+}
+
+/* ==========================================================================
+   Counter Animation
+   ========================================================================== */
+
+.counter-value {
+  display: inline-block;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ==========================================================================
+   Eyebrow Line Draw
+   ========================================================================== */
+
+.eyebrow::before {
+  transition: transform 0.5s var(--ease-out-expo) 0.1s;
+}
+
+.eyebrow.anim-drawn::before {
+  transform: scaleX(1) !important;
+}
+
+/* Set initial state for JS-controlled eyebrows */
+section .eyebrow::before {
+  transform: scaleX(0);
+  transform-origin: left center;
+}
+
+/* ==========================================================================
+   Pull Quote Border Draw
+   ========================================================================== */
+
+.pull {
+  position: relative;
+  border-left-color: transparent;
+}
+
+.pull::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 3px;
+  height: 0%;
+  background: var(--gradient-brand-180);
+  border-radius: 2px;
+  transition: height 0.8s var(--ease-out-expo);
+}
+
+.pull.anim-drawn::before {
+  height: 100%;
+}
+
+/* ==========================================================================
+   Card Cascade — stagger prep
+   ========================================================================== */
+
+.thesis__cards .card,
+.eco-grid .eco,
+.vision__horizon .horizon-card {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+/* ==========================================================================
+   Funnel Node Animation
+   ========================================================================== */
+
+.funnel__row .funnel__node {
+  opacity: 0;
+  transform: scale(0.5);
+}
+
+.funnel__row > div:last-child {
+  opacity: 0;
+  transform: translateX(-20px);
+}
+
+/* Funnel connecting line draw */
+.funnel__row::before {
+  transform: scaleY(0);
+  transform-origin: top center;
+  transition: transform 0.5s var(--ease-out-quart);
+}
+
+.funnel__row.anim-active::before {
+  transform: scaleY(1);
+}
+
+/* ==========================================================================
+   Step Animation (How It Works)
+   ========================================================================== */
+
+.steps .step {
+  opacity: 0;
+  transform: translateX(-30px);
+}
+
+/* ==========================================================================
+   Pilot Stats Counter
+   ========================================================================== */
+
+.pilot__stat-value {
+  font-variant-numeric: tabular-nums;
+}
+
+/* ==========================================================================
+   Contact Form Animations
+   ========================================================================== */
+
+/* Input focus glow ring */
+.form__input:focus,
+.form__select:focus,
+.form__textarea:focus {
+  border-color: var(--color-violet);
+  box-shadow: 0 0 0 3px rgba(123, 79, 224, 0.2),
+              0 0 20px rgba(123, 79, 224, 0.08);
+}
+
+/* Validation shake */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-4px); }
+  40% { transform: translateX(4px); }
+  60% { transform: translateX(-3px); }
+  80% { transform: translateX(3px); }
+}
+
+.form__input--shake,
+.form__textarea--shake {
+  animation: shake 0.4s var(--ease-out-quart);
+}
+
+/* Error message slide down */
+.form__error {
+  display: block;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.3s var(--ease-out-quart),
+              opacity 0.3s var(--ease-out-quart),
+              margin 0.3s var(--ease-out-quart);
+  margin-top: 0;
+}
+
+.form__error--visible {
+  max-height: 40px;
+  opacity: 1;
+  margin-top: 6px;
+}
+
+/* Submit button states */
+.form__submit {
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.2s var(--ease-out-quart),
+              box-shadow 0.3s var(--ease-out-quart),
+              background 0.3s var(--ease-out-quart);
+}
+
+/* Success morph */
+.form__submit--success {
+  background: #34d399 !important;
+  pointer-events: none;
+}
+
+/* Loading spinner (enhanced) */
+.btn--loading::after {
+  content: "";
+  width: 16px;
+  height: 16px;
+  border: 2px solid transparent;
+  border-top-color: currentColor;
+  border-radius: 50%;
+  animation: btn-spin 0.6s linear infinite;
+  display: inline-block;
+  margin-left: 8px;
+  vertical-align: middle;
+}
+
+@keyframes btn-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ==========================================================================
+   Button Micro-Interactions (Enhanced)
+   ========================================================================== */
+
+/* Gradient button — enhanced hover */
+.btn--gradient {
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.25s var(--ease-out-quart),
+              box-shadow 0.3s var(--ease-out-quart);
+}
+
+.btn--gradient::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, rgba(255,255,255,0.12) 0%, transparent 50%);
+  opacity: 0;
+  transition: opacity 0.3s var(--ease-out-quart);
+}
+
+.btn--gradient:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 12px 35px rgba(123, 79, 224, 0.45),
+              0 4px 12px rgba(123, 79, 224, 0.2);
+}
+
+.btn--gradient:hover::before {
+  opacity: 1;
+}
+
+.btn--gradient:active {
+  transform: translateY(0) scale(0.98);
+  transition-duration: 0.1s;
+}
+
+/* Ghost button — enhanced hover */
+.btn--ghost {
+  transition: border-color 0.3s var(--ease-out-quart),
+              color 0.3s var(--ease-out-quart),
+              transform 0.25s var(--ease-out-quart),
+              box-shadow 0.3s var(--ease-out-quart);
+}
+
+.btn--ghost:hover {
+  border-color: var(--color-blue);
+  color: var(--color-blue);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(63, 169, 232, 0.15);
+}
+
+.btn--ghost:active {
+  transform: translateY(0) scale(0.98);
+  transition-duration: 0.1s;
+}
+
+/* ==========================================================================
+   Card Hover Enhancements
+   ========================================================================== */
+
+.card {
+  transition: transform 0.3s var(--ease-out-quart),
+              border-color 0.3s var(--ease-out-quart),
+              box-shadow 0.4s var(--ease-out-quart);
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(123, 79, 224, 0.5);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35),
+              0 0 30px rgba(123, 79, 224, 0.08);
+}
+
+.card:hover .glyph {
+  transform: scale(1.12);
+  transition: transform 0.3s var(--ease-elastic);
+}
+
+.eco:hover .glyph--sm {
+  transform: scale(1.15);
+  transition: transform 0.3s var(--ease-elastic);
+}
+
+.glyph,
+.glyph--sm {
+  transition: transform 0.3s var(--ease-out-quart);
+}
+
+/* Horizon card hover */
+.horizon-card {
+  transition: border-color 0.3s var(--ease-out-quart),
+              transform 0.3s var(--ease-out-quart),
+              box-shadow 0.3s var(--ease-out-quart);
+}
+
+.horizon-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(63, 169, 232, 0.45);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* ==========================================================================
+   Back-to-Top Enhancement
+   ========================================================================== */
+
+.back-to-top {
+  transition: opacity var(--transition-slow),
+              visibility var(--transition-slow),
+              transform 0.3s var(--ease-elastic),
+              box-shadow 0.3s var(--ease-out-quart);
+}
+
+.back-to-top:hover {
+  transform: translateY(-3px) scale(1.08);
+  box-shadow: 0 12px 30px rgba(123, 79, 224, 0.5);
+}
+
+.back-to-top:hover svg {
+  animation: arrow-bounce 0.6s var(--ease-elastic);
+}
+
+@keyframes arrow-bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+}
+
+/* ==========================================================================
+   Logo Hover Glow
+   ========================================================================== */
+
+.nav__logo svg {
+  transition: filter 0.4s var(--ease-smooth);
+}
+
+.nav__logo:hover svg {
+  filter: drop-shadow(0 0 8px rgba(123, 79, 224, 0.5));
+}
+
+/* ==========================================================================
+   Footer Link Enhancement
+   ========================================================================== */
+
+.footer__link {
+  transition: color 0.2s var(--ease-out-quart),
+              transform 0.2s var(--ease-out-quart);
+  display: inline-block;
+}
+
+.footer__link:hover {
+  color: var(--color-text);
+  transform: translateX(2px);
+}
+
+/* ==========================================================================
+   CTA Card Enhancements
+   ========================================================================== */
+
+.cta-card {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: transform 0.3s var(--ease-out-quart),
+              box-shadow 0.3s var(--ease-out-quart);
+}
+
+.cta-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+}
+
+/* ==========================================================================
+   Pilot Card
+   ========================================================================== */
+
+.pilot {
+  opacity: 0;
+  transform: scale(0.96);
+}
+
+/* ==========================================================================
+   Info Note Entrance
+   ========================================================================== */
+
+.info-note {
+  opacity: 0;
+  transform: translateY(16px);
+}
+
+/* ==========================================================================
+   Reduced Motion Override — COMPREHENSIVE
+   ========================================================================== */
+
 @media (prefers-reduced-motion: reduce) {
-  .reveal {
-    opacity: 1;
-    transform: none;
-    transition: none;
+  /* Reset all initial states to visible */
+  .reveal,
+  .anim-reveal,
+  .anim-fade-up,
+  .anim-fade-left,
+  .anim-fade-right,
+  .anim-scale-in,
+  .hero__title .word,
+  .hero__lede,
+  .hero__ctas,
+  .hero__ctas .btn,
+  .hero__note,
+  .hero__stage,
+  .thesis__cards .card,
+  .eco-grid .eco,
+  .vision__horizon .horizon-card,
+  .funnel__row .funnel__node,
+  .funnel__row > div:last-child,
+  .steps .step,
+  .cta-card,
+  .pilot,
+  .info-note,
+  .scroll-indicator {
+    opacity: 1 !important;
+    transform: none !important;
+    clip-path: none !important;
+    transition: none !important;
+    animation: none !important;
   }
 
+  .anim-clip-up {
+    clip-path: none !important;
+  }
+
+  /* Remove background animations */
+  .hero::before,
+  .hero__orb {
+    animation: none !important;
+  }
+
+  .hero__orb {
+    opacity: 0.5 !important;
+  }
+
+  /* SVG elements */
   .bridge {
-    stroke-dashoffset: 0;
+    stroke-dashoffset: 0 !important;
   }
 
   .pulse-dot {
-    opacity: 0.4;
+    opacity: 0.4 !important;
+    animation: none !important;
+  }
+
+  /* Remove scroll indicator */
+  .scroll-indicator {
+    display: none !important;
+  }
+
+  /* Remove nav progress */
+  .nav__progress {
+    display: none !important;
+  }
+
+  /* Eyebrows */
+  section .eyebrow::before,
+  .hero .eyebrow::before {
+    transform: scaleX(1) !important;
+  }
+
+  /* Pull quote */
+  .pull::before {
+    height: 100% !important;
+  }
+
+  /* Funnel lines */
+  .funnel__row::before {
+    transform: scaleY(1) !important;
+  }
+
+  /* Keep simple hover color changes but remove transforms */
+  .btn--gradient:hover,
+  .btn--ghost:hover,
+  .card:hover,
+  .eco:hover,
+  .horizon-card:hover,
+  .cta-card:hover,
+  .back-to-top:hover {
+    transform: none !important;
+  }
+
+  /* Form shake */
+  .form__input--shake,
+  .form__textarea--shake {
+    animation: none !important;
   }
 }

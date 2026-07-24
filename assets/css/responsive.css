@@ -170,3 +170,24 @@
     gap: var(--space-lg);
   }
 }
+
+/* ---- Touch Devices ---- */
+@media (hover: none) {
+  /* Disable hover transforms on touch devices to prevent stuck states */
+  .btn--gradient:hover,
+  .btn--ghost:hover,
+  .card:hover,
+  .eco:hover,
+  .horizon-card:hover,
+  .cta-card:hover,
+  .back-to-top:hover {
+    transform: none !important;
+  }
+  
+  .card:hover,
+  .cta-card:hover,
+  .horizon-card:hover {
+    box-shadow: none !important;
+    border-color: var(--color-line) !important;
+  }
+}

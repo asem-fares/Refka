@@ -3,6 +3,7 @@
    ========================================================================== */
 
 import { throttle } from './utils.js';
+import { prefersReducedMotion } from './motion-system.js';
 
 /**
  * Initialize the mobile navigation hamburger menu.
@@ -20,6 +21,22 @@ export function initNavbar() {
     links.classList.add('nav__links--open');
     if (overlay) overlay.classList.add('nav__mobile-overlay--visible');
     document.body.style.overflow = 'hidden';
+
+    // Staggered link animation
+    if (!prefersReducedMotion() && typeof gsap !== 'undefined') {
+      const navItems = links.querySelectorAll('.nav__link, .btn');
+      gsap.fromTo(navItems, {
+        opacity: 0,
+        x: 20
+      }, {
+        opacity: 1,
+        x: 0,
+        duration: 0.4,
+        stagger: 0.05,
+        ease: 'power3.out',
+        overwrite: true
+      });
+    }
   }
 
   function closeMenu() {
