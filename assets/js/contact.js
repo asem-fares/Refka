@@ -107,7 +107,7 @@ async function handleSubmit(e) {
     showStatus(
       statusEl,
       'error',
-      'Something went wrong. Please try again or email us directly at hello@refka.ai'
+      'Something went wrong. Please try again or email us directly at hello@refka.tech'
     );
   } finally {
     setLoadingState(submitBtn, false);
