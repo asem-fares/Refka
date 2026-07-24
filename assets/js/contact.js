@@ -1,19 +1,17 @@
 /* ==========================================================================
    CONTACT — Form Validation, Submission & UX States
-   Uses EmailJS for sending emails from a static site.
+   Uses FormSubmit AJAX endpoint for direct email delivery.
    ========================================================================== */
 
 import { sanitize } from './utils.js';
 
-// ---- Configuration ----
-// Replace these with your actual EmailJS credentials
-const EMAILJS_PUBLIC_KEY = 'YOUR_PUBLIC_KEY';  // Get from EmailJS dashboard
-const EMAILJS_SERVICE_ID = 'YOUR_SERVICE_ID';  // Your email service ID
-const EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID'; // Your email template ID
+// Configuration: Recipient email address
+const RECIPIENT_EMAIL = 'mahmoudahmed10197@gmail.com';
+const FORMSUBMIT_URL = `https://formsubmit.co/ajax/${RECIPIENT_EMAIL}`;
 
 // Rate limiting
 let lastSubmitTime = 0;
-const SUBMIT_COOLDOWN = 30000; // 30 seconds between submissions
+const SUBMIT_COOLDOWN = 10000; // 10 seconds between submissions
 
 /**
  * Initialize the contact form.
@@ -22,33 +20,14 @@ export function initContactForm() {
   const form = document.getElementById('contact-form');
   if (!form) return;
 
-  // Load EmailJS SDK dynamically
-  loadEmailJSSDK();
-
   form.addEventListener('submit', handleSubmit);
 
-  // Real-time validation on blur
+  // Real-time validation on blur & input
   const inputs = form.querySelectorAll('.form__input, .form__textarea');
   inputs.forEach((input) => {
     input.addEventListener('blur', () => validateField(input));
     input.addEventListener('input', () => clearFieldError(input));
   });
-}
-
-/**
- * Dynamically load the EmailJS SDK.
- */
-function loadEmailJSSDK() {
-  if (window.emailjs) return;
-
-  const script = document.createElement('script');
-  script.src = 'https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js';
-  script.onload = () => {
-    if (window.emailjs) {
-      window.emailjs.init(EMAILJS_PUBLIC_KEY);
-    }
-  };
-  document.head.appendChild(script);
 }
 
 /**
@@ -65,20 +44,20 @@ async function handleSubmit(e) {
   // Rate limiting
   const now = Date.now();
   if (now - lastSubmitTime < SUBMIT_COOLDOWN) {
-    showStatus(statusEl, 'error', 'Please wait before sending another message.');
+    showStatus(statusEl, 'error', 'Please wait a few seconds before sending another message.');
     return;
   }
 
-  // Honeypot check
+  // Honeypot check (spam prevention)
   const honeypot = form.querySelector('[name="website"]');
   if (honeypot && honeypot.value.trim() !== '') {
-    // Silently reject — likely a bot
-    showStatus(statusEl, 'success', 'Thank you! Your message has been sent.');
+    // Silently reject — bot trap
+    showStatus(statusEl, 'success', '✓ Message sent successfully! We\'ll get back to you soon.');
     form.reset();
     return;
   }
 
-  // Validate all fields
+  // Validate all required fields
   if (!validateForm(form)) return;
 
   // Set loading state
@@ -86,28 +65,45 @@ async function handleSubmit(e) {
   hideStatus(statusEl);
 
   try {
-    // Collect form data
     const data = collectFormData(form);
 
-    // Send via EmailJS
-    if (window.emailjs) {
-      await window.emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, data);
-    } else {
-      // Fallback: if EmailJS not loaded, use mailto
-      throw new Error('Email service not available. Please try again.');
-    }
+    const response = await fetch(FORMSUBMIT_URL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify({
+        _subject: `Refka Website Contact: ${data.subject} from ${data.name}`,
+        _template: 'table',
+        _captcha: 'false',
+        Name: data.name,
+        Email: data.email,
+        Phone: data.phone || 'Not provided',
+        Subject: data.subject,
+        Message: data.message,
+        SubmissionTime: data.timestamp,
+        Browser: data.browser,
+        Referrer: data.referrer
+      })
+    });
 
-    // Success
-    lastSubmitTime = Date.now();
-    showStatus(statusEl, 'success', '✓ Message sent successfully! We\'ll get back to you soon.');
-    form.reset();
+    const result = await response.json();
+
+    if (response.ok && (result.success === 'true' || result.success === true)) {
+      lastSubmitTime = Date.now();
+      showStatus(statusEl, 'success', '✓ Message sent successfully! We\'ll get back to you soon.');
+      form.reset();
+    } else {
+      throw new Error(result.message || 'Submission failed');
+    }
 
   } catch (error) {
     console.error('Contact form error:', error);
     showStatus(
       statusEl,
       'error',
-      'Something went wrong. Please try again or email us directly at hello@refka.tech'
+      'Something went wrong sending the message. Please email us directly at hello@refka.tech'
     );
   } finally {
     setLoadingState(submitBtn, false);
@@ -128,16 +124,14 @@ function collectFormData(form) {
     phone: sanitize(formData.get('phone')?.trim() || ''),
     subject: sanitize(formData.get('subject')?.trim() || 'General Inquiry'),
     message: sanitize(formData.get('message')?.trim() || ''),
-    // Metadata
     timestamp: new Date().toLocaleString('en-GB', { timeZone: 'Europe/Tirane' }),
     browser: navigator.userAgent,
-    referrer: document.referrer || 'Direct',
-    page_url: window.location.href,
+    referrer: document.referrer || 'Direct'
   };
 }
 
 /**
- * Validate the entire form.
+ * Validate all fields in the form.
  * @param {HTMLFormElement} form
  * @returns {boolean}
  */
@@ -151,7 +145,6 @@ function validateForm(form) {
     }
   });
 
-  // Focus first invalid field
   if (!isValid) {
     const firstError = form.querySelector('.form__input--error, .form__textarea--error');
     if (firstError) firstError.focus();
@@ -161,7 +154,7 @@ function validateForm(form) {
 }
 
 /**
- * Validate a single field.
+ * Validate a single input field.
  * @param {HTMLElement} field
  * @returns {boolean}
  */
@@ -211,7 +204,7 @@ function validateField(field) {
 }
 
 /**
- * Clear validation error from a field.
+ * Clear error styling from a field.
  * @param {HTMLElement} field
  */
 function clearFieldError(field) {
@@ -224,7 +217,7 @@ function clearFieldError(field) {
 }
 
 /**
- * Set the submit button loading state.
+ * Set submit button loading state.
  * @param {HTMLElement} btn
  * @param {boolean} isLoading
  */
@@ -236,7 +229,7 @@ function setLoadingState(btn, isLoading) {
 }
 
 /**
- * Show a status message.
+ * Show status message.
  * @param {HTMLElement} el
  * @param {'success'|'error'} type
  * @param {string} message
@@ -249,7 +242,7 @@ function showStatus(el, type, message) {
 }
 
 /**
- * Hide the status message.
+ * Hide status message.
  * @param {HTMLElement} el
  */
 function hideStatus(el) {
