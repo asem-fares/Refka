@@ -48,10 +48,9 @@ async function handleSubmit(e) {
     return;
   }
 
-  // Honeypot check (spam prevention)
+  // Honeypot check (bot trap)
   const honeypot = form.querySelector('[name="website"]');
   if (honeypot && honeypot.value.trim() !== '') {
-    // Silently reject — bot trap
     showStatus(statusEl, 'success', '✓ Message sent successfully! We\'ll get back to you soon.');
     form.reset();
     return;
@@ -90,11 +89,21 @@ async function handleSubmit(e) {
 
     const result = await response.json();
 
-    if (response.ok && (result.success === 'true' || result.success === true)) {
+    // Check if form is successfully submitted
+    if (result.success === 'true' || result.success === true) {
       lastSubmitTime = Date.now();
       showStatus(statusEl, 'success', '✓ Message sent successfully! We\'ll get back to you soon.');
       form.reset();
-    } else {
+    } 
+    // Check if form requires initial activation link click
+    else if (result.message && result.message.toLowerCase().includes('activation')) {
+      showStatus(
+        statusEl,
+        'success',
+        '✉️ Activation link sent to ' + RECIPIENT_EMAIL + '. Please check your inbox and click "Activate Form" to complete setup!'
+      );
+    } 
+    else {
       throw new Error(result.message || 'Submission failed');
     }
 
