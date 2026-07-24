@@ -249,54 +249,14 @@ main.js (entry)
 
 ### Architecture
 
-The contact form uses **EmailJS** — a client-side email service for static websites.
+The contact form uses **FormSubmit AJAX** — a zero-configuration email service for static websites. 
 
-### Setup Instructions
+- ⚡ **Zero Setup Required:** Submissions automatically route directly to `mahmoudahmed10197@gmail.com`
+- 🔒 Includes built-in honeypot spam protection and client-side rate limiting
+- 📋 Formatted HTML table notifications with metadata (submission time, browser user agent, referrer)
+- ♿ Full accessibility (labels, `aria-required`, `aria-live`, keyboard navigation)
 
-1. Create a free account at [emailjs.com](https://www.emailjs.com/)
-2. Add an email service (connect Gmail with `mahmoudahmed10197@gmail.com`)
-3. Create an email template with these variables:
-   - `{{name}}`, `{{email}}`, `{{phone}}`, `{{subject}}`, `{{message}}`
-   - `{{timestamp}}`, `{{browser}}`, `{{referrer}}`, `{{page_url}}`
-4. Copy your **Public Key**, **Service ID**, and **Template ID**
-5. Update the constants in `assets/js/contact.js`:
-
-```javascript
-const EMAILJS_PUBLIC_KEY  = 'your_actual_public_key';
-const EMAILJS_SERVICE_ID  = 'your_service_id';
-const EMAILJS_TEMPLATE_ID = 'your_template_id';
-```
-
-### Features
-- ✅ Client-side validation (required, email format, phone format, min length)
-- ✅ Real-time error clearing on input
-- ✅ Loading state (spinner + disabled button)
-- ✅ Success/error messages via `aria-live` region
-- ✅ Honeypot spam prevention (invisible field that traps bots)
-- ✅ Rate limiting (30s cooldown between submissions)
-- ✅ Input sanitization (XSS prevention)
-- ✅ Metadata collection (timestamp, browser, referrer)
-- ✅ Accessible (labels, `aria-required`, `aria-live`, keyboard navigable)
-
-### Email Template (for EmailJS)
-
-```html
-<h2>New Contact from Refka Website</h2>
-<table>
-  <tr><td><strong>Name:</strong></td><td>{{name}}</td></tr>
-  <tr><td><strong>Email:</strong></td><td>{{email}}</td></tr>
-  <tr><td><strong>Phone:</strong></td><td>{{phone}}</td></tr>
-  <tr><td><strong>Subject:</strong></td><td>{{subject}}</td></tr>
-  <tr><td><strong>Message:</strong></td><td>{{message}}</td></tr>
-</table>
-<hr>
-<small>
-  Sent: {{timestamp}}<br>
-  Browser: {{browser}}<br>
-  Referrer: {{referrer}}<br>
-  Page: {{page_url}}
-</small>
-```
+To change the receiving email address, update `RECIPIENT_EMAIL` in `assets/js/contact.js`.
 
 ---
 
