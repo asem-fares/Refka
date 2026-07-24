@@ -75,14 +75,18 @@
 
   .nav__links {
     position: fixed;
-    top: 0;
+    top: var(--nav-height);
     right: 0;
-    bottom: 0;
     width: 280px;
     max-width: 85vw;
+    /* Anchor exactly below the navbar and fill the rest of the viewport.
+       dvh accounts for mobile browser chrome (avoids the 100vh under-URL-bar bug);
+       vh is a fallback for older browsers. */
+    height: calc(100vh - var(--nav-height));
+    height: calc(100dvh - var(--nav-height));
     flex-direction: column;
     align-items: flex-start;
-    padding: 100px var(--gutter) var(--gutter);
+    padding: var(--space-lg) var(--gutter) var(--space-xl);
     background: rgba(14, 14, 17, 0.97);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
@@ -91,7 +95,11 @@
     transition: transform var(--transition-slow);
     z-index: calc(var(--z-nav) + 1);
     gap: 0;
+    /* Internal scroll is a fallback only (very short screens / large text).
+       Body is locked while open, so only the menu ever scrolls — never both. */
     overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
   }
 
   .nav__links.nav__links--open {
@@ -112,17 +120,26 @@
     text-align: center;
   }
 
-  /* Mobile overlay */
+  /* Mobile overlay — smooth fade via opacity/visibility (no display toggling) */
   .nav__mobile-overlay {
-    display: none;
+    display: block;
     position: fixed;
     inset: 0;
     background: rgba(0, 0, 0, 0.5);
     z-index: var(--z-overlay);
+    opacity: 0;
+    visibility: hidden;
+    /* On hide: fade out, then flip visibility after the duration. */
+    transition: opacity var(--transition-slow) ease,
+                visibility 0s linear var(--transition-slow);
   }
 
   .nav__mobile-overlay--visible {
-    display: block;
+    opacity: 1;
+    visibility: visible;
+    /* On show: flip visibility instantly, fade opacity in. */
+    transition: opacity var(--transition-slow) ease,
+                visibility 0s linear 0s;
   }
 
   /* Pilot */

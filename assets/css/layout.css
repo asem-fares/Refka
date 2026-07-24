@@ -53,3 +53,8 @@ section.tint {
   white-space: nowrap;
   border: 0;
 }
+
+/* ---- Shared SVG sprite definitions (hidden, removed from flow) ---- */
+.svg-defs {
+  position: absolute;
+}

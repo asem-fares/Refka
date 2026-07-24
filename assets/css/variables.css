@@ -55,6 +55,7 @@
   /* ---- Layout ---- */
   --max-width: 1120px;
   --gutter:    24px;
+  --nav-height: 68px;
 
   /* ---- Transitions ---- */
   --transition-fast:   0.15s ease;

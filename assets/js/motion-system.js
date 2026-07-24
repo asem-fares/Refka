@@ -84,8 +84,7 @@ export async function initMotionSystem() {
  */
 function showAllElements() {
   const selectors = [
-    '.reveal', '.anim-reveal', '.anim-fade-up', '.anim-fade-left',
-    '.anim-fade-right', '.anim-scale-in', '.anim-clip-up',
+    '.reveal',
     '.hero__title .word', '.hero__lede', '.hero__ctas', '.hero__ctas .btn',
     '.hero__note', '.hero__stage', '.hero__orb',
     '.thesis__cards .card', '.eco-grid .eco', '.vision__horizon .horizon-card',
@@ -101,6 +100,9 @@ function showAllElements() {
       el.style.clipPath = 'none';
     });
   });
+
+  // Trigger the hero SVG bridge-draw animation (normally added by the GSAP timeline)
+  document.querySelector('.hero__stage')?.classList.add('in-view');
 }
 
 
@@ -781,6 +783,61 @@ function animateStagger(selector, options = {}) {
       once: true
     }
   });
+}
+
+
+/* ==========================================================================
+   BACK TO TOP — visibility on scroll + click handler
+   ========================================================================== */
+
+/**
+ * Initialize back-to-top button visibility.
+ * Uses ScrollTrigger when available, otherwise falls back to IntersectionObserver.
+ */
+export function initBackToTop() {
+  const btn = document.getElementById('back-to-top');
+  if (!btn) return;
+
+  if (!prefersReducedMotion() && typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+    requestAnimationFrame(() => {
+      if (typeof ScrollTrigger !== 'undefined') {
+        ScrollTrigger.create({
+          trigger: '.hero',
+          start: 'bottom top',
+          onEnter: () => btn.classList.add('back-to-top--visible'),
+          onEnterBack: () => btn.classList.remove('back-to-top--visible'),
+        });
+      } else {
+        fallbackBackToTop(btn);
+      }
+    });
+  } else {
+    fallbackBackToTop(btn);
+  }
+
+  btn.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+}
+
+/**
+ * Fallback back-to-top using IntersectionObserver.
+ * @param {HTMLElement} btn
+ */
+function fallbackBackToTop(btn) {
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        btn.classList.toggle('back-to-top--visible', !entry.isIntersecting);
+      });
+    },
+    { threshold: 0 }
+  );
+
+  const hero = document.querySelector('.hero');
+  if (hero) {
+    observer.observe(hero);
+  }
 }
 
 

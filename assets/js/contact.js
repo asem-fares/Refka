@@ -6,13 +6,14 @@
 import { sanitize } from './utils.js';
 import { animateButtonSuccess, animateButtonError } from './motion-system.js';
 
-// Configuration: Recipient email address
-const RECIPIENT_EMAIL = 'mahmoudahmed10197@gmail.com';
+// Configuration: Recipient email address (branded inbox, never a personal address)
+const RECIPIENT_EMAIL = 'community@refka.tech';
 const FORMSUBMIT_URL = `https://formsubmit.co/ajax/${RECIPIENT_EMAIL}`;
 
 // Rate limiting
 let lastSubmitTime = 0;
 const SUBMIT_COOLDOWN = 10000; // 10 seconds between submissions
+const FETCH_TIMEOUT = 12000;   // 12s — abort the request if FormSubmit is unresponsive
 
 /**
  * Initialize the contact form.
@@ -64,6 +65,9 @@ async function handleSubmit(e) {
   setLoadingState(submitBtn, true);
   hideStatus(statusEl);
 
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), FETCH_TIMEOUT);
+
   try {
     const data = collectFormData(form);
 
@@ -85,8 +89,11 @@ async function handleSubmit(e) {
         SubmissionTime: data.timestamp,
         Browser: data.browser,
         Referrer: data.referrer
-      })
+      }),
+      signal: controller.signal
     });
+
+    clearTimeout(timeoutId);
 
     const result = await response.json();
 
@@ -96,28 +103,32 @@ async function handleSubmit(e) {
       showStatus(statusEl, 'success', '✓ Message sent successfully! We\'ll get back to you soon.');
       animateButtonSuccess(submitBtn);
       form.reset();
-    } 
+    }
     // Check if form requires initial activation link click
     else if (result.message && result.message.toLowerCase().includes('activation')) {
       showStatus(
         statusEl,
         'success',
-        '✉️ Activation link sent to ' + RECIPIENT_EMAIL + '. Please check your inbox and click "Activate Form" to complete setup!'
+        'Thanks! Your message was received. Our inbox is completing a one-time FormSubmit activation — please email us directly at community@refka.tech in the meantime.'
       );
-    } 
+    }
     else {
       throw new Error(result.message || 'Submission failed');
     }
 
   } catch (error) {
+    const aborted = error.name === 'AbortError';
     console.error('Contact form error:', error);
     showStatus(
       statusEl,
       'error',
-      'Something went wrong sending the message. Please email us directly at hello@refka.tech'
+      aborted
+        ? 'The request timed out. Please try again, or email us directly at community@refka.tech'
+        : 'Something went wrong sending the message. Please email us directly at community@refka.tech'
     );
     animateButtonError(submitBtn);
   } finally {
+    clearTimeout(timeoutId);
     setLoadingState(submitBtn, false);
   }
 }
@@ -191,11 +202,13 @@ function validateField(field) {
           errorMsg = 'Please enter a valid phone number.';
         }
         break;
-      case 'minlength':
-        if (value && value.length < 10) {
-          errorMsg = 'Please enter at least 10 characters.';
+      case 'minlength': {
+        const min = parseInt(field.dataset.minlength, 10) || 10;
+        if (value && value.length < min) {
+          errorMsg = `Please enter at least ${min} characters.`;
         }
         break;
+      }
     }
     if (errorMsg) break;
   }
@@ -204,6 +217,7 @@ function validateField(field) {
     field.classList.add(
       field.tagName === 'TEXTAREA' ? 'form__textarea--error' : 'form__input--error'
     );
+    field.setAttribute('aria-invalid', 'true');
     if (errorEl) {
       errorEl.textContent = errorMsg;
       errorEl.classList.add('form__error--visible');
@@ -221,6 +235,7 @@ function validateField(field) {
  */
 function clearFieldError(field) {
   field.classList.remove('form__input--error', 'form__textarea--error');
+  field.removeAttribute('aria-invalid');
   const errorEl = field.parentElement?.querySelector('.form__error');
   if (errorEl) {
     errorEl.textContent = '';

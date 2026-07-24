@@ -6,8 +6,20 @@ import { throttle } from './utils.js';
 import { prefersReducedMotion } from './motion-system.js';
 
 /**
+ * Query focusable elements inside a container.
+ * @param {HTMLElement} container
+ * @returns {HTMLElement[]}
+ */
+function getFocusable(container) {
+  if (!container) return [];
+  return Array.from(
+    container.querySelectorAll('a[href], button:not([disabled]), input, [tabindex]:not([tabindex="-1"])')
+  );
+}
+
+/**
  * Initialize the mobile navigation hamburger menu.
- * Manages open/close state, focus trapping, and body scroll locking.
+ * Manages open/close state, focus move + trap, and body scroll locking.
  */
 export function initNavbar() {
   const toggle = document.getElementById('nav-toggle');
@@ -16,11 +28,31 @@ export function initNavbar() {
 
   if (!toggle || !links) return;
 
+  /**
+   * Lock body scroll while compensating for the disappearing scrollbar so the
+   * page content doesn't shift horizontally when the menu opens.
+   */
+  function lockScroll() {
+    const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+    if (scrollbarWidth > 0) {
+      document.body.style.paddingRight = scrollbarWidth + 'px';
+    }
+    document.body.style.overflow = 'hidden';
+  }
+
+  /**
+   * Restore body scroll and clear the scrollbar compensation.
+   */
+  function unlockScroll() {
+    document.body.style.overflow = '';
+    document.body.style.paddingRight = '';
+  }
+
   function openMenu() {
     toggle.setAttribute('aria-expanded', 'true');
     links.classList.add('nav__links--open');
     if (overlay) overlay.classList.add('nav__mobile-overlay--visible');
-    document.body.style.overflow = 'hidden';
+    lockScroll();
 
     // Staggered link animation
     if (!prefersReducedMotion() && typeof gsap !== 'undefined') {
@@ -37,18 +69,25 @@ export function initNavbar() {
         overwrite: true
       });
     }
+
+    // Move focus into the menu for keyboard / screen-reader users
+    const focusables = getFocusable(links);
+    if (focusables.length) {
+      requestAnimationFrame(() => focusables[0].focus());
+    }
   }
 
-  function closeMenu() {
+  function closeMenu(returnFocus = true) {
     toggle.setAttribute('aria-expanded', 'false');
     links.classList.remove('nav__links--open');
     if (overlay) overlay.classList.remove('nav__mobile-overlay--visible');
-    document.body.style.overflow = '';
+    unlockScroll();
+    if (returnFocus) toggle.focus();
   }
 
   toggle.addEventListener('click', () => {
     const isOpen = toggle.getAttribute('aria-expanded') === 'true';
-    isOpen ? closeMenu() : openMenu();
+    isOpen ? closeMenu(false) : openMenu();
   });
 
   // Close on overlay click
@@ -56,23 +95,43 @@ export function initNavbar() {
     overlay.addEventListener('click', closeMenu);
   }
 
-  // Close on nav link click (mobile)
+  // Close on nav link click (mobile) — user navigated, no need to refocus toggle
   links.querySelectorAll('.nav__link').forEach(link => {
-    link.addEventListener('click', closeMenu);
+    link.addEventListener('click', () => closeMenu(false));
   });
 
-  // Close on Escape key
+  // Keyboard: Escape closes; Tab wraps within the open menu (focus trap)
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && toggle.getAttribute('aria-expanded') === 'true') {
-      closeMenu();
-      toggle.focus();
+    const isOpen = toggle.getAttribute('aria-expanded') === 'true';
+    if (!isOpen) return;
+
+    if (e.key === 'Escape') {
+      e.stopPropagation();
+      closeMenu(true);
+      return;
+    }
+
+    if (e.key === 'Tab') {
+      const focusables = getFocusable(links);
+      if (!focusables.length) return;
+      const first = focusables[0];
+      const last = focusables[focusables.length - 1];
+      const active = document.activeElement;
+
+      if (e.shiftKey && active === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && active === last) {
+        e.preventDefault();
+        first.focus();
+      }
     }
   });
 
   // Close menu if resized past mobile breakpoint
   window.addEventListener('resize', throttle(() => {
     if (window.innerWidth > 720 && toggle.getAttribute('aria-expanded') === 'true') {
-      closeMenu();
+      closeMenu(false);
     }
   }, 200));
 }
@@ -93,10 +152,13 @@ export function initActiveNav() {
         if (entry.isIntersecting) {
           const id = entry.target.getAttribute('id');
           navLinks.forEach((link) => {
-            link.classList.toggle(
-              'nav__link--active',
-              link.getAttribute('href') === `#${id}`
-            );
+            const isActive = link.getAttribute('href') === `#${id}`;
+            link.classList.toggle('nav__link--active', isActive);
+            if (isActive) {
+              link.setAttribute('aria-current', 'true');
+            } else {
+              link.removeAttribute('aria-current');
+            }
           });
         }
       });

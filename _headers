@@ -1,0 +1,25 @@
+# Security & caching headers for Netlify / Cloudflare Pages.
+# NOTE: GitHub Pages (current host) ignores this file — headers there come only
+# from the <meta> tags in index.html. Migrate to Netlify/Cloudflare Pages to
+# enforce frame-ancestors, COOP, and long-cache headers below.
+
+/*
+  Content-Security-Policy: default-src 'self'; script-src 'self' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; manifest-src 'self'; connect-src https://formsubmit.co; base-uri 'self'; form-action https://formsubmit.co; frame-ancestors 'none'; object-src 'none'
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+  Cross-Origin-Opener-Policy: same-origin
+  X-XSS-Protection: 0
+
+# Long-cache fingerprintable static assets (filenames are stable)
+/assets/fonts/*
+  Cache-Control: public, max-age=31536000, immutable
+/assets/css/*
+  Cache-Control: public, max-age=31536000, immutable
+/assets/js/*
+  Cache-Control: public, max-age=31536000, immutable
+/assets/images/*
+  Cache-Control: public, max-age=31536000, immutable
+/assets/icons/*
+  Cache-Control: public, max-age=31536000, immutable

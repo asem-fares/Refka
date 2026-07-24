@@ -4,7 +4,7 @@
    ========================================================================== */
 
 import { initNavbar, initActiveNav } from './navbar.js';
-import { initAnimations, initBackToTop } from './animations.js';
+import { initMotionSystem, initBackToTop } from './motion-system.js';
 import { initContactForm } from './contact.js';
 import { getCurrentYear } from './utils.js';
 
@@ -17,7 +17,7 @@ async function init() {
   initActiveNav();
 
   // Motion Design System (async — waits for GSAP CDN)
-  await initAnimations();
+  await initMotionSystem();
 
   // Back to top (after motion system is ready)
   initBackToTop();

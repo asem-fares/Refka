@@ -232,6 +232,10 @@
   margin-bottom: var(--space-xl);
 }
 
+#how .info-note {
+  margin-top: 26px;
+}
+
 /* ==========================================================================
    Ecosystem
    ========================================================================== */
@@ -274,6 +278,10 @@
   color: var(--color-muted);
   max-width: 640px;
   margin-bottom: var(--space-xl);
+}
+
+#ecosystem .info-note {
+  margin-top: 34px;
 }
 
 /* ==========================================================================
@@ -385,6 +393,11 @@
    Pilot Band
    ========================================================================== */
 
+#pilot {
+  padding-top: 80px;
+  padding-bottom: 80px;
+}
+
 .pilot {
   background: var(--color-surface);
   border: 1px solid var(--color-line-strong);
@@ -457,6 +470,10 @@
   text-align: center;
 }
 
+#vision .eyebrow {
+  justify-content: center;
+}
+
 .vision__title {
   font-size: clamp(1.9rem, 4vw, 2.8rem);
   font-weight: 800;
@@ -485,11 +502,15 @@
   border: 1px solid var(--color-line);
   border-radius: var(--radius-xl);
   padding: 26px 24px;
-  transition: border-color var(--transition-base);
+  transition: border-color 0.3s var(--ease-out-quart),
+              transform 0.3s var(--ease-out-quart),
+              box-shadow 0.3s var(--ease-out-quart);
 }
 
 .horizon-card:hover {
-  border-color: rgba(63, 169, 232, 0.4);
+  transform: translateY(-4px);
+  border-color: rgba(63, 169, 232, 0.45);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.3);
 }
 
 .horizon-card__phase {
@@ -531,6 +552,13 @@
   align-items: flex-start;
   position: relative;
   overflow: hidden;
+  transition: transform 0.3s var(--ease-out-quart),
+              box-shadow 0.3s var(--ease-out-quart);
+}
+
+.cta-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
 }
 
 .cta-card--primary {
@@ -621,6 +649,10 @@
   margin-bottom: var(--space-sm);
 }
 
+.contact__detail a {
+  color: var(--color-blue);
+}
+
 .contact__detail svg {
   flex-shrink: 0;
   width: 20px;
@@ -670,7 +702,8 @@
 .form__select:focus,
 .form__textarea:focus {
   border-color: var(--color-violet);
-  box-shadow: 0 0 0 3px rgba(123, 79, 224, 0.2);
+  box-shadow: 0 0 0 3px rgba(123, 79, 224, 0.2),
+              0 0 20px rgba(123, 79, 224, 0.08);
   outline: none;
 }
 
@@ -695,14 +728,22 @@
 }
 
 .form__error {
-  display: none;
+  display: block;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
   font-size: 0.8rem;
   color: #e84040;
-  margin-top: 6px;
+  margin-top: 0;
+  transition: max-height 0.3s var(--ease-out-quart),
+              opacity 0.3s var(--ease-out-quart),
+              margin 0.3s var(--ease-out-quart);
 }
 
 .form__error--visible {
-  display: block;
+  max-height: 40px;
+  opacity: 1;
+  margin-top: 6px;
 }
 
 .form__row {
@@ -742,6 +783,21 @@
   background: rgba(232, 64, 64, 0.12);
   border: 1px solid rgba(232, 64, 64, 0.3);
   color: #e84040;
+}
+
+/* Submit button states */
+.form__submit {
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.2s var(--ease-out-quart),
+              box-shadow 0.3s var(--ease-out-quart),
+              background 0.3s var(--ease-out-quart);
+}
+
+/* Success morph (applied by motion system after a successful submit) */
+.form__submit--success {
+  background: #34d399 !important;
+  pointer-events: none;
 }
 
 /* ==========================================================================
@@ -791,14 +847,20 @@
 }
 
 .footer__link {
+  display: inline-block;
   font-size: 0.85rem;
   color: var(--color-muted);
-  transition: color var(--transition-base);
+  transition: color 0.2s var(--ease-out-quart),
+              transform 0.2s var(--ease-out-quart);
 }
 
 .footer__link:hover,
 .footer__link:focus-visible {
   color: var(--color-text);
+}
+
+.footer__link:hover {
+  transform: translateX(2px);
 }
 
 .footer__link:focus-visible {

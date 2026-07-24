@@ -5,53 +5,15 @@
    ========================================================================== */
 
 /* ==========================================================================
-   Scroll Reveal System
-   Elements start hidden and are revealed by JS (GSAP ScrollTrigger).
-   Each class defines a unique starting state.
+   Scroll Reveal — FOUC Guard
+   .reveal elements start hidden so they don't flash before GSAP animates
+   them in. Directional anim-* classes were removed (unused); GSAP drives
+   every entrance via inline styles set on initialization.
    ========================================================================== */
 
-/* Default reveal — fade up (fallback for elements without specific direction) */
-.anim-reveal {
-  opacity: 0;
-  transform: translateY(28px);
-}
-
-/* Directional reveals */
-.anim-fade-up {
-  opacity: 0;
-  transform: translateY(32px);
-}
-
-.anim-fade-left {
-  opacity: 0;
-  transform: translateX(-40px);
-}
-
-.anim-fade-right {
-  opacity: 0;
-  transform: translateX(40px);
-}
-
-.anim-scale-in {
-  opacity: 0;
-  transform: scale(0.92);
-}
-
-.anim-clip-up {
-  clip-path: inset(100% 0 0 0);
-}
-
-/* Legacy .reveal class — maintained for backward compatibility */
 .reveal {
   opacity: 0;
   transform: translateY(22px);
-}
-
-.reveal.in {
-  opacity: 1;
-  transform: none;
-  transition: opacity 0.7s var(--ease-out-quart),
-              transform 0.7s var(--ease-out-quart);
 }
 
 /* ==========================================================================
@@ -326,15 +288,6 @@
 }
 
 /* ==========================================================================
-   Counter Animation
-   ========================================================================== */
-
-.counter-value {
-  display: inline-block;
-  font-variant-numeric: tabular-nums;
-}
-
-/* ==========================================================================
    Eyebrow Line Draw
    ========================================================================== */
 
@@ -431,19 +384,10 @@ section .eyebrow::before {
 }
 
 /* ==========================================================================
-   Contact Form Animations
+   Contact Form — Validation Shake
+   (focus glow, error slide, and submit states live in sections.css)
    ========================================================================== */
 
-/* Input focus glow ring */
-.form__input:focus,
-.form__select:focus,
-.form__textarea:focus {
-  border-color: var(--color-violet);
-  box-shadow: 0 0 0 3px rgba(123, 79, 224, 0.2),
-              0 0 20px rgba(123, 79, 224, 0.08);
-}
-
-/* Validation shake */
 @keyframes shake {
   0%, 100% { transform: translateX(0); }
   20% { transform: translateX(-4px); }
@@ -457,224 +401,15 @@ section .eyebrow::before {
   animation: shake 0.4s var(--ease-out-quart);
 }
 
-/* Error message slide down */
-.form__error {
-  display: block;
-  max-height: 0;
-  overflow: hidden;
-  opacity: 0;
-  transition: max-height 0.3s var(--ease-out-quart),
-              opacity 0.3s var(--ease-out-quart),
-              margin 0.3s var(--ease-out-quart);
-  margin-top: 0;
-}
-
-.form__error--visible {
-  max-height: 40px;
-  opacity: 1;
-  margin-top: 6px;
-}
-
-/* Submit button states */
-.form__submit {
-  position: relative;
-  overflow: hidden;
-  transition: transform 0.2s var(--ease-out-quart),
-              box-shadow 0.3s var(--ease-out-quart),
-              background 0.3s var(--ease-out-quart);
-}
-
-/* Success morph */
-.form__submit--success {
-  background: #34d399 !important;
-  pointer-events: none;
-}
-
-/* Loading spinner (enhanced) */
-.btn--loading::after {
-  content: "";
-  width: 16px;
-  height: 16px;
-  border: 2px solid transparent;
-  border-top-color: currentColor;
-  border-radius: 50%;
-  animation: btn-spin 0.6s linear infinite;
-  display: inline-block;
-  margin-left: 8px;
-  vertical-align: middle;
-}
-
-@keyframes btn-spin {
-  to { transform: rotate(360deg); }
-}
-
 /* ==========================================================================
-   Button Micro-Interactions (Enhanced)
-   ========================================================================== */
-
-/* Gradient button — enhanced hover */
-.btn--gradient {
-  position: relative;
-  overflow: hidden;
-  transition: transform 0.25s var(--ease-out-quart),
-              box-shadow 0.3s var(--ease-out-quart);
-}
-
-.btn--gradient::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(120deg, rgba(255,255,255,0.12) 0%, transparent 50%);
-  opacity: 0;
-  transition: opacity 0.3s var(--ease-out-quart);
-}
-
-.btn--gradient:hover {
-  transform: translateY(-2px) scale(1.02);
-  box-shadow: 0 12px 35px rgba(123, 79, 224, 0.45),
-              0 4px 12px rgba(123, 79, 224, 0.2);
-}
-
-.btn--gradient:hover::before {
-  opacity: 1;
-}
-
-.btn--gradient:active {
-  transform: translateY(0) scale(0.98);
-  transition-duration: 0.1s;
-}
-
-/* Ghost button — enhanced hover */
-.btn--ghost {
-  transition: border-color 0.3s var(--ease-out-quart),
-              color 0.3s var(--ease-out-quart),
-              transform 0.25s var(--ease-out-quart),
-              box-shadow 0.3s var(--ease-out-quart);
-}
-
-.btn--ghost:hover {
-  border-color: var(--color-blue);
-  color: var(--color-blue);
-  transform: translateY(-1px);
-  box-shadow: 0 4px 16px rgba(63, 169, 232, 0.15);
-}
-
-.btn--ghost:active {
-  transform: translateY(0) scale(0.98);
-  transition-duration: 0.1s;
-}
-
-/* ==========================================================================
-   Card Hover Enhancements
-   ========================================================================== */
-
-.card {
-  transition: transform 0.3s var(--ease-out-quart),
-              border-color 0.3s var(--ease-out-quart),
-              box-shadow 0.4s var(--ease-out-quart);
-}
-
-.card:hover {
-  transform: translateY(-6px);
-  border-color: rgba(123, 79, 224, 0.5);
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35),
-              0 0 30px rgba(123, 79, 224, 0.08);
-}
-
-.card:hover .glyph {
-  transform: scale(1.12);
-  transition: transform 0.3s var(--ease-elastic);
-}
-
-.eco:hover .glyph--sm {
-  transform: scale(1.15);
-  transition: transform 0.3s var(--ease-elastic);
-}
-
-.glyph,
-.glyph--sm {
-  transition: transform 0.3s var(--ease-out-quart);
-}
-
-/* Horizon card hover */
-.horizon-card {
-  transition: border-color 0.3s var(--ease-out-quart),
-              transform 0.3s var(--ease-out-quart),
-              box-shadow 0.3s var(--ease-out-quart);
-}
-
-.horizon-card:hover {
-  transform: translateY(-4px);
-  border-color: rgba(63, 169, 232, 0.45);
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.3);
-}
-
-/* ==========================================================================
-   Back-to-Top Enhancement
-   ========================================================================== */
-
-.back-to-top {
-  transition: opacity var(--transition-slow),
-              visibility var(--transition-slow),
-              transform 0.3s var(--ease-elastic),
-              box-shadow 0.3s var(--ease-out-quart);
-}
-
-.back-to-top:hover {
-  transform: translateY(-3px) scale(1.08);
-  box-shadow: 0 12px 30px rgba(123, 79, 224, 0.5);
-}
-
-.back-to-top:hover svg {
-  animation: arrow-bounce 0.6s var(--ease-elastic);
-}
-
-@keyframes arrow-bounce {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-3px); }
-}
-
-/* ==========================================================================
-   Logo Hover Glow
-   ========================================================================== */
-
-.nav__logo svg {
-  transition: filter 0.4s var(--ease-smooth);
-}
-
-.nav__logo:hover svg {
-  filter: drop-shadow(0 0 8px rgba(123, 79, 224, 0.5));
-}
-
-/* ==========================================================================
-   Footer Link Enhancement
-   ========================================================================== */
-
-.footer__link {
-  transition: color 0.2s var(--ease-out-quart),
-              transform 0.2s var(--ease-out-quart);
-  display: inline-block;
-}
-
-.footer__link:hover {
-  color: var(--color-text);
-  transform: translateX(2px);
-}
-
-/* ==========================================================================
-   CTA Card Enhancements
+   Section Entrance Initial States
+   These hide elements so GSAP can animate them into view without a flash.
+   Component hover/transition styling lives in components.css & sections.css.
    ========================================================================== */
 
 .cta-card {
   opacity: 0;
   transform: translateY(30px);
-  transition: transform 0.3s var(--ease-out-quart),
-              box-shadow 0.3s var(--ease-out-quart);
-}
-
-.cta-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
 }
 
 /* ==========================================================================
@@ -702,11 +437,6 @@ section .eyebrow::before {
 @media (prefers-reduced-motion: reduce) {
   /* Reset all initial states to visible */
   .reveal,
-  .anim-reveal,
-  .anim-fade-up,
-  .anim-fade-left,
-  .anim-fade-right,
-  .anim-scale-in,
   .hero__title .word,
   .hero__lede,
   .hero__ctas,
@@ -728,10 +458,6 @@ section .eyebrow::before {
     clip-path: none !important;
     transition: none !important;
     animation: none !important;
-  }
-
-  .anim-clip-up {
-    clip-path: none !important;
   }
 
   /* Remove background animations */

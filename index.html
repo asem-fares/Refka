@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- ===== Primary Meta ===== -->
-  <title>Refka — The Community Operating System for Independent Gyms | Built on Belonging</title>
+  <title>Refka — Community Operating System for Independent Gyms</title>
   <meta name="description" content="Refka matches gym members with compatible training partners, reducing churn through belonging. B2B SaaS for independent gyms. Piloting in Tirana, Albania.">
   <meta name="keywords" content="gym retention, training partner matching, gym community, B2B SaaS, fitness technology, gym churn, Tirana gym, Albania fitness, gym membership, community platform">
   <meta name="author" content="Refka">
@@ -27,7 +27,8 @@
   <meta property="og:url" content="https://refka.tech/">
   <meta property="og:title" content="Refka — Built on Belonging">
   <meta property="og:description" content="Refka matches gym members with compatible training partners. Higher retention. New revenue. One platform for independent gyms.">
-  <meta property="og:image" content="https://refka.tech/assets/images/og-image.png">
+  <meta property="og:image" content="https://refka.tech/assets/images/og-image.jpg">
+  <meta property="og:image:type" content="image/jpeg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="Refka — Built on Belonging. The Community Operating System for Independent Gyms.">
@@ -38,12 +39,12 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Refka — Built on Belonging">
   <meta name="twitter:description" content="Refka matches gym members with compatible training partners. Higher retention. New revenue.">
-  <meta name="twitter:image" content="https://refka.tech/assets/images/og-image.png">
+  <meta name="twitter:image" content="https://refka.tech/assets/images/og-image.jpg">
   <meta name="twitter:image:alt" content="Refka — Built on Belonging. The Community Operating System for Independent Gyms.">
 
   <!-- ===== Favicon & Icons ===== -->
   <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg">
-  <link rel="apple-touch-icon" href="/assets/icons/favicon.svg">
+  <link rel="apple-touch-icon" href="/assets/icons/icon-180.png">
   <link rel="manifest" href="/manifest.json">
   <meta name="theme-color" content="#7B4FE0">
   <meta name="msapplication-TileColor" content="#0E0E11">
@@ -51,13 +52,17 @@
   <!-- ===== Security ===== -->
   <meta http-equiv="X-Content-Type-Options" content="nosniff">
   <meta name="referrer" content="strict-origin-when-cross-origin">
+  <!-- Content-Security-Policy: self-hosted fonts + SRI-pinned GSAP via jsDelivr + FormSubmit connect.
+       style-src keeps 'unsafe-inline' because GSAP animates via inline styles (CSSOM) and a few
+       style="" attributes remain. Dropping it would require class/CSS-variable–based animation.
+       frame-ancestors cannot be set via meta — see /_headers (enforced on Netlify/Cloudflare Pages). -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; manifest-src 'self'; connect-src https://formsubmit.co; base-uri 'self'; form-action https://formsubmit.co; object-src 'none'">
 
-  <!-- ===== Fonts ===== -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <!-- ===== Fonts (self-hosted) ===== -->
+  <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/sora-latin-800-normal.woff2" crossorigin>
 
   <!-- ===== Stylesheets ===== -->
+  <link rel="stylesheet" href="/assets/css/fonts.css">
   <link rel="stylesheet" href="/assets/css/variables.css">
   <link rel="stylesheet" href="/assets/css/reset.css">
   <link rel="stylesheet" href="/assets/css/typography.css">
@@ -87,7 +92,7 @@
     ],
     "contactPoint": {
       "@type": "ContactPoint",
-      "email": "hello@refka.tech",
+      "email": "community@refka.tech",
       "contactType": "customer service",
       "availableLanguage": ["English", "Albanian"]
     },
@@ -164,7 +169,7 @@
 <a href="#main-content" class="skip-link">Skip to main content</a>
 
 <!-- ===== Shared SVG Definitions ===== -->
-<svg width="0" height="0" aria-hidden="true" style="position:absolute">
+<svg width="0" height="0" class="svg-defs" aria-hidden="true">
   <defs>
     <linearGradient id="refka-grad" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#7B4FE0"/>
@@ -200,13 +205,13 @@
       <span class="nav__toggle-bar" aria-hidden="true"></span>
     </button>
 
-    <div class="nav__links" id="nav-links" role="menubar">
-      <a class="nav__link" href="#story" role="menuitem">Story</a>
-      <a class="nav__link" href="#how" role="menuitem">How it works</a>
-      <a class="nav__link" href="#ecosystem" role="menuitem">Ecosystem</a>
-      <a class="nav__link" href="#proof" role="menuitem">Proof</a>
-      <a class="nav__link" href="#vision" role="menuitem">Vision</a>
-      <a class="nav__link" href="#contact" role="menuitem">Contact</a>
+    <div class="nav__links" id="nav-links">
+      <a class="nav__link" href="#story">Story</a>
+      <a class="nav__link" href="#how">How it works</a>
+      <a class="nav__link" href="#ecosystem">Ecosystem</a>
+      <a class="nav__link" href="#proof">Proof</a>
+      <a class="nav__link" href="#vision">Vision</a>
+      <a class="nav__link" href="#contact">Contact</a>
       <a class="btn btn--gradient" href="#pilot-cta">Start a pilot</a>
     </div>
   </div>
@@ -238,7 +243,7 @@
       </div>
 
       <!-- Matching animation stage -->
-      <div class="hero__stage" aria-label="Animation of gym members being matched into training pairs">
+      <div class="hero__stage" role="img" aria-label="Animation of gym members being matched into training pairs">
         <svg viewBox="0 0 480 480" role="img" aria-hidden="true">
           <defs>
             <linearGradient id="arc-grad" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -377,7 +382,7 @@
           <p class="step__text">Partners keep each other accountable. You see the result where it matters: members who keep showing up, month after month — and a community your competitors can't copy.</p>
         </div>
       </div>
-      <div class="info-note reveal" style="margin-top:26px">
+      <div class="info-note reveal">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#3FA9E8" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v5"/><circle cx="12" cy="16.5" r=".5" fill="#3FA9E8"/></svg>
         <span><b>Built to work with your team, not around it.</b> Trainers stay central — Refka handles the social layer between members, so your staff can focus on coaching.</span>
       </div>
@@ -420,7 +425,7 @@
           <p class="eco__text">Healthy food partners support members' goals between sessions.</p>
         </article>
       </div>
-      <div class="info-note reveal" style="margin-top:34px">
+      <div class="info-note reveal">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#3FA9E8" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v5"/><circle cx="12" cy="16.5" r=".5" fill="#3FA9E8"/></svg>
         <span><b>Sequenced deliberately.</b> The ecosystem activates once the community is live — engaged members are what make partners want in. Retention first, revenue on top.</span>
       </div>
@@ -466,7 +471,7 @@
   </section>
 
   <!-- ================= PILOT ================= -->
-  <section id="pilot" aria-labelledby="pilot-heading" style="padding-top:80px;padding-bottom:80px">
+  <section id="pilot" aria-labelledby="pilot-heading">
     <div class="wrap">
       <div class="pilot reveal">
         <span class="eyebrow">The pilot</span>
@@ -493,7 +498,7 @@
   <!-- ================= VISION ================= -->
   <section class="vision tint" id="vision" aria-labelledby="vision-heading">
     <div class="wrap">
-      <span class="eyebrow reveal" style="justify-content:center">Where this goes</span>
+      <span class="eyebrow reveal">Where this goes</span>
       <h2 class="vision__title reveal" id="vision-heading">The <span class="grad-text">Community Operating System</span> for independent gyms.</h2>
       <p class="vision__subtitle reveal">People stay where they belong. Refka starts with training partners — and grows into the operating system for sports communities worldwide: any gym, anywhere, running its own community from day one.</p>
       <div class="vision__horizon">
@@ -517,7 +522,8 @@
   </section>
 
   <!-- ================= DUAL CTA ================= -->
-  <section id="pilot-cta" aria-labelledby="cta-owners-heading cta-investors-heading">
+  <section id="pilot-cta" aria-labelledby="pilot-cta-heading">
+    <h2 class="sr-only" id="pilot-cta-heading">Start with Refka</h2>
     <div class="wrap cta-grid">
       <div class="cta-card cta-card--primary reveal">
         <span class="cta-card__tag">Gym owners</span>
@@ -543,7 +549,7 @@
         <p class="contact__text">Whether you're a gym owner interested in piloting Refka, an investor, or a potential partner — we'd love to hear from you.</p>
         <div class="contact__detail">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3FA9E8" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-          <a href="mailto:hello@refka.tech" style="color:var(--color-blue);text-decoration:none">hello@refka.tech</a>
+          <a href="mailto:community@refka.tech">community@refka.tech</a>
         </div>
         <div class="contact__detail">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3FA9E8" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
@@ -563,8 +569,9 @@
               autocomplete="name"
               data-validate="required"
               aria-required="true"
+              aria-describedby="contact-name-error"
             >
-            <span class="form__error" aria-live="polite"></span>
+            <span class="form__error" id="contact-name-error" aria-live="polite"></span>
           </div>
           <div class="form__group">
             <label class="form__label form__label--required" for="contact-email">Email</label>
@@ -577,8 +584,9 @@
               autocomplete="email"
               data-validate="required,email"
               aria-required="true"
+              aria-describedby="contact-email-error"
             >
-            <span class="form__error" aria-live="polite"></span>
+            <span class="form__error" id="contact-email-error" aria-live="polite"></span>
           </div>
         </div>
         <div class="form__row">
@@ -592,8 +600,9 @@
               placeholder="+355 6X XXX XXXX"
               autocomplete="tel"
               data-validate="phone"
+              aria-describedby="contact-phone-error"
             >
-            <span class="form__error" aria-live="polite"></span>
+            <span class="form__error" id="contact-phone-error" aria-live="polite"></span>
           </div>
           <div class="form__group">
             <label class="form__label" for="contact-subject">Subject</label>
@@ -614,9 +623,11 @@
             placeholder="Tell us about your gym, what you're looking for, or how we can help..."
             rows="5"
             data-validate="required,minlength"
+            data-minlength="10"
             aria-required="true"
+            aria-describedby="contact-message-error"
           ></textarea>
-          <span class="form__error" aria-live="polite"></span>
+          <span class="form__error" id="contact-message-error" aria-live="polite"></span>
         </div>
 
         <!-- Honeypot (invisible to humans, traps bots) -->
@@ -645,7 +656,7 @@
       <a class="footer__link" href="#how">How it works</a>
       <a class="footer__link" href="#contact">Contact</a>
     </nav>
-    <p class="footer__text">Built on Belonging · Tirana, Albania · <a href="mailto:hello@refka.tech" style="color:inherit">hello@refka.tech</a> · © <span id="current-year"></span></p>
+    <p class="footer__text">Built on Belonging · Tirana, Albania · <a href="mailto:community@refka.tech">community@refka.tech</a> · © <span id="current-year"></span></p>
   </div>
 </footer>
 
@@ -656,10 +667,22 @@
   </svg>
 </button>
 
-<!-- ===== Animation Libraries (GSAP + SplitType) ===== -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
-<script src="https://unpkg.com/split-type@0.3.4/umd/index.min.js" defer></script>
+<!-- ===== Motion Libraries (GSAP + ScrollTrigger + SplitType) — single CDN, SRI-pinned ===== -->
+<script
+  src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"
+  integrity="sha384-g4NTh/Iv5PPU4xPyhEWqPcwtNXOvdaDI8LLnyYfyNZOjKJeYQyjzQ9X5275eBjpt"
+  crossorigin="anonymous"
+  defer></script>
+<script
+  src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"
+  integrity="sha384-Z3REaz79l2IaAZqJsSABtTbhjgOUYyV3p90XNnAPCSHg3EMTz1fouunq9WZRtj3d"
+  crossorigin="anonymous"
+  defer></script>
+<script
+  src="https://cdn.jsdelivr.net/npm/split-type@0.3.4/umd/index.min.js"
+  integrity="sha384-wQImCCD/id1jPTwSloatzKlEpnEAQ5aH8H2Ud27FnNcJ1lf2+hB75ctoWnWxyD8X"
+  crossorigin="anonymous"
+  defer></script>
 
 <!-- ===== JavaScript ===== -->
 <script type="module" src="/assets/js/main.js"></script>

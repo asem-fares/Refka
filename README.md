@@ -33,28 +33,34 @@ refka/
 │
 ├── assets/
 │   ├── css/
+│   │   ├── fonts.css              # @font-face (self-hosted Sora + Inter, latin)
 │   │   ├── variables.css          # Design tokens (colors, spacing, fonts, shadows)
 │   │   ├── reset.css              # CSS reset + base body/heading styles
 │   │   ├── typography.css         # Gradient text, eyebrow, pull quote styles
 │   │   ├── layout.css             # Wrapper, section, skip-link, sr-only
 │   │   ├── components.css         # Nav, buttons, cards, glyph, info-note, back-to-top
 │   │   ├── sections.css           # Hero, story, thesis, how, eco, proof, pilot, vision, CTA, contact, footer
-│   │   ├── animations.css         # Reveal system, SVG bridge animation, keyframes
+│   │   ├── animations.css         # Keyframes, entrance states, reduced-motion overrides
 │   │   └── responsive.css         # All media queries (960→480px breakpoints)
+│   │
+│   ├── fonts/                     # Self-hosted woff2 (Sora 400/600/700/800, Inter 400/500/600 — latin)
 │   │
 │   ├── js/
 │   │   ├── main.js                # Entry point — initializes all modules
+│   │   ├── motion-system.js       # GSAP motion design system + back-to-top
 │   │   ├── navbar.js              # Mobile hamburger menu + active section tracking
-│   │   ├── animations.js          # Scroll reveal, hero SVG animation, back-to-top
-│   │   ├── contact.js             # Form validation, EmailJS submission, UX states
+│   │   ├── contact.js             # Form validation, FormSubmit submission, UX states
 │   │   └── utils.js               # Debounce, throttle, sanitize, getCurrentYear
 │   │
 │   ├── images/
-│   │   ├── og-image.png           # Open Graph social preview (1200×630)
+│   │   ├── og-image.jpg           # Open Graph social preview (1200×630, ~64KB)
 │   │   └── refka-logo.svg         # Standalone logo with wordmark
 │   │
 │   └── icons/
-│       └── favicon.svg            # SVG favicon (Refka logo mark)
+│       ├── favicon.svg            # SVG favicon (Refka logo mark)
+│       └── icon-{180,192,512,512-maskable}.png  # PWA / iOS icons (required before launch)
+│
+├── _headers                        # Security + cache headers (Netlify / Cloudflare Pages)
 │
 ├── robots.txt                     # Search engine crawl rules
 ├── sitemap.xml                    # URL map for search engines
@@ -155,7 +161,8 @@ Simply connect the repo — all these hosts detect and deploy static sites autom
 | **BEM naming** | Predictable, collision-free class names. Industry standard. |
 | **CSS custom properties** | Single source of truth for the design system. Runtime-changeable. |
 | **IntersectionObserver** | Performant scroll detection without scroll event listeners. |
-| **EmailJS** | Email from static sites without a backend. Free tier sufficient for startup stage. |
+| **GSAP + ScrollTrigger** | SRI-pinned motion design system loaded from jsDelivr. Falls back to visible content if blocked. |
+| **FormSubmit (AJAX)** | Email delivery for static sites with zero backend. Honeypot + rate-limit spam protection. |
 
 ### CSS Architecture
 
@@ -173,10 +180,10 @@ Files are loaded in dependency order:
 
 ```
 main.js (entry)
-├── navbar.js    → Mobile menu, active nav tracking
-├── animations.js → Scroll reveal, hero animation, back-to-top
-├── contact.js   → Form validation + EmailJS
-└── utils.js     → Shared helpers (debounce, throttle, sanitize)
+├── navbar.js       → Mobile menu, active nav tracking
+├── motion-system.js → GSAP motion system, hero/scroll animations, back-to-top
+├── contact.js      → Form validation + FormSubmit
+└── utils.js        → Shared helpers (debounce, throttle, sanitize)
 ```
 
 ---
@@ -226,20 +233,21 @@ main.js (entry)
 
 | Strategy | Implementation |
 |----------|---------------|
-| Font preconnect | `<link rel="preconnect">` for Google Fonts |
-| Font display swap | `display=swap` prevents FOIT |
-| CSS modules (cacheable) | 8 separate files, each independently cached |
+| **Self-hosted fonts** | Sora + Inter woff2 in `assets/fonts/`; no Google Fonts request (removes render-blocking 3rd-party CSS + SPOF) |
+| Font LCP preload | `sora-latin-800` preloaded (hero `<h1>`) |
+| Font display swap | `font-display: swap` prevents FOIT |
+| CSS modules (cacheable) | 9 separate files, each independently cached |
 | No render-blocking JS | `<script type="module">` is deferred by default |
 | SVG graphics (no raster images) | Zero image HTTP requests for visuals |
 | IntersectionObserver | No scroll listeners; efficient reveal animations |
 | Reduced motion support | `prefers-reduced-motion` disables all animations |
-| Lazy EmailJS loading | SDK loaded dynamically only when form exists |
+| SRI-pinned motion libs | GSAP/ScrollTrigger/SplitType pinned with integrity hashes from jsDelivr |
 
 ### Core Web Vitals Targets
 
 | Metric | Target | Strategy |
 |--------|--------|----------|
-| **LCP** | < 2.5s | No large images; fonts preconnected |
+| **LCP** | < 2.5s | No large images; hero font preloaded + self-hosted |
 | **CLS** | < 0.1 | No layout shifts; fonts use swap; SVGs have dimensions |
 | **INP** | < 200ms | Minimal JS; no heavy event handlers |
 
@@ -251,12 +259,12 @@ main.js (entry)
 
 The contact form uses **FormSubmit AJAX** — a zero-configuration email service for static websites. 
 
-- ⚡ **Zero Setup Required:** Submissions automatically route directly to `mahmoudahmed10197@gmail.com`
-- 🔒 Includes built-in honeypot spam protection and client-side rate limiting
+- ⚡ **Zero Setup Required:** Submissions route directly to `community@refka.tech` (complete the one-time FormSubmit activation email on first deploy)
+- 🔒 Includes built-in honeypot spam protection and client-side rate limiting (10s cooldown)
 - 📋 Formatted HTML table notifications with metadata (submission time, browser user agent, referrer)
 - ♿ Full accessibility (labels, `aria-required`, `aria-live`, keyboard navigation)
 
-To change the receiving email address, update `RECIPIENT_EMAIL` in `assets/js/contact.js`.
+To change the receiving email address, update `RECIPIENT_EMAIL` in `assets/js/contact.js`. Never hard-code a personal email address — always use a branded inbox.
 
 ---
 
@@ -295,15 +303,16 @@ To change the receiving email address, update `RECIPIENT_EMAIL` in `assets/js/co
 | `Referrer-Policy: strict-origin-when-cross-origin` | Meta tag |
 | Input sanitization | `sanitize()` in `utils.js` strips HTML |
 | Honeypot field | Invisible field traps automated bots |
-| Rate limiting | 30s cooldown on form submissions |
-| No exposed secrets | EmailJS public key is safe to expose by design |
+| Rate limiting | 10s cooldown on form submissions |
+| SRI on 3rd-party scripts | GSAP/ScrollTrigger/SplitType pinned with `integrity` hashes |
+| No exposed secrets | No API keys in the repo; FormSubmit needs no credentials |
 
 ### Recommended (requires hosting configuration)
 
-If using Cloudflare or a custom server, add these headers:
+The repo ships a [`_headers`](/_headers) file for **Netlify / Cloudflare Pages** (full CSP incl. `frame-ancestors 'none'`, COOP, and immutable asset caching). GitHub Pages (current host) ignores it — there only the `<meta http-equiv="Content-Security-Policy">` in `index.html` applies (and `frame-ancestors` is not supported via meta). Active CSP:
 
 ```
-Content-Security-Policy: default-src 'self'; script-src 'self' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src https://api.emailjs.com;
+default-src 'self'; script-src 'self' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; manifest-src 'self'; connect-src https://formsubmit.co; base-uri 'self'; form-action https://formsubmit.co; object-src 'none'
 X-Frame-Options: DENY
 Permissions-Policy: camera=(), microphone=(), geolocation=()
 ```
@@ -316,7 +325,7 @@ Permissions-Policy: camera=(), microphone=(), geolocation=()
 - **Naming:** BEM (Block__Element--Modifier), e.g. `.nav__link--active`
 - **Variables:** All tokens in `variables.css`. Use `var(--color-text)` not `#F4F4F6`
 - **No `!important`:** Except reduced-motion overrides
-- **No inline styles:** Except two margin-top exceptions on info-notes
+- **No inline styles:** Zero `style=""` attributes in markup — all styling lives in scoped classes. (Note: GSAP still writes inline styles at runtime via the CSSOM, which is why the CSP keeps `style-src 'unsafe-inline'`.)
 
 ### JavaScript
 - **Modules:** ES6 `import`/`export`. One module per feature.
@@ -335,11 +344,16 @@ Permissions-Policy: camera=(), microphone=(), geolocation=()
 
 ## Future Recommendations
 
+### Before first production deploy
+- [ ] Complete one-time FormSubmit activation for `community@refka.tech` on first deploy (the contact form is otherwise fully wired)
+
+> Raster assets are already generated and referenced:
+> `assets/images/og-image.jpg` (1200×630, ~64KB), `assets/icons/icon-{180,192,512,512-maskable}.png`.
+> Regenerate via headless Edge if the brand changes — see the render script pattern (HTML/SVG source → `msedge --headless=new --screenshot`).
+
 ### Short-term
-- [ ] Set up EmailJS account and replace placeholder credentials
 - [ ] Add Google Analytics 4 or Plausible for traffic tracking
 - [ ] Add social media links (LinkedIn, Twitter/X) to footer
-- [ ] Create PNG favicon fallbacks for older browsers (32×32, 16×16)
 - [ ] Add Cloudflare for CDN + security headers
 
 ### Medium-term
