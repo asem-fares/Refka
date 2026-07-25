@@ -5,6 +5,37 @@
    ========================================================================== */
 
 /* ==========================================================================
+   No-JS / JS-Failed Fallback (Progressive Enhancement)
+   Entrance elements are hidden below so GSAP can animate them in. But if JS
+   never activates (JS disabled, module blocked on file://, stale cached entry
+   that 404s, GSAP CDN blocked, etc.), enhance.js never adds — or later removes
+   — the `js` class on <html>. In that state we force everything visible so the
+   section cards are NEVER stranded invisible. When JS is healthy, <html> has
+   the `js` class and these overrides don't apply, so animations work normally.
+   ========================================================================== */
+
+html:not(.js) .reveal,
+html:not(.js) .hero__title .word,
+html:not(.js) .hero__lede,
+html:not(.js) .hero__ctas,
+html:not(.js) .hero__ctas .btn,
+html:not(.js) .hero__note,
+html:not(.js) .hero__stage,
+html:not(.js) .thesis__cards .card,
+html:not(.js) .eco-grid .eco,
+html:not(.js) .vision__horizon .horizon-card,
+html:not(.js) .funnel__row .funnel__node,
+html:not(.js) .funnel__row > div:last-child,
+html:not(.js) .steps .step,
+html:not(.js) .cta-card,
+html:not(.js) .pilot,
+html:not(.js) .info-note {
+  opacity: 1 !important;
+  transform: none !important;
+  clip-path: none !important;
+}
+
+/* ==========================================================================
    Scroll Reveal — FOUC Guard
    .reveal elements start hidden so they don't flash before GSAP animates
    them in. Directional anim-* classes were removed (unused); GSAP drives

@@ -77,6 +77,10 @@ export async function initMotionSystem() {
 
   // Refresh ScrollTrigger after all animations are set
   ScrollTrigger.refresh();
+
+  // Signal the progressive-enhancement guard (assets/js/enhance.js) that the
+  // motion system initialized, so it keeps the entrance-hidden states armed.
+  document.documentElement.classList.add('motion-ready');
 }
 
 /**
@@ -103,6 +107,9 @@ function showAllElements() {
 
   // Trigger the hero SVG bridge-draw animation (normally added by the GSAP timeline)
   document.querySelector('.hero__stage')?.classList.add('in-view');
+
+  // Signal the progressive-enhancement guard (reduced-motion / GSAP-unavailable path).
+  document.documentElement.classList.add('motion-ready');
 }
 
 

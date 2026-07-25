@@ -58,6 +58,11 @@
        frame-ancestors cannot be set via meta — see /_headers (enforced on Netlify/Cloudflare Pages). -->
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; manifest-src 'self'; connect-src https://formsubmit.co; base-uri 'self'; form-action https://formsubmit.co; object-src 'none'">
 
+  <!-- ===== Progressive-enhancement guard (must run before first paint) =====
+       Adds `js` to <html> so animations.css only hides content when JS is
+       active; falls back to fully-visible content if JS fails. See /assets/js/enhance.js -->
+  <script src="/assets/js/enhance.js"></script>
+
   <!-- ===== Fonts (self-hosted) ===== -->
   <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/sora-latin-800-normal.woff2" crossorigin>
 
