@@ -12,6 +12,19 @@
   color: transparent;
 }
 
+/* SplitType wraps every word of the hero title in a .word span. When a gradient
+   word (e.g. "belong") is split, its text moves into a child .word while the
+   gradient background + background-clip:text stay on .grad-text — leaving the
+   word with a transparent fill and no background, i.e. invisible. Re-apply the
+   gradient clip onto the nested word so the gradient text keeps rendering. */
+.grad-text .word {
+  background: inherit;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
 /* ---- Eyebrow Label ---- */
 .eyebrow {
   display: inline-flex;
