@@ -1,36 +1,17 @@
 {
-  "name": "Refka — Built on Belonging",
+  "name": "Refka",
   "short_name": "Refka",
-  "description": "Refka matches gym members with compatible training partners, reducing churn through belonging. B2B SaaS for independent gyms.",
+  "description": "Your gym's own member app: training partners, AI training plans and a community that keeps members coming back.",
   "start_url": "/",
+  "scope": "/",
   "display": "standalone",
-  "background_color": "#0E0E11",
-  "theme_color": "#7B4FE0",
-  "orientation": "portrait-primary",
+  "background_color": "#080808",
+  "theme_color": "#080808",
   "icons": [
-    {
-      "src": "/assets/icons/favicon.svg",
-      "type": "image/svg+xml",
-      "sizes": "any"
-    },
-    {
-      "src": "/assets/icons/icon-192.png",
-      "type": "image/png",
-      "sizes": "192x192",
-      "purpose": "any"
-    },
-    {
-      "src": "/assets/icons/icon-512.png",
-      "type": "image/png",
-      "sizes": "512x512",
-      "purpose": "any"
-    },
-    {
-      "src": "/assets/icons/icon-512-maskable.png",
-      "type": "image/png",
-      "sizes": "512x512",
-      "purpose": "maskable"
-    }
+    { "src": "/assets/icons/favicon.svg", "type": "image/svg+xml", "sizes": "any" },
+    { "src": "/assets/icons/icon-192.png", "type": "image/png", "sizes": "192x192", "purpose": "any" },
+    { "src": "/assets/icons/icon-512.png", "type": "image/png", "sizes": "512x512", "purpose": "any" },
+    { "src": "/assets/icons/icon-512-maskable.png", "type": "image/png", "sizes": "512x512", "purpose": "maskable" }
   ],
   "lang": "en",
   "categories": ["business", "fitness"]
