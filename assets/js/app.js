@@ -128,6 +128,18 @@ var FX = { USD:1, EUR:0.8887, JPY:158.02, CZK:21.615, DKK:6.6425, GBP:0.74989, H
   SAR:3.75, AED:3.6725, QAR:3.64, KWD:0.307, BHD:0.376, OMR:0.3845, JOD:0.709, EGP:52.98, ALL:81.20 };
 if (window.REFKA_FX) { for (var k in window.REFKA_FX) FX[k] = window.REFKA_FX[k]; }
 
+// FIXED LOCAL PRICES (zone:currency). A gym billed in one of these currencies always sees and
+// pays these exact amounts: they never move with the exchange rate. Review them every quarter.
+// m = monthly price, a = per month on yearly billing, y = the yearly charge (a x 12).
+// Every other country is billed in US dollars; its local amount is shown as an estimate.
+var FIXED = {
+  'B:EGP': { starter:{m:799, a:649, y:7788},  growth:{m:1499, a:1249, y:14988}, pro:{m:3299, a:2749, y:32988} },
+  'A:SAR': { starter:{m:179, a:145, y:1740},  growth:{m:369,  a:295,  y:3540},  pro:{m:929,  a:745,  y:8940} },
+  'A:AED': { starter:{m:179, a:145, y:1740},  growth:{m:359,  a:289,  y:3468},  pro:{m:899,  a:729,  y:8748} },
+  'A:EUR': { starter:{m:45,  a:36,  y:432},   growth:{m:89,   a:71,   y:852},   pro:{m:219,  a:175,  y:2100} }
+};
+function fixedList() { return FIXED[_zone + ':' + _cur] || null; }
+
 var TZ = {
   'Africa/Cairo':'EG','Asia/Riyadh':'SA','Asia/Dubai':'AE','Asia/Qatar':'QA','Asia/Kuwait':'KW','Asia/Bahrain':'BH',
   'Asia/Muscat':'OM','Asia/Amman':'JO','Asia/Beirut':'LB','Asia/Baghdad':'IQ','Asia/Damascus':'SY','Asia/Aden':'YE',
@@ -212,18 +224,19 @@ function fmtNum(v) {
 
 function renderPrices() {
   var P = PRICING[_zone];
+  var F = fixedList();
   document.querySelectorAll('.pv').forEach(function(el) {
-    var p = P[el.dataset.plan];
-    el.textContent = fmt(local(_billing === 'm' ? p.m : p.a));
+    var p = P[el.dataset.plan], f = F && F[el.dataset.plan];
+    el.textContent = fmt(f ? (_billing === 'm' ? f.m : f.a) : local(_billing === 'm' ? p.m : p.a));
   });
   document.querySelectorAll('.yr').forEach(function(el) {
-    var p = P[el.dataset.plan];
-    el.textContent = fmt(_cur === 'USD' ? p.y : local(p.a) * 12);
+    var p = P[el.dataset.plan], f = F && F[el.dataset.plan];
+    el.textContent = fmt(f ? f.y : (_cur === 'USD' ? p.y : local(p.a) * 12));
   });
   document.querySelectorAll('.ai-q').forEach(function(el) { el.textContent = fmtNum(P[el.dataset.plan].ai); });
   document.querySelectorAll('.ph-prod .pr').forEach(function(el) { el.textContent = fmt(local(+el.dataset.usd)); });
   var t = T[_lang] || T.en, n = g('locNote');
-  if (n) n.textContent = (_cur === 'USD' ? t.loc_usd : t.loc_conv) + ' ' + t.loc_final;
+  if (n) n.textContent = (F ? (t.loc_fixed || T.en.loc_fixed) : (_cur === 'USD' ? t.loc_usd : t.loc_conv)) + ' ' + t.loc_final;
 }
 
 function buildCountrySelect() {

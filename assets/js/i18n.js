@@ -2713,3 +2713,32 @@ T.sw = {
     t.ph_m_toast_w = w[3] || t.ph_m_toast;
   });
 })();
+
+// ─── Note shown under prices when the gym's currency has a fixed price list ───
+(function () {
+  var L = {
+    en: 'Fixed price in your currency. It does not move with the exchange rate.',
+    ar: 'سعر ثابت بعملتك، لا يتغيّر مع سعر الصرف.',
+    de: 'Festpreis in Ihrer Währung. Er ändert sich nicht mit dem Wechselkurs.',
+    sq: 'Çmim fiks në monedhën tuaj. Nuk ndryshon me kursin e këmbimit.',
+    fr: 'Prix fixe dans votre devise. Il ne varie pas avec le taux de change.',
+    es: 'Precio fijo en su moneda. No cambia con el tipo de cambio.',
+    pt: 'Preço fixo na sua moeda. Não muda com o câmbio.',
+    it: 'Prezzo fisso nella Sua valuta. Non cambia con il tasso di cambio.',
+    pl: 'Stała cena w Twojej walucie. Nie zmienia się wraz z kursem.',
+    tr: 'Para biriminizde sabit fiyat. Döviz kuruyla değişmez.',
+    ru: 'Фиксированная цена в вашей валюте. Она не меняется вместе с курсом.',
+    hi: 'आपकी मुद्रा में तय कीमत। विनिमय दर के साथ नहीं बदलती।',
+    id: 'Harga tetap dalam mata uang Anda. Tidak berubah mengikuti kurs.',
+    ms: 'Harga tetap dalam mata wang anda. Tidak berubah mengikut kadar tukaran.',
+    tl: 'Nakapirming presyo sa inyong pera. Hindi nagbabago sa palitan.',
+    vi: 'Giá cố định bằng tiền tệ của bạn, không đổi theo tỷ giá.',
+    th: 'ราคาคงที่ในสกุลเงินของคุณ ไม่เปลี่ยนตามอัตราแลกเปลี่ยน',
+    ko: '현지 통화 고정 요금입니다. 환율에 따라 바뀌지 않습니다.',
+    ja: '現地通貨での固定価格です。為替レートで変動しません。',
+    'zh-Hans': '以您的货币固定定价，不随汇率变动。',
+    'zh-Hant': '以您的貨幣固定定價，不隨匯率變動。',
+    sw: 'Bei isiyobadilika kwa sarafu yako. Haibadiliki na kiwango cha ubadilishaji.'
+  };
+  Object.keys(L).forEach(function (l) { if (T[l]) T[l].loc_fixed = L[l]; });
+})();
