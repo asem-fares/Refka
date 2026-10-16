@@ -2674,3 +2674,42 @@ T.sw = {
     Object.keys(F[l]).forEach(function (k) { T[l][k] = F[l][k]; });
   });
 })();
+
+// ─── MATCHING DEMO: women's pair (names, feminine grammar where the language needs it) ──
+// The demo alternates between a men's pair (ph_n1/ph_n2) and a women's pair (ph_w1/ph_w2).
+// ph_post_w swaps the partner's first name in the feed post; ph_m_toast_w is only set where
+// "you both" changes with gender.
+(function () {
+  var W = {
+    en: ['Sarah K.', 'Emma L.', ['James', 'Sarah']],
+    ar: ['سارة أ.', 'ليلى ح.', ['عمر', 'سارة']],
+    de: ['Lena S.', 'Hannah K.', ['Lukas', 'Lena']],
+    sq: ['Elira D.', 'Arta M.', ['Arben', 'Elira'], 'Stërviteni të dyja të hënën, të mërkurën dhe të premten në 7:00'],
+    fr: ['Camille R.', 'Léa B.', ['Lucas', 'Camille'], 'Vous vous entraînez toutes les deux lun., mer., ven. à 7 h'],
+    es: ['Lucía M.', 'Carmen P.', ['Pablo', 'Lucía'], 'Ambas entrenan lun., miér. y vier. a las 7:00'],
+    pt: ['Juliana C.', 'Beatriz A.', ['Rafael', 'Juliana'], 'Vocês duas treinam seg., qua. e sex. às 7h'],
+    it: ['Giulia R.', 'Sara C.', ['Marco', 'Giulia'], 'Vi allenate entrambe lun., mer. e ven. alle 7:00'],
+    pl: ['Zuzanna K.', 'Julia W.', ['Jakub', 'Zuzanna'], 'Obie trenujecie w pon., śr. i pt. o 7:00'],
+    tr: ['Elif D.', 'Zeynep A.', ['Emre', 'Elif']],
+    ru: ['Анна С.', 'Мария К.', ['Дмитрий', 'Анна'], 'Вы обе тренируетесь в пн, ср и пт в 7:00'],
+    hi: ['प्रिया श.', 'नेहा व.', ['राहुल', 'प्रिया'], 'आप दोनों सोम, बुध, शुक्र सुबह 7 बजे ट्रेनिंग करती हैं'],
+    id: ['Putri A.', 'Ayu S.', ['Rizky', 'Putri']],
+    ms: ['Nurul A.', 'Aisyah R.', ['Hafiz', 'Nurul']],
+    tl: ['Andrea C.', 'Bea M.', ['Miguel', 'Andrea']],
+    vi: ['Linh N.', 'Mai T.', ['Minh', 'Linh']],
+    th: ['ฝน ส.', 'มิ้นท์ ว.', ['ภูมิ', 'ฝน']],
+    ko: ['김서연', '이지은', ['민준', '서연']],
+    ja: ['佐藤 美咲', '鈴木 陽菜', ['健太', '美咲']],
+    'zh-Hans': ['王丽', '李婷', ['王磊', '王丽']],
+    'zh-Hant': ['陳怡君', '林雅婷', ['冠宇', '怡君']],
+    sw: ['Amani M.', 'Neema K.', ['Baraka', 'Amani']]
+  };
+  Object.keys(W).forEach(function (l) {
+    var t = T[l], w = W[l];
+    if (!t) return;
+    t.ph_w1 = w[0];
+    t.ph_w2 = w[1];
+    t.ph_post_w = t.ph_post.split(w[2][0]).join(w[2][1]);
+    t.ph_m_toast_w = w[3] || t.ph_m_toast;
+  });
+})();

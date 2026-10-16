@@ -783,3 +783,9 @@ select:focus-visible { outline: 2px solid var(--p-txt); outline-offset: 2px; }
   .su-two { grid-template-columns: 1fr; gap: 0; }
   .su-box .su-title { font-size: 22px; }
 }
+
+/* ══ MATCHING DEMO: member photos ══ */
+.ph-av.ph-photo { padding: 0; overflow: hidden; background: #1a1a1a; }
+.ph-av.ph-photo img { width: 100%; height: 100%; object-fit: cover; display: block; border-radius: 50%; }
+.ph-av.ph-photo.t { box-shadow: 0 0 0 1.5px #14B8BD; }
+.ph-av.ph-photo.g { box-shadow: 0 0 0 1.5px #C9973A; }

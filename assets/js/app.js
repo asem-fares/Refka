@@ -421,7 +421,11 @@ function applyLang(code) {
     tabs.forEach(function(t) { t.classList.toggle('on', t.dataset.go === TAB_OF_SCENE[i]); });
     cur = i;
   }
-  function next() { show((cur + 1) % scenes.length); }
+  function next() {
+    var n = (cur + 1) % scenes.length;
+    if (n === 0 && typeof swapPair === 'function') swapPair();   // new loop: show the other pair
+    show(n);
+  }
   function play() { if (playing || reduced) return; playing = true; timer = setInterval(next, HOLD); }
   function pause() { playing = false; clearInterval(timer); }
 
@@ -481,4 +485,36 @@ function setCookieChoice(c) {
 (function() {
   var s; try { s = localStorage.getItem('rfk_cookie'); } catch(e) {}
   if (!s) setTimeout(function() { var b = g('cookieBanner'); if (b) b.classList.add('show'); }, 1200);
+})();
+
+// ═══════════════════════════════════════════════════════════════
+// MATCHING DEMO PHOTOS: a men's pair and a women's pair of real members.
+// The visitor's country picks which pair shows first; every loop of the
+// demo switches to the other pair, so everyone sees both.
+// ═══════════════════════════════════════════════════════════════
+var PAIRS = {
+  m: { img: ['assets/images/members/m1.webp', 'assets/images/members/m2.webp'],
+       key: { '1': 'ph_n1', '2': 'ph_n2', toast: 'ph_m_toast', post: 'ph_post' } },
+  w: { img: ['assets/images/members/w1.webp', 'assets/images/members/w2.webp'],
+       key: { '1': 'ph_w1', '2': 'ph_w2', toast: 'ph_m_toast_w', post: 'ph_post_w' } }
+};
+var _pair = 'm';
+function setPair(p) {
+  var P = PAIRS[p]; if (!P) return;
+  _pair = p;
+  document.querySelectorAll('[data-pair-img]').forEach(function (im) {
+    im.src = P.img[im.getAttribute('data-pair-img') === 'a' ? 0 : 1];
+  });
+  var t = T[_lang] || T.en;
+  document.querySelectorAll('[data-pair-key]').forEach(function (el) {
+    var k = P.key[el.getAttribute('data-pair-key')];
+    el.setAttribute('data-i18n', k);
+    el.textContent = t[k] !== undefined ? t[k] : T.en[k];
+  });
+}
+function swapPair() { setPair(_pair === 'm' ? 'w' : 'm'); }
+(function () {
+  var cc = _country || 'US';
+  setPair((cc.charCodeAt(0) + cc.charCodeAt(1)) % 2 ? 'm' : 'w');
+  ['m', 'w'].forEach(function (p) { PAIRS[p].img.forEach(function (src) { var i = new Image(); i.src = src; }); });
 })();
