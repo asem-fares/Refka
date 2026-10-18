@@ -1,9 +1,641 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://refka.tech/</loc>
-    <lastmod>2026-07-25</lastmod>
+    <lastmod>2026-10-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+      <xhtml:link rel="alternate" hreflang="en" href="https://refka.tech/"/>
+      <xhtml:link rel="alternate" hreflang="ar" href="https://refka.tech/?lang=ar"/>
+      <xhtml:link rel="alternate" hreflang="sq" href="https://refka.tech/?lang=sq"/>
+      <xhtml:link rel="alternate" hreflang="de" href="https://refka.tech/?lang=de"/>
+      <xhtml:link rel="alternate" hreflang="fr" href="https://refka.tech/?lang=fr"/>
+      <xhtml:link rel="alternate" hreflang="tr" href="https://refka.tech/?lang=tr"/>
+      <xhtml:link rel="alternate" hreflang="es" href="https://refka.tech/?lang=es"/>
+      <xhtml:link rel="alternate" hreflang="pt" href="https://refka.tech/?lang=pt"/>
+      <xhtml:link rel="alternate" hreflang="it" href="https://refka.tech/?lang=it"/>
+      <xhtml:link rel="alternate" hreflang="pl" href="https://refka.tech/?lang=pl"/>
+      <xhtml:link rel="alternate" hreflang="ru" href="https://refka.tech/?lang=ru"/>
+      <xhtml:link rel="alternate" hreflang="hi" href="https://refka.tech/?lang=hi"/>
+      <xhtml:link rel="alternate" hreflang="id" href="https://refka.tech/?lang=id"/>
+      <xhtml:link rel="alternate" hreflang="ms" href="https://refka.tech/?lang=ms"/>
+      <xhtml:link rel="alternate" hreflang="tl" href="https://refka.tech/?lang=tl"/>
+      <xhtml:link rel="alternate" hreflang="vi" href="https://refka.tech/?lang=vi"/>
+      <xhtml:link rel="alternate" hreflang="th" href="https://refka.tech/?lang=th"/>
+      <xhtml:link rel="alternate" hreflang="ko" href="https://refka.tech/?lang=ko"/>
+      <xhtml:link rel="alternate" hreflang="ja" href="https://refka.tech/?lang=ja"/>
+      <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://refka.tech/?lang=zh-Hans"/>
+      <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://refka.tech/?lang=zh-Hant"/>
+      <xhtml:link rel="alternate" hreflang="sw" href="https://refka.tech/?lang=sw"/>
+      <xhtml:link rel="alternate" hreflang="x-default" href="https://refka.tech/"/>
+  </url>
+  <url>
+    <loc>https://refka.tech/?lang=ar</loc>
+    <lastmod>2026-10-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+      <xhtml:link rel="alternate" hreflang="en" href="https://refka.tech/"/>
+      <xhtml:link rel="alternate" hreflang="ar" href="https://refka.tech/?lang=ar"/>
+      <xhtml:link rel="alternate" hreflang="sq" href="https://refka.tech/?lang=sq"/>
+      <xhtml:link rel="alternate" hreflang="de" href="https://refka.tech/?lang=de"/>
+      <xhtml:link rel="alternate" hreflang="fr" href="https://refka.tech/?lang=fr"/>
+      <xhtml:link rel="alternate" hreflang="tr" href="https://refka.tech/?lang=tr"/>
+      <xhtml:link rel="alternate" hreflang="es" href="https://refka.tech/?lang=es"/>
+      <xhtml:link rel="alternate" hreflang="pt" href="https://refka.tech/?lang=pt"/>
+      <xhtml:link rel="alternate" hreflang="it" href="https://refka.tech/?lang=it"/>
+      <xhtml:link rel="alternate" hreflang="pl" href="https://refka.tech/?lang=pl"/>
+      <xhtml:link rel="alternate" hreflang="ru" href="https://refka.tech/?lang=ru"/>
+      <xhtml:link rel="alternate" hreflang="hi" href="https://refka.tech/?lang=hi"/>
+      <xhtml:link rel="alternate" hreflang="id" href="https://refka.tech/?lang=id"/>
+      <xhtml:link rel="alternate" hreflang="ms" href="https://refka.tech/?lang=ms"/>
+      <xhtml:link rel="alternate" hreflang="tl" href="https://refka.tech/?lang=tl"/>
+      <xhtml:link rel="alternate" hreflang="vi" href="https://refka.tech/?lang=vi"/>
+      <xhtml:link rel="alternate" hreflang="th" href="https://refka.tech/?lang=th"/>
+      <xhtml:link rel="alternate" hreflang="ko" href="https://refka.tech/?lang=ko"/>
+      <xhtml:link rel="alternate" hreflang="ja" href="https://refka.tech/?lang=ja"/>
+      <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://refka.tech/?lang=zh-Hans"/>
+      <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://refka.tech/?lang=zh-Hant"/>
+      <xhtml:link rel="alternate" hreflang="sw" href="https://refka.tech/?lang=sw"/>
+      <xhtml:link rel="alternate" hreflang="x-default" href="https://refka.tech/"/>
+  </url>
+  <url>
+    <loc>https://refka.tech/?lang=sq</loc>
+    <lastmod>2026-10-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+      <xhtml:link rel="alternate" hreflang="en" href="https://refka.tech/"/>
+      <xhtml:link rel="alternate" hreflang="ar" href="https://refka.tech/?lang=ar"/>
+      <xhtml:link rel="alternate" hreflang="sq" href="https://refka.tech/?lang=sq"/>
+      <xhtml:link rel="alternate" hreflang="de" href="https://refka.tech/?lang=de"/>
+      <xhtml:link rel="alternate" hreflang="fr" href="https://refka.tech/?lang=fr"/>
+      <xhtml:link rel="alternate" hreflang="tr" href="https://refka.tech/?lang=tr"/>
+      <xhtml:link rel="alternate" hreflang="es" href="https://refka.tech/?lang=es"/>
+      <xhtml:link rel="alternate" hreflang="pt" href="https://refka.tech/?lang=pt"/>
+      <xhtml:link rel="alternate" hreflang="it" href="https://refka.tech/?lang=it"/>
+      <xhtml:link rel="alternate" hreflang="pl" href="https://refka.tech/?lang=pl"/>
+      <xhtml:link rel="alternate" hreflang="ru" href="https://refka.tech/?lang=ru"/>
+      <xhtml:link rel="alternate" hreflang="hi" href="https://refka.tech/?lang=hi"/>
+      <xhtml:link rel="alternate" hreflang="id" href="https://refka.tech/?lang=id"/>
+      <xhtml:link rel="alternate" hreflang="ms" href="https://refka.tech/?lang=ms"/>
+      <xhtml:link rel="alternate" hreflang="tl" href="https://refka.tech/?lang=tl"/>
+      <xhtml:link rel="alternate" hreflang="vi" href="https://refka.tech/?lang=vi"/>
+      <xhtml:link rel="alternate" hreflang="th" href="https://refka.tech/?lang=th"/>
+      <xhtml:link rel="alternate" hreflang="ko" href="https://refka.tech/?lang=ko"/>
+      <xhtml:link rel="alternate" hreflang="ja" href="https://refka.tech/?lang=ja"/>
+      <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://refka.tech/?lang=zh-Hans"/>
+      <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://refka.tech/?lang=zh-Hant"/>
+      <xhtml:link rel="alternate" hreflang="sw" href="https://refka.tech/?lang=sw"/>
+      <xhtml:link rel="alternate" hreflang="x-default" href="https://refka.tech/"/>
+  </url>
+  <url>
+    <loc>https://refka.tech/?lang=de</loc>
+    <lastmod>2026-10-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+      <xhtml:link rel="alternate" hreflang="en" href="https://refka.tech/"/>
+      <xhtml:link rel="alternate" hreflang="ar" href="https://refka.tech/?lang=ar"/>
+      <xhtml:link rel="alternate" hreflang="sq" href="https://refka.tech/?lang=sq"/>
+      <xhtml:link rel="alternate" hreflang="de" href="https://refka.tech/?lang=de"/>
+      <xhtml:link rel="alternate" hreflang="fr" href="https://refka.tech/?lang=fr"/>
+      <xhtml:link rel="alternate" hreflang="tr" href="https://refka.tech/?lang=tr"/>
+      <xhtml:link rel="alternate" hreflang="es" href="https://refka.tech/?lang=es"/>
+      <xhtml:link rel="alternate" hreflang="pt" href="https://refka.tech/?lang=pt"/>
+      <xhtml:link rel="alternate" hreflang="it" href="https://refka.tech/?lang=it"/>
+      <xhtml:link rel="alternate" hreflang="pl" href="https://refka.tech/?lang=pl"/>
+      <xhtml:link rel="alternate" hreflang="ru" href="https://refka.tech/?lang=ru"/>
+      <xhtml:link rel="alternate" hreflang="hi" href="https://refka.tech/?lang=hi"/>
+      <xhtml:link rel="alternate" hreflang="id" href="https://refka.tech/?lang=id"/>
+      <xhtml:link rel="alternate" hreflang="ms" href="https://refka.tech/?lang=ms"/>
+      <xhtml:link rel="alternate" hreflang="tl" href="https://refka.tech/?lang=tl"/>
+      <xhtml:link rel="alternate" hreflang="vi" href="https://refka.tech/?lang=vi"/>
+      <xhtml:link rel="alternate" hreflang="th" href="https://refka.tech/?lang=th"/>
+      <xhtml:link rel="alternate" hreflang="ko" href="https://refka.tech/?lang=ko"/>
+      <xhtml:link rel="alternate" hreflang="ja" href="https://refka.tech/?lang=ja"/>
+      <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://refka.tech/?lang=zh-Hans"/>
+      <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://refka.tech/?lang=zh-Hant"/>
+      <xhtml:link rel="alternate" hreflang="sw" href="https://refka.tech/?lang=sw"/>
+      <xhtml:link rel="alternate" hreflang="x-default" href="https://refka.tech/"/>
+  </url>
+  <url>
+    <loc>https://refka.tech/?lang=fr</loc>
+    <lastmod>2026-10-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+      <xhtml:link rel="alternate" hreflang="en" href="https://refka.tech/"/>
+      <xhtml:link rel="alternate" hreflang="ar" href="https://refka.tech/?lang=ar"/>
+      <xhtml:link rel="alternate" hreflang="sq" href="https://refka.tech/?lang=sq"/>
+      <xhtml:link rel="alternate" hreflang="de" href="https://refka.tech/?lang=de"/>
+      <xhtml:link rel="alternate" hreflang="fr" href="https://refka.tech/?lang=fr"/>
+      <xhtml:link rel="alternate" hreflang="tr" href="https://refka.tech/?lang=tr"/>
+      <xhtml:link rel="alternate" hreflang="es" href="https://refka.tech/?lang=es"/>
+      <xhtml:link rel="alternate" hreflang="pt" href="https://refka.tech/?lang=pt"/>
+      <xhtml:link rel="alternate" hreflang="it" href="https://refka.tech/?lang=it"/>
+      <xhtml:link rel="alternate" hreflang="pl" href="https://refka.tech/?lang=pl"/>
+      <xhtml:link rel="alternate" hreflang="ru" href="https://refka.tech/?lang=ru"/>
+      <xhtml:link rel="alternate" hreflang="hi" href="https://refka.tech/?lang=hi"/>
+      <xhtml:link rel="alternate" hreflang="id" href="https://refka.tech/?lang=id"/>
+      <xhtml:link rel="alternate" hreflang="ms" href="https://refka.tech/?lang=ms"/>
+      <xhtml:link rel="alternate" hreflang="tl" href="https://refka.tech/?lang=tl"/>
+      <xhtml:link rel="alternate" hreflang="vi" href="https://refka.tech/?lang=vi"/>
+      <xhtml:link rel="alternate" hreflang="th" href="https://refka.tech/?lang=th"/>
+      <xhtml:link rel="alternate" hreflang="ko" href="https://refka.tech/?lang=ko"/>
+      <xhtml:link rel="alternate" hreflang="ja" href="https://refka.tech/?lang=ja"/>
+      <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://refka.tech/?lang=zh-Hans"/>
+      <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://refka.tech/?lang=zh-Hant"/>
+      <xhtml:link rel="alternate" hreflang="sw" href="https://refka.tech/?lang=sw"/>
+      <xhtml:link rel="alternate" hreflang="x-default" href="https://refka.tech/"/>
+  </url>
+  <url>
+    <loc>https://refka.tech/?lang=tr</loc>
+    <lastmod>2026-10-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+      <xhtml:link rel="alternate" hreflang="en" href="https://refka.tech/"/>
+      <xhtml:link rel="alternate" hreflang="ar" href="https://refka.tech/?lang=ar"/>
+      <xhtml:link rel="alternate" hreflang="sq" href="https://refka.tech/?lang=sq"/>
+      <xhtml:link rel="alternate" hreflang="de" href="https://refka.tech/?lang=de"/>
+      <xhtml:link rel="alternate" hreflang="fr" href="https://refka.tech/?lang=fr"/>
+      <xhtml:link rel="alternate" hreflang="tr" href="https://refka.tech/?lang=tr"/>
+      <xhtml:link rel="alternate" hreflang="es" href="https://refka.tech/?lang=es"/>
+      <xhtml:link rel="alternate" hreflang="pt" href="https://refka.tech/?lang=pt"/>
+      <xhtml:link rel="alternate" hreflang="it" href="https://refka.tech/?lang=it"/>
+      <xhtml:link rel="alternate" hreflang="pl" href="https://refka.tech/?lang=pl"/>
+      <xhtml:link rel="alternate" hreflang="ru" href="https://refka.tech/?lang=ru"/>
+      <xhtml:link rel="alternate" hreflang="hi" href="https://refka.tech/?lang=hi"/>
+      <xhtml:link rel="alternate" hreflang="id" href="https://refka.tech/?lang=id"/>
+      <xhtml:link rel="alternate" hreflang="ms" href="https://refka.tech/?lang=ms"/>
+      <xhtml:link rel="alternate" hreflang="tl" href="https://refka.tech/?lang=tl"/>
+      <xhtml:link rel="alternate" hreflang="vi" href="https://refka.tech/?lang=vi"/>
+      <xhtml:link rel="alternate" hreflang="th" href="https://refka.tech/?lang=th"/>
+      <xhtml:link rel="alternate" hreflang="ko" href="https://refka.tech/?lang=ko"/>
+      <xhtml:link rel="alternate" hreflang="ja" href="https://refka.tech/?lang=ja"/>
+      <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://refka.tech/?lang=zh-Hans"/>
+      <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://refka.tech/?lang=zh-Hant"/>
+      <xhtml:link rel="alternate" hreflang="sw" href="https://refka.tech/?lang=sw"/>
+      <xhtml:link rel="alternate" hreflang="x-default" href="https://refka.tech/"/>
+  </url>
+  <url>
+    <loc>https://refka.tech/?lang=es</loc>
+    <lastmod>2026-10-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+      <xhtml:link rel="alternate" hreflang="en" href="https://refka.tech/"/>
+      <xhtml:link rel="alternate" hreflang="ar" href="https://refka.tech/?lang=ar"/>
+      <xhtml:link rel="alternate" hreflang="sq" href="https://refka.tech/?lang=sq"/>
+      <xhtml:link rel="alternate" hreflang="de" href="https://refka.tech/?lang=de"/>
+      <xhtml:link rel="alternate" hreflang="fr" href="https://refka.tech/?lang=fr"/>
+      <xhtml:link rel="alternate" hreflang="tr" href="https://refka.tech/?lang=tr"/>
+      <xhtml:link rel="alternate" hreflang="es" href="https://refka.tech/?lang=es"/>
+      <xhtml:link rel="alternate" hreflang="pt" href="https://refka.tech/?lang=pt"/>
+      <xhtml:link rel="alternate" hreflang="it" href="https://refka.tech/?lang=it"/>
+      <xhtml:link rel="alternate" hreflang="pl" href="https://refka.tech/?lang=pl"/>
+      <xhtml:link rel="alternate" hreflang="ru" href="https://refka.tech/?lang=ru"/>
+      <xhtml:link rel="alternate" hreflang="hi" href="https://refka.tech/?lang=hi"/>
+      <xhtml:link rel="alternate" hreflang="id" href="https://refka.tech/?lang=id"/>
+      <xhtml:link rel="alternate" hreflang="ms" href="https://refka.tech/?lang=ms"/>
+      <xhtml:link rel="alternate" hreflang="tl" href="https://refka.tech/?lang=tl"/>
+      <xhtml:link rel="alternate" hreflang="vi" href="https://refka.tech/?lang=vi"/>
+      <xhtml:link rel="alternate" hreflang="th" href="https://refka.tech/?lang=th"/>
+      <xhtml:link rel="alternate" hreflang="ko" href="https://refka.tech/?lang=ko"/>
+      <xhtml:link rel="alternate" hreflang="ja" href="https://refka.tech/?lang=ja"/>
+      <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://refka.tech/?lang=zh-Hans"/>
+      <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://refka.tech/?lang=zh-Hant"/>
+      <xhtml:link rel="alternate" hreflang="sw" href="https://refka.tech/?lang=sw"/>
+      <xhtml:link rel="alternate" hreflang="x-default" href="https://refka.tech/"/>
+  </url>
+  <url>
+    <loc>https://refka.tech/?lang=pt</loc>
+    <lastmod>2026-10-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+      <xhtml:link rel="alternate" hreflang="en" href="https://refka.tech/"/>
+      <xhtml:link rel="alternate" hreflang="ar" href="https://refka.tech/?lang=ar"/>
+      <xhtml:link rel="alternate" hreflang="sq" href="https://refka.tech/?lang=sq"/>
+      <xhtml:link rel="alternate" hreflang="de" href="https://refka.tech/?lang=de"/>
+      <xhtml:link rel="alternate" hreflang="fr" href="https://refka.tech/?lang=fr"/>
+      <xhtml:link rel="alternate" hreflang="tr" href="https://refka.tech/?lang=tr"/>
+      <xhtml:link rel="alternate" hreflang="es" href="https://refka.tech/?lang=es"/>
+      <xhtml:link rel="alternate" hreflang="pt" href="https://refka.tech/?lang=pt"/>
+      <xhtml:link rel="alternate" hreflang="it" href="https://refka.tech/?lang=it"/>
+      <xhtml:link rel="alternate" hreflang="pl" href="https://refka.tech/?lang=pl"/>
+      <xhtml:link rel="alternate" hreflang="ru" href="https://refka.tech/?lang=ru"/>
+      <xhtml:link rel="alternate" hreflang="hi" href="https://refka.tech/?lang=hi"/>
+      <xhtml:link rel="alternate" hreflang="id" href="https://refka.tech/?lang=id"/>
+      <xhtml:link rel="alternate" hreflang="ms" href="https://refka.tech/?lang=ms"/>
+      <xhtml:link rel="alternate" hreflang="tl" href="https://refka.tech/?lang=tl"/>
+      <xhtml:link rel="alternate" hreflang="vi" href="https://refka.tech/?lang=vi"/>
+      <xhtml:link rel="alternate" hreflang="th" href="https://refka.tech/?lang=th"/>
+      <xhtml:link rel="alternate" hreflang="ko" href="https://refka.tech/?lang=ko"/>
+      <xhtml:link rel="alternate" hreflang="ja" href="https://refka.tech/?lang=ja"/>
+      <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://refka.tech/?lang=zh-Hans"/>
+      <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://refka.tech/?lang=zh-Hant"/>
+      <xhtml:link rel="alternate" hreflang="sw" href="https://refka.tech/?lang=sw"/>
+      <xhtml:link rel="alternate" hreflang="x-default" href="https://refka.tech/"/>
+  </url>
+  <url>
+    <loc>https://refka.tech/?lang=it</loc>
+    <lastmod>2026-10-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+      <xhtml:link rel="alternate" hreflang="en" href="https://refka.tech/"/>
+      <xhtml:link rel="alternate" hreflang="ar" href="https://refka.tech/?lang=ar"/>
+      <xhtml:link rel="alternate" hreflang="sq" href="https://refka.tech/?lang=sq"/>
+      <xhtml:link rel="alternate" hreflang="de" href="https://refka.tech/?lang=de"/>
+      <xhtml:link rel="alternate" hreflang="fr" href="https://refka.tech/?lang=fr"/>
+      <xhtml:link rel="alternate" hreflang="tr" href="https://refka.tech/?lang=tr"/>
+      <xhtml:link rel="alternate" hreflang="es" href="https://refka.tech/?lang=es"/>
+      <xhtml:link rel="alternate" hreflang="pt" href="https://refka.tech/?lang=pt"/>
+      <xhtml:link rel="alternate" hreflang="it" href="https://refka.tech/?lang=it"/>
+      <xhtml:link rel="alternate" hreflang="pl" href="https://refka.tech/?lang=pl"/>
+      <xhtml:link rel="alternate" hreflang="ru" href="https://refka.tech/?lang=ru"/>
+      <xhtml:link rel="alternate" hreflang="hi" href="https://refka.tech/?lang=hi"/>
+      <xhtml:link rel="alternate" hreflang="id" href="https://refka.tech/?lang=id"/>
+      <xhtml:link rel="alternate" hreflang="ms" href="https://refka.tech/?lang=ms"/>
+      <xhtml:link rel="alternate" hreflang="tl" href="https://refka.tech/?lang=tl"/>
+      <xhtml:link rel="alternate" hreflang="vi" href="https://refka.tech/?lang=vi"/>
+      <xhtml:link rel="alternate" hreflang="th" href="https://refka.tech/?lang=th"/>
+      <xhtml:link rel="alternate" hreflang="ko" href="https://refka.tech/?lang=ko"/>
+      <xhtml:link rel="alternate" hreflang="ja" href="https://refka.tech/?lang=ja"/>
+      <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://refka.tech/?lang=zh-Hans"/>
+      <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://refka.tech/?lang=zh-Hant"/>
+      <xhtml:link rel="alternate" hreflang="sw" href="https://refka.tech/?lang=sw"/>
+      <xhtml:link rel="alternate" hreflang="x-default" href="https://refka.tech/"/>
+  </url>
+  <url>
+    <loc>https://refka.tech/?lang=pl</loc>
+    <lastmod>2026-10-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+      <xhtml:link rel="alternate" hreflang="en" href="https://refka.tech/"/>
+      <xhtml:link rel="alternate" hreflang="ar" href="https://refka.tech/?lang=ar"/>
+      <xhtml:link rel="alternate" hreflang="sq" href="https://refka.tech/?lang=sq"/>
+      <xhtml:link rel="alternate" hreflang="de" href="https://refka.tech/?lang=de"/>
+      <xhtml:link rel="alternate" hreflang="fr" href="https://refka.tech/?lang=fr"/>
+      <xhtml:link rel="alternate" hreflang="tr" href="https://refka.tech/?lang=tr"/>
+      <xhtml:link rel="alternate" hreflang="es" href="https://refka.tech/?lang=es"/>
+      <xhtml:link rel="alternate" hreflang="pt" href="https://refka.tech/?lang=pt"/>
+      <xhtml:link rel="alternate" hreflang="it" href="https://refka.tech/?lang=it"/>
+      <xhtml:link rel="alternate" hreflang="pl" href="https://refka.tech/?lang=pl"/>
+      <xhtml:link rel="alternate" hreflang="ru" href="https://refka.tech/?lang=ru"/>
+      <xhtml:link rel="alternate" hreflang="hi" href="https://refka.tech/?lang=hi"/>
+      <xhtml:link rel="alternate" hreflang="id" href="https://refka.tech/?lang=id"/>
+      <xhtml:link rel="alternate" hreflang="ms" href="https://refka.tech/?lang=ms"/>
+      <xhtml:link rel="alternate" hreflang="tl" href="https://refka.tech/?lang=tl"/>
+      <xhtml:link rel="alternate" hreflang="vi" href="https://refka.tech/?lang=vi"/>
+      <xhtml:link rel="alternate" hreflang="th" href="https://refka.tech/?lang=th"/>
+      <xhtml:link rel="alternate" hreflang="ko" href="https://refka.tech/?lang=ko"/>
+      <xhtml:link rel="alternate" hreflang="ja" href="https://refka.tech/?lang=ja"/>
+      <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://refka.tech/?lang=zh-Hans"/>
+      <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://refka.tech/?lang=zh-Hant"/>
+      <xhtml:link rel="alternate" hreflang="sw" href="https://refka.tech/?lang=sw"/>
+      <xhtml:link rel="alternate" hreflang="x-default" href="https://refka.tech/"/>
+  </url>
+  <url>
+    <loc>https://refka.tech/?lang=ru</loc>
+    <lastmod>2026-10-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+      <xhtml:link rel="alternate" hreflang="en" href="https://refka.tech/"/>
+      <xhtml:link rel="alternate" hreflang="ar" href="https://refka.tech/?lang=ar"/>
+      <xhtml:link rel="alternate" hreflang="sq" href="https://refka.tech/?lang=sq"/>
+      <xhtml:link rel="alternate" hreflang="de" href="https://refka.tech/?lang=de"/>
+      <xhtml:link rel="alternate" hreflang="fr" href="https://refka.tech/?lang=fr"/>
+      <xhtml:link rel="alternate" hreflang="tr" href="https://refka.tech/?lang=tr"/>
+      <xhtml:link rel="alternate" hreflang="es" href="https://refka.tech/?lang=es"/>
+      <xhtml:link rel="alternate" hreflang="pt" href="https://refka.tech/?lang=pt"/>
+      <xhtml:link rel="alternate" hreflang="it" href="https://refka.tech/?lang=it"/>
+      <xhtml:link rel="alternate" hreflang="pl" href="https://refka.tech/?lang=pl"/>
+      <xhtml:link rel="alternate" hreflang="ru" href="https://refka.tech/?lang=ru"/>
+      <xhtml:link rel="alternate" hreflang="hi" href="https://refka.tech/?lang=hi"/>
+      <xhtml:link rel="alternate" hreflang="id" href="https://refka.tech/?lang=id"/>
+      <xhtml:link rel="alternate" hreflang="ms" href="https://refka.tech/?lang=ms"/>
+      <xhtml:link rel="alternate" hreflang="tl" href="https://refka.tech/?lang=tl"/>
+      <xhtml:link rel="alternate" hreflang="vi" href="https://refka.tech/?lang=vi"/>
+      <xhtml:link rel="alternate" hreflang="th" href="https://refka.tech/?lang=th"/>
+      <xhtml:link rel="alternate" hreflang="ko" href="https://refka.tech/?lang=ko"/>
+      <xhtml:link rel="alternate" hreflang="ja" href="https://refka.tech/?lang=ja"/>
+      <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://refka.tech/?lang=zh-Hans"/>
+      <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://refka.tech/?lang=zh-Hant"/>
+      <xhtml:link rel="alternate" hreflang="sw" href="https://refka.tech/?lang=sw"/>
+      <xhtml:link rel="alternate" hreflang="x-default" href="https://refka.tech/"/>
+  </url>
+  <url>
+    <loc>https://refka.tech/?lang=hi</loc>
+    <lastmod>2026-10-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+      <xhtml:link rel="alternate" hreflang="en" href="https://refka.tech/"/>
+      <xhtml:link rel="alternate" hreflang="ar" href="https://refka.tech/?lang=ar"/>
+      <xhtml:link rel="alternate" hreflang="sq" href="https://refka.tech/?lang=sq"/>
+      <xhtml:link rel="alternate" hreflang="de" href="https://refka.tech/?lang=de"/>
+      <xhtml:link rel="alternate" hreflang="fr" href="https://refka.tech/?lang=fr"/>
+      <xhtml:link rel="alternate" hreflang="tr" href="https://refka.tech/?lang=tr"/>
+      <xhtml:link rel="alternate" hreflang="es" href="https://refka.tech/?lang=es"/>
+      <xhtml:link rel="alternate" hreflang="pt" href="https://refka.tech/?lang=pt"/>
+      <xhtml:link rel="alternate" hreflang="it" href="https://refka.tech/?lang=it"/>
+      <xhtml:link rel="alternate" hreflang="pl" href="https://refka.tech/?lang=pl"/>
+      <xhtml:link rel="alternate" hreflang="ru" href="https://refka.tech/?lang=ru"/>
+      <xhtml:link rel="alternate" hreflang="hi" href="https://refka.tech/?lang=hi"/>
+      <xhtml:link rel="alternate" hreflang="id" href="https://refka.tech/?lang=id"/>
+      <xhtml:link rel="alternate" hreflang="ms" href="https://refka.tech/?lang=ms"/>
+      <xhtml:link rel="alternate" hreflang="tl" href="https://refka.tech/?lang=tl"/>
+      <xhtml:link rel="alternate" hreflang="vi" href="https://refka.tech/?lang=vi"/>
+      <xhtml:link rel="alternate" hreflang="th" href="https://refka.tech/?lang=th"/>
+      <xhtml:link rel="alternate" hreflang="ko" href="https://refka.tech/?lang=ko"/>
+      <xhtml:link rel="alternate" hreflang="ja" href="https://refka.tech/?lang=ja"/>
+      <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://refka.tech/?lang=zh-Hans"/>
+      <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://refka.tech/?lang=zh-Hant"/>
+      <xhtml:link rel="alternate" hreflang="sw" href="https://refka.tech/?lang=sw"/>
+      <xhtml:link rel="alternate" hreflang="x-default" href="https://refka.tech/"/>
+  </url>
+  <url>
+    <loc>https://refka.tech/?lang=id</loc>
+    <lastmod>2026-10-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+      <xhtml:link rel="alternate" hreflang="en" href="https://refka.tech/"/>
+      <xhtml:link rel="alternate" hreflang="ar" href="https://refka.tech/?lang=ar"/>
+      <xhtml:link rel="alternate" hreflang="sq" href="https://refka.tech/?lang=sq"/>
+      <xhtml:link rel="alternate" hreflang="de" href="https://refka.tech/?lang=de"/>
+      <xhtml:link rel="alternate" hreflang="fr" href="https://refka.tech/?lang=fr"/>
+      <xhtml:link rel="alternate" hreflang="tr" href="https://refka.tech/?lang=tr"/>
+      <xhtml:link rel="alternate" hreflang="es" href="https://refka.tech/?lang=es"/>
+      <xhtml:link rel="alternate" hreflang="pt" href="https://refka.tech/?lang=pt"/>
+      <xhtml:link rel="alternate" hreflang="it" href="https://refka.tech/?lang=it"/>
+      <xhtml:link rel="alternate" hreflang="pl" href="https://refka.tech/?lang=pl"/>
+      <xhtml:link rel="alternate" hreflang="ru" href="https://refka.tech/?lang=ru"/>
+      <xhtml:link rel="alternate" hreflang="hi" href="https://refka.tech/?lang=hi"/>
+      <xhtml:link rel="alternate" hreflang="id" href="https://refka.tech/?lang=id"/>
+      <xhtml:link rel="alternate" hreflang="ms" href="https://refka.tech/?lang=ms"/>
+      <xhtml:link rel="alternate" hreflang="tl" href="https://refka.tech/?lang=tl"/>
+      <xhtml:link rel="alternate" hreflang="vi" href="https://refka.tech/?lang=vi"/>
+      <xhtml:link rel="alternate" hreflang="th" href="https://refka.tech/?lang=th"/>
+      <xhtml:link rel="alternate" hreflang="ko" href="https://refka.tech/?lang=ko"/>
+      <xhtml:link rel="alternate" hreflang="ja" href="https://refka.tech/?lang=ja"/>
+      <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://refka.tech/?lang=zh-Hans"/>
+      <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://refka.tech/?lang=zh-Hant"/>
+      <xhtml:link rel="alternate" hreflang="sw" href="https://refka.tech/?lang=sw"/>
+      <xhtml:link rel="alternate" hreflang="x-default" href="https://refka.tech/"/>
+  </url>
+  <url>
+    <loc>https://refka.tech/?lang=ms</loc>
+    <lastmod>2026-10-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+      <xhtml:link rel="alternate" hreflang="en" href="https://refka.tech/"/>
+      <xhtml:link rel="alternate" hreflang="ar" href="https://refka.tech/?lang=ar"/>
+      <xhtml:link rel="alternate" hreflang="sq" href="https://refka.tech/?lang=sq"/>
+      <xhtml:link rel="alternate" hreflang="de" href="https://refka.tech/?lang=de"/>
+      <xhtml:link rel="alternate" hreflang="fr" href="https://refka.tech/?lang=fr"/>
+      <xhtml:link rel="alternate" hreflang="tr" href="https://refka.tech/?lang=tr"/>
+      <xhtml:link rel="alternate" hreflang="es" href="https://refka.tech/?lang=es"/>
+      <xhtml:link rel="alternate" hreflang="pt" href="https://refka.tech/?lang=pt"/>
+      <xhtml:link rel="alternate" hreflang="it" href="https://refka.tech/?lang=it"/>
+      <xhtml:link rel="alternate" hreflang="pl" href="https://refka.tech/?lang=pl"/>
+      <xhtml:link rel="alternate" hreflang="ru" href="https://refka.tech/?lang=ru"/>
+      <xhtml:link rel="alternate" hreflang="hi" href="https://refka.tech/?lang=hi"/>
+      <xhtml:link rel="alternate" hreflang="id" href="https://refka.tech/?lang=id"/>
+      <xhtml:link rel="alternate" hreflang="ms" href="https://refka.tech/?lang=ms"/>
+      <xhtml:link rel="alternate" hreflang="tl" href="https://refka.tech/?lang=tl"/>
+      <xhtml:link rel="alternate" hreflang="vi" href="https://refka.tech/?lang=vi"/>
+      <xhtml:link rel="alternate" hreflang="th" href="https://refka.tech/?lang=th"/>
+      <xhtml:link rel="alternate" hreflang="ko" href="https://refka.tech/?lang=ko"/>
+      <xhtml:link rel="alternate" hreflang="ja" href="https://refka.tech/?lang=ja"/>
+      <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://refka.tech/?lang=zh-Hans"/>
+      <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://refka.tech/?lang=zh-Hant"/>
+      <xhtml:link rel="alternate" hreflang="sw" href="https://refka.tech/?lang=sw"/>
+      <xhtml:link rel="alternate" hreflang="x-default" href="https://refka.tech/"/>
+  </url>
+  <url>
+    <loc>https://refka.tech/?lang=tl</loc>
+    <lastmod>2026-10-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+      <xhtml:link rel="alternate" hreflang="en" href="https://refka.tech/"/>
+      <xhtml:link rel="alternate" hreflang="ar" href="https://refka.tech/?lang=ar"/>
+      <xhtml:link rel="alternate" hreflang="sq" href="https://refka.tech/?lang=sq"/>
+      <xhtml:link rel="alternate" hreflang="de" href="https://refka.tech/?lang=de"/>
+      <xhtml:link rel="alternate" hreflang="fr" href="https://refka.tech/?lang=fr"/>
+      <xhtml:link rel="alternate" hreflang="tr" href="https://refka.tech/?lang=tr"/>
+      <xhtml:link rel="alternate" hreflang="es" href="https://refka.tech/?lang=es"/>
+      <xhtml:link rel="alternate" hreflang="pt" href="https://refka.tech/?lang=pt"/>
+      <xhtml:link rel="alternate" hreflang="it" href="https://refka.tech/?lang=it"/>
+      <xhtml:link rel="alternate" hreflang="pl" href="https://refka.tech/?lang=pl"/>
+      <xhtml:link rel="alternate" hreflang="ru" href="https://refka.tech/?lang=ru"/>
+      <xhtml:link rel="alternate" hreflang="hi" href="https://refka.tech/?lang=hi"/>
+      <xhtml:link rel="alternate" hreflang="id" href="https://refka.tech/?lang=id"/>
+      <xhtml:link rel="alternate" hreflang="ms" href="https://refka.tech/?lang=ms"/>
+      <xhtml:link rel="alternate" hreflang="tl" href="https://refka.tech/?lang=tl"/>
+      <xhtml:link rel="alternate" hreflang="vi" href="https://refka.tech/?lang=vi"/>
+      <xhtml:link rel="alternate" hreflang="th" href="https://refka.tech/?lang=th"/>
+      <xhtml:link rel="alternate" hreflang="ko" href="https://refka.tech/?lang=ko"/>
+      <xhtml:link rel="alternate" hreflang="ja" href="https://refka.tech/?lang=ja"/>
+      <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://refka.tech/?lang=zh-Hans"/>
+      <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://refka.tech/?lang=zh-Hant"/>
+      <xhtml:link rel="alternate" hreflang="sw" href="https://refka.tech/?lang=sw"/>
+      <xhtml:link rel="alternate" hreflang="x-default" href="https://refka.tech/"/>
+  </url>
+  <url>
+    <loc>https://refka.tech/?lang=vi</loc>
+    <lastmod>2026-10-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+      <xhtml:link rel="alternate" hreflang="en" href="https://refka.tech/"/>
+      <xhtml:link rel="alternate" hreflang="ar" href="https://refka.tech/?lang=ar"/>
+      <xhtml:link rel="alternate" hreflang="sq" href="https://refka.tech/?lang=sq"/>
+      <xhtml:link rel="alternate" hreflang="de" href="https://refka.tech/?lang=de"/>
+      <xhtml:link rel="alternate" hreflang="fr" href="https://refka.tech/?lang=fr"/>
+      <xhtml:link rel="alternate" hreflang="tr" href="https://refka.tech/?lang=tr"/>
+      <xhtml:link rel="alternate" hreflang="es" href="https://refka.tech/?lang=es"/>
+      <xhtml:link rel="alternate" hreflang="pt" href="https://refka.tech/?lang=pt"/>
+      <xhtml:link rel="alternate" hreflang="it" href="https://refka.tech/?lang=it"/>
+      <xhtml:link rel="alternate" hreflang="pl" href="https://refka.tech/?lang=pl"/>
+      <xhtml:link rel="alternate" hreflang="ru" href="https://refka.tech/?lang=ru"/>
+      <xhtml:link rel="alternate" hreflang="hi" href="https://refka.tech/?lang=hi"/>
+      <xhtml:link rel="alternate" hreflang="id" href="https://refka.tech/?lang=id"/>
+      <xhtml:link rel="alternate" hreflang="ms" href="https://refka.tech/?lang=ms"/>
+      <xhtml:link rel="alternate" hreflang="tl" href="https://refka.tech/?lang=tl"/>
+      <xhtml:link rel="alternate" hreflang="vi" href="https://refka.tech/?lang=vi"/>
+      <xhtml:link rel="alternate" hreflang="th" href="https://refka.tech/?lang=th"/>
+      <xhtml:link rel="alternate" hreflang="ko" href="https://refka.tech/?lang=ko"/>
+      <xhtml:link rel="alternate" hreflang="ja" href="https://refka.tech/?lang=ja"/>
+      <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://refka.tech/?lang=zh-Hans"/>
+      <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://refka.tech/?lang=zh-Hant"/>
+      <xhtml:link rel="alternate" hreflang="sw" href="https://refka.tech/?lang=sw"/>
+      <xhtml:link rel="alternate" hreflang="x-default" href="https://refka.tech/"/>
+  </url>
+  <url>
+    <loc>https://refka.tech/?lang=th</loc>
+    <lastmod>2026-10-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+      <xhtml:link rel="alternate" hreflang="en" href="https://refka.tech/"/>
+      <xhtml:link rel="alternate" hreflang="ar" href="https://refka.tech/?lang=ar"/>
+      <xhtml:link rel="alternate" hreflang="sq" href="https://refka.tech/?lang=sq"/>
+      <xhtml:link rel="alternate" hreflang="de" href="https://refka.tech/?lang=de"/>
+      <xhtml:link rel="alternate" hreflang="fr" href="https://refka.tech/?lang=fr"/>
+      <xhtml:link rel="alternate" hreflang="tr" href="https://refka.tech/?lang=tr"/>
+      <xhtml:link rel="alternate" hreflang="es" href="https://refka.tech/?lang=es"/>
+      <xhtml:link rel="alternate" hreflang="pt" href="https://refka.tech/?lang=pt"/>
+      <xhtml:link rel="alternate" hreflang="it" href="https://refka.tech/?lang=it"/>
+      <xhtml:link rel="alternate" hreflang="pl" href="https://refka.tech/?lang=pl"/>
+      <xhtml:link rel="alternate" hreflang="ru" href="https://refka.tech/?lang=ru"/>
+      <xhtml:link rel="alternate" hreflang="hi" href="https://refka.tech/?lang=hi"/>
+      <xhtml:link rel="alternate" hreflang="id" href="https://refka.tech/?lang=id"/>
+      <xhtml:link rel="alternate" hreflang="ms" href="https://refka.tech/?lang=ms"/>
+      <xhtml:link rel="alternate" hreflang="tl" href="https://refka.tech/?lang=tl"/>
+      <xhtml:link rel="alternate" hreflang="vi" href="https://refka.tech/?lang=vi"/>
+      <xhtml:link rel="alternate" hreflang="th" href="https://refka.tech/?lang=th"/>
+      <xhtml:link rel="alternate" hreflang="ko" href="https://refka.tech/?lang=ko"/>
+      <xhtml:link rel="alternate" hreflang="ja" href="https://refka.tech/?lang=ja"/>
+      <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://refka.tech/?lang=zh-Hans"/>
+      <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://refka.tech/?lang=zh-Hant"/>
+      <xhtml:link rel="alternate" hreflang="sw" href="https://refka.tech/?lang=sw"/>
+      <xhtml:link rel="alternate" hreflang="x-default" href="https://refka.tech/"/>
+  </url>
+  <url>
+    <loc>https://refka.tech/?lang=ko</loc>
+    <lastmod>2026-10-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+      <xhtml:link rel="alternate" hreflang="en" href="https://refka.tech/"/>
+      <xhtml:link rel="alternate" hreflang="ar" href="https://refka.tech/?lang=ar"/>
+      <xhtml:link rel="alternate" hreflang="sq" href="https://refka.tech/?lang=sq"/>
+      <xhtml:link rel="alternate" hreflang="de" href="https://refka.tech/?lang=de"/>
+      <xhtml:link rel="alternate" hreflang="fr" href="https://refka.tech/?lang=fr"/>
+      <xhtml:link rel="alternate" hreflang="tr" href="https://refka.tech/?lang=tr"/>
+      <xhtml:link rel="alternate" hreflang="es" href="https://refka.tech/?lang=es"/>
+      <xhtml:link rel="alternate" hreflang="pt" href="https://refka.tech/?lang=pt"/>
+      <xhtml:link rel="alternate" hreflang="it" href="https://refka.tech/?lang=it"/>
+      <xhtml:link rel="alternate" hreflang="pl" href="https://refka.tech/?lang=pl"/>
+      <xhtml:link rel="alternate" hreflang="ru" href="https://refka.tech/?lang=ru"/>
+      <xhtml:link rel="alternate" hreflang="hi" href="https://refka.tech/?lang=hi"/>
+      <xhtml:link rel="alternate" hreflang="id" href="https://refka.tech/?lang=id"/>
+      <xhtml:link rel="alternate" hreflang="ms" href="https://refka.tech/?lang=ms"/>
+      <xhtml:link rel="alternate" hreflang="tl" href="https://refka.tech/?lang=tl"/>
+      <xhtml:link rel="alternate" hreflang="vi" href="https://refka.tech/?lang=vi"/>
+      <xhtml:link rel="alternate" hreflang="th" href="https://refka.tech/?lang=th"/>
+      <xhtml:link rel="alternate" hreflang="ko" href="https://refka.tech/?lang=ko"/>
+      <xhtml:link rel="alternate" hreflang="ja" href="https://refka.tech/?lang=ja"/>
+      <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://refka.tech/?lang=zh-Hans"/>
+      <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://refka.tech/?lang=zh-Hant"/>
+      <xhtml:link rel="alternate" hreflang="sw" href="https://refka.tech/?lang=sw"/>
+      <xhtml:link rel="alternate" hreflang="x-default" href="https://refka.tech/"/>
+  </url>
+  <url>
+    <loc>https://refka.tech/?lang=ja</loc>
+    <lastmod>2026-10-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+      <xhtml:link rel="alternate" hreflang="en" href="https://refka.tech/"/>
+      <xhtml:link rel="alternate" hreflang="ar" href="https://refka.tech/?lang=ar"/>
+      <xhtml:link rel="alternate" hreflang="sq" href="https://refka.tech/?lang=sq"/>
+      <xhtml:link rel="alternate" hreflang="de" href="https://refka.tech/?lang=de"/>
+      <xhtml:link rel="alternate" hreflang="fr" href="https://refka.tech/?lang=fr"/>
+      <xhtml:link rel="alternate" hreflang="tr" href="https://refka.tech/?lang=tr"/>
+      <xhtml:link rel="alternate" hreflang="es" href="https://refka.tech/?lang=es"/>
+      <xhtml:link rel="alternate" hreflang="pt" href="https://refka.tech/?lang=pt"/>
+      <xhtml:link rel="alternate" hreflang="it" href="https://refka.tech/?lang=it"/>
+      <xhtml:link rel="alternate" hreflang="pl" href="https://refka.tech/?lang=pl"/>
+      <xhtml:link rel="alternate" hreflang="ru" href="https://refka.tech/?lang=ru"/>
+      <xhtml:link rel="alternate" hreflang="hi" href="https://refka.tech/?lang=hi"/>
+      <xhtml:link rel="alternate" hreflang="id" href="https://refka.tech/?lang=id"/>
+      <xhtml:link rel="alternate" hreflang="ms" href="https://refka.tech/?lang=ms"/>
+      <xhtml:link rel="alternate" hreflang="tl" href="https://refka.tech/?lang=tl"/>
+      <xhtml:link rel="alternate" hreflang="vi" href="https://refka.tech/?lang=vi"/>
+      <xhtml:link rel="alternate" hreflang="th" href="https://refka.tech/?lang=th"/>
+      <xhtml:link rel="alternate" hreflang="ko" href="https://refka.tech/?lang=ko"/>
+      <xhtml:link rel="alternate" hreflang="ja" href="https://refka.tech/?lang=ja"/>
+      <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://refka.tech/?lang=zh-Hans"/>
+      <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://refka.tech/?lang=zh-Hant"/>
+      <xhtml:link rel="alternate" hreflang="sw" href="https://refka.tech/?lang=sw"/>
+      <xhtml:link rel="alternate" hreflang="x-default" href="https://refka.tech/"/>
+  </url>
+  <url>
+    <loc>https://refka.tech/?lang=zh-Hans</loc>
+    <lastmod>2026-10-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+      <xhtml:link rel="alternate" hreflang="en" href="https://refka.tech/"/>
+      <xhtml:link rel="alternate" hreflang="ar" href="https://refka.tech/?lang=ar"/>
+      <xhtml:link rel="alternate" hreflang="sq" href="https://refka.tech/?lang=sq"/>
+      <xhtml:link rel="alternate" hreflang="de" href="https://refka.tech/?lang=de"/>
+      <xhtml:link rel="alternate" hreflang="fr" href="https://refka.tech/?lang=fr"/>
+      <xhtml:link rel="alternate" hreflang="tr" href="https://refka.tech/?lang=tr"/>
+      <xhtml:link rel="alternate" hreflang="es" href="https://refka.tech/?lang=es"/>
+      <xhtml:link rel="alternate" hreflang="pt" href="https://refka.tech/?lang=pt"/>
+      <xhtml:link rel="alternate" hreflang="it" href="https://refka.tech/?lang=it"/>
+      <xhtml:link rel="alternate" hreflang="pl" href="https://refka.tech/?lang=pl"/>
+      <xhtml:link rel="alternate" hreflang="ru" href="https://refka.tech/?lang=ru"/>
+      <xhtml:link rel="alternate" hreflang="hi" href="https://refka.tech/?lang=hi"/>
+      <xhtml:link rel="alternate" hreflang="id" href="https://refka.tech/?lang=id"/>
+      <xhtml:link rel="alternate" hreflang="ms" href="https://refka.tech/?lang=ms"/>
+      <xhtml:link rel="alternate" hreflang="tl" href="https://refka.tech/?lang=tl"/>
+      <xhtml:link rel="alternate" hreflang="vi" href="https://refka.tech/?lang=vi"/>
+      <xhtml:link rel="alternate" hreflang="th" href="https://refka.tech/?lang=th"/>
+      <xhtml:link rel="alternate" hreflang="ko" href="https://refka.tech/?lang=ko"/>
+      <xhtml:link rel="alternate" hreflang="ja" href="https://refka.tech/?lang=ja"/>
+      <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://refka.tech/?lang=zh-Hans"/>
+      <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://refka.tech/?lang=zh-Hant"/>
+      <xhtml:link rel="alternate" hreflang="sw" href="https://refka.tech/?lang=sw"/>
+      <xhtml:link rel="alternate" hreflang="x-default" href="https://refka.tech/"/>
+  </url>
+  <url>
+    <loc>https://refka.tech/?lang=zh-Hant</loc>
+    <lastmod>2026-10-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+      <xhtml:link rel="alternate" hreflang="en" href="https://refka.tech/"/>
+      <xhtml:link rel="alternate" hreflang="ar" href="https://refka.tech/?lang=ar"/>
+      <xhtml:link rel="alternate" hreflang="sq" href="https://refka.tech/?lang=sq"/>
+      <xhtml:link rel="alternate" hreflang="de" href="https://refka.tech/?lang=de"/>
+      <xhtml:link rel="alternate" hreflang="fr" href="https://refka.tech/?lang=fr"/>
+      <xhtml:link rel="alternate" hreflang="tr" href="https://refka.tech/?lang=tr"/>
+      <xhtml:link rel="alternate" hreflang="es" href="https://refka.tech/?lang=es"/>
+      <xhtml:link rel="alternate" hreflang="pt" href="https://refka.tech/?lang=pt"/>
+      <xhtml:link rel="alternate" hreflang="it" href="https://refka.tech/?lang=it"/>
+      <xhtml:link rel="alternate" hreflang="pl" href="https://refka.tech/?lang=pl"/>
+      <xhtml:link rel="alternate" hreflang="ru" href="https://refka.tech/?lang=ru"/>
+      <xhtml:link rel="alternate" hreflang="hi" href="https://refka.tech/?lang=hi"/>
+      <xhtml:link rel="alternate" hreflang="id" href="https://refka.tech/?lang=id"/>
+      <xhtml:link rel="alternate" hreflang="ms" href="https://refka.tech/?lang=ms"/>
+      <xhtml:link rel="alternate" hreflang="tl" href="https://refka.tech/?lang=tl"/>
+      <xhtml:link rel="alternate" hreflang="vi" href="https://refka.tech/?lang=vi"/>
+      <xhtml:link rel="alternate" hreflang="th" href="https://refka.tech/?lang=th"/>
+      <xhtml:link rel="alternate" hreflang="ko" href="https://refka.tech/?lang=ko"/>
+      <xhtml:link rel="alternate" hreflang="ja" href="https://refka.tech/?lang=ja"/>
+      <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://refka.tech/?lang=zh-Hans"/>
+      <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://refka.tech/?lang=zh-Hant"/>
+      <xhtml:link rel="alternate" hreflang="sw" href="https://refka.tech/?lang=sw"/>
+      <xhtml:link rel="alternate" hreflang="x-default" href="https://refka.tech/"/>
+  </url>
+  <url>
+    <loc>https://refka.tech/?lang=sw</loc>
+    <lastmod>2026-10-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+      <xhtml:link rel="alternate" hreflang="en" href="https://refka.tech/"/>
+      <xhtml:link rel="alternate" hreflang="ar" href="https://refka.tech/?lang=ar"/>
+      <xhtml:link rel="alternate" hreflang="sq" href="https://refka.tech/?lang=sq"/>
+      <xhtml:link rel="alternate" hreflang="de" href="https://refka.tech/?lang=de"/>
+      <xhtml:link rel="alternate" hreflang="fr" href="https://refka.tech/?lang=fr"/>
+      <xhtml:link rel="alternate" hreflang="tr" href="https://refka.tech/?lang=tr"/>
+      <xhtml:link rel="alternate" hreflang="es" href="https://refka.tech/?lang=es"/>
+      <xhtml:link rel="alternate" hreflang="pt" href="https://refka.tech/?lang=pt"/>
+      <xhtml:link rel="alternate" hreflang="it" href="https://refka.tech/?lang=it"/>
+      <xhtml:link rel="alternate" hreflang="pl" href="https://refka.tech/?lang=pl"/>
+      <xhtml:link rel="alternate" hreflang="ru" href="https://refka.tech/?lang=ru"/>
+      <xhtml:link rel="alternate" hreflang="hi" href="https://refka.tech/?lang=hi"/>
+      <xhtml:link rel="alternate" hreflang="id" href="https://refka.tech/?lang=id"/>
+      <xhtml:link rel="alternate" hreflang="ms" href="https://refka.tech/?lang=ms"/>
+      <xhtml:link rel="alternate" hreflang="tl" href="https://refka.tech/?lang=tl"/>
+      <xhtml:link rel="alternate" hreflang="vi" href="https://refka.tech/?lang=vi"/>
+      <xhtml:link rel="alternate" hreflang="th" href="https://refka.tech/?lang=th"/>
+      <xhtml:link rel="alternate" hreflang="ko" href="https://refka.tech/?lang=ko"/>
+      <xhtml:link rel="alternate" hreflang="ja" href="https://refka.tech/?lang=ja"/>
+      <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://refka.tech/?lang=zh-Hans"/>
+      <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://refka.tech/?lang=zh-Hant"/>
+      <xhtml:link rel="alternate" hreflang="sw" href="https://refka.tech/?lang=sw"/>
+      <xhtml:link rel="alternate" hreflang="x-default" href="https://refka.tech/"/>
   </url>
 </urlset>

@@ -5061,3 +5061,31 @@ sw: {
 };
 for (var l in O) { if (!T[l]) continue; for (var k in O[l]) T[l][k] = O[l][k]; }
 })();
+// ─── v5.3: SUPPORT 24/7 ON WHATSAPP, FOR EVERY COUNTRY ───
+(function () {
+var S = {
+en: { wa_bubble: "Questions? We answer on WhatsApp, 24/7.", faq_wa: "Ask us on WhatsApp, 24/7", f_contact: "Support 24/7", f_support: "Support on WhatsApp, 24/7", faq_247: "After that, our support team answers on WhatsApp 24/7, wherever you are." },
+ar: { wa_bubble: "عندك سؤال؟ نرد على واتساب ٢٤/٧.", faq_wa: "اسألنا على واتساب، ٢٤/٧", f_contact: "دعم ٢٤/٧", f_support: "دعم على واتساب ٢٤/٧", faq_247: "وبعدها يرد عليك فريق الدعم على واتساب ٢٤/٧، أينما كنت." },
+de: { wa_bubble: "Fragen? Wir antworten auf WhatsApp, rund um die Uhr.", faq_wa: "Fragen Sie uns auf WhatsApp, rund um die Uhr", f_contact: "Support rund um die Uhr", f_support: "Support auf WhatsApp, rund um die Uhr", faq_247: "Danach antwortet unser Support-Team auf WhatsApp rund um die Uhr, egal wo Sie sind." },
+sq: { wa_bubble: "Keni pyetje? Përgjigjemi në WhatsApp 24/7.", faq_wa: "Na pyesni në WhatsApp, 24/7", f_contact: "Mbështetje 24/7", f_support: "Mbështetje në WhatsApp, 24/7", faq_247: "Pas kësaj, ekipi ynë i mbështetjes përgjigjet në WhatsApp 24/7, kudo që të jeni." },
+fr: { wa_bubble: "Des questions ? Nous répondons sur WhatsApp, 24 h/24, 7 j/7.", faq_wa: "Posez-la-nous sur WhatsApp, 24 h/24", f_contact: "Support 24 h/24, 7 j/7", f_support: "Support sur WhatsApp, 24 h/24, 7 j/7", faq_247: "Ensuite, notre équipe support répond sur WhatsApp 24 h/24, 7 j/7, où que vous soyez." },
+es: { wa_bubble: "¿Preguntas? Respondemos por WhatsApp, 24/7.", faq_wa: "Pregúntenos por WhatsApp, 24/7", f_contact: "Soporte 24/7", f_support: "Soporte por WhatsApp, 24/7", faq_247: "Después, nuestro equipo de soporte responde por WhatsApp 24/7, esté donde esté." },
+pt: { wa_bubble: "Dúvidas? Respondemos no WhatsApp, 24/7.", faq_wa: "Pergunte no WhatsApp, 24/7", f_contact: "Suporte 24/7", f_support: "Suporte no WhatsApp, 24/7", faq_247: "Depois disso, nossa equipe de suporte responde no WhatsApp 24/7, onde você estiver." },
+it: { wa_bubble: "Domande? Rispondiamo su WhatsApp, 24 ore su 24.", faq_wa: "Ci scriva su WhatsApp, 24 ore su 24", f_contact: "Assistenza 24/7", f_support: "Assistenza su WhatsApp, 24/7", faq_247: "Dopo, il nostro team di assistenza risponde su WhatsApp 24 ore su 24, 7 giorni su 7, ovunque Lei sia." },
+pl: { wa_bubble: "Pytania? Odpowiadamy na WhatsApp 24/7.", faq_wa: "Zapytaj nas na WhatsApp, 24/7", f_contact: "Wsparcie 24/7", f_support: "Wsparcie na WhatsApp, 24/7", faq_247: "Potem nasz zespół wsparcia odpowiada na WhatsApp 24/7, gdziekolwiek jesteś." },
+tr: { wa_bubble: "Sorunuz mu var? WhatsApp'ta 7/24 yanıtlıyoruz.", faq_wa: "WhatsApp'tan sorun, 7/24", f_contact: "7/24 destek", f_support: "WhatsApp'ta 7/24 destek", faq_247: "Sonrasında destek ekibimiz, nerede olursanız olun WhatsApp'ta 7/24 yanıt verir." },
+ru: { wa_bubble: "Есть вопросы? Отвечаем в WhatsApp 24/7.", faq_wa: "Спросите нас в WhatsApp, 24/7", f_contact: "Поддержка 24/7", f_support: "Поддержка в WhatsApp 24/7", faq_247: "Дальше наша поддержка отвечает в WhatsApp 24/7, где бы вы ни были." },
+hi: { wa_bubble: "सवाल हैं? हम WhatsApp पर 24/7 जवाब देते हैं।", faq_wa: "WhatsApp पर पूछिए, 24/7", f_contact: "24/7 सहायता", f_support: "WhatsApp पर 24/7 सहायता", faq_247: "उसके बाद हमारी सपोर्ट टीम WhatsApp पर 24/7 जवाब देती है, आप कहीं भी हों।" },
+id: { wa_bubble: "Ada pertanyaan? Kami menjawab di WhatsApp 24/7.", faq_wa: "Tanya kami di WhatsApp, 24/7", f_contact: "Dukungan 24/7", f_support: "Dukungan di WhatsApp, 24/7", faq_247: "Setelah itu, tim dukungan kami menjawab di WhatsApp 24/7, di mana pun Anda berada." },
+ms: { wa_bubble: "Ada soalan? Kami menjawab di WhatsApp 24/7.", faq_wa: "Tanya kami di WhatsApp, 24/7", f_contact: "Sokongan 24/7", f_support: "Sokongan di WhatsApp, 24/7", faq_247: "Selepas itu, pasukan sokongan kami menjawab di WhatsApp 24/7, di mana sahaja anda berada." },
+tl: { wa_bubble: "May tanong? Sumasagot kami sa WhatsApp, 24/7.", faq_wa: "Itanong sa amin sa WhatsApp, 24/7", f_contact: "Suporta 24/7", f_support: "Suporta sa WhatsApp, 24/7", faq_247: "Pagkatapos nito, sumasagot ang aming support team sa WhatsApp 24/7, nasaan ka man." },
+vi: { wa_bubble: "Có câu hỏi? Chúng tôi trả lời qua WhatsApp 24/7.", faq_wa: "Hỏi chúng tôi qua WhatsApp, 24/7", f_contact: "Hỗ trợ 24/7", f_support: "Hỗ trợ qua WhatsApp 24/7", faq_247: "Sau đó, đội hỗ trợ trả lời qua WhatsApp 24/7, dù quý vị ở đâu." },
+th: { wa_bubble: "มีคำถาม? เราตอบทาง WhatsApp ตลอด 24 ชั่วโมง", faq_wa: "ถามเราทาง WhatsApp ได้ตลอด 24 ชั่วโมง", f_contact: "ซัพพอร์ต 24/7", f_support: "ซัพพอร์ตทาง WhatsApp 24/7", faq_247: "หลังจากนั้น ทีมซัพพอร์ตของเราตอบทาง WhatsApp ตลอด 24 ชั่วโมงทุกวัน ไม่ว่าคุณจะอยู่ที่ไหน" },
+ko: { wa_bubble: "궁금한 점이 있으신가요? WhatsApp으로 연중무휴 24시간 답변해 드려요.", faq_wa: "WhatsApp으로 문의하기 (24시간)", f_contact: "24시간 지원", f_support: "WhatsApp 24시간 지원", faq_247: "그 후에도 지원팀이 어디서든 WhatsApp으로 연중무휴 24시간 답변해 드립니다." },
+ja: { wa_bubble: "ご質問は WhatsApp へ。24時間年中無休で対応します。", faq_wa: "WhatsApp で質問する（24時間対応）", f_contact: "24時間サポート", f_support: "WhatsApp で24時間サポート", faq_247: "その後も、サポートチームがどこからでも WhatsApp で24時間年中無休で対応します。" },
+'zh-Hans': { wa_bubble: "有问题？我们在 WhatsApp 上 24/7 回复。", faq_wa: "在 WhatsApp 上问我们，24/7", f_contact: "24/7 支持", f_support: "WhatsApp 24/7 支持", faq_247: "之后，无论您在哪里，我们的支持团队都会在 WhatsApp 上 24/7 回复。" },
+'zh-Hant': { wa_bubble: "有問題？我們在 WhatsApp 上 24/7 回覆。", faq_wa: "在 WhatsApp 上問我們，24/7", f_contact: "24/7 支援", f_support: "WhatsApp 24/7 支援", faq_247: "之後，無論您在哪裡，我們的支援團隊都會在 WhatsApp 上 24/7 回覆。" },
+sw: { wa_bubble: "Una maswali? Tunajibu kwenye WhatsApp, 24/7.", faq_wa: "Tuulize kwenye WhatsApp, 24/7", f_contact: "Usaidizi 24/7", f_support: "Usaidizi kwenye WhatsApp, 24/7", faq_247: "Baada ya hapo, timu yetu ya usaidizi inajibu kwenye WhatsApp 24/7, popote ulipo." }
+};
+for (var l in S) { if (!T[l]) continue; for (var k in S[l]) T[l][k] = S[l][k]; }
+})();
