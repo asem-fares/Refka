@@ -1175,3 +1175,19 @@ html[lang="ar"] .oa-pain small, html[lang="ar"] .oa-sub { font-size: 16.5px; lin
 .ph-event .inf .ph-name, .ph-event .inf .ph-sub { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .price-controls, .loc-pick { max-width: 100%; min-width: 0; }
 .loc-pick select { max-width: 100%; min-width: 0; }
+
+/* ══ v5.4 EVERY DEVICE: tap targets, landscape phones, Safari ══ */
+.burger { width: 44px; height: 44px; padding: 10px 11px; justify-content: center; align-items: center; margin-inline-end: -10px; }
+.logo { min-height: 44px; }
+.mob-menu { overflow-y: auto; -webkit-overflow-scrolling: touch; }
+@media (max-height: 520px) { .mob-menu { padding-top: 68px; gap: 12px; } .mob-menu a { font-size: 18px; padding-bottom: 10px; } }
+/* Safari 17 and older need the prefix for the blur behind the bar and the dialogs */
+body > nav { -webkit-backdrop-filter: blur(16px); }
+.lang-overlay, .modal-overlay { -webkit-backdrop-filter: blur(4px); }
+/* the WhatsApp button steps aside while the hero buttons are on screen (phones) */
+.wa-fab { transition: transform .2s, bottom .25s, opacity .25s; }
+.wa-fab.away { opacity: 0; transform: scale(.6); pointer-events: none; }
+.f-logo { min-height: 44px; display: inline-flex; align-items: center; }
+/* one column on phones: the card keeps the screen width, long words shrink (app.js fitText) */
+@media (max-width: 900px) { .price-grid { grid-template-columns: minmax(0, 1fr); } }
+.p-card { min-width: 0; }

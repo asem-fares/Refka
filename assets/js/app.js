@@ -243,6 +243,7 @@ function renderPrices() {
   document.querySelectorAll('[data-pm]').forEach(function(el) { var k = PM[el.getAttribute('data-pm')]; el.textContent = t[k] || T.en[k]; });
   if (typeof setWhatsApp === 'function') setWhatsApp();
   if (typeof renderOwnerApp === 'function') renderOwnerApp();
+  fitText();
   if (n) n.textContent = (F ? (t.loc_fixed || T.en.loc_fixed) : (_cur === 'USD' ? t.loc_usd : t.loc_conv)) + ' ' + t.loc_final;
 }
 
@@ -605,6 +606,32 @@ if (document.fonts && document.fonts.ready) document.fonts.ready.then(function (
     }, { threshold: 0.3 }).observe(phone);
   } else { inView = true; }
   show(0);
+})();
+
+// Long words ("Индивидуально", "Indywidualnie") shrink to fit the price box instead of spilling out.
+function fitText() {
+  document.querySelectorAll('.p-price').forEach(function (el) {
+    el.style.fontSize = '';
+    var size = parseFloat(getComputedStyle(el).fontSize) || 40;
+    while (el.scrollWidth > el.clientWidth + 1 && size > 18) { size -= 1; el.style.fontSize = size + 'px'; }
+  });
+}
+(function () {
+  var t = null;
+  window.addEventListener('resize', function () { clearTimeout(t); t = setTimeout(fitText, 150); });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitText);
+})();
+
+// On phones the WhatsApp button would sit on top of the hero text and buttons: it waits until they scroll away.
+(function () {
+  var fab = g('waBtn'), ctas = document.querySelector('#hero .hero-text');   // the headline, text and buttons
+  if (!fab || !ctas || !('IntersectionObserver' in window)) return;
+  var phone = window.matchMedia('(max-width: 900px)');
+  var r = ctas.getBoundingClientRect();   // decide before the first animation frame, so it never flashes over the buttons
+  if (phone.matches && r.top < window.innerHeight && r.bottom > 0) fab.classList.add('away');
+  new IntersectionObserver(function (es) {
+    es.forEach(function (e) { fab.classList.toggle('away', e.isIntersecting && phone.matches); });
+  }).observe(ctas);
 })();
 
 // ─── CONVERSION TRACKING ─────────────────────────────────────
