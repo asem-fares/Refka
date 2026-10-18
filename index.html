@@ -34,7 +34,7 @@
 <!-- Security. Inline scripts and inline event handlers are not allowed: every handler lives in /assets/js.
      JSON-LD blocks are data, not scripts, so the CSP does not apply to them.
      frame-ancestors cannot be set from a meta tag (see /_headers for hosts that support headers). -->
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; manifest-src 'self'; connect-src 'self' https://formsubmit.co; base-uri 'self'; form-action 'self' https://formsubmit.co; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; manifest-src 'self'; connect-src 'self' https://formsubmit.co https://cloudflareinsights.com; base-uri 'self'; form-action 'self' https://formsubmit.co; object-src 'none'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 
 <!-- Icons -->
@@ -50,7 +50,7 @@
 <meta property="og:site_name" content="Refka">
 <meta property="og:title" content="Refka | Run your gym. Keep your members.">
 <meta property="og:description" content="Members who train together stay. Refka runs your front desk, collects renewals on WhatsApp and gives your members an app to train together. 30 days free.">
-<meta property="og:image" content="https://refka.tech/assets/images/og-image.jpg">
+<meta property="og:image" content="https://refka.tech/assets/images/og-image.jpg?v=5">
 <meta property="og:image:type" content="image/jpeg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -59,7 +59,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Refka | Run your gym. Keep your members.">
 <meta name="twitter:description" content="One system for your front desk, renewals and payments, and an app that helps your members train together.">
-<meta name="twitter:image" content="https://refka.tech/assets/images/og-image.jpg">
+<meta name="twitter:image" content="https://refka.tech/assets/images/og-image.jpg?v=5">
 
 <!-- Fonts (self-hosted) and styles -->
 <link rel="preload" as="font" type="font/woff2" href="assets/fonts/sora-latin-800-normal.woff2" crossorigin>
@@ -247,10 +247,10 @@
         </div>
 
         <div class="ph-dots">
-          <button data-go="0" class="on" aria-label="Front desk"></button>
-          <button data-go="1" aria-label="WhatsApp reminders"></button>
-          <button data-go="2" aria-label="Money"></button>
-          <button data-go="3" aria-label="Members at risk"></button>
+          <button data-go="0" class="on" data-i18n-aria="ow_t2" aria-label="Desk"></button>
+          <button data-go="1" data-i18n-aria="ow_wa" aria-label="WhatsApp reminders"></button>
+          <button data-go="2" data-i18n-aria="ow_money" aria-label="Money in today"></button>
+          <button data-go="3" data-i18n-aria="ow_risk" aria-label="Stopped coming"></button>
         </div>
 
         <div class="ph-tabs">
@@ -374,10 +374,10 @@
         </div>
 
         <div class="ph-dots">
-          <button data-go="0" class="on" aria-label="Matching"></button>
-          <button data-go="1" aria-label="AI plan"></button>
-          <button data-go="2" aria-label="Store"></button>
-          <button data-go="3" aria-label="Community"></button>
+          <button data-go="0" class="on" data-i18n-aria="ph_partners" aria-label="Your training partners"></button>
+          <button data-go="1" data-i18n-aria="ph_tag" aria-label="AI training plan"></button>
+          <button data-go="2" data-i18n-aria="ph_store" aria-label="Shop at your gym"></button>
+          <button data-go="3" data-i18n-aria="ph_feed" aria-label="Community"></button>
         </div>
 
         <div class="ph-tabs">
@@ -707,7 +707,7 @@
     <button class="modal-close" data-click="closeModal" data-click-arg="privacyModal" aria-label="Close">✕</button>
     <div class="modal-badge">Legal Document</div>
     <h1 id="ppTitle">Privacy Policy</h1>
-    <div class="modal-meta">Effective: September 12, 2026 &nbsp;·&nbsp; Version 1.0 &nbsp;·&nbsp; Global scope</div>
+    <div class="modal-meta">Effective: October 18, 2026 &nbsp;·&nbsp; Version 1.1 &nbsp;·&nbsp; Global scope</div>
     <p class="modal-legal-note" style="display:none"></p>
 
     <h2>1. Who We Are</h2>
@@ -753,7 +753,10 @@
         <tr><td><strong>Google Firebase</strong></td><td>Cloud infrastructure, push notifications</td><td>USA / EU</td></tr>
         <tr><td><strong>Google Vision API</strong></td><td>One-time equipment photo recognition (photos deleted within 24 hrs)</td><td>USA</td></tr>
         <tr><td><strong>Stripe / Paymob</strong></td><td>Payment processing</td><td>USA / MENA</td></tr>
-        <tr><td><strong>360dialog / Twilio</strong></td><td>WhatsApp OTP and notifications</td><td>EU / USA</td></tr>
+        <tr><td><strong>360dialog / Twilio / Meta</strong></td><td>WhatsApp OTP, reminders and notifications</td><td>EU / USA</td></tr>
+        <tr><td><strong>GitHub Pages</strong></td><td>Hosting of the refka.tech website</td><td>USA</td></tr>
+        <tr><td><strong>FormSubmit</strong></td><td>Delivers the website sign-up and contact form to our inbox</td><td>International</td></tr>
+        <tr><td><strong>Cloudflare</strong></td><td>Website visit statistics without cookies (only if enabled)</td><td>Global</td></tr>
       </tbody>
     </table>
     <p>All sub-processors are contractually prohibited from using Refka data for any purpose beyond providing their service to us.</p>
@@ -766,7 +769,7 @@
     <p>Data may be transferred to the United States or other countries where our sub-processors operate. For EU/EEA/Albanian residents, transfers are protected by Standard Contractual Clauses (SCCs) under GDPR Art. 46(2)(c). For Saudi residents, transfers comply with PDPL Article 29 requirements.</p>
 
     <h2>10. Data Retention</h2>
-    <p>Active account data is retained for the duration of your account. Upon account deletion, personal data is soft-deleted immediately, then permanently purged within 30 days. Body composition data is deleted in full. Payment records are retained for 7 years (legal obligation). Equipment recognition photos are deleted within 24 hours of processing.</p>
+    <p>Active account data is retained for the duration of your account. When you ask us to delete your account, personal data is soft-deleted immediately, then permanently purged within 30 days. Body composition data is deleted in full. Payment records are retained for 7 years (legal obligation). Equipment recognition photos are deleted within 24 hours of processing.</p>
     <p>Gym owner business contact details (your name, your gym's name, phone, email and country) are kept after a free trial ends, a subscription is cancelled or an account is paused, so that we can stay in touch with you about Refka. We keep them on the basis of our legitimate interest in our business relationship with you. You can ask us to delete them at any time by writing to community@refka.tech, and every message we send tells you how to stop further messages. Your gym's member data is handled separately: it is deleted 90 days after your gym's account is paused, unless you reactivate it.</p>
 
     <h2>11. Your Rights</h2>
@@ -775,7 +778,7 @@
     <p>To exercise your rights: <strong>community@refka.tech</strong>. We respond within 30 days.</p>
 
     <h2>12. Cookies</h2>
-    <p>We use essential cookies (required for login sessions), analytics cookies (to understand platform usage; opt-out available in settings), and preference cookies (language, display). We do not use advertising cookies or cross-site tracking.</p>
+    <p>The refka.tech website sets no cookies. It saves your language and country choice in your browser's local storage, and any visit statistics are collected without cookies. The Refka app uses only essential cookies or storage to keep you signed in and to protect your account. We do not use advertising cookies or cross-site tracking. Details are in our Cookie Policy.</p>
 
     <h2>13. Children</h2>
     <p>Refka is not directed at individuals under 16. If a gym registers a member under 16, the gym owner is responsible for obtaining valid parental consent. Contact community@refka.tech to report any inadvertent collection involving a minor.</p>
@@ -813,7 +816,7 @@
     <button class="modal-close" data-click="closeModal" data-click-arg="termsModal" aria-label="Close">✕</button>
     <div class="modal-badge">Legal Document</div>
     <h1 id="tosTitle">Terms of Service</h1>
-    <div class="modal-meta">Effective: September 12, 2026 &nbsp;·&nbsp; Version 1.0 &nbsp;·&nbsp; Global scope</div>
+    <div class="modal-meta">Effective: October 18, 2026 &nbsp;·&nbsp; Version 1.1 &nbsp;·&nbsp; Global scope</div>
     <p class="modal-legal-note" style="display:none"></p>
 
     <h2>1. Acceptance</h2>
@@ -828,14 +831,14 @@
     <p>Gym owners are responsible for their gym's compliance with applicable local laws, including laws governing the collection of member data and parental consent for minors.</p>
 
     <h2>4. Subscription Plans and Payment</h2>
-    <p>Refka offers paid subscription plans billed monthly or annually. Pricing is set in US dollars per geographic zone and displayed in your local currency at the current exchange rate. Your zone is determined by your gym's country at registration. All prices are exclusive of applicable taxes, which will be added at checkout where required by law.</p>
-    <p>Subscriptions renew automatically at the end of each billing period unless cancelled before the renewal date. You authorize Refka (via Stripe or Paymob) to charge your payment method on file for all amounts due.</p>
+    <p>Refka offers paid subscription plans billed monthly or annually. In Egypt, Saudi Arabia, the United Arab Emirates and the euro countries, prices are fixed in the local currency. Elsewhere, prices are set in US dollars per geographic zone and shown in your local currency for reference. Your zone and currency are set by your gym's country at registration. All prices are exclusive of applicable taxes, which will be added at checkout where required by law.</p>
+    <p>Subscriptions paid by card renew automatically at the end of each billing period unless cancelled before the renewal date, and you authorize Refka (via Stripe or Paymob) to charge your card for all amounts due. For payment methods that do not renew automatically, such as InstaPay or Vodafone Cash in Egypt, we send you a payment link before each renewal date.</p>
     <div class="modal-warning">
-      <p><strong>Important:</strong> Failure to pay amounts due will result in service suspension after a 7-day grace period, followed by account termination after 30 days if payment is not received.</p>
+      <p><strong>Important:</strong> If a payment fails or is not made by the renewal date, you have a 7-day grace period. After it, your Refka account is paused and you and your staff cannot use it until the payment is made. Your gym's member data is kept for 90 days after the account is paused, then permanently deleted unless you reactivate. Your own business contact details are handled as described in section 10 of the Privacy Policy.</p>
     </div>
 
     <h2>5. Free Trial</h2>
-    <p>New gym owner accounts receive a 30-day free trial with access to all features, limited to 30 active members, 1 trainer and 20 AI-generated plans for the duration of the trial. No credit card is required to start a trial. At the end of the trial period, your account will be paused unless you select a paid plan. Trial data (gym profile, members, plans) is retained for 30 days after trial expiry before permanent deletion.</p>
+    <p>New gym owner accounts receive a 30-day free trial with access to all features, within the limits of the Growth plan for your zone (up to 500 active members, 10 trainers and the Growth plan's monthly AI plan quota). No credit card is required to start a trial. If you choose a paid plan during the trial, you keep your remaining free days and the paid plan starts when the trial ends. At the end of the trial period, your account will be paused unless you select a paid plan. Member data is kept for 90 days after the account is paused, then permanently deleted unless you reactivate.</p>
     <p>Refka reserves the right to modify or discontinue the free trial offer at any time without notice. One free trial per gym owner. Trial abuse, including creating multiple accounts to extend trial access, is grounds for immediate account termination.</p>
 
     <h2>6. Cancellation and Refunds</h2>
@@ -874,7 +877,7 @@
 
     <h2>14. Suspension and Termination</h2>
     <p>Refka may suspend or terminate your account immediately and without notice if: you materially breach these Terms and fail to cure the breach within 7 days of written notice; you engage in fraudulent, abusive, or illegal activity; non-payment of amounts due; or we are required to do so by applicable law or court order.</p>
-    <p>Upon termination by either party: your access to the Service ceases immediately; your data will be retained for 30 days during which you may export it; after 30 days, your data will be permanently deleted except where retention is required by law (e.g., billing records).</p>
+    <p>Upon termination by either party: your access to the Service ceases immediately; your gym's data, including member data, is retained for 90 days, during which you may export it or reactivate your account; after 90 days, it is permanently deleted except where retention is required by law (e.g., billing records). Your own business contact details are handled as described in section 10 of the Privacy Policy.</p>
     <p>You may terminate your account at any time from account settings. Termination by you does not entitle you to any refund of prepaid subscription fees.</p>
 
     <h2>15. Governing Law and Dispute Resolution</h2>
@@ -902,7 +905,7 @@
     Refka processes the following categories of personal data on behalf of the gym owner: member identity (name, phone), fitness profile (goal, level, training days), body composition data (weight, height, body fat, muscle mass), attendance records, AI-generated fitness and nutrition plans, and training partner matching data. Processing is conducted solely for the purpose of providing the Refka platform services to the gym owner and their members.</p>
 
     <p><strong>18.3 Duration</strong><br>
-    This DPA is effective for the duration of the gym owner's subscription. On termination, Refka will delete or return member data within 30 days as described in Section 14 of these Terms, unless retention is required by law.</p>
+    This DPA is effective for the duration of the gym owner's subscription. On termination or when the gym's account is paused, Refka will delete or return member data within 90 days as described in Section 14 of these Terms, unless retention is required by law.</p>
 
     <p><strong>18.4 Refka's Obligations as Processor</strong><br>
     Refka will: process member data only on the gym owner's documented instructions (which are defined by your use of the platform's features); ensure all personnel with access to member data are bound by confidentiality obligations; implement appropriate technical and organizational security measures (encryption at rest and in transit, access controls, audit logging); assist the gym owner in fulfilling data subject rights requests that are received by Refka; notify the gym owner within 72 hours of becoming aware of a personal data breach affecting their members' data; and not engage sub-processors beyond those listed in the Privacy Policy without informing gym owners of material changes.</p>
@@ -945,33 +948,28 @@
     <button class="modal-close" data-click="closeModal" data-click-arg="cookieModal" aria-label="Close">✕</button>
     <div class="modal-badge">Legal Document</div>
     <h1 id="cookieTitle">Cookie Policy</h1>
-    <div class="modal-meta">Effective: September 12, 2026 &nbsp;·&nbsp; Version 1.0 &nbsp;·&nbsp; Global scope</div>
+    <div class="modal-meta">Effective: October 18, 2026 &nbsp;·&nbsp; Version 1.1 &nbsp;·&nbsp; Global scope</div>
     <p class="modal-legal-note" style="display:none"></p>
 
     <h2>1. What Are Cookies</h2>
     <p>Cookies are small text files stored on your device when you visit a website or use a web application. They allow us to recognize your browser, maintain your session, remember your preferences, and understand how our platform is used. We also use similar technologies such as local storage and session storage.</p>
 
-    <h2>2. Cookies We Use</h2>
-    <p><strong>Essential Cookies (always active):</strong> Required for the platform to function. Includes session authentication tokens, CSRF protection tokens, language preference, and your cookie consent choice. These cannot be disabled.</p>
-    <p><strong>Analytics Cookies (optional, requires your consent):</strong> We use anonymized analytics to understand how users navigate the platform. We use privacy-respecting analytics tools that do not build advertising profiles. You can opt out by clicking "Essential only" in our cookie banner.</p>
-    <p><strong>Performance Cookies (optional, requires your consent):</strong> Help us monitor platform stability and performance. Data is aggregated and never linked to individual identities.</p>
-    <p>We do <strong>not</strong> use advertising, tracking, or third-party marketing cookies. We do not sell cookie data to any party.</p>
+    <h2>2. What This Website Stores</h2>
+    <p><strong>No cookies.</strong> The refka.tech website does not set any cookies.</p>
+    <p><strong>Your preferences, in your browser only:</strong> the website saves the language and the country you choose in your browser's local storage, so the text and the prices stay the same on your next visit. For the current visit only, it also remembers that you closed the WhatsApp message. This information stays on your device and is not sent to us or anyone else.</p>
+    <p><strong>Visit statistics:</strong> if we measure visits to the website, we use Cloudflare Web Analytics, which does not use cookies, does not store your IP address and does not follow you across other websites.</p>
 
-    <h2>3. Third-Party Services</h2>
-    <p>Our platform loads assets from: Google Fonts (fonts). Payment processors Stripe and Paymob handle payments in their own secure environments and do not place cookies on our marketing site. Each provider operates under their own privacy policy.</p>
+    <h2>3. The Refka App</h2>
+    <p>When you sign in to the Refka app, it uses essential cookies or storage to keep you signed in and to protect your account (session and security tokens). These are strictly necessary for the app to work and cannot be switched off. The app does not use advertising or tracking cookies.</p>
 
-    <h2>4. How to Manage Cookies</h2>
-    <ul>
-      <li><strong>Cookie banner:</strong> Choose "Essential only" or "Accept all" when you first visit. Change your choice by clearing this site's local storage in your browser settings.</li>
-      <li><strong>Browser settings:</strong> All modern browsers let you view, block, or delete cookies. Blocking essential cookies will prevent login and core features from working.</li>
-      <li><strong>Browser extensions:</strong> Tools like uBlock Origin give you granular control over which cookies are set.</li>
-    </ul>
+    <h2>4. Third-Party Services</h2>
+    <p>Fonts and images on the website are served from our own server. The sign-up form sends your details to our inbox through FormSubmit. The WhatsApp button opens WhatsApp only when you click it, and WhatsApp's own privacy policy then applies. Payment processors Stripe and Paymob handle payments in their own secure environments.</p>
 
-    <h2>5. Retention</h2>
-    <p>Session cookies expire when you close your browser or after 30 days of inactivity. Preference cookies persist for 12 months. Analytics data is retained for 13 months, then automatically deleted.</p>
+    <h2>5. How to Manage Your Preferences</h2>
+    <p>You can delete the saved language and country at any time by clearing this site's data in your browser settings. All modern browsers also let you view, block or delete cookies and stored data for any site.</p>
 
     <h2>6. Legal Basis</h2>
-    <p>Essential cookies: <strong>legitimate interest</strong> (no consent required under GDPR for strictly necessary cookies). Analytics and performance cookies: your <strong>explicit consent</strong>, which you may withdraw at any time.</p>
+    <p>The website stores only what is needed to remember the choices you made, so no consent banner is needed. Cookies in the Refka app are strictly necessary for the service you asked for (legitimate interest and performance of a contract). We do not use cookies that require your consent; if that ever changes, we will ask you first.</p>
 
     <h2>7. Contact</h2>
     <p>Questions about cookies? Contact us at <a href="mailto:community@refka.tech">community@refka.tech</a>.</p>
@@ -1062,16 +1060,7 @@
   <button type="button" class="wa-x" id="waClose" data-i18n-aria="fm_close" aria-label="Close">&#x2715;</button>
 </div>
 
-<div id="cookieBanner" role="complementary" aria-label="Cookie consent">
-  <p class="cookie-text" id="cookieText">
-    We use essential cookies for authentication and optional analytics cookies to improve the platform.
-    See our <a href="#" data-click="openModal" data-click-arg="cookieModal">Cookie Policy</a> for details.
-  </p>
-  <div class="cookie-btns">
-    <button class="cookie-decline" id="cookieEss" data-click="setCookieChoice" data-click-arg="essential">Essential only</button>
-    <button class="cookie-accept" id="cookieAll" data-click="setCookieChoice" data-click-arg="all">Accept all</button>
-  </div>
-</div>
+
 
 <!-- ══════════════════════════════════════════════ -->
 <!-- MODAL + COOKIE JS                             -->

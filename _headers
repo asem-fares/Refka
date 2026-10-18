@@ -3,7 +3,7 @@
 # Keep the two CSPs identical.
 
 /*
-  Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; manifest-src 'self'; connect-src 'self' https://formsubmit.co; base-uri 'self'; form-action 'self' https://formsubmit.co; frame-ancestors 'none'; object-src 'none'
+  Content-Security-Policy: default-src 'self'; script-src 'self' https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; manifest-src 'self'; connect-src 'self' https://formsubmit.co https://cloudflareinsights.com; base-uri 'self'; form-action 'self' https://formsubmit.co; frame-ancestors 'none'; object-src 'none'
   X-Frame-Options: DENY
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin

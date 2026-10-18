@@ -291,24 +291,11 @@ function setBilling(b) {
 // Live FX: the production server injects window.REFKA_FX (daily rates, USD base) before this script.
 // No third-party call from the browser (GDPR: no visitor IP sent to an FX provider without consent).
 
-// Registration hand-off: the app receives plan, country and language.
-function goRegister(plan) {
-  var u = 'https://app.refka.io/register?lang=' + encodeURIComponent(_lang) +
-          '&country=' + encodeURIComponent(_country) + (plan ? '&plan=' + plan : '');
-  openOut(u);
-}
-function goContact() { openOut('https://app.refka.io/contact?lang=' + encodeURIComponent(_lang)); }
-// On refka.io: same tab. Anywhere else (previews, embeds): new tab, never navigate the frame itself,
-// because sandboxed previews block in-frame navigation to other sites ("This content is blocked").
-function openOut(u) {
-  if (/(^|\.)refka\.io$/.test(location.hostname)) { window.location.href = u; return; }
-  var w = null;
-  try { w = window.open(u, '_blank', 'noopener'); } catch(e) {}
-  if (!w) {
-    var a = document.createElement('a'); a.href = u; a.target = '_blank'; a.rel = 'noopener';
-    document.body.appendChild(a); a.click(); a.remove();
-  }
-}
+// goRegister, goContact and openOut are defined in form.js (loaded after this file):
+// until the app exists they open the sign-up form; APP_URL there switches them to the app.
+function goRegister(plan) {}
+function goContact() {}
+function openOut(u) {}
 
 // ═══════════════════════════════════════════════════════════════
 // LANGUAGE
@@ -349,10 +336,6 @@ function applyLang(code) {
     g('evMon').textContent = new Intl.DateTimeFormat(numLocale(), { month:'short' }).format(d).replace('.', '').toUpperCase();
   } catch(e) {}
 
-  // Cookie banner
-  var ck = g('cookieText'); if (ck) ck.innerHTML = t.ck_txt || T.en.ck_txt;
-  var ce = g('cookieEss'); if (ce) ce.textContent = t.ck_ess || T.en.ck_ess;
-  var ca = g('cookieAll'); if (ca) ca.textContent = t.ck_all || T.en.ck_all;
 
   // Legal documents are English-only: say so in the visitor's language
   document.querySelectorAll('.modal-legal-note').forEach(function(el) {
@@ -512,16 +495,6 @@ document.addEventListener('keydown', function(e) {
   if (e.key === 'Escape') document.querySelectorAll('.modal-overlay.open').forEach(function(m){ closeModal(m.id); });
 });
 
-// ─── COOKIE ──────────────────────────────────────────────────
-function setCookieChoice(c) {
-  try { localStorage.setItem('rfk_cookie', c); } catch(e) {}
-  var b = g('cookieBanner'); if (b) b.classList.remove('show');
-}
-(function() {
-  var s; try { s = localStorage.getItem('rfk_cookie'); } catch(e) {}
-  if (!s) setTimeout(function() { var b = g('cookieBanner'); if (b) b.classList.add('show'); }, 1200);
-})();
-
 // ═══════════════════════════════════════════════════════════════
 // MATCHING DEMO PHOTOS: a men's pair and a women's pair of real members.
 // The visitor's country picks which pair shows first; every loop of the
@@ -588,4 +561,18 @@ function setWhatsApp() {
   var bl = g('waBubbleLink'); if (bl) bl.addEventListener('click', hideBub);
   fab.addEventListener('click', function() { hideBub(); if (window.gtag) gtag('event', 'whatsapp_click', { language: _lang, country: _country }); });
   setWhatsApp();
+})();
+
+// ═══════════════════════════════════════════════════════════════
+// VISIT STATISTICS: Cloudflare Web Analytics. No cookies, no IP stored,
+// no cross-site tracking, so no consent banner is needed. Off until the
+// token from the Cloudflare dashboard is pasted here, and only on refka.tech.
+// ═══════════════════════════════════════════════════════════════
+var CF_ANALYTICS_TOKEN = '';
+(function() {
+  if (!CF_ANALYTICS_TOKEN || !/(^|\.)refka\.tech$/.test(location.hostname)) return;
+  var sc = document.createElement('script');
+  sc.defer = true; sc.src = 'https://static.cloudflareinsights.com/beacon.min.js';
+  sc.setAttribute('data-cf-beacon', JSON.stringify({ token: CF_ANALYTICS_TOKEN }));
+  document.head.appendChild(sc);
 })();

@@ -27,8 +27,8 @@ body { background: var(--bg); color: var(--t1); font-family: var(--inter); line-
 .fade.in { opacity: 1; transform: none; }
 .d1 { transition-delay: .1s; } .d2 { transition-delay: .2s; } .d3 { transition-delay: .3s; } .d4 { transition-delay: .4s; }
 
-/* NAV */
-nav {
+/* NAV (the header only: the footer has its own <nav class="f-links">) */
+body > nav {
   position: sticky; top: 0; z-index: 200;
   display: flex; align-items: center; justify-content: space-between;
   padding: 0 64px; height: 64px;
@@ -290,7 +290,7 @@ footer { background: #040404; padding: 30px 64px 20px; display: flex; flex-direc
 
 /* RESPONSIVE */
 @media (max-width: 900px) {
-  nav { padding: 0 20px; }
+  body > nav { padding: 0 20px; }
   .nav-links, .nav-right .btn-teal { display: none; }
   .burger { display: flex; }
   #hero { grid-template-columns: 1fr; padding: 48px 20px 40px; min-height: auto; gap: 32px; }
@@ -930,3 +930,8 @@ html[lang="ar"] .wa-bubble { font-family: var(--arabic); }
 .hero-devices { text-align: start; }
 .ow-m { white-space: normal; line-height: 1.2; display: flex; align-items: center; justify-content: center; overflow: visible; }
 @media (max-width: 767px) { .wa-bubble { display: none !important; } }
+
+/* keep the floating WhatsApp button clear of the last footer line */
+footer { padding-bottom: 96px; }
+@media (max-width: 900px) { footer { padding-bottom: 96px; } }
+@media (max-width: 600px) { .f-legal-sep { display: none; } .f-legal { gap: 8px 16px; } }

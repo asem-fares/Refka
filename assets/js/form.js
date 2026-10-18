@@ -14,8 +14,7 @@ var CLICK_ACTIONS = {
   scrollHow: function () { var h = g('how'); if (h) h.scrollIntoView({ behavior: 'smooth' }); },
   openModal: function (arg) { openModal(arg); },
   closeModal: function (arg) { closeModal(arg); },
-  setBilling: function (arg) { setBilling(arg); },
-  setCookieChoice: function (arg) { setCookieChoice(arg); }
+  setBilling: function (arg) { setBilling(arg); }
 };
 document.addEventListener('click', function (e) {
   var el = e.target.closest ? e.target.closest('[data-click]') : null;

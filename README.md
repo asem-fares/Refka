@@ -61,7 +61,10 @@ refka.tech run in preview mode and send nothing.
   `<script>` blocks with code. Make an element clickable with `data-click="action"` (plus
   `data-click-arg` if needed) and add the action to `CLICK_ACTIONS` in `form.js`.
 - **No third-party scripts, fonts or images.** Anything new must be added to the CSP on purpose
-  (and to the cookie policy, if it sets cookies). Analytics must load only after "Accept all".
+  and to the Cookie Policy and Privacy Policy. The site sets no cookies, so it has no cookie banner:
+  adding anything that sets cookies means bringing back a consent banner first.
+- **Visit statistics:** Cloudflare Web Analytics (cookieless). Paste the token from the Cloudflare
+  dashboard into `CF_ANALYTICS_TOKEN` in `assets/js/app.js`; it loads only on refka.tech.
 - **Keep the two CSPs identical**: the `<meta>` tag in `index.html` and `_headers`.
 - **Relative asset paths** (`assets/…`) in `index.html`, so the page also works from a preview.
 
