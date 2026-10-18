@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Refka | Your gym's own app, ready in minutes</title>
-<meta name="description" content="Refka gives your gym its own member app: training partners, AI training plans and a community that keeps members coming back. 30 days free.">
+<title>Refka | Run your gym. Keep your members.</title>
+<meta name="description" content="Refka runs your gym's front desk, renewals and payments, and gives your members their own app with training partners and a community. 30 days free.">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <link rel="canonical" href="https://refka.tech/">
 <link rel="alternate" hreflang="en" href="https://refka.tech/">
@@ -48,17 +48,17 @@
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://refka.tech/">
 <meta property="og:site_name" content="Refka">
-<meta property="og:title" content="Refka | Your gym's own app, ready in minutes">
-<meta property="og:description" content="Members don't quit because of the equipment. They quit because they train alone. Refka connects your members with training partners, so they keep coming back. 30 days free.">
+<meta property="og:title" content="Refka | Run your gym. Keep your members.">
+<meta property="og:description" content="Members who train together stay. Refka runs your front desk, collects renewals on WhatsApp and gives your members an app to train together. 30 days free.">
 <meta property="og:image" content="https://refka.tech/assets/images/og-image.jpg">
 <meta property="og:image:type" content="image/jpeg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Refka: your gym's own app, ready in minutes.">
+<meta property="og:image:alt" content="Refka: run your gym, keep your members.">
 <meta property="og:locale" content="en_US">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Refka | Your gym's own app, ready in minutes">
-<meta name="twitter:description" content="Members quit because they train alone. Refka connects them with training partners, so they keep coming back.">
+<meta name="twitter:title" content="Refka | Run your gym. Keep your members.">
+<meta name="twitter:description" content="One system for your front desk, renewals and payments, and an app that helps your members train together.">
 <meta name="twitter:image" content="https://refka.tech/assets/images/og-image.jpg">
 
 <!-- Fonts (self-hosted) and styles -->
@@ -81,7 +81,8 @@
     "email": "community@refka.tech",
     "contactType": "customer service",
     "availableLanguage": ["English", "Arabic", "German"]
-  }
+  },
+  "telephone": "+201149421081"
 }
 </script>
 <script type="application/ld+json">
@@ -91,14 +92,14 @@
   "name": "Refka",
   "applicationCategory": "BusinessApplication",
   "operatingSystem": "Web, iOS, Android",
-  "description": "Your gym's own member app: training-partner matching, AI training plans, a community feed and an in-gym shop, with a 30-day free trial.",
+  "description": "Gym management and member app in one: front desk check-in, WhatsApp renewal reminders, payments, staff shifts, training-partner matching, AI training plans and a community feed, with a 30-day free trial.",
   "url": "https://refka.tech/",
   "offers": [
     {"@type": "Offer", "name": "Starter", "price": "49", "priceCurrency": "USD", "description": "Monthly price in Zone A. Zone B from 25 USD."},
     {"@type": "Offer", "name": "Growth", "price": "99", "priceCurrency": "USD"},
     {"@type": "Offer", "name": "Pro", "price": "249", "priceCurrency": "USD"}
   ],
-  "featureList": ["QR code member onboarding", "AI training plans", "Training partner matching", "Community feed", "In-gym shop", "Analytics dashboard"]
+  "featureList": ["Front desk check-in with barcode and QR", "WhatsApp renewal reminders", "Payments and cash per shift", "Staff roles", "Training partner matching", "AI training plans", "Community feed", "In-gym shop", "Reports"]
 }
 </script>
 </head>
@@ -148,15 +149,125 @@
   <canvas id="canvas" aria-hidden="true"></canvas>
   <div class="hero-text fade">
     <div class="hero-chip" data-i18n="hero_chip">30-day free trial · No credit card</div>
-    <h1 data-i18n-html="h1">Your gym's own app,<br><span class="c-teal">ready in</span> <span class="c-gold">minutes.</span></h1>
-    <p class="hero-body" data-i18n-html="body">Members don't quit because of your equipment. They quit because they train alone. <strong>Refka fixes that.</strong> More members who stay, more revenue, from day one.</p>
+    <h1 data-i18n-html="h1">Members who train together stay.<br><span class="c-teal">Gyms that keep them</span> <span class="c-gold">grow.</span></h1>
+    <p class="hero-body" data-i18n-html="body">Refka runs your front desk, collects renewals on WhatsApp and shows you every payment. Your members get their own app to find training partners and keep coming back. <strong>One system for both sides of your gym.</strong></p>
     <div class="ctas">
       <button class="btn-teal lg" id="ctaMain" data-i18n="ctaM" data-click="goRegister">Start Your 30-Day Free Trial</button>
       <button class="btn-outline" id="ctaSec" data-i18n="ctaS" data-click="scrollHow">See How It Works ↓</button>
     </div>
-    <p class="hero-note" data-i18n-html="note">Got a referral link? <b>You're in straight away.</b></p>
+    <p class="hero-note" data-i18n-html="note">Referred by another gym owner? <b>Add their name when you sign up.</b></p>
   </div>
-  <div class="hero-phone fade d2">
+  <div class="hero-devices fade d2">
+
+  <!-- OWNER PHONE: what the gym owner and the desk see (Refka branded) -->
+  <figure class="dev dev-owner">
+    <figcaption class="dev-cap"><i class="cap-dot gold"></i><span data-i18n="hv_owner">For you, the owner</span></figcaption>
+    <div class="hero-phone" data-demo="owner">
+    <div class="phone owner">
+      <div class="ph-status">
+        <span class="ph-time" data-i18n="ph_time">9:41</span>
+        <svg width="36" height="10" viewBox="0 0 36 10" fill="currentColor" opacity=".6" aria-hidden="true">
+          <rect x="0" y="3" width="3" height="7" rx="1"/><rect x="5" y="1" width="3" height="9" rx="1"/><rect x="10" y="0" width="3" height="10" rx="1"/>
+          <rect x="18" y="2" width="8" height="6" rx="1" fill="none" stroke="currentColor" stroke-width="1.2"/><rect x="27" y="4" width="2" height="3" rx=".5"/>
+        </svg>
+      </div>
+      <div class="ph-body">
+        <div class="ph-top">
+          <span class="ow-brand"><svg width="16" height="16" viewBox="0 0 120 120" aria-hidden="true"><circle cx="38" cy="22" r="12" fill="#C9973A"/><circle cx="82" cy="22" r="12" fill="#C9973A"/><path d="M60,62 C44,32 12,32 12,62 C12,92 44,92 60,62 C76,32 108,32 108,62 C108,92 76,92 60,62" fill="none" stroke="#14B8BD" stroke-width="18" stroke-linecap="round"/></svg>Refka</span>
+          <span class="ow-role" data-i18n="ow_role">Owner</span>
+        </div>
+
+        <div class="ph-screen">
+
+          <!-- O0 · FRONT DESK: an expired card is scanned and renewed -->
+          <div class="ph-scene live" data-scene="0">
+            <div class="ph-label anim d1" data-i18n="ow_desk">FRONT DESK</div>
+            <div class="ow-scan anim d2">
+              <div class="ow-scan-top">
+                <div class="ph-av ph-photo g"><img src="assets/images/members/m2.webp" alt="" width="34" height="34" data-pair-img="b"></div>
+                <div class="ph-info">
+                  <div class="ph-name" data-i18n="ph_n2" data-pair-key="2">Chris P.</div>
+                  <div class="ph-sub ow-card-no">#11226</div>
+                </div>
+                <span class="ow-beam" aria-hidden="true"></span>
+              </div>
+              <div class="ow-state">
+                <span class="ow-pill bad"><b class="d"></b><span data-i18n="ow_exp">Expired 3 days ago</span></span>
+                <span class="ow-pill good"><b class="d"></b><span data-i18n="ow_active">Active · 30 days left</span></span>
+              </div>
+              <div class="ow-owes"><span data-i18n="ow_owes">Owes</span> <b class="pr" data-usd="17.9">$18</b></div>
+            </div>
+            <div class="ow-methods anim d3">
+              <span class="ow-m" data-i18n="ow_cash">Cash</span>
+              <span class="ow-m pick" data-pm="1">InstaPay</span>
+              <span class="ow-m" data-pm="2">Vodafone Cash</span>
+            </div>
+            <div class="ph-toast"><span class="dot"></span><span class="tx" data-i18n="ow_ok">Renewed · Door open</span></div>
+          </div>
+
+          <!-- O1 · WHATSAPP: the reminder goes out by itself and gets paid -->
+          <div class="ph-scene" data-scene="1">
+            <div class="ph-label anim d1" data-i18n="ow_wa">WHATSAPP REMINDERS</div>
+            <div class="ow-chat anim d2">
+              <div class="ow-auto"><span data-i18n="ow_wa_auto">Sent automatically</span></div>
+              <div class="ow-bub out"><span data-i18n="ow_wa_msg">Your membership ends in 3 days. Renew in one minute:</span><u dir="ltr">refka.link/renew</u></div>
+              <div class="ow-bub in"><span data-i18n="ow_wa_rep">Done, paid ✓</span></div>
+            </div>
+            <div class="ph-toast"><span class="dot"></span><span class="tx" data-i18n="ow_wa_toast">Paid by link. Nobody had to ask.</span></div>
+          </div>
+
+          <!-- O2 · MONEY: today's income by payment method -->
+          <div class="ph-scene" data-scene="2">
+            <div class="ow-money anim d1">
+              <div class="ph-label" data-i18n="ow_money">MONEY IN TODAY</div>
+              <div class="ow-total pr" data-usd="270">$270</div>
+            </div>
+            <div class="ow-row anim d2"><span class="nm" data-i18n="ow_cash">Cash</span><span class="bar"><i style="--w:62%"></i></span><b class="pr" data-usd="140">$140</b></div>
+            <div class="ow-row anim d3"><span class="nm" data-pm="1">InstaPay</span><span class="bar"><i style="--w:44%"></i></span><b class="pr" data-usd="95">$95</b></div>
+            <div class="ow-row anim d4"><span class="nm" data-pm="2">Vodafone Cash</span><span class="bar"><i style="--w:20%"></i></span><b class="pr" data-usd="35">$35</b></div>
+            <div class="ow-note anim d5"><span data-i18n="ow_from_wa">From WhatsApp reminders</span> <b class="pr" data-usd="107">$107</b></div>
+            <div class="ph-toast"><span class="dot"></span><span class="tx" data-i18n="ow_m_toast">Shift closed · Cash matches</span></div>
+          </div>
+
+          <!-- O3 · AT RISK: a member stopped coming, Refka suggests a partner (links to the member app) -->
+          <div class="ph-scene" data-scene="3">
+            <div class="ph-label anim d1" data-i18n="ow_risk">STOPPED COMING</div>
+            <div class="ow-risk anim d2">
+              <div class="ph-av ph-photo t"><img src="assets/images/members/m1.webp" alt="" width="34" height="34" data-pair-img="a"></div>
+              <div class="ph-info">
+                <div class="ph-name" data-i18n="ph_n1" data-pair-key="1">James T.</div>
+                <div class="ph-sub ow-warn" data-i18n="ow_r_days">No visit in 12 days</div>
+              </div>
+            </div>
+            <div class="ow-act anim d3" data-i18n="ow_r_act">Suggest a partner</div>
+            <div class="ow-risk sm anim d4"><span class="ow-ic" aria-hidden="true">🌱</span><div class="ph-sub" data-i18n="ow_r_new">3 new members · under 2 visits a week</div></div>
+            <div class="ph-toast"><span class="dot"></span><span class="tx" data-i18n="ow_r_toast">Partner suggested in the member app</span></div>
+          </div>
+
+        </div>
+
+        <div class="ph-dots">
+          <button data-go="0" class="on" aria-label="Front desk"></button>
+          <button data-go="1" aria-label="WhatsApp reminders"></button>
+          <button data-go="2" aria-label="Money"></button>
+          <button data-go="3" aria-label="Members at risk"></button>
+        </div>
+
+        <div class="ph-tabs">
+          <div class="ph-tab" data-go="2" data-i18n="ow_t1">Today</div>
+          <div class="ph-tab on" data-go="0" data-i18n="ow_t2">Desk</div>
+          <div class="ph-tab" data-go="1" data-i18n="ow_t3">Money</div>
+          <div class="ph-tab" data-go="3" data-i18n="ow_t4">Members</div>
+        </div>
+      </div>
+    </div>
+    </div>
+  </figure>
+
+  <!-- MEMBER PHONE: the gym-branded member app -->
+  <figure class="dev dev-member">
+    <figcaption class="dev-cap"><i class="cap-dot teal"></i><span data-i18n="hv_member">For your members</span></figcaption>
+  <div class="hero-phone" data-demo="member">
     <div class="phone">
       <div class="ph-status">
         <span class="ph-time" data-i18n="ph_time">9:41</span>
@@ -278,6 +389,8 @@
       </div>
     </div>
   </div>
+  </figure>
+  </div>
 </section>
 
 <!-- PROOF -->
@@ -328,30 +441,50 @@
   <div class="eye fade" data-i18n="eco_eye">Everything in one place</div>
   <h2 class="fade" data-i18n-html="eco_h2"></h2>
   <p class="s-sub fade" data-i18n="eco_sub"></p>
-  <div class="eco-grid">
-    <div class="eco-card fade d1">
-      <div class="eco-icon" aria-hidden="true">👥</div>
-      <h3 data-i18n="e1_t"></h3>
-      <p data-i18n="e1_p"></p>
-      <div class="chips"><span class="chip" data-i18n="e1_c1"></span><span class="chip" data-i18n="e1_c2"></span><span class="chip" data-i18n="e1_c3"></span></div>
+  <div class="eco-split">
+    <!-- SIDE 1: the owner and the team -->
+    <div class="eco-side owner">
+      <div class="eco-side-h fade"><i class="cap-dot gold"></i><span data-i18n="eco_ha">For you and your team</span></div>
+      <div class="eco-card fade d1">
+        <div class="eco-icon" aria-hidden="true">🎫</div>
+        <h3 data-i18n="e4_t"></h3>
+        <p data-i18n="e4_p"></p>
+        <div class="chips"><span class="chip" data-i18n="e4_c1"></span><span class="chip" data-i18n="e4_c2"></span><span class="chip" data-i18n="e4_c3"></span></div>
+      </div>
+      <div class="eco-card fade d2">
+        <div class="eco-icon" aria-hidden="true">💬</div>
+        <h3 data-i18n="e5_t"></h3>
+        <p data-i18n="e5_p"></p>
+        <div class="chips"><span class="chip" data-i18n="e5_c1"></span><span class="chip" data-i18n="e5_c2"></span><span class="chip" data-i18n="e5_c3"></span></div>
+      </div>
+      <div class="eco-card fade d3">
+        <div class="eco-icon" aria-hidden="true">📊</div>
+        <h3 data-i18n="e2_t"></h3>
+        <p data-i18n="e2_p"></p>
+        <div class="chips"><span class="chip" data-i18n="e2_c1"></span><span class="chip" data-i18n="e2_c2"></span><span class="chip" data-i18n="e2_c3"></span></div>
+      </div>
     </div>
-    <div class="eco-card fade d2">
-      <div class="eco-icon" aria-hidden="true">🏋️</div>
-      <h3 data-i18n="e2_t"></h3>
-      <p data-i18n="e2_p"></p>
-      <div class="chips"><span class="chip" data-i18n="e2_c1"></span><span class="chip" data-i18n="e2_c2"></span><span class="chip" data-i18n="e2_c3"></span></div>
-    </div>
-    <div class="eco-card fade d3">
-      <div class="eco-icon" aria-hidden="true">🏪</div>
-      <h3 data-i18n="e3_t"></h3>
-      <p data-i18n="e3_p"></p>
-      <div class="chips"><span class="chip" data-i18n="e3_c1"></span><span class="chip" data-i18n="e3_c2"></span><span class="chip" data-i18n="e3_c3"></span></div>
-    </div>
-    <div class="eco-card fade d4">
-      <div class="eco-icon" aria-hidden="true">📊</div>
-      <h3 data-i18n="e4_t"></h3>
-      <p data-i18n="e4_p"></p>
-      <div class="chips"><span class="chip" data-i18n="e4_c1"></span><span class="chip" data-i18n="e4_c2"></span><span class="chip" data-i18n="e4_c3"></span></div>
+    <!-- SIDE 2: the members -->
+    <div class="eco-side member">
+      <div class="eco-side-h fade"><i class="cap-dot teal"></i><span data-i18n="eco_hb">For your members</span></div>
+      <div class="eco-card fade d1">
+        <div class="eco-icon" aria-hidden="true">👥</div>
+        <h3 data-i18n="e1_t"></h3>
+        <p data-i18n="e1_p"></p>
+        <div class="chips"><span class="chip" data-i18n="e1_c1"></span><span class="chip" data-i18n="e1_c2"></span><span class="chip" data-i18n="e1_c3"></span></div>
+      </div>
+      <div class="eco-card fade d2">
+        <div class="eco-icon" aria-hidden="true">📱</div>
+        <h3 data-i18n="e6_t"></h3>
+        <p data-i18n="e6_p"></p>
+        <div class="chips"><span class="chip" data-i18n="e6_c1"></span><span class="chip" data-i18n="e6_c2"></span><span class="chip" data-i18n="e6_c3"></span></div>
+      </div>
+      <div class="eco-card fade d3">
+        <div class="eco-icon" aria-hidden="true">🏪</div>
+        <h3 data-i18n="e3_t"></h3>
+        <p data-i18n="e3_p"></p>
+        <div class="chips"><span class="chip" data-i18n="e3_c1"></span><span class="chip" data-i18n="e3_c2"></span><span class="chip" data-i18n="e3_c3"></span></div>
+      </div>
     </div>
   </div>
 </section>
@@ -401,7 +534,7 @@
     <div>
       <h3 data-i18n-html="ref_h3"></h3>
       <p data-i18n="ref_p"></p>
-      <button class="btn-teal" id="refBtn" data-i18n="ref" data-click="goRegister">Get My Referral Link →</button>
+      <button class="btn-teal" id="refBtn" data-i18n="ref" data-click="goRefer">Refer a Gym →</button>
     </div>
     <div class="ref-steps">
       <div class="ref-row"><div class="ref-dot">1</div><p data-i18n="ref_1"></p></div>
@@ -443,8 +576,9 @@
       <ul class="p-feats">
         <li data-i18n="f_brand">App with your gym's name, logo and colors</li>
         <li data-i18n="f_qr">Member sign-up by QR code</li>
-        <li data-i18n="f_dash">Full web dashboard</li>
+        <li data-i18n="f_dash">Front desk, payments and staff</li>
         <li data-i18n="f_match">Training partner matching</li>
+        <li data-i18n="f_renewal">Renewal reminders on WhatsApp</li>
         <li data-i18n="f_ai150">150 AI plans per month</li>
         <li class="off" data-i18n="f_analytics">Reports dashboard</li>
         <li class="off" data-i18n="f_partner">Partner marketplace</li>
@@ -469,7 +603,6 @@
         <li><span class="ai-q" data-plan="growth">500</span> <span data-i18n="f_aiplans">AI plans per month</span></li>
         <li data-i18n="f_analytics">Reports dashboard</li>
         <li data-i18n="f_partner3">Partner marketplace (up to 3)</li>
-        <li data-i18n="f_renewal">Renewal reminders</li>
         <li class="off" data-i18n="f_multi">Multiple branches</li>
         <li class="off" data-i18n="f_api">API access</li>
       </ul>
@@ -514,6 +647,13 @@
       </ul>
       <button class="btn-sm-outline" id="entBtn" data-i18n="ent" data-click="goContact">Talk to Us →</button>
     </div>
+  </div>
+
+  <div class="pay-row fade" id="payRow">
+    <span class="pay-lbl" data-i18n="pay_after">After your free trial, pay with</span>
+    <span class="pm-chip"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><rect x="2.5" y="5" width="19" height="14" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M2.5 9.5h19" stroke="currentColor" stroke-width="2.2"/><path d="M6 15h4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><span data-i18n="pay_card">Card (Visa, Mastercard)</span></span>
+    <span class="pm-chip eg-only"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M13 2.5 5 13.5h6l-1 8 8-11h-6z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg><span data-i18n="pay_insta">InstaPay</span></span>
+    <span class="pm-chip eg-only"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><rect x="3" y="6" width="18" height="13" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M3 9.5h13a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2H3" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="15.5" cy="12" r="1.1" fill="currentColor"/><path d="M6 6l9-3 1.5 3" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg><span data-i18n="pay_voda">Vodafone Cash</span></span>
   </div>
 
   <p class="p-note" id="locNote">Converted from US dollars at today's rate. Your final price depends on your gym's country at sign-up.</p>
@@ -738,8 +878,8 @@
     <p>You may terminate your account at any time from account settings. Termination by you does not entitle you to any refund of prepaid subscription fees.</p>
 
     <h2>15. Governing Law and Dispute Resolution</h2>
-    <p>These Terms are governed by the laws of Delaware, United States, without regard to conflict of law principles, except where mandatory local consumer protection law requires otherwise.</p>
-    <p>Any dispute arising out of or relating to these Terms or the Service that cannot be resolved through good-faith negotiation within 30 days shall be submitted to binding arbitration administered by the American Arbitration Association under its Commercial Arbitration Rules, with proceedings conducted in English. The arbitration shall take place in Delaware. Notwithstanding the foregoing, either party may seek injunctive or other equitable relief in any court of competent jurisdiction to prevent irreparable harm pending arbitration.</p>
+    <p>These Terms are governed by the laws of the country where Refka's operating company is registered, which we will name here once registration is complete, except where mandatory consumer protection law of your country requires otherwise.</p>
+    <p>If a dispute arises out of or relating to these Terms or the Service, we will first try to resolve it with you in good faith. Please write to community@refka.tech and we will respond within 14 days. Either party may seek injunctive or other equitable relief in any court of competent jurisdiction to prevent irreparable harm.</p>
     <p>For users in the EU/EEA: nothing in this clause limits your rights to bring claims before courts in your country of residence under applicable consumer protection laws.</p>
 
     <h2>16. Changes to These Terms</h2>
@@ -913,6 +1053,15 @@
 <!-- ══════════════════════════════════════════════ -->
 <!-- COOKIE CONSENT BANNER                         -->
 <!-- ══════════════════════════════════════════════ -->
+<!-- WHATSAPP: chat with the Refka team. The link and message are set by app.js in the visitor's language. -->
+<a class="wa-fab" id="waBtn" href="https://wa.me/201149421081" target="_blank" rel="noopener" data-i18n-aria="wa_aria" aria-label="Chat with Refka on WhatsApp">
+  <svg viewBox="0 0 32 32" width="30" height="30" aria-hidden="true"><path fill="#fff" d="M16.04 3C9 3 3.3 8.66 3.3 15.67c0 2.24.6 4.43 1.73 6.36L3.2 28.8l6.95-1.8a12.8 12.8 0 0 0 5.89 1.43h.01c7.03 0 12.75-5.66 12.75-12.67C28.8 8.66 23.08 3 16.04 3zm0 23.24h-.01a10.6 10.6 0 0 1-5.38-1.47l-.39-.23-4.13 1.07 1.1-4-.25-.41a10.42 10.42 0 0 1-1.62-5.53c0-5.8 4.75-10.53 10.6-10.53 2.83 0 5.49 1.1 7.49 3.09a10.43 10.43 0 0 1 3.1 7.45c0 5.81-4.75 10.56-10.51 10.56zm5.81-7.88c-.32-.16-1.88-.92-2.17-1.03-.29-.1-.5-.16-.71.16-.21.31-.82 1.03-1 1.24-.19.21-.37.24-.69.08-.32-.16-1.34-.49-2.56-1.57-.95-.84-1.59-1.88-1.77-2.2-.19-.31-.02-.48.14-.64.14-.14.32-.37.48-.55.16-.19.21-.32.32-.53.1-.21.05-.4-.03-.55-.08-.16-.71-1.71-.98-2.34-.26-.62-.52-.53-.71-.54h-.61c-.21 0-.55.08-.84.39-.29.31-1.1 1.07-1.1 2.62s1.13 3.04 1.29 3.25c.16.21 2.22 3.37 5.38 4.72.75.32 1.34.52 1.8.66.75.24 1.44.2 1.98.12.6-.09 1.88-.76 2.14-1.5.27-.74.27-1.37.19-1.5-.08-.13-.29-.21-.61-.37z"/></svg>
+</a>
+<div class="wa-bubble" id="waBubble" hidden>
+  <a href="https://wa.me/201149421081" target="_blank" rel="noopener" id="waBubbleLink" data-i18n="wa_bubble">Questions? Chat with us on WhatsApp.</a>
+  <button type="button" class="wa-x" id="waClose" data-i18n-aria="fm_close" aria-label="Close">&#x2715;</button>
+</div>
+
 <div id="cookieBanner" role="complementary" aria-label="Cookie consent">
   <p class="cookie-text" id="cookieText">
     We use essential cookies for authentication and optional analytics cookies to improve the platform.
@@ -978,7 +1127,7 @@
 
     <div id="suFormWrap">
       <h2 class="su-title" id="suTitle" data-i18n="fm_title">Start your free trial</h2>
-      <p class="su-sub" id="suSub" data-i18n="fm_sub">Leave your details and our team will set up your gym's app with you. 30 days free, no credit card needed.</p>
+      <p class="su-sub" id="suSub" data-i18n="fm_sub">Leave your details and our team will set up Refka for your gym with you. 30 days free, no credit card needed.</p>
       <p class="su-plan" id="suPlan" hidden><span data-i18n="fm_plan_sel">Selected plan:</span> <b id="suPlanName"></b></p>
 
       <form id="suForm" novalidate>
@@ -1034,6 +1183,10 @@
           <label for="suMsg" data-i18n="fm_msg">Message (optional)</label>
           <textarea id="suMsg" name="message" rows="3" maxlength="1000"></textarea>
           <p class="su-err" aria-live="polite"></p>
+        </div>
+        <div class="su-field">
+          <label for="suRef" data-i18n="fm_ref">Referred by (optional)</label>
+          <input id="suRef" name="referred_by" type="text" maxlength="100" autocomplete="off">
         </div>
 
         <p class="su-consent" data-i18n-html="fm_consent">By sending this form you agree that we may contact you about Refka.</p>

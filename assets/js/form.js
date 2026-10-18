@@ -7,6 +7,7 @@
 // ═══════════════════════════════════════════════════════════════
 var CLICK_ACTIONS = {
   goRegister: function (arg) { goRegister(arg || null); },
+  goRefer: function () { goRegister(null); setTimeout(function () { var r = g('suRef'); if (r) r.focus(); }, 80); },
   goContact: function () { goContact(); },
   closeMob: function () { closeMob(); },
   closeMobRegister: function () { closeMob(); goRegister(); },
@@ -197,6 +198,7 @@ function showDone() {
       'Country': cName + ' (' + val('suCountry') + ')',
       'City': val('suCity') || 'Not provided',
       'Active members': val('suMembers') || 'Not provided',
+      'Referred by': val('suRef') || '-',
       'Message': val('suMsg') || '-',
       'Language': _lang,
       'Prices shown in': _cur + ', zone ' + _zone + ', ' + (_billing === 'm' ? 'monthly' : 'annual'),

@@ -234,8 +234,14 @@ function renderPrices() {
     el.textContent = fmt(f ? f.y : (_cur === 'USD' ? p.y : local(p.a) * 12));
   });
   document.querySelectorAll('.ai-q').forEach(function(el) { el.textContent = fmtNum(P[el.dataset.plan].ai); });
-  document.querySelectorAll('.ph-prod .pr').forEach(function(el) { el.textContent = fmt(local(+el.dataset.usd)); });
+  document.querySelectorAll('[data-usd]').forEach(function(el) { el.textContent = fmt(local(+el.dataset.usd)); });
   var t = T[_lang] || T.en, n = g('locNote');
+  // Payment methods follow the visitor's country: Egypt shows InstaPay and Vodafone Cash.
+  var eg = _country === 'EG';
+  document.documentElement.classList.toggle('cc-eg', eg);
+  var PM = eg ? { '1': 'pay_insta', '2': 'pay_voda' } : { '1': 'ow_card', '2': 'ow_bank' };
+  document.querySelectorAll('[data-pm]').forEach(function(el) { var k = PM[el.getAttribute('data-pm')]; el.textContent = t[k] || T.en[k]; });
+  if (typeof setWhatsApp === 'function') setWhatsApp();
   if (n) n.textContent = (F ? (t.loc_fixed || T.en.loc_fixed) : (_cur === 'USD' ? t.loc_usd : t.loc_conv)) + ' ' + t.loc_final;
 }
 
@@ -411,51 +417,67 @@ function applyLang(code) {
 })();
 
 // ═══════════════════════════════════════════════════════════════
-// PHONE DEMO: 4-scene loop, 8s per scene (time to actually read)
+// PHONE DEMOS: the owner phone and the member phone, 4 scenes each,
+// 8s per scene. One shared clock keeps both phones in step.
 // ═══════════════════════════════════════════════════════════════
 (function() {
-  var scenes = document.querySelectorAll('.ph-scene');
-  var dots   = document.querySelectorAll('.ph-dots button');
-  var tabs   = document.querySelectorAll('.ph-tab');
-  if (!scenes.length) return;
-  var cur = 0, timer = null, playing = false;
   var HOLD = 8000;
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  // which bottom tab is active for each scene: matching + feed = Community
-  var TAB_OF_SCENE = ['0', '1', '2', '0'];
+  // which bottom tab is active for each scene
+  var TABS = { member: ['0', '1', '2', '0'], owner: ['0', '1', '2', '3'] };
+  var demos = [];
+  document.querySelectorAll('[data-demo]').forEach(function(root) {
+    var d = {
+      root: root, kind: root.getAttribute('data-demo'), cur: 0,
+      scenes: root.querySelectorAll('.ph-scene'),
+      dots: root.querySelectorAll('.ph-dots button'),
+      tabs: root.querySelectorAll('.ph-tab')
+    };
+    if (d.scenes.length) demos.push(d);
+  });
+  if (!demos.length) return;
+  var timer = null, playing = false, visible = {};
 
-  function show(i) {
-    scenes.forEach(function(s, n) {
+  function show(d, i) {
+    d.scenes.forEach(function(s, n) {
       s.classList.remove('live', 'out');
       if (n === i) { void s.offsetWidth; s.classList.add('live'); }
-      else if (n < i || (i === 0 && n === scenes.length - 1)) { s.classList.add('out'); }
+      else if (n < i || (i === 0 && n === d.scenes.length - 1)) { s.classList.add('out'); }
     });
-    dots.forEach(function(d, n) { d.classList.toggle('on', n === i); });
-    tabs.forEach(function(t) { t.classList.toggle('on', t.dataset.go === TAB_OF_SCENE[i]); });
-    cur = i;
+    d.dots.forEach(function(b, n) { b.classList.toggle('on', n === i); });
+    var map = TABS[d.kind] || TABS.member;
+    d.tabs.forEach(function(t) { t.classList.toggle('on', t.dataset.go === map[i]); });
+    d.cur = i;
   }
-  function next() {
-    var n = (cur + 1) % scenes.length;
-    if (n === 0 && typeof swapPair === 'function') swapPair();   // new loop: show the other pair
-    show(n);
+  function tick() {
+    var member = demos.filter(function(d) { return d.kind === 'member'; })[0];
+    if (member && (member.cur + 1) % member.scenes.length === 0 && typeof swapPair === 'function') swapPair();   // new loop: the other pair
+    demos.forEach(function(d) { show(d, (d.cur + 1) % d.scenes.length); });
   }
-  function play() { if (playing || reduced) return; playing = true; timer = setInterval(next, HOLD); }
+  function play() { if (playing || reduced) return; playing = true; timer = setInterval(tick, HOLD); }
   function pause() { playing = false; clearInterval(timer); }
+  function anyVisible() { for (var k in visible) if (visible[k]) return true; return false; }
 
-  var phone = document.querySelector('.hero-phone');
-  if ('IntersectionObserver' in window && phone) {
-    new IntersectionObserver(function(entries) { entries[0].isIntersecting ? play() : pause(); }, { threshold: 0.35 }).observe(phone);
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) { visible[e.target.getAttribute('data-demo')] = e.isIntersecting; });
+      anyVisible() ? play() : pause();
+    }, { threshold: 0.35 });
+    demos.forEach(function(d) { io.observe(d.root); });
   } else { play(); }
 
-  function jump(i, method) {
-    if (i < 0) i = 3;
-    pause(); show(i); setTimeout(play, 1500);
-    if (window.gtag) gtag('event', 'demo_scene', { scene: i, method: method });
-  }
-  dots.forEach(function(d) { d.addEventListener('click', function() { jump(parseInt(d.dataset.go, 10), 'dot'); }); });
-  tabs.forEach(function(t) { t.addEventListener('click', function() { jump(parseInt(t.dataset.go, 10), 'tab'); }); });
-  if (phone) { phone.addEventListener('mouseenter', pause); phone.addEventListener('mouseleave', play); }
-  document.addEventListener('visibilitychange', function() { document.hidden ? pause() : play(); });
+  demos.forEach(function(d) {
+    function jump(i, method) {
+      if (i < 0) i = 3;
+      pause(); show(d, i); setTimeout(play, 1500);
+      if (window.gtag) gtag('event', 'demo_scene', { phone: d.kind, scene: i, method: method });
+    }
+    d.dots.forEach(function(b) { b.addEventListener('click', function() { jump(parseInt(b.dataset.go, 10), 'dot'); }); });
+    d.tabs.forEach(function(t) { t.addEventListener('click', function() { jump(parseInt(t.dataset.go, 10), 'tab'); }); });
+    d.root.addEventListener('mouseenter', pause);
+    d.root.addEventListener('mouseleave', play);
+  });
+  document.addEventListener('visibilitychange', function() { document.hidden ? pause() : (anyVisible() && play()); });
 })();
 
 // ─── CONVERSION TRACKING ─────────────────────────────────────
@@ -530,4 +552,40 @@ function swapPair() { setPair(_pair === 'm' ? 'w' : 'm'); }
   var cc = _country || 'US';
   setPair((cc.charCodeAt(0) + cc.charCodeAt(1)) % 2 ? 'm' : 'w');
   ['m', 'w'].forEach(function (p) { PAIRS[p].img.forEach(function (src) { var i = new Image(); i.src = src; }); });
+})();
+
+// ═══════════════════════════════════════════════════════════════
+// WHATSAPP: chat with the Refka team. The message is pre-written in the
+// visitor's language with their country. A small bubble invites the chat
+// once per visit and moves up while the cookie banner is open.
+// ═══════════════════════════════════════════════════════════════
+var WA_NUMBER = '201149421081';
+function setWhatsApp() {
+  var t = T[_lang] || T.en, msg = t.wa_msg || T.en.wa_msg, cname = _country;
+  try { cname = new Intl.DisplayNames([numLocale(), 'en'], { type: 'region' }).of(_country); } catch (e) {}
+  var href = 'https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(msg.replace('{c}', cname));
+  ['waBtn', 'waBubbleLink'].forEach(function(id) { var a = g(id); if (a) a.href = href; });
+}
+(function() {
+  var fab = g('waBtn'), bub = g('waBubble'), ck = g('cookieBanner');
+  if (!fab) return;
+  function place() {
+    var h = ck && ck.classList.contains('show') ? ck.offsetHeight : 0;
+    fab.style.bottom = (20 + h) + 'px';
+    if (bub) bub.style.bottom = (90 + h) + 'px';
+  }
+  place();
+  window.addEventListener('resize', place);
+  if (ck && 'MutationObserver' in window) new MutationObserver(place).observe(ck, { attributes: true, attributeFilter: ['class'] });
+  function hideBub() { if (bub) bub.hidden = true; try { sessionStorage.setItem('rfk_wa', '1'); } catch (e) {} }
+  var seen = false; try { seen = sessionStorage.getItem('rfk_wa') === '1'; } catch (e) {}
+  if (bub && !seen) setTimeout(function() {
+    if (document.querySelector('.modal-overlay.open')) return;
+    bub.hidden = false; place();
+    setTimeout(function() { bub.hidden = true; }, 12000);   // a hint, not a nag
+  }, 9000);
+  var x = g('waClose'); if (x) x.addEventListener('click', hideBub);
+  var bl = g('waBubbleLink'); if (bl) bl.addEventListener('click', hideBub);
+  fab.addEventListener('click', function() { hideBub(); if (window.gtag) gtag('event', 'whatsapp_click', { language: _lang, country: _country }); });
+  setWhatsApp();
 })();
