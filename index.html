@@ -173,111 +173,6 @@
   </div>
   <div class="hero-devices fade d2">
 
-  <!-- OWNER PHONE: what the gym owner and the desk see (Refka branded) -->
-  <figure class="dev dev-owner">
-    <figcaption class="dev-cap"><i class="cap-dot gold"></i><span data-i18n="hv_owner">For you, the owner</span></figcaption>
-    <div class="hero-phone" data-demo="owner">
-    <div class="phone owner">
-      <div class="ph-status">
-        <span class="ph-time" data-i18n="ph_time">9:41</span>
-        <svg width="36" height="10" viewBox="0 0 36 10" fill="currentColor" opacity=".6" aria-hidden="true">
-          <rect x="0" y="3" width="3" height="7" rx="1"/><rect x="5" y="1" width="3" height="9" rx="1"/><rect x="10" y="0" width="3" height="10" rx="1"/>
-          <rect x="18" y="2" width="8" height="6" rx="1" fill="none" stroke="currentColor" stroke-width="1.2"/><rect x="27" y="4" width="2" height="3" rx=".5"/>
-        </svg>
-      </div>
-      <div class="ph-body">
-        <div class="ph-top">
-          <span class="ow-brand"><svg width="16" height="16" viewBox="0 0 120 120" aria-hidden="true"><circle cx="38" cy="22" r="12" fill="#C9973A"/><circle cx="82" cy="22" r="12" fill="#C9973A"/><path d="M60,62 C44,32 12,32 12,62 C12,92 44,92 60,62 C76,32 108,32 108,62 C108,92 76,92 60,62" fill="none" stroke="#14B8BD" stroke-width="18" stroke-linecap="round"/></svg>Refka</span>
-          <span class="ow-role" data-i18n="ow_role">Owner</span>
-        </div>
-
-        <div class="ph-screen">
-
-          <!-- O0 · FRONT DESK: an expired card is scanned and renewed -->
-          <div class="ph-scene live" data-scene="0">
-            <div class="ph-label anim d1" data-i18n="ow_desk">FRONT DESK</div>
-            <div class="ow-scan anim d2">
-              <div class="ow-scan-top">
-                <div class="ph-av ph-photo g"><img src="assets/images/members/m2.webp" alt="" width="34" height="34" data-pair-img="b"></div>
-                <div class="ph-info">
-                  <div class="ph-name" data-i18n="ph_n2" data-pair-key="2">Chris P.</div>
-                  <div class="ph-sub ow-card-no">#11226</div>
-                </div>
-                <span class="ow-beam" aria-hidden="true"></span>
-              </div>
-              <div class="ow-state">
-                <span class="ow-pill bad"><b class="d"></b><span data-i18n="ow_exp">Expired 3 days ago</span></span>
-                <span class="ow-pill good"><b class="d"></b><span data-i18n="ow_active">Active · 30 days left</span></span>
-              </div>
-              <div class="ow-owes"><span data-i18n="ow_owes">Owes</span> <b class="pr" data-usd="17.9">$18</b></div>
-            </div>
-            <div class="ow-methods anim d3">
-              <span class="ow-m" data-i18n="ow_cash">Cash</span>
-              <span class="ow-m pick" data-pm="1">InstaPay</span>
-              <span class="ow-m" data-pm="2">Vodafone Cash</span>
-            </div>
-            <div class="ph-toast"><span class="dot"></span><span class="tx" data-i18n="ow_ok">Renewed · Door open</span></div>
-          </div>
-
-          <!-- O1 · WHATSAPP: the reminder goes out by itself and gets paid -->
-          <div class="ph-scene" data-scene="1">
-            <div class="ph-label anim d1" data-i18n="ow_wa">WHATSAPP REMINDERS</div>
-            <div class="ow-chat anim d2">
-              <div class="ow-auto"><span data-i18n="ow_wa_auto">Sent automatically</span></div>
-              <div class="ow-bub out"><span data-i18n="ow_wa_msg">Your membership ends in 3 days. Renew in one minute:</span><u dir="ltr">refka.link/renew</u></div>
-              <div class="ow-bub in"><span data-i18n="ow_wa_rep">Done, paid ✓</span></div>
-            </div>
-            <div class="ph-toast"><span class="dot"></span><span class="tx" data-i18n="ow_wa_toast">Paid by link. Nobody had to ask.</span></div>
-          </div>
-
-          <!-- O2 · MONEY: today's income by payment method -->
-          <div class="ph-scene" data-scene="2">
-            <div class="ow-money anim d1">
-              <div class="ph-label" data-i18n="ow_money">MONEY IN TODAY</div>
-              <div class="ow-total pr" data-usd="270">$270</div>
-            </div>
-            <div class="ow-row anim d2"><span class="nm" data-i18n="ow_cash">Cash</span><span class="bar"><i style="--w:62%"></i></span><b class="pr" data-usd="140">$140</b></div>
-            <div class="ow-row anim d3"><span class="nm" data-pm="1">InstaPay</span><span class="bar"><i style="--w:44%"></i></span><b class="pr" data-usd="95">$95</b></div>
-            <div class="ow-row anim d4"><span class="nm" data-pm="2">Vodafone Cash</span><span class="bar"><i style="--w:20%"></i></span><b class="pr" data-usd="35">$35</b></div>
-            <div class="ow-note anim d5"><span data-i18n="ow_from_wa">From WhatsApp reminders</span> <b class="pr" data-usd="107">$107</b></div>
-            <div class="ph-toast"><span class="dot"></span><span class="tx" data-i18n="ow_m_toast">Shift closed · Cash matches</span></div>
-          </div>
-
-          <!-- O3 · AT RISK: a member stopped coming, Refka suggests a partner (links to the member app) -->
-          <div class="ph-scene" data-scene="3">
-            <div class="ph-label anim d1" data-i18n="ow_risk">STOPPED COMING</div>
-            <div class="ow-risk anim d2">
-              <div class="ph-av ph-photo t"><img src="assets/images/members/m1.webp" alt="" width="34" height="34" data-pair-img="a"></div>
-              <div class="ph-info">
-                <div class="ph-name" data-i18n="ph_n1" data-pair-key="1">James T.</div>
-                <div class="ph-sub ow-warn" data-i18n="ow_r_days">No visit in 12 days</div>
-              </div>
-            </div>
-            <div class="ow-act anim d3" data-i18n="ow_r_act">Suggest a partner</div>
-            <div class="ow-risk sm anim d4"><span class="ow-ic" aria-hidden="true">🌱</span><div class="ph-sub" data-i18n="ow_r_new">3 new members · under 2 visits a week</div></div>
-            <div class="ph-toast"><span class="dot"></span><span class="tx" data-i18n="ow_r_toast">Partner suggested in the member app</span></div>
-          </div>
-
-        </div>
-
-        <div class="ph-dots">
-          <button data-go="0" class="on" data-i18n-aria="ow_t2" aria-label="Desk"></button>
-          <button data-go="1" data-i18n-aria="ow_wa" aria-label="WhatsApp reminders"></button>
-          <button data-go="2" data-i18n-aria="ow_money" aria-label="Money in today"></button>
-          <button data-go="3" data-i18n-aria="ow_risk" aria-label="Stopped coming"></button>
-        </div>
-
-        <div class="ph-tabs">
-          <div class="ph-tab" data-go="2" data-i18n="ow_t1">Today</div>
-          <div class="ph-tab on" data-go="0" data-i18n="ow_t2">Desk</div>
-          <div class="ph-tab" data-go="1" data-i18n="ow_t3">Money</div>
-          <div class="ph-tab" data-go="3" data-i18n="ow_t4">Members</div>
-        </div>
-      </div>
-    </div>
-    </div>
-  </figure>
-
   <!-- MEMBER PHONE: the gym-branded member app -->
   <figure class="dev dev-member">
     <figcaption class="dev-cap"><i class="cap-dot teal"></i><span data-i18n="hv_member">For your members</span></figcaption>
@@ -450,54 +345,211 @@
   </div>
 </section>
 
-<!-- ECOSYSTEM -->
+<!-- ECOSYSTEM: the owner app (interactive) and the member side -->
 <section class="sec alt" id="features">
   <div class="eye fade" data-i18n="eco_eye">Everything in one place</div>
   <h2 class="fade" data-i18n-html="eco_h2"></h2>
   <p class="s-sub fade" data-i18n="eco_sub"></p>
-  <div class="eco-split">
-    <!-- SIDE 1: the owner and the team -->
-    <div class="eco-side owner">
+
+  <svg class="oa-defs" width="0" height="0" aria-hidden="true" focusable="false">
+    <defs>
+      <linearGradient id="oaLg" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#0D6B6E"/><stop offset="100%" stop-color="#C9973A"/></linearGradient>
+      <symbol id="oa-logo" viewBox="0 0 120 120"><circle cx="38" cy="22" r="12" fill="url(#oaLg)"/><circle cx="82" cy="22" r="12" fill="url(#oaLg)"/><path d="M60,62 C44,32 12,32 12,62 C12,92 44,92 60,62 C76,32 108,32 108,62 C108,92 76,92 60,62" fill="none" stroke="url(#oaLg)" stroke-width="18" stroke-linecap="round"/></symbol>
+      <symbol id="oa-i0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V10M10 19V5M16 19v-6M22 19H2"/></symbol>
+      <symbol id="oa-i1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8V5a1 1 0 0 1 1-1h3M16 4h3a1 1 0 0 1 1 1v3M20 16v3a1 1 0 0 1-1 1h-3M8 20H5a1 1 0 0 1-1-1v-3M4 12h16"/></symbol>
+      <symbol id="oa-i2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 0 1-13.4 7.9L3 21l1.2-4.4A9 9 0 1 1 21 12z"/><path d="M9 10h6M9 14h4"/></symbol>
+      <symbol id="oa-i3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="13" rx="2"/><circle cx="12" cy="12.5" r="2.6"/><path d="M6 10v.01M18 15v.01"/></symbol>
+      <symbol id="oa-i4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0M17 7v5M17 15.5v.01"/></symbol>
+    </defs>
+  </svg>
+
+  <div class="eco-stack">
+    <!-- SIDE 1: the owner app. Each pain on the list drives one screen on the phone. -->
+    <div class="eco-side owner oa" id="ownerApp">
       <div class="eco-side-h fade"><i class="cap-dot gold"></i><span data-i18n="eco_ha">For you and your team</span></div>
-      <div class="eco-card fade d1">
-        <div class="eco-icon" aria-hidden="true">🎫</div>
-        <h3 data-i18n="e4_t"></h3>
-        <p data-i18n="e4_p"></p>
-        <div class="chips"><span class="chip" data-i18n="e4_c1"></span><span class="chip" data-i18n="e4_c2"></span><span class="chip" data-i18n="e4_c3"></span></div>
-      </div>
-      <div class="eco-card fade d2">
-        <div class="eco-icon" aria-hidden="true">💬</div>
-        <h3 data-i18n="e5_t"></h3>
-        <p data-i18n="e5_p"></p>
-        <div class="chips"><span class="chip" data-i18n="e5_c1"></span><span class="chip" data-i18n="e5_c2"></span><span class="chip" data-i18n="e5_c3"></span></div>
-      </div>
-      <div class="eco-card fade d3">
-        <div class="eco-icon" aria-hidden="true">📊</div>
-        <h3 data-i18n="e2_t"></h3>
-        <p data-i18n="e2_p"></p>
-        <div class="chips"><span class="chip" data-i18n="e2_c1"></span><span class="chip" data-i18n="e2_c2"></span><span class="chip" data-i18n="e2_c3"></span></div>
+      <div class="oa-wrap">
+        <div class="oa-head fade">
+          <h3 class="oa-h" data-i18n-html="oa_h">Your whole gym, <em>in your pocket.</em></h3>
+          <p class="oa-sub" data-i18n="oa_sub">Who paid, who is at the door, where the cash went, and who is about to quit. Every day, from anywhere.</p>
+        </div>
+
+        <div class="oa-stage fade d1">
+          <div class="oa-phone" role="img" data-i18n-aria="oa_aria" aria-label="The Refka owner app">
+            <div class="oa-notch"></div>
+            <div class="oa-status"><span data-i18n="ph_time">9:41</span>
+              <svg width="40" height="11" viewBox="0 0 36 10" fill="currentColor" aria-hidden="true"><rect x="0" y="3" width="3" height="7" rx="1"/><rect x="5" y="1" width="3" height="9" rx="1"/><rect x="10" y="0" width="3" height="10" rx="1"/><rect x="18" y="2" width="8" height="6" rx="1" fill="none" stroke="currentColor" stroke-width="1.2"/><rect x="27" y="4" width="2" height="3" rx=".5"/></svg></div>
+            <div class="oa-top">
+              <div class="oa-brand"><svg width="24" height="24" aria-hidden="true"><use href="#oa-logo"/></svg><div><b>Refka</b><i data-i18n="ph_gym">Your Gym</i></div></div>
+              <span class="ow-role" data-i18n="ow_role">Owner</span>
+            </div>
+
+            <div class="oa-screens">
+              <!-- S0 TODAY -->
+              <div class="oa-scr on" data-scr="0">
+                <div class="oa-ttl oa-in"><span data-i18n="ow_t1">Today</span><small data-oa-date="today"></small></div>
+                <div class="oa-box oa-in" style="--d:.1s">
+                  <div class="oa-lbl" data-i18n="oa_collected">Collected today</div>
+                  <div class="oa-num oa-big" data-oa-m="today" data-oa-c="m"></div>
+                  <div class="oa-up" data-i18n="oa_vs">▲ 18% vs the same day last week</div>
+                  <div class="oa-chart" aria-hidden="true">
+                    <i style="--h:18%;--i:0"></i><i style="--h:42%;--i:1"></i><i style="--h:55%;--i:2"></i><i style="--h:30%;--i:3"></i><i style="--h:22%;--i:4"></i><i style="--h:26%;--i:5"></i><i style="--h:38%;--i:6"></i><i style="--h:64%;--i:7"></i><i style="--h:88%;--i:8"></i><i class="pk" style="--h:100%;--i:9"></i><i style="--h:72%;--i:10"></i><i style="--h:40%;--i:11"></i>
+                  </div>
+                  <div class="oa-axis"><span data-oa-hour="6"></span><span data-oa-hour="12"></span><span data-oa-t="oa_peak"></span><span data-oa-hour="23"></span></div>
+                </div>
+                <div class="oa-duo">
+                  <div class="oa-box oa-in" style="--d:.2s"><div class="oa-lbl"><span class="oa-live"></span><span data-i18n="oa_now">In the gym now</span></div><div class="oa-num" data-oa-n="38" data-oa-c="n"></div></div>
+                  <div class="oa-box oa-in" style="--d:.28s"><div class="oa-lbl" data-i18n="oa_checkins">Check-ins today</div><div class="oa-num" data-oa-n="142" data-oa-c="n"></div></div>
+                </div>
+                <div class="oa-lbl oa-in" style="--d:.35s" data-i18n="oa_need">Needs you</div>
+                <div class="oa-need">
+                  <div class="oa-row oa-in" style="--d:.42s"><span class="oa-dot warn"></span><span class="oa-grow" data-i18n="oa_n1">5 memberships end this week</span><span class="oa-pill warn" data-i18n="oa_n1p">Reminded</span></div>
+                  <div class="oa-row oa-in" style="--d:.5s"><span class="oa-dot bad"></span><span class="oa-grow" data-i18n="oa_n2">9 members stopped coming</span><span class="oa-pill bad" data-i18n="oa_n2p">See</span></div>
+                  <div class="oa-row oa-in" style="--d:.58s"><span class="oa-dot ok"></span><span class="oa-grow" data-i18n="oa_n3">Morning cash drawer closed</span><span class="oa-pill ok" data-i18n="oa_n3p">Matched</span></div>
+                </div>
+              </div>
+
+              <!-- S1 FRONT DESK: expired card, grace, renewal from the old end date -->
+              <div class="oa-scr" data-scr="1">
+                <div class="oa-ttl oa-in"><span data-i18n="oa_desk">Front desk</span><small data-i18n="oa_scan">Scan a member card</small></div>
+                <div class="oa-scan oa-in" style="--d:.05s"><div class="oa-qr"></div><div class="oa-beam"></div></div>
+                <div class="oa-box oa-pop" style="--d:1s">
+                  <div class="oa-row"><img class="oa-av lg" src="assets/images/members/m1.webp" alt="" width="46" height="46"><div class="oa-grow"><div class="oa-nm" data-i18n="ph_n1">James T.</div><div class="oa-mt"><span dir="ltr">#11226</span> · <span data-oa-t="oa_plan"></span></div></div></div>
+                  <div class="oa-st"><span class="oa-pill bad s1" data-i18n="oa_exp2">Expired 2 days ago</span><span class="oa-pill warn s2" data-i18n="oa_grace">Grace day 2 of 2 · let in</span></div>
+                </div>
+                <div class="oa-renew"><span data-i18n="oa_renew">Renew 1 month</span><span class="oa-num" data-oa-m="fee"></span></div>
+                <div class="oa-methods">
+                  <div class="oa-m oa-in" style="--d:2.9s" data-i18n="ow_cash">Cash</div>
+                  <div class="oa-m pick" data-pm="1">InstaPay</div>
+                  <div class="oa-m oa-in" style="--d:3.1s" data-pm="2">Vodafone Cash</div>
+                </div>
+                <div class="oa-rule oa-in" style="--d:3.4s"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 2"/></svg><span data-oa-t="oa_rule"></span></div>
+                <div class="oa-toast oa-pop" style="--d:4.4s"><span class="oa-tk">✓</span><span><b data-oa-t="oa_paid"></b><span data-oa-t="oa_paid_sub"></span></span></div>
+              </div>
+
+              <!-- S2 COLLECT: the WhatsApp reminder pays itself -->
+              <div class="oa-scr" data-scr="2">
+                <div class="oa-ttl oa-in"><span data-i18n="oa_rem">Reminders</span><small data-i18n="oa_auto">Automatic</small></div>
+                <div class="oa-wa oa-in" style="--d:.05s">
+                  <span class="oa-wa-ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" aria-hidden="true"><path d="M21 12a9 9 0 0 1-13.4 7.9L3 21l1.2-4.4A9 9 0 1 1 21 12z"/></svg></span>
+                  <div class="oa-grow"><div class="oa-nm" data-oa-t="oa_to"></div><div class="oa-mt" data-i18n="oa_from">From your gym's WhatsApp Business number</div></div>
+                </div>
+                <div class="oa-chat">
+                  <div class="oa-bub out oa-pop" style="--d:.5s"><span data-oa-t="oa_wa_msg"></span> <span class="oa-lk" dir="ltr">refka.link/r/8KQ2</span><time data-oa-time="10:02"></time></div>
+                  <div class="oa-bub in oa-pop" style="--d:1.6s"><span data-i18n="oa_wa_rep">Done, see you tonight 💪</span><time data-oa-time="10:09"></time></div>
+                  <div class="oa-sys oa-pop" style="--d:2.4s" data-oa-t="oa_wa_paid"></div>
+                </div>
+                <div class="oa-lbl oa-in" style="--d:2.9s" data-i18n="oa_week">This week, without one phone call</div>
+                <div class="oa-tri">
+                  <div class="oa-box oa-in" style="--d:3s"><span class="oa-num" data-oa-n="12" data-oa-c="n"></span><span class="oa-mt" data-i18n="oa_c1">reminders</span></div>
+                  <div class="oa-box oa-in" style="--d:3.1s"><span class="oa-num" data-oa-n="9" data-oa-c="n"></span><span class="oa-mt" data-i18n="oa_c2">renewed</span></div>
+                  <div class="oa-box oa-in" style="--d:3.2s"><span class="oa-num gold" data-oa-m="week" data-oa-c="m"></span><span class="oa-mt" data-i18n="oa_c3">collected</span></div>
+                </div>
+              </div>
+
+              <!-- S3 CASH DRAWER: the shift closes short and the owner knows -->
+              <div class="oa-scr" data-scr="3">
+                <div class="oa-ttl oa-in"><span data-i18n="oa_t5">Drawer</span><small data-i18n="oa_closing">Closing shift</small></div>
+                <div class="oa-box oa-in" style="--d:.05s">
+                  <div class="oa-row"><span class="oa-av oa-ini" data-oa-ini="oa_staff"></span><div class="oa-grow"><div class="oa-nm" data-oa-t="oa_shift"></div><div class="oa-mt" data-i18n="oa_shift_sub">14 payments</div></div></div>
+                </div>
+                <div class="oa-ways oa-box oa-in" style="--d:.12s">
+                  <div class="oa-way"><span data-i18n="ow_cash">Cash</span><span class="oa-track"><i style="--w:100%;--d:.3s;--c:var(--oa-gold)"></i></span><span class="oa-num" data-oa-m="cashExp"></span></div>
+                  <div class="oa-way"><span data-pm="1">InstaPay</span><span class="oa-track"><i style="--w:75%;--d:.42s"></i></span><span class="oa-num" data-oa-m="pm1"></span></div>
+                  <div class="oa-way"><span data-pm="2">Vodafone Cash</span><span class="oa-track"><i style="--w:50%;--d:.54s;--c:#e2554f"></i></span><span class="oa-num" data-oa-m="pm2"></span></div>
+                </div>
+                <div class="oa-count">
+                  <div class="oa-box oa-in" style="--d:1.1s"><span class="oa-lbl" data-i18n="oa_exp_c">Cash expected</span><span class="oa-num" data-oa-m="cashExp"></span></div>
+                  <div class="oa-box short oa-pop" style="--d:1.9s"><span class="oa-lbl" data-i18n="oa_cnt_c">Cash counted</span><span class="oa-num" data-oa-m="cashCnt"></span></div>
+                </div>
+                <div class="oa-log oa-in" style="--d:2.4s">
+                  <div><span data-i18n="oa_log1">1-month membership · cash</span><b data-oa-m="fee"></b></div>
+                  <div><span data-i18n="oa_log2">Day pass · cash</span><b data-oa-m="day"></b></div>
+                </div>
+                <div class="oa-toast amber oa-pop" style="--d:2.9s"><span class="oa-tk">!</span><span><b data-oa-t="oa_short"></b><span data-i18n="oa_short_sub">Sent to you right away</span></span></div>
+              </div>
+
+              <!-- S4 AT RISK: members going quiet, brought back by their training partner -->
+              <div class="oa-scr" data-scr="4">
+                <div class="oa-ttl oa-in"><span data-i18n="oa_risk">At risk</span><small data-i18n="oa_risk_n">9 members</small></div>
+                <div class="oa-risk">
+                  <div class="oa-row oa-in" style="--d:.08s"><img class="oa-av" src="assets/images/members/w2.webp" alt="" width="34" height="34"><div class="oa-grow"><div class="oa-nm" data-i18n="ph_w2">Emma L.</div><div class="oa-mt" data-i18n="oa_last11">Last visit 11 days ago</div></div><div class="oa-meter"><i style="--w:90%;--c:var(--oa-bad)"></i></div></div>
+                  <div class="oa-row oa-flip oa-in" style="--d:.16s"><img class="oa-av" src="assets/images/members/m2.webp" alt="" width="34" height="34"><div class="oa-grow"><div class="oa-nm" data-i18n="ph_n2">Chris P.</div><div class="oa-mt" data-i18n="oa_last8">Last visit 8 days ago</div></div><span class="oa-pill bad p1" data-i18n="oa_days8">8 days</span><span class="oa-pill ok p2" data-i18n="oa_coming">Coming tomorrow ✓</span></div>
+                  <div class="oa-more oa-in" style="--d:.24s" data-i18n="oa_more">+ 7 more members</div>
+                </div>
+                <div class="oa-pair oa-pop" style="--d:.6s">
+                  <div class="oa-row"><div class="oa-duoav"><img class="oa-av" src="assets/images/members/m2.webp" alt="" width="30" height="30"><img class="oa-av" src="assets/images/members/m1.webp" alt="" width="30" height="30"></div><span class="oa-pill tl" data-i18n="oa_pairs">Training partners</span></div>
+                  <p data-oa-h="oa_pair_p"></p>
+                  <div class="oa-nudge" data-oa-t="oa_nudge"></div>
+                </div>
+                <div class="oa-toast oa-pop" style="--d:3.3s"><span class="oa-tk">✓</span><span><b data-oa-t="oa_booked"></b><span data-oa-t="oa_booked_sub"></span></span></div>
+              </div>
+            </div>
+
+            <div class="oa-tabs" aria-hidden="true">
+              <span class="oa-tab on"><svg><use href="#oa-i0"/></svg><span data-i18n="ow_t1">Today</span></span>
+              <span class="oa-tab"><svg><use href="#oa-i1"/></svg><span data-i18n="ow_t2">Desk</span></span>
+              <span class="oa-tab"><svg><use href="#oa-i2"/></svg><span data-i18n="oa_t3">Collect</span></span>
+              <span class="oa-tab"><svg><use href="#oa-i3"/></svg><span data-i18n="oa_t5">Drawer</span></span>
+              <span class="oa-tab"><svg><use href="#oa-i4"/></svg><span data-i18n="ow_t4">Members</span></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="oa-list fade d2">
+          <ul class="oa-pains">
+            <li><button class="oa-pain on" type="button" aria-pressed="true">
+              <span class="oa-ic"><svg aria-hidden="true"><use href="#oa-i0"/></svg></span>
+              <span class="oa-txt"><q data-i18n="oa_q1">I don't know what happened at the gym today.</q><b data-i18n="oa_b1">Today, on one screen</b>
+              <small data-i18n="oa_d1">Money collected, live check-ins, and the three things that need you.</small></span>
+              <span class="oa-bar" aria-hidden="true"></span></button></li>
+            <li><button class="oa-pain" type="button" aria-pressed="false">
+              <span class="oa-ic"><svg aria-hidden="true"><use href="#oa-i1"/></svg></span>
+              <span class="oa-txt"><q data-i18n="oa_q2">Expired members still walk in.</q><b data-i18n="oa_b2">Scan, see the status, renew in seconds</b>
+              <small data-i18n="oa_d2">Two grace days, then the desk renews on the spot. No arguments at the door.</small></span>
+              <span class="oa-bar" aria-hidden="true"></span></button></li>
+            <li><button class="oa-pain" type="button" aria-pressed="false">
+              <span class="oa-ic"><svg aria-hidden="true"><use href="#oa-i2"/></svg></span>
+              <span class="oa-txt"><q data-i18n="oa_q3">I chase payments on WhatsApp all day.</q><b data-i18n="oa_b3">Reminders go out by themselves</b>
+              <small data-i18n="oa_d3">From your gym's own WhatsApp number, with a link to pay.</small></span>
+              <span class="oa-bar" aria-hidden="true"></span></button></li>
+            <li><button class="oa-pain" type="button" aria-pressed="false">
+              <span class="oa-ic"><svg aria-hidden="true"><use href="#oa-i3"/></svg></span>
+              <span class="oa-txt"><q data-i18n="oa_q4">Cash goes missing at the desk.</q><b data-i18n="oa_b4">Every payment tied to a shift and a person</b>
+              <small data-i18n="oa_d4">The drawer is counted when the shift closes. If it is short, you know before you ask.</small></span>
+              <span class="oa-bar" aria-hidden="true"></span></button></li>
+            <li><button class="oa-pain" type="button" aria-pressed="false">
+              <span class="oa-ic"><svg aria-hidden="true"><use href="#oa-i4"/></svg></span>
+              <span class="oa-txt"><q data-i18n="oa_q5">Members quit and I never see it coming.</q><b data-i18n="oa_b5">See who stopped coming, and bring them back</b>
+              <small data-i18n="oa_d5">Refka flags members who go quiet and brings them back through the friend they train with.</small></span>
+              <span class="oa-bar" aria-hidden="true"></span></button></li>
+          </ul>
+          <div class="oa-foot"><span data-i18n="oa_f1">Works on any phone</span><span data-i18n="oa_f2">Your staff get their own logins</span><span data-i18n="s1_tag">Free setup with our team</span></div>
+        </div>
       </div>
     </div>
+
     <!-- SIDE 2: the members -->
     <div class="eco-side member">
       <div class="eco-side-h fade"><i class="cap-dot teal"></i><span data-i18n="eco_hb">For your members</span></div>
-      <div class="eco-card fade d1">
-        <div class="eco-icon" aria-hidden="true">👥</div>
-        <h3 data-i18n="e1_t"></h3>
-        <p data-i18n="e1_p"></p>
-        <div class="chips"><span class="chip" data-i18n="e1_c1"></span><span class="chip" data-i18n="e1_c2"></span><span class="chip" data-i18n="e1_c3"></span></div>
-      </div>
-      <div class="eco-card fade d2">
-        <div class="eco-icon" aria-hidden="true">📱</div>
-        <h3 data-i18n="e6_t"></h3>
-        <p data-i18n="e6_p"></p>
-        <div class="chips"><span class="chip" data-i18n="e6_c1"></span><span class="chip" data-i18n="e6_c2"></span><span class="chip" data-i18n="e6_c3"></span></div>
-      </div>
-      <div class="eco-card fade d3">
-        <div class="eco-icon" aria-hidden="true">🏪</div>
-        <h3 data-i18n="e3_t"></h3>
-        <p data-i18n="e3_p"></p>
-        <div class="chips"><span class="chip" data-i18n="e3_c1"></span><span class="chip" data-i18n="e3_c2"></span><span class="chip" data-i18n="e3_c3"></span></div>
+      <div class="eco-cards">
+        <div class="eco-card fade d1">
+          <div class="eco-icon" aria-hidden="true">👥</div>
+          <h3 data-i18n="e1_t"></h3>
+          <p data-i18n="e1_p"></p>
+          <div class="chips"><span class="chip" data-i18n="e1_c1"></span><span class="chip" data-i18n="e1_c2"></span><span class="chip" data-i18n="e1_c3"></span></div>
+        </div>
+        <div class="eco-card fade d2">
+          <div class="eco-icon" aria-hidden="true">📱</div>
+          <h3 data-i18n="e6_t"></h3>
+          <p data-i18n="e6_p"></p>
+          <div class="chips"><span class="chip" data-i18n="e6_c1"></span><span class="chip" data-i18n="e6_c2"></span><span class="chip" data-i18n="e6_c3"></span></div>
+        </div>
+        <div class="eco-card fade d3">
+          <div class="eco-icon" aria-hidden="true">🏪</div>
+          <h3 data-i18n="e3_t"></h3>
+          <p data-i18n="e3_p"></p>
+          <div class="chips"><span class="chip" data-i18n="e3_c1"></span><span class="chip" data-i18n="e3_c2"></span><span class="chip" data-i18n="e3_c3"></span></div>
+        </div>
       </div>
     </div>
   </div>

@@ -242,6 +242,7 @@ function renderPrices() {
   var PM = eg ? { '1': 'pay_insta', '2': 'pay_voda' } : { '1': 'ow_card', '2': 'ow_bank' };
   document.querySelectorAll('[data-pm]').forEach(function(el) { var k = PM[el.getAttribute('data-pm')]; el.textContent = t[k] || T.en[k]; });
   if (typeof setWhatsApp === 'function') setWhatsApp();
+  if (typeof renderOwnerApp === 'function') renderOwnerApp();
   if (n) n.textContent = (F ? (t.loc_fixed || T.en.loc_fixed) : (_cur === 'USD' ? t.loc_usd : t.loc_conv)) + ' ' + t.loc_final;
 }
 
@@ -468,6 +469,142 @@ function applyLang(code) {
     d.root.addEventListener('mouseleave', play);
   });
   document.addEventListener('visibilitychange', function() { document.hidden ? pause() : (anyVisible() && play()); });
+})();
+
+// ═══════════════════════════════════════════════════════════════
+// OWNER APP (features section): five owner pains, each one drives one
+// screen of the owner phone. Money follows the visitor's currency, dates
+// and times follow their language. Every amount comes from one monthly
+// fee, so the sums on the screens always add up.
+// ═══════════════════════════════════════════════════════════════
+// (renderPrices runs before this part of the file, so no top-level vars here: only function declarations)
+function oaMoney() {
+  var fee = local(17.9), short = local(3.8);   // one month at the demo gym: EGP 950 at the base rate
+  return {
+    fee: fee, week: fee * 9, today: local(159.5), day: local(2.83),
+    cashExp: fee * 4, cashCnt: fee * 4 - short, short: short, pm1: fee * 3, pm2: fee * 2
+  };
+}
+function renderOwnerApp() {
+  var root = g('ownerApp'); if (!root) return;
+  var t = T[_lang] || T.en, loc = numLocale();
+  function tr(k) { return t[k] !== undefined ? t[k] : (T.en[k] !== undefined ? T.en[k] : ''); }
+  var M = oaMoney();
+  var PM = _country === 'EG' ? ['pay_insta', 'pay_voda'] : ['ow_card', 'ow_bank'];
+  function day(off, months) {
+    var d = new Date(); d.setHours(12, 0, 0, 0); d.setDate(d.getDate() + off);
+    if (months) d.setMonth(d.getMonth() + months);
+    return d;
+  }
+  function fd(d, o) { try { return new Intl.DateTimeFormat(loc, o).format(d); } catch (e) { return d.toDateString(); } }
+  function hm(h, m) { var d = new Date(2026, 0, 5, h, m || 0); return fd(d, m === undefined ? { hour: 'numeric' } : { hour: 'numeric', minute: '2-digit' }); }
+  var ended = day(-2), DM = { day: 'numeric', month: 'short' };
+  var V = {
+    a: tr('ph_n1'), b: tr('ph_n2'), w: tr('ph_w1'), wf: String(tr('ph_w1')).split(/\s+/)[0], s: tr('oa_staff'),
+    fee: fmt(M.fee), short: fmt(M.short), m1: tr(PM[0]), m2: tr(PM[1]),
+    end: fd(ended, DM), new: fd(day(-2, 1), DM), h: hm(19)
+  };
+  function fill(str) { return String(str).replace(/\{(\w+)\}/g, function (x, k) { return V[k] !== undefined ? V[k] : x; }); }
+  root.querySelectorAll('[data-oa-t]').forEach(function (el) { el.textContent = fill(tr(el.getAttribute('data-oa-t'))); });
+  root.querySelectorAll('[data-oa-h]').forEach(function (el) {
+    var esc = {}; for (var k in V) esc[k] = String(V[k]).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; });
+    el.innerHTML = String(tr(el.getAttribute('data-oa-h'))).replace(/\{(\w+)\}/g, function (x, k) { return esc[k] !== undefined ? esc[k] : x; });
+  });
+  root.querySelectorAll('[data-oa-m]').forEach(function (el) { var v = M[el.getAttribute('data-oa-m')]; el.setAttribute('data-v', v); el.textContent = fmt(v); });
+  root.querySelectorAll('[data-oa-n]').forEach(function (el) { var v = +el.getAttribute('data-oa-n'); el.setAttribute('data-v', v); el.textContent = fmtNum(v); });
+  root.querySelectorAll('[data-oa-date]').forEach(function (el) { el.textContent = fd(day(0), { weekday: 'short', day: 'numeric', month: 'short' }); });
+  root.querySelectorAll('[data-oa-hour]').forEach(function (el) { el.textContent = hm(+el.getAttribute('data-oa-hour')); });
+  root.querySelectorAll('[data-oa-time]').forEach(function (el) { var p = el.getAttribute('data-oa-time').split(':'); el.textContent = hm(+p[0], +p[1]); });
+  root.querySelectorAll('[data-oa-ini]').forEach(function (el) { el.textContent = Array.from(tr(el.getAttribute('data-oa-ini')))[0] || ''; });
+  oaFit(root);
+}
+// Long amounts (JP¥, Rp, ₫) shrink to fit their box instead of being cut off.
+function oaFit(root) {
+  root.querySelectorAll('.oa-tri .oa-num').forEach(function (el) {
+    el.style.fontSize = '';
+    var size = parseFloat(getComputedStyle(el).fontSize) || 15;
+    while (el.scrollWidth > el.clientWidth + 1 && size > 9) { size -= 0.5; el.style.fontSize = size + 'px'; }
+  });
+}
+if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { var r = g('ownerApp'); if (r) oaFit(r); });
+(function () {
+  var root = g('ownerApp'); if (!root) return;
+  var pains = [].slice.call(root.querySelectorAll('.oa-pain'));
+  var scrs = [].slice.call(root.querySelectorAll('.oa-scr'));
+  var tabs = [].slice.call(root.querySelectorAll('.oa-tab'));
+  var phone = root.querySelector('.oa-phone'), stage = root.querySelector('.oa-stage');
+  var DUR = [7000, 8000, 7000, 7000, 7500];
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var cur = 0, timer = null, left = DUR[0], started = 0, hover = false, inView = false;
+  if (reduced) root.classList.add('still');
+
+  function countUp(scr) {
+    if (reduced) return;
+    scr.querySelectorAll('[data-oa-c]').forEach(function (el) {
+      var to = +el.getAttribute('data-v'), money = el.getAttribute('data-oa-c') === 'm';
+      var host = el.closest('.oa-in, .oa-pop'), delay = host ? (parseFloat(host.style.getPropertyValue('--d')) || 0) * 1000 : 0;
+      var shown = function (v) { return money ? fmt(v) : fmtNum(v); };
+      el.textContent = shown(0);
+      setTimeout(function () {
+        var t0 = null;
+        requestAnimationFrame(function f(now) {
+          if (t0 === null) t0 = now;
+          var p = Math.min(1, (now - t0) / 1100);
+          el.textContent = shown(p < 1 ? Math.round(to * (1 - Math.pow(1 - p, 3))) : to);
+          if (p < 1) requestAnimationFrame(f);
+        });
+      }, delay + 150);
+    });
+  }
+  function show(i) {
+    cur = i;
+    pains.forEach(function (p, k) {
+      var on = k === i;
+      p.classList.toggle('on', on); p.setAttribute('aria-pressed', on ? 'true' : 'false');
+      p.style.setProperty('--dur', DUR[k] + 'ms');
+    });
+    var bar = pains[i].querySelector('.oa-bar'); bar.style.display = 'none'; void bar.offsetWidth; bar.style.display = '';
+    scrs.forEach(function (s) { s.classList.remove('on'); });
+    void scrs[i].offsetWidth;
+    scrs[i].classList.add('on');
+    tabs.forEach(function (tb, k) { tb.classList.toggle('on', k === i); });
+    countUp(scrs[i]);
+    left = DUR[i]; schedule();
+  }
+  function running() { return !reduced && inView && !hover && !document.hidden; }
+  function schedule() {
+    clearTimeout(timer);
+    root.classList.toggle('paused', !running());
+    if (!running()) return;
+    started = Date.now();
+    timer = setTimeout(function () { show((cur + 1) % scrs.length); }, left);
+  }
+  function hold() { if (timer && running()) left = Math.max(400, left - (Date.now() - started)); clearTimeout(timer); timer = null; }
+  function setState(fn) { hold(); fn(); schedule(); }
+
+  pains.forEach(function (p, k) {
+    p.addEventListener('click', function () {
+      show(k);
+      if (window.matchMedia('(max-width: 900px)').matches) {
+        var r = phone.getBoundingClientRect();
+        if (r.top > window.innerHeight - 160 || r.bottom < 80) phone.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'center' });
+      }
+      if (window.gtag) gtag('event', 'owner_app_screen', { screen: k });
+    });
+  });
+  stage.addEventListener('mouseenter', function () { setState(function () { hover = true; }); });
+  stage.addEventListener('mouseleave', function () { setState(function () { hover = false; }); });
+  document.addEventListener('visibilitychange', function () { setState(function () {}); });
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(function (es) {
+      es.forEach(function (e) {
+        var was = inView;
+        setState(function () { inView = e.isIntersecting; });
+        if (e.isIntersecting && !was) show(cur);   // replay the screen when it scrolls into view
+      });
+    }, { threshold: 0.3 }).observe(phone);
+  } else { inView = true; }
+  show(0);
 })();
 
 // ─── CONVERSION TRACKING ─────────────────────────────────────

@@ -21,7 +21,7 @@ index.html               page markup, meta tags, CSP, structured data, legal doc
 assets/css/fonts.css     self-hosted fonts (Sora, Inter, IBM Plex Sans Arabic)
 assets/css/site.css      all styles: layout, legibility layer, Arabic/RTL, form
 assets/js/i18n.js        translations: one object per language inside T
-assets/js/app.js         menu, background, pricing engine, language switcher, phone demo, modals, cookies
+assets/js/app.js         menu, background, pricing engine, language switcher, member phone demo, owner app section, modals, WhatsApp button
 assets/js/form.js        click handling, modal focus handling, the signup/contact form
 assets/fonts/            woff2 files + LICENSE.txt (SIL Open Font License)
 assets/icons/            favicon and app icons
