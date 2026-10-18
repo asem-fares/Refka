@@ -102,6 +102,18 @@
   "featureList": ["Front desk check-in with barcode and QR", "WhatsApp renewal reminders", "Payments and cash per shift", "Staff roles", "Training partner matching", "AI training plans", "Community feed", "In-gym shop", "Reports"]
 }
 </script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type": "Question", "name": "Does Refka work with the cards and scanner I already have?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Refka reads the barcode cards your members already carry with a standard USB scanner, and members can also check in with the QR code in their app. You do not need to buy new hardware."}},
+    {"@type": "Question", "name": "Does my members' money pass through Refka?", "acceptedAnswer": {"@type": "Answer", "text": "No. Members pay you directly, in cash, by card or by local methods such as InstaPay or Vodafone Cash in Egypt. Refka records each payment and sends reminders and payment links, but never holds your money."}},
+    {"@type": "Question", "name": "What happens if I stop paying?", "acceptedAnswer": {"@type": "Answer", "text": "There is no contract. After a 7-day grace period your account is paused. Your member data is kept for 90 days, so you can come back or export it, and is then deleted."}},
+    {"@type": "Question", "name": "Can I try it before I pay?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. You get 30 days free with every feature and no credit card."}}
+  ]
+}
+</script>
 </head>
 <body>
 <!-- NAV -->
@@ -125,6 +137,7 @@
     <li><a href="#how" data-i18n="n1">How It Works</a></li>
     <li><a href="#features" data-i18n="n2">Features</a></li>
     <li><a href="#pricing" data-i18n="n3">Pricing</a></li>
+    <li><a href="#faq" data-i18n="n4">FAQ</a></li>
   </ul>
 
   <div class="nav-right">
@@ -141,6 +154,7 @@
   <a href="#how" data-click="closeMob" data-i18n="n1">How It Works</a>
   <a href="#features" data-click="closeMob" data-i18n="n2">Features</a>
   <a href="#pricing" data-click="closeMob" data-i18n="n3">Pricing</a>
+  <a href="#faq" data-click="closeMob" data-i18n="n4">FAQ</a>
   <a href="#" class="mob-cta" id="mobCta" data-click="closeMobRegister" data-i18n="cta">Start Free Trial</a>
 </div>
 
@@ -519,11 +533,16 @@
   </div>
 </section>
 
-<!-- GLOBAL -->
-<section class="sec alt center">
-  <div class="eye fade" data-i18n="glob_eye">Built for every country</div>
-  <h2 class="fade" data-i18n-html="glob_h2"></h2>
-  <p class="s-sub fade" style="margin-top:16px;" data-i18n="glob_sub"></p>
+<!-- PAYBACK: what Refka costs against what one member brings -->
+<section class="sec alt center" id="payback">
+  <div class="eye fade" data-i18n="pb_eye">The math</div>
+  <h2 class="fade" data-i18n-html="pb_h2">Refka pays for itself<br>with one or two members.</h2>
+  <p class="s-sub fade" style="margin: 14px auto 0" data-i18n="pb_sub">Starter costs about what one or two members pay you in a month. Keep one or two more members renewing, and Refka has paid for itself. Every member after that is profit.</p>
+  <div class="pb-eq fade">
+    <div class="pb-box"><span class="pb-k" data-i18n="pb_cost">Refka Starter, per month</span><b class="pb-v"><span class="pv" data-plan="starter">$49</span></b></div>
+    <div class="pb-sign" aria-hidden="true">≈</div>
+    <div class="pb-box gold"><span class="pb-k" data-i18n="pb_gain">Members who renew because of Refka</span><b class="pb-v" data-i18n="pb_n">1 to 2</b></div>
+  </div>
 </section>
 
 <!-- REFERRAL -->
@@ -659,6 +678,22 @@
   <p class="p-note" id="locNote">Converted from US dollars at today's rate. Your final price depends on your gym's country at sign-up.</p>
 </section>
 
+<!-- FAQ: native <details>, works without JavaScript -->
+<section class="sec" id="faq">
+  <div class="eye fade" data-i18n="faq_eye">Questions</div>
+  <h2 class="fade" data-i18n="faq_h2">What gym owners ask us</h2>
+  <div class="faq-list fade">
+    <details class="faq"><summary data-i18n="faq_q1">Does Refka work with the cards and scanner I already have?</summary><p data-i18n="faq_a1"></p></details>
+    <details class="faq"><summary data-i18n="faq_q2">Does my members' money pass through Refka?</summary><p data-i18n="faq_a2"></p></details>
+    <details class="faq"><summary data-i18n="faq_q3">Do I need internet at the front desk?</summary><p data-i18n="faq_a3"></p></details>
+    <details class="faq"><summary data-i18n="faq_q4">Who owns my gym's and my members' data?</summary><p data-i18n="faq_a4"></p></details>
+    <details class="faq"><summary data-i18n="faq_q5">What happens if I stop paying?</summary><p data-i18n="faq_a5"></p></details>
+    <details class="faq"><summary data-i18n="faq_q6">Who sets it up, and is it in Arabic?</summary><p data-i18n="faq_a6"></p></details>
+    <details class="faq"><summary data-i18n="faq_q7">Can I try it before I pay?</summary><p data-i18n="faq_a7"></p></details>
+  </div>
+  <p class="faq-more fade"><span data-i18n="faq_more">Another question?</span> <a href="https://wa.me/201149421081" target="_blank" rel="noopener" class="wa-link" data-i18n="faq_wa">Ask us on WhatsApp</a></p>
+</section>
+
 <!-- FOOTER -->
 <footer>
   <div class="f-top">
@@ -680,10 +715,14 @@
       <a href="#how" data-i18n="f1">How It Works</a>
       <a href="#features" data-i18n="f2">Features</a>
       <a href="#pricing" data-i18n="f3">Pricing</a>
+      <a href="#faq" data-i18n="n4">FAQ</a>
     </nav>
   </div>
   <div class="f-bottom">
-    <p class="f-copy" data-i18n="foot">© 2026 Refka · Built for every gym on earth</p>
+    <div class="f-left">
+    <p class="f-contact"><span data-i18n="f_contact">Contact us</span> <a href="https://wa.me/201149421081" target="_blank" rel="noopener" class="wa-link" dir="ltr">WhatsApp +20 114 942 1081</a> <span class="f-legal-sep">·</span> <a href="mailto:community@refka.tech" dir="ltr">community@refka.tech</a></p>
+      <p class="f-copy" data-i18n="foot">© 2026 Refka · Built for every gym on earth</p>
+    </div>
     <div class="f-legal">
       <a href="#" data-i18n="f4" data-click="openModal" data-click-arg="privacyModal">Privacy Policy</a>
       <span class="f-legal-sep">·</span>

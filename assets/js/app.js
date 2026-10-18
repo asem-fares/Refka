@@ -388,6 +388,13 @@ function applyLang(code) {
     if (q && T[q]) code = q;
   } catch(e) {}
   if (!code) { try { var st = localStorage.getItem('rfk_l'); if (st && T[st]) code = st; } catch(e) {} }
+  // Egypt and the Gulf open in Arabic. The UAE and Qatar are mostly expats, so there the site
+  // opens in Arabic only when the browser lists Arabic, and otherwise in the browser's language.
+  if (!code) {
+    var navs = (navigator.languages || [navigator.language || '']).map(function(l) { return String(l).toLowerCase(); });
+    var hasAr = navs.some(function(l) { return l.indexOf('ar') === 0; });
+    if (['EG', 'SA', 'KW', 'BH', 'OM'].indexOf(_country) > -1 || (hasAr && ['AE', 'QA'].indexOf(_country) > -1)) code = 'ar';
+  }
   if (!code) {
     var nav = (navigator.language || 'en').toLowerCase();
     if (nav.indexOf('zh-tw') === 0 || nav.indexOf('zh-hk') === 0 || nav.indexOf('zh-hant') === 0) code = 'zh-Hant';
@@ -537,7 +544,7 @@ function setWhatsApp() {
   var t = T[_lang] || T.en, msg = t.wa_msg || T.en.wa_msg, cname = _country;
   try { cname = new Intl.DisplayNames([numLocale(), 'en'], { type: 'region' }).of(_country); } catch (e) {}
   var href = 'https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(msg.replace('{c}', cname));
-  ['waBtn', 'waBubbleLink'].forEach(function(id) { var a = g(id); if (a) a.href = href; });
+  document.querySelectorAll('#waBtn, #waBubbleLink, .wa-link').forEach(function(a) { a.href = href; });
 }
 (function() {
   var fab = g('waBtn'), bub = g('waBubble'), ck = g('cookieBanner');
