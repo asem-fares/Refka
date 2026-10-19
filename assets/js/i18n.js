@@ -5089,3 +5089,31 @@ sw: { wa_bubble: "Una maswali? Tunajibu kwenye WhatsApp, 24/7.", faq_wa: "Tuuliz
 };
 for (var l in S) { if (!T[l]) continue; for (var k in S[l]) T[l][k] = S[l][k]; }
 })();
+// ─── v5.4: ACCESSIBILITY LABELS (skip link, landmarks, menu and language buttons) ───
+(function () {
+var A = {
+en: { skip: "Skip to content", nav_main: "Main", nav_foot: "Footer", menu: "Menu", lang_sel: "Choose language" },
+ar: { skip: "انتقل إلى المحتوى", nav_main: "القائمة الرئيسية", nav_foot: "تذييل الصفحة", menu: "القائمة", lang_sel: "اختر اللغة" },
+de: { skip: "Zum Inhalt springen", nav_main: "Hauptnavigation", nav_foot: "Fußzeile", menu: "Menü", lang_sel: "Sprache wählen" },
+sq: { skip: "Kalo te përmbajtja", nav_main: "Navigimi kryesor", nav_foot: "Fundi i faqes", menu: "Menyja", lang_sel: "Zgjidhni gjuhën" },
+fr: { skip: "Aller au contenu", nav_main: "Navigation principale", nav_foot: "Pied de page", menu: "Menu", lang_sel: "Choisir la langue" },
+es: { skip: "Ir al contenido", nav_main: "Navegación principal", nav_foot: "Pie de página", menu: "Menú", lang_sel: "Elegir idioma" },
+pt: { skip: "Ir para o conteúdo", nav_main: "Navegação principal", nav_foot: "Rodapé", menu: "Menu", lang_sel: "Escolher idioma" },
+it: { skip: "Vai al contenuto", nav_main: "Navigazione principale", nav_foot: "Piè di pagina", menu: "Menu", lang_sel: "Scegli la lingua" },
+pl: { skip: "Przejdź do treści", nav_main: "Nawigacja główna", nav_foot: "Stopka", menu: "Menu", lang_sel: "Wybierz język" },
+tr: { skip: "İçeriğe geç", nav_main: "Ana menü", nav_foot: "Alt bilgi", menu: "Menü", lang_sel: "Dil seçin" },
+ru: { skip: "Перейти к содержимому", nav_main: "Основная навигация", nav_foot: "Нижний колонтитул", menu: "Меню", lang_sel: "Выбрать язык" },
+hi: { skip: "सामग्री पर जाएँ", nav_main: "मुख्य नेविगेशन", nav_foot: "फ़ुटर", menu: "मेनू", lang_sel: "भाषा चुनें" },
+id: { skip: "Langsung ke konten", nav_main: "Navigasi utama", nav_foot: "Footer", menu: "Menu", lang_sel: "Pilih bahasa" },
+ms: { skip: "Langkau ke kandungan", nav_main: "Navigasi utama", nav_foot: "Pengaki", menu: "Menu", lang_sel: "Pilih bahasa" },
+tl: { skip: "Lumaktaw sa nilalaman", nav_main: "Pangunahing nabigasyon", nav_foot: "Footer", menu: "Menu", lang_sel: "Pumili ng wika" },
+vi: { skip: "Chuyển đến nội dung", nav_main: "Điều hướng chính", nav_foot: "Chân trang", menu: "Menu", lang_sel: "Chọn ngôn ngữ" },
+th: { skip: "ข้ามไปยังเนื้อหา", nav_main: "เมนูหลัก", nav_foot: "ส่วนท้าย", menu: "เมนู", lang_sel: "เลือกภาษา" },
+ko: { skip: "본문으로 건너뛰기", nav_main: "주 메뉴", nav_foot: "푸터", menu: "메뉴", lang_sel: "언어 선택" },
+ja: { skip: "本文へスキップ", nav_main: "メインナビゲーション", nav_foot: "フッター", menu: "メニュー", lang_sel: "言語を選択" },
+'zh-Hans': { skip: "跳到正文", nav_main: "主导航", nav_foot: "页脚", menu: "菜单", lang_sel: "选择语言" },
+'zh-Hant': { skip: "跳到正文", nav_main: "主導覽", nav_foot: "頁尾", menu: "選單", lang_sel: "選擇語言" },
+sw: { skip: "Ruka hadi maudhui", nav_main: "Urambazaji mkuu", nav_foot: "Sehemu ya chini", menu: "Menyu", lang_sel: "Chagua lugha" }
+};
+for (var l in A) { if (!T[l]) continue; for (var k in A[l]) T[l][k] = A[l][k]; }
+})();

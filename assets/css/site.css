@@ -140,7 +140,11 @@
 
 /* 2. BASE ================================================================ */
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+html { -webkit-font-smoothing: antialiased; }
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+.skip-link { position: absolute; top: -100px; inset-inline-start: var(--sp-16); z-index: 1000; background: var(--p); color: var(--on-accent); font-family: var(--font-display); font-weight: 700; font-size: var(--fs-md); padding: var(--sp-12) var(--sp-16); border-radius: var(--r-control); text-decoration: none; }
+.skip-link:focus { top: var(--sp-8); }
+main:focus { outline: none; }
 body { background: var(--bg); color: var(--t1); font-family: var(--font-body); font-size: var(--fs-body); line-height: 1.7; overflow-x: hidden; }
 button, input, select, textarea { font-family: inherit; }
 h1 { font-family: var(--font-display); font-size: var(--fs-h1); font-weight: 800; line-height: 1.07; letter-spacing: -.03em; margin-bottom: var(--sp-24); }
@@ -959,6 +963,9 @@ html[lang="zh-Hans"] h1, html[lang="zh-Hant"] h1 { line-height: 1.3; }
   .f-legal { gap: var(--sp-8) var(--sp-16); }
   .pb-box { min-width: 0; width: 100%; }
   .pb-sign { width: 100%; text-align: center; line-height: 1; }
+}
+@media (max-width: 340px) {
+  h1 { font-size: var(--fs-xl); }   /* Galaxy Fold cover screen (280 px) */
 }
 @media (max-width: 480px) {
   .duo-tag { inset-inline-start: var(--sp-8); bottom: var(--sp-8); max-width: calc(100% - 2 * var(--sp-8)); padding: var(--sp-4) var(--sp-8); font-size: var(--fs-xs); }

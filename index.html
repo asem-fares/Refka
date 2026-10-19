@@ -119,8 +119,9 @@
 </script>
 </head>
 <body>
+<a class="skip-link" href="#main" data-i18n="skip">Skip to content</a>
 <!-- NAV -->
-<nav>
+<nav data-i18n-aria="nav_main" aria-label="Main">
   <a href="#" class="logo" aria-label="Refka">
     <svg width="32" height="32" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
       <defs>
@@ -144,11 +145,11 @@
   </ul>
 
   <div class="nav-right">
-    <div class="lang-wrap"><button class="lang-btn-nav" id="langBtn" aria-label="Select language" aria-haspopup="dialog"><span id="lc">EN</span> <span class="lang-caret" aria-hidden="true">&#9660;</span></button></div>
+    <div class="lang-wrap"><button class="lang-btn-nav" id="langBtn" type="button" aria-label="Choose language" data-i18n-aria="lang_sel" aria-haspopup="dialog" aria-expanded="false" aria-controls="langOverlay"><span id="lc">EN</span> <span class="lang-caret" aria-hidden="true">&#9660;</span></button></div>
     <button class="btn-teal" id="navCta" data-i18n="cta" data-click="goRegister">Start Free Trial</button>
   </div>
 
-  <button class="burger" id="burger" aria-label="Menu">
+  <button class="burger" id="burger" type="button" aria-label="Menu" data-i18n-aria="menu" aria-expanded="false" aria-controls="mobMenu">
     <span></span><span></span><span></span>
   </button>
 </nav>
@@ -161,6 +162,7 @@
   <a href="#" class="mob-cta" id="mobCta" data-click="closeMobRegister" data-i18n="cta">Start Free Trial</a>
 </div>
 
+<main id="main" tabindex="-1">
 <!-- HERO -->
 <section id="hero">
   <canvas id="canvas" aria-hidden="true"></canvas>
@@ -646,8 +648,8 @@
 
   <div class="price-controls fade">
     <div class="billing-switch">
-      <button class="bi-btn active" id="biMonthly" data-click="setBilling" data-click-arg="m" data-i18n="bi_mo">Monthly</button>
-      <button class="bi-btn" id="biAnnual" data-click="setBilling" data-click-arg="a"><span data-i18n="bi_an">Annual</span> <span class="save-tag" data-i18n="bi_save">2 months free</span></button>
+      <button class="bi-btn active" id="biMonthly" type="button" aria-pressed="true" data-click="setBilling" data-click-arg="m" data-i18n="bi_mo">Monthly</button>
+      <button class="bi-btn" id="biAnnual" type="button" aria-pressed="false" data-click="setBilling" data-click-arg="a"><span data-i18n="bi_an">Annual</span> <span class="save-tag" data-i18n="bi_save">2 months free</span></button>
     </div>
     <label class="loc-pick">
       <span data-i18n="loc_for">Prices for</span>
@@ -762,6 +764,8 @@
   <p class="faq-more fade"><span data-i18n="faq_more">Another question?</span> <a href="https://wa.me/201149421081" target="_blank" rel="noopener" class="wa-link" data-i18n="faq_wa">Ask us on WhatsApp</a></p>
 </section>
 
+</main>
+
 <!-- FOOTER -->
 <footer>
   <div class="f-top">
@@ -779,7 +783,7 @@
       </svg>
       <span class="f-logo-name">Refka</span>
     </a>
-    <nav class="f-links">
+    <nav class="f-links" data-i18n-aria="nav_foot" aria-label="Footer">
       <a href="#how" data-i18n="f1">How It Works</a>
       <a href="#features" data-i18n="f2">Features</a>
       <a href="#pricing" data-i18n="f3">Pricing</a>
@@ -1173,9 +1177,9 @@
 <!-- MODAL + COOKIE JS                             -->
 <!-- ══════════════════════════════════════════════ -->
 
-<div class="lang-overlay" id="langOverlay" role="dialog" aria-modal="true" aria-label="Language selection">
+<div class="lang-overlay" id="langOverlay" role="dialog" aria-modal="true" aria-label="Choose language" data-i18n-aria="lang_sel">
   <div class="lang-panel" id="langPanel">
-    <button class="lang-x" id="langClose" aria-label="Close">&#x2715;</button>
+    <button class="lang-x" id="langClose" type="button" aria-label="Close" data-i18n-aria="fm_close">&#x2715;</button>
     <div class="lang-reg">MENA</div>
     <div class="lang-grid-3"><button class="lang-opt" data-l="ar">&#x627;&#x644;&#x639;&#x631;&#x628;&#x64A;&#x629;</button></div>
     <div class="lang-reg">Europe</div>
@@ -1234,29 +1238,29 @@
 
         <div class="su-field">
           <label for="suName" data-i18n="fm_name">Your name</label>
-          <input id="suName" name="name" type="text" autocomplete="name" maxlength="80" required data-check="req">
-          <p class="su-err" aria-live="polite"></p>
+          <input id="suName" name="name" type="text" autocomplete="name" maxlength="80" required data-check="req" aria-describedby="suNameErr">
+          <p class="su-err" id="suNameErr" aria-live="polite"></p>
         </div>
         <div class="su-field">
           <label for="suGym" data-i18n="fm_gym">Gym name</label>
-          <input id="suGym" name="gym" type="text" autocomplete="organization" maxlength="100" required data-check="req">
-          <p class="su-err" aria-live="polite"></p>
+          <input id="suGym" name="gym" type="text" autocomplete="organization" maxlength="100" required data-check="req" aria-describedby="suGymErr">
+          <p class="su-err" id="suGymErr" aria-live="polite"></p>
         </div>
         <div class="su-field">
           <label for="suPhone" data-i18n="fm_phone">WhatsApp number</label>
-          <input id="suPhone" name="phone" type="tel" inputmode="tel" autocomplete="tel" maxlength="24" dir="ltr" placeholder="+20 100 123 4567" required data-check="req,phone">
-          <p class="su-err" aria-live="polite"></p>
+          <input id="suPhone" name="phone" type="tel" inputmode="tel" autocomplete="tel" maxlength="24" dir="ltr" placeholder="+20 100 123 4567" required data-check="req,phone" aria-describedby="suPhoneErr">
+          <p class="su-err" id="suPhoneErr" aria-live="polite"></p>
         </div>
         <div class="su-field">
           <label for="suEmail" data-i18n="fm_email">Email (optional)</label>
-          <input id="suEmail" name="email" type="email" autocomplete="email" maxlength="120" dir="ltr" data-check="email">
-          <p class="su-err" aria-live="polite"></p>
+          <input id="suEmail" name="email" type="email" autocomplete="email" maxlength="120" dir="ltr" data-check="email" aria-describedby="suEmailErr">
+          <p class="su-err" id="suEmailErr" aria-live="polite"></p>
         </div>
         <div class="su-two">
           <div class="su-field">
             <label for="suCountry" data-i18n="fm_country">Country</label>
-            <select id="suCountry" name="country" autocomplete="country" required data-check="req"></select>
-            <p class="su-err" aria-live="polite"></p>
+            <select id="suCountry" name="country" autocomplete="country" required data-check="req" aria-describedby="suCountryErr"></select>
+            <p class="su-err" id="suCountryErr" aria-live="polite"></p>
           </div>
           <div class="su-field">
             <label for="suCity" data-i18n="fm_city">City (optional)</label>

@@ -11,7 +11,7 @@ var CLICK_ACTIONS = {
   goContact: function () { goContact(); },
   closeMob: function () { closeMob(); },
   closeMobRegister: function () { closeMob(); goRegister(); },
-  scrollHow: function () { var h = g('how'); if (h) h.scrollIntoView({ behavior: 'smooth' }); },
+  scrollHow: function () { var h = g('how'); if (h) h.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' }); },
   openModal: function (arg) { openModal(arg); },
   closeModal: function (arg) { closeModal(arg); },
   setBilling: function (arg) { setBilling(arg); }

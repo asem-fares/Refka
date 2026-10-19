@@ -4,10 +4,26 @@
 // MOBILE MENU
 var burger = document.getElementById('burger');
 var mobMenu = document.getElementById('mobMenu');
-function closeMob() { mobMenu.classList.remove('open'); document.body.style.overflow = ''; }
-burger.addEventListener('click', function() {
-  var o = mobMenu.classList.toggle('open');
-  document.body.style.overflow = o ? 'hidden' : '';
+// Keyboard and screen readers: aria-expanded on the button, focus moves into the menu, Tab stays
+// between the button and the menu links, Escape closes and returns focus to the button.
+function openMob() {
+  mobMenu.classList.add('open'); burger.setAttribute('aria-expanded', 'true'); document.body.style.overflow = 'hidden';
+  var first = mobMenu.querySelector('a'); if (first) setTimeout(function() { first.focus(); }, 30);
+}
+function closeMob(returnFocus) {
+  if (!mobMenu.classList.contains('open')) return;
+  mobMenu.classList.remove('open'); burger.setAttribute('aria-expanded', 'false'); document.body.style.overflow = '';
+  if (returnFocus === true) burger.focus();
+}
+burger.addEventListener('click', function() { mobMenu.classList.contains('open') ? closeMob(true) : openMob(); });
+document.addEventListener('keydown', function(e) {
+  if (!mobMenu.classList.contains('open')) return;
+  if (e.key === 'Escape') { closeMob(true); return; }
+  if (e.key !== 'Tab') return;
+  var f = [burger].concat([].slice.call(mobMenu.querySelectorAll('a')));
+  var i = f.indexOf(document.activeElement);
+  if (e.shiftKey && i <= 0) { e.preventDefault(); f[f.length - 1].focus(); }
+  else if (!e.shiftKey && (i === f.length - 1 || i === -1)) { e.preventDefault(); f[0].focus(); }
 });
 
 // CANVAS ANIMATION
@@ -283,8 +299,8 @@ function setCountry(cc, remember) {
 function setBilling(b) {
   _billing = b;
   var bM = g('biMonthly'), bA = g('biAnnual');
-  if (bM) bM.classList.toggle('active', b === 'm');
-  if (bA) bA.classList.toggle('active', b === 'a');
+  if (bM) { bM.classList.toggle('active', b === 'm'); bM.setAttribute('aria-pressed', b === 'm' ? 'true' : 'false'); }
+  if (bA) { bA.classList.toggle('active', b === 'a'); bA.setAttribute('aria-pressed', b === 'a' ? 'true' : 'false'); }
   document.querySelectorAll('.billing-mo').forEach(function(el){ el.style.display = b === 'm' ? '' : 'none'; });
   document.querySelectorAll('.billing-an').forEach(function(el){ el.style.display = b === 'a' ? '' : 'none'; });
   renderPrices();
@@ -364,13 +380,33 @@ function applyLang(code) {
 (function() {
   var overlay = g('langOverlay'), panel = g('langPanel'), trigBtn = g('langBtn'), closeBtn = g('langClose');
   if (!overlay || !trigBtn) return;
-  trigBtn.addEventListener('click', function(e) { e.stopPropagation(); overlay.classList.toggle('open'); });
-  if (closeBtn) closeBtn.addEventListener('click', function() { overlay.classList.remove('open'); });
-  overlay.addEventListener('click', function(e) { if (e.target === overlay) overlay.classList.remove('open'); });
+  // Same keyboard behaviour as the modals: focus moves to the current language, Tab stays inside,
+  // Escape or a choice closes the picker and returns focus to the button.
+  function isOpen() { return overlay.classList.contains('open'); }
+  function openLang() {
+    overlay.classList.add('open'); trigBtn.setAttribute('aria-expanded', 'true');
+    var cur = overlay.querySelector('.lang-opt.on') || overlay.querySelector('.lang-opt');
+    if (cur) setTimeout(function() { cur.focus(); }, 30);
+  }
+  function closeLang() {
+    if (!isOpen()) return;
+    overlay.classList.remove('open'); trigBtn.setAttribute('aria-expanded', 'false'); trigBtn.focus();
+  }
+  trigBtn.addEventListener('click', function(e) { e.stopPropagation(); isOpen() ? closeLang() : openLang(); });
+  if (closeBtn) closeBtn.addEventListener('click', closeLang);
+  overlay.addEventListener('click', function(e) { if (e.target === overlay) closeLang(); });
   if (panel) panel.addEventListener('click', function(e) { e.stopPropagation(); });
-  document.addEventListener('keydown', function(e) { if (e.key === 'Escape') overlay.classList.remove('open'); });
+  document.addEventListener('keydown', function(e) {
+    if (!isOpen()) return;
+    if (e.key === 'Escape') { closeLang(); return; }
+    if (e.key !== 'Tab') return;
+    var f = [].slice.call(overlay.querySelectorAll('button')).filter(function(x) { return x.offsetParent !== null; });
+    var i = f.indexOf(document.activeElement);
+    if (e.shiftKey && i <= 0) { e.preventDefault(); f[f.length - 1].focus(); }
+    else if (!e.shiftKey && (i === f.length - 1 || i === -1)) { e.preventDefault(); f[0].focus(); }
+  });
   document.querySelectorAll('.lang-opt').forEach(function(btn) {
-    btn.addEventListener('click', function() { applyLang(btn.dataset.l); overlay.classList.remove('open'); });
+    btn.addEventListener('click', function() { applyLang(btn.dataset.l); closeLang(); });
   });
 })();
 
