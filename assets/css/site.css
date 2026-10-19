@@ -1035,3 +1035,6 @@ s.was { color: var(--t3); text-decoration-thickness: 2px; font-size: .42em; font
 .cc-eg .oa-way [data-pm="2"]::before { width: 14px; background: url(../images/pay/vodafone-cash.png) center / contain no-repeat; }
 
 .duo-d img { object-position: 50% 8%; }
+
+.su-wa { display: inline-flex; justify-content: center; text-decoration: none; margin-block: var(--sp-16) var(--sp-8); }
+.su-done a.su-wa, .su-done a.su-wa:hover { color: var(--on-accent); text-decoration: none; }

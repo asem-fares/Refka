@@ -180,7 +180,7 @@
   fm_csend: "Send message",
   fm_sending: "Sending…",
   fm_ok_t: "Request received",
-  fm_ok: "Thank you. Our team will contact you on WhatsApp within 24 hours to set up your gym.",
+  fm_ok: "Thank you. A member of our team will contact you on WhatsApp within 24 hours to set up your gym with you. If you would rather start now, we are happy to talk right away.",
   fm_err: "Something went wrong. Please try again, or email us at community@refka.tech",
   fm_wait: "Please wait a few seconds before sending again.",
   fm_req: "Please fill in this field.",
@@ -328,5 +328,6 @@
   ms_eye: "Why Refka",
   ms_vision: "Nobody should train alone.",
   ms_mission: "We give every gym owner one system to run the gym, and an app that brings them closer to their members and brings members together.",
+  fm_wa: "Chat with us on WhatsApp",
   lang_sel: "Choose language"
 };
