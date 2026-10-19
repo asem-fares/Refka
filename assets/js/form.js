@@ -1,5 +1,5 @@
 /* Refka website: click dispatcher, modal focus handling, signup/contact form. Classic scripts, loaded with defer in this order:
-   i18n.js -> app.js -> form.js. No build step. */
+   boot.js (in <head>) -> i18n/en.js -> app.js -> form.js. No build step. */
 // ═══════════════════════════════════════════════════════════════
 // CLICK DISPATCHER
 // The Content-Security-Policy forbids inline handlers (onclick="…"),
@@ -7,14 +7,14 @@
 // ═══════════════════════════════════════════════════════════════
 var CLICK_ACTIONS = {
   goRegister: function (arg) { goRegister(arg || null); },
+  goRefer: function () { goRegister(null); setTimeout(function () { var r = g('suRef'); if (r) r.focus(); }, 80); },
   goContact: function () { goContact(); },
   closeMob: function () { closeMob(); },
   closeMobRegister: function () { closeMob(); goRegister(); },
-  scrollHow: function () { var h = g('how'); if (h) h.scrollIntoView({ behavior: 'smooth' }); },
+  scrollHow: function () { var h = g('how'); if (h) h.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' }); },
   openModal: function (arg) { openModal(arg); },
   closeModal: function (arg) { closeModal(arg); },
-  setBilling: function (arg) { setBilling(arg); },
-  setCookieChoice: function (arg) { setCookieChoice(arg); }
+  setBilling: function (arg) { setBilling(arg); }
 };
 document.addEventListener('click', function (e) {
   var el = e.target.closest ? e.target.closest('[data-click]') : null;
@@ -134,8 +134,14 @@ function afterLang() {
 var _origApplyLang = applyLang;
 applyLang = function (code) { _origApplyLang(code); afterLang(); };
 
+// Arabic keyboards type ٠١٢… (and Persian/Urdu ۰۱۲…): read them as 0-9 so the number is accepted and arrives in a form WhatsApp understands.
+function latinDigits(s) {
+  return String(s).replace(/[\u0660-\u0669]/g, function (d) { return d.charCodeAt(0) - 0x0660; })
+                  .replace(/[\u06F0-\u06F9]/g, function (d) { return d.charCodeAt(0) - 0x06F0; });
+}
+
 function checkField(f) {
-  var v = (f.value || '').trim(), rules = (f.getAttribute('data-check') || '').split(','), msg = '';
+  var v = latinDigits((f.value || '').trim()), rules = (f.getAttribute('data-check') || '').split(','), msg = '';
   for (var i = 0; i < rules.length && !msg; i++) {
     var r = rules[i];
     if (r === 'req' && !v) msg = tr('fm_req');
@@ -181,7 +187,7 @@ function showDone() {
     });
     if (!ok) { firstBad.focus(); return; }
 
-    var val = function (id) { return (g(id).value || '').trim(); };
+    var val = function (id) { return latinDigits((g(id).value || '').trim()); };
     var cCode = val('suCountry'), cName = cCode;
     try { cName = new Intl.DisplayNames(['en'], { type: 'region' }).of(cCode); } catch (e) {}   // inbox reads English
     var payload = {
@@ -197,6 +203,7 @@ function showDone() {
       'Country': cName + ' (' + val('suCountry') + ')',
       'City': val('suCity') || 'Not provided',
       'Active members': val('suMembers') || 'Not provided',
+      'Referred by': val('suRef') || '-',
       'Message': val('suMsg') || '-',
       'Language': _lang,
       'Prices shown in': _cur + ', zone ' + _zone + ', ' + (_billing === 'm' ? 'monthly' : 'annual'),
