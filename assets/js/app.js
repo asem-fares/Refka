@@ -1,4 +1,4 @@
-/* Refka website: page behaviour: menu, background, pricing engine, language, demo, modals, cookies. Classic scripts, loaded with defer in this order:
+/* Refka website: page behaviour: menu, background, pricing engine, language, phone demos, owner app, modals, WhatsApp. Classic scripts, loaded with defer in this order:
    i18n.js -> app.js -> form.js. No build step. */
 // ─── NON-LANG JS (mobile menu, canvas, scroll, fade) ─────────
 // MOBILE MENU
@@ -701,7 +701,7 @@ function swapPair() { setPair(_pair === 'm' ? 'w' : 'm'); }
 // ═══════════════════════════════════════════════════════════════
 // WHATSAPP: chat with the Refka team. The message is pre-written in the
 // visitor's language with their country. A small bubble invites the chat
-// once per visit and moves up while the cookie banner is open.
+// once per visit, on desktop only (site.css hides it on phones).
 // ═══════════════════════════════════════════════════════════════
 var WA_NUMBER = '201149421081';
 function setWhatsApp() {
@@ -711,21 +711,13 @@ function setWhatsApp() {
   document.querySelectorAll('#waBtn, #waBubbleLink, .wa-link').forEach(function(a) { a.href = href; });
 }
 (function() {
-  var fab = g('waBtn'), bub = g('waBubble'), ck = g('cookieBanner');
+  var fab = g('waBtn'), bub = g('waBubble');
   if (!fab) return;
-  function place() {
-    var h = ck && ck.classList.contains('show') ? ck.offsetHeight : 0;
-    fab.style.bottom = (20 + h) + 'px';
-    if (bub) bub.style.bottom = (90 + h) + 'px';
-  }
-  place();
-  window.addEventListener('resize', place);
-  if (ck && 'MutationObserver' in window) new MutationObserver(place).observe(ck, { attributes: true, attributeFilter: ['class'] });
   function hideBub() { if (bub) bub.hidden = true; try { sessionStorage.setItem('rfk_wa', '1'); } catch (e) {} }
   var seen = false; try { seen = sessionStorage.getItem('rfk_wa') === '1'; } catch (e) {}
   if (bub && !seen) setTimeout(function() {
     if (document.querySelector('.modal-overlay.open')) return;
-    bub.hidden = false; place();
+    bub.hidden = false;
     setTimeout(function() { bub.hidden = true; }, 12000);   // a hint, not a nag
   }, 9000);
   var x = g('waClose'); if (x) x.addEventListener('click', hideBub);
