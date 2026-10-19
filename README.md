@@ -68,6 +68,25 @@ refka.tech run in preview mode and send nothing.
 - **Keep the two CSPs identical**: the `<meta>` tag in `index.html` and `_headers`.
 - **Relative asset paths** (`assets/…`) in `index.html`, so the page also works from a preview.
 
+## Design system (assets/css/site.css)
+
+- **Tokens first.** Every color, font family, font size, radius and the page width live in the
+  single `:root` block at the top of `site.css`. A raw color anywhere else is a bug; add a token.
+- **Brand:** teal `--p` (fills), `--p-txt` (teal text on dark), gold `--a`. Logo gradient: teal to gold.
+  The wordmark is Sora ExtraBold (800), tracking −0.01em, color `--t1`. `assets/images/refka-logo.svg`
+  is the outlined master logo (no font needed).
+- **Type:** `--font-display` (Sora) for headings, buttons and labels; `--font-body` (Inter) for text;
+  `--font-brand` (always Sora) for the wordmark and prices. A language changes only these two
+  tokens (section 7), so new components need no per-language rules. Sizes come from the `--fs-*` scale.
+- **Shapes:** buttons, inputs and selects `--r-control` (10px); cards `--r-card` (16px); panels
+  `--r-panel` (20px); pills `--r-pill`. Buttons: `.btn-teal`, `.btn-outline`, `.btn-sm-outline`,
+  48px tall, `.lg` and `.btn-outline` 52px.
+- **Layout:** every band (nav, hero, sections, footer) uses `padding-inline: var(--pad-x)`, which
+  centers content in `--container` (1200px) with a `--gutter` of 64px (20px under 900px).
+- **Breakpoints:** 1240, 900, 600, 480 px (plus `max-height: 520px` for phones held sideways).
+- **Icons:** inline SVG line icons from the sprite in the Features section (`#ic-*`, `#oa-*`),
+  `stroke="currentColor"`. No emoji as icons.
+
 ## Checking a change
 
 Open `index.html` in a browser (the form runs in preview mode), then check at least: English,

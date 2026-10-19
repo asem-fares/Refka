@@ -1,18 +1,40 @@
 {
   "name": "Refka",
   "short_name": "Refka",
-  "description": "Your gym's own member app: training partners, AI training plans and a community that keeps members coming back.",
+  "description": "Run your gym and keep your members: front desk, WhatsApp renewals, payments, and a member app with training partners.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
   "background_color": "#080808",
   "theme_color": "#080808",
   "icons": [
-    { "src": "/assets/icons/favicon.svg", "type": "image/svg+xml", "sizes": "any" },
-    { "src": "/assets/icons/icon-192.png", "type": "image/png", "sizes": "192x192", "purpose": "any" },
-    { "src": "/assets/icons/icon-512.png", "type": "image/png", "sizes": "512x512", "purpose": "any" },
-    { "src": "/assets/icons/icon-512-maskable.png", "type": "image/png", "sizes": "512x512", "purpose": "maskable" }
+    {
+      "src": "/assets/icons/favicon.svg",
+      "type": "image/svg+xml",
+      "sizes": "any"
+    },
+    {
+      "src": "/assets/icons/icon-192.png",
+      "type": "image/png",
+      "sizes": "192x192",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/icons/icon-512.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/icons/icon-512-maskable.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "maskable"
+    }
   ],
   "lang": "en",
-  "categories": ["business", "fitness"]
+  "categories": [
+    "business",
+    "fitness"
+  ]
 }

@@ -144,7 +144,7 @@
   </ul>
 
   <div class="nav-right">
-    <div class="lang-wrap"><button class="lang-btn-nav" id="langBtn" aria-label="Select language" aria-haspopup="dialog"><span id="lc">EN</span> <span style="font-size:10px;opacity:.6;">&#9660;</span></button></div>
+    <div class="lang-wrap"><button class="lang-btn-nav" id="langBtn" aria-label="Select language" aria-haspopup="dialog"><span id="lc">EN</span> <span class="lang-caret" aria-hidden="true">&#9660;</span></button></div>
     <button class="btn-teal" id="navCta" data-i18n="cta" data-click="goRegister">Start Free Trial</button>
   </div>
 
@@ -196,7 +196,7 @@
       <div class="ph-body">
         <div class="ph-top">
           <span class="ph-gym-name" data-i18n="ph_gym">Your Gym</span>
-          <span style="font-size:15px" aria-hidden="true">🔔</span>
+          <svg class="ph-bell" aria-hidden="true"><use href="#ic-bell"/></svg>
         </div>
 
         <div class="ph-screen">
@@ -248,10 +248,10 @@
           <!-- SCENE 2 · STORE (Partners tab) -->
           <div class="ph-scene" data-scene="2">
             <div class="ph-label anim d1" data-i18n="ph_store">SHOP AT YOUR GYM</div>
-            <div class="ph-prod anim d2"><span class="ic">🥤</span><span class="nm" data-i18n="ph_p1">Whey Protein · 2kg</span><span class="pr" data-usd="42">$42</span></div>
-            <div class="ph-prod picked anim d3"><span class="ic">⚡</span><span class="nm" data-i18n="ph_p2">Pre-Workout</span><span class="pr" data-usd="28">$28</span></div>
-            <div class="ph-prod anim d4"><span class="ic">👕</span><span class="nm" data-i18n="ph_p3">Gym T-Shirt</span><span class="pr" data-usd="18">$18</span></div>
-            <div class="ph-prod anim d5"><span class="ic">🧤</span><span class="nm" data-i18n="ph_p4">Lifting Gloves</span><span class="pr" data-usd="15">$15</span></div>
+            <div class="ph-prod anim d2"><span class="ic"><svg aria-hidden="true"><use href="#ic-bottle"/></svg></span><span class="nm" data-i18n="ph_p1">Whey Protein · 2kg</span><span class="pr" data-usd="42">$42</span></div>
+            <div class="ph-prod picked anim d3"><span class="ic"><svg aria-hidden="true"><use href="#ic-bolt"/></svg></span><span class="nm" data-i18n="ph_p2">Pre-Workout</span><span class="pr" data-usd="28">$28</span></div>
+            <div class="ph-prod anim d4"><span class="ic"><svg aria-hidden="true"><use href="#ic-shirt"/></svg></span><span class="nm" data-i18n="ph_p3">Gym T-Shirt</span><span class="pr" data-usd="18">$18</span></div>
+            <div class="ph-prod anim d5"><span class="ic"><svg aria-hidden="true"><use href="#ic-glove"/></svg></span><span class="nm" data-i18n="ph_p4">Lifting Gloves</span><span class="pr" data-usd="15">$15</span></div>
             <div class="ph-toast"><span class="dot"></span><span class="tx" data-i18n="ph_s_toast">Reserved. Collect at the front desk.</span></div>
           </div>
 
@@ -268,8 +268,8 @@
               </div>
               <div class="bd" data-i18n="ph_post" data-pair-key="post">New deadlift PB today. Thanks for the spot, James 💪</div>
               <div class="ph-react">
-                <span>❤️ <b class="cnt">12</b></span>
-                <span>💬 <b class="cnt">4</b></span>
+                <span><svg aria-hidden="true"><use href="#ic-heart"/></svg> <b class="cnt">12</b></span>
+                <span><svg aria-hidden="true"><use href="#ic-chat"/></svg> <b class="cnt">4</b></span>
               </div>
             </div>
             <div class="ph-event anim d4">
@@ -318,7 +318,7 @@
     <div class="stat-label" data-i18n="prob_lbl">of people who joined a weight-loss program with friends completed it. Of those who joined alone, only 76% did.</div>
     <p class="src" data-i18n="prob_src">Source: Wing &amp; Jeffery, Journal of Consulting and Clinical Psychology, 1999.</p>
     <h2 data-i18n-html="prob_h2">Not your equipment.<br>Not your prices.<br>They train alone.</h2>
-    <p class="s-sub" style="margin: 14px auto 0" data-i18n="prob_sub">Members who train alone lose motivation and leave.</p>
+    <p class="s-sub" data-i18n="prob_sub">Members who train alone lose motivation and leave.</p>
   </div>
 </section>
 
@@ -357,6 +357,16 @@
   <svg class="oa-defs" width="0" height="0" aria-hidden="true" focusable="false">
     <defs>
       <linearGradient id="oaLg" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#0D6B6E"/><stop offset="100%" stop-color="#C9973A"/></linearGradient>
+      <symbol id="ic-users" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M16 4.6a3.5 3.5 0 0 1 0 6.8M18 14.2a6.5 6.5 0 0 1 3.5 5.8"/></symbol>
+      <symbol id="ic-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2.5" width="12" height="19" rx="2.5"/><path d="M10.5 18.5h3"/><path d="M9 8.5l2 2 4-4"/></symbol>
+      <symbol id="ic-store" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 9.5 5 4h14l1.5 5.5"/><path d="M3.5 9.5a2.8 2.8 0 0 0 5.6 0 2.8 2.8 0 0 0 5.8 0 2.8 2.8 0 0 0 5.6 0"/><path d="M5 12v8h14v-8M10 20v-5h4v5"/></symbol>
+      <symbol id="ic-bell" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 16V11a6 6 0 0 1 12 0v5l1.5 2h-15z"/><path d="M10 20.5a2 2 0 0 0 4 0"/></symbol>
+      <symbol id="ic-bottle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 2.5h6M10 2.5v3L7.5 9v11.5h9V9L14 5.5v-3"/><path d="M7.5 13h9"/></symbol>
+      <symbol id="ic-bolt" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2.5 5 13.5h6l-1 8 8-11h-6z"/></symbol>
+      <symbol id="ic-shirt" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 3.5 3 6.5l2 4 2.5-1V20.5h9V9.5l2.5 1 2-4-5.5-3a3.5 3.5 0 0 1-7 0z"/></symbol>
+      <symbol id="ic-glove" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 11V6a1.5 1.5 0 0 1 3 0v4M10 9.5V4.5a1.5 1.5 0 0 1 3 0v5M13 9.5V5.5a1.5 1.5 0 0 1 3 0v5M16 10V8a1.5 1.5 0 0 1 3 0v6a6.5 6.5 0 0 1-6.5 6.5h-1A6.5 6.5 0 0 1 5 14v-1.5a1.5 1.5 0 0 1 2-1.4"/></symbol>
+      <symbol id="ic-heart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7.5-4.6-7.5-10A4.3 4.3 0 0 1 12 7.4 4.3 4.3 0 0 1 19.5 10C19.5 15.4 12 20 12 20z"/></symbol>
+      <symbol id="ic-chat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 11.5a8 8 0 0 1-11.6 7.1L3.5 20l1.4-4.8A8 8 0 1 1 20.5 11.5z"/></symbol>
       <symbol id="oa-logo" viewBox="0 0 120 120"><circle cx="38" cy="22" r="12" fill="url(#oaLg)"/><circle cx="82" cy="22" r="12" fill="url(#oaLg)"/><path d="M60,62 C44,32 12,32 12,62 C12,92 44,92 60,62 C76,32 108,32 108,62 C108,92 76,92 60,62" fill="none" stroke="url(#oaLg)" stroke-width="18" stroke-linecap="round"/></symbol>
       <symbol id="oa-i0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V10M10 19V5M16 19v-6M22 19H2"/></symbol>
       <symbol id="oa-i1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8V5a1 1 0 0 1 1-1h3M16 4h3a1 1 0 0 1 1 1v3M20 16v3a1 1 0 0 1-1 1h-3M8 20H5a1 1 0 0 1-1-1v-3M4 12h16"/></symbol>
@@ -536,19 +546,19 @@
       <div class="eco-side-h fade"><i class="cap-dot teal"></i><span data-i18n="eco_hb">For your members</span></div>
       <div class="eco-cards">
         <div class="eco-card fade d1">
-          <div class="eco-icon" aria-hidden="true">👥</div>
+          <div class="eco-icon" aria-hidden="true"><svg><use href="#ic-users"/></svg></div>
           <h3 data-i18n="e1_t"></h3>
           <p data-i18n="e1_p"></p>
           <div class="chips"><span class="chip" data-i18n="e1_c1"></span><span class="chip" data-i18n="e1_c2"></span><span class="chip" data-i18n="e1_c3"></span></div>
         </div>
         <div class="eco-card fade d2">
-          <div class="eco-icon" aria-hidden="true">📱</div>
+          <div class="eco-icon" aria-hidden="true"><svg><use href="#ic-phone"/></svg></div>
           <h3 data-i18n="e6_t"></h3>
           <p data-i18n="e6_p"></p>
           <div class="chips"><span class="chip" data-i18n="e6_c1"></span><span class="chip" data-i18n="e6_c2"></span><span class="chip" data-i18n="e6_c3"></span></div>
         </div>
         <div class="eco-card fade d3">
-          <div class="eco-icon" aria-hidden="true">🏪</div>
+          <div class="eco-icon" aria-hidden="true"><svg><use href="#ic-store"/></svg></div>
           <h3 data-i18n="e3_t"></h3>
           <p data-i18n="e3_p"></p>
           <div class="chips"><span class="chip" data-i18n="e3_c1"></span><span class="chip" data-i18n="e3_c2"></span><span class="chip" data-i18n="e3_c3"></span></div>
@@ -569,7 +579,7 @@
       <h3 data-i18n="a1_t"></h3>
       <p data-i18n="a1_p"></p>
     </div>
-    <div class="app-card fade d2">
+    <div class="app-card core fade d2">
       <div class="core-b" data-i18n="a_core">CORE</div>
       <div class="tab-n"><span data-i18n="a_tab">TAB</span> 02</div>
       <h3 data-i18n="a2_t"></h3>
@@ -592,7 +602,7 @@
 <section class="sec alt center" id="payback">
   <div class="eye fade" data-i18n="pb_eye">The math</div>
   <h2 class="fade" data-i18n-html="pb_h2">Refka pays for itself<br>with one or two members.</h2>
-  <p class="s-sub fade" style="margin: 14px auto 0" data-i18n="pb_sub">Starter costs about what one or two members pay you in a month. Keep one or two more members renewing, and Refka has paid for itself. Every member after that is profit.</p>
+  <p class="s-sub fade" data-i18n="pb_sub">Starter costs about what one or two members pay you in a month. Keep one or two more members renewing, and Refka has paid for itself. Every member after that is profit.</p>
   <div class="pb-eq fade">
     <div class="pb-box"><span class="pb-k" data-i18n="pb_cost">Refka Starter, per month</span><b class="pb-v"><span class="pv" data-plan="starter">$49</span></b></div>
     <div class="pb-sign" aria-hidden="true">≈</div>
@@ -646,7 +656,7 @@
         <span class="billing-mo" data-i18n="per_mo">per month, billed monthly</span>
         <span class="billing-an" style="display:none"><span data-i18n="per_an">per month ·</span> <span class="yr" data-plan="starter">$468</span> <span data-i18n="per_yr">per year</span></span>
       </div>
-      <div class="p-members" data-i18n="m_150">👥 Up to 150 members · 2 trainers</div>
+      <div class="p-members"><svg aria-hidden="true"><use href="#ic-users"/></svg><span data-i18n="m_150">Up to 150 members · 2 trainers</span></div>
       <ul class="p-feats">
         <li data-i18n="f_brand">App with your gym's name, logo and colors</li>
         <li data-i18n="f_qr">Member sign-up by QR code</li>
@@ -655,10 +665,6 @@
         <li data-i18n="f_renewal">Renewal reminders on WhatsApp</li>
         <li data-i18n="f_support">Support on WhatsApp, 24/7</li>
         <li data-i18n="f_ai150">150 AI plans per month</li>
-        <li class="off" data-i18n="f_analytics">Reports dashboard</li>
-        <li class="off" data-i18n="f_partner">Partner marketplace</li>
-        <li class="off" data-i18n="f_multi">Multiple branches</li>
-        <li class="off" data-i18n="f_api">API access</li>
       </ul>
       <button class="btn-sm-outline" id="p1btn" data-i18n="p1" data-click="goRegister" data-click-arg="starter">Start Free Trial →</button>
     </div>
@@ -672,14 +678,12 @@
         <span class="billing-mo" data-i18n="per_mo">per month, billed monthly</span>
         <span class="billing-an" style="display:none"><span data-i18n="per_an">per month ·</span> <span class="yr" data-plan="growth">$948</span> <span data-i18n="per_yr">per year</span></span>
       </div>
-      <div class="p-members" data-i18n="m_500">👥 Up to 500 members · 10 trainers</div>
+      <div class="p-members"><svg aria-hidden="true"><use href="#ic-users"/></svg><span data-i18n="m_500">Up to 500 members · 10 trainers</span></div>
       <ul class="p-feats">
         <li data-i18n="f_all_starter">Everything in Starter</li>
-        <li><span class="ai-q" data-plan="growth">500</span> <span data-i18n="f_aiplans">AI plans per month</span></li>
+        <li><span><span class="ai-q" data-plan="growth">500</span> <span data-i18n="f_aiplans">AI plans per month</span></span></li>
         <li data-i18n="f_analytics">Reports dashboard</li>
         <li data-i18n="f_partner3">Partner marketplace (up to 3)</li>
-        <li class="off" data-i18n="f_multi">Multiple branches</li>
-        <li class="off" data-i18n="f_api">API access</li>
       </ul>
       <button class="btn-teal" id="p2btn" data-i18n="p2" data-click="goRegister" data-click-arg="growth">Start Free Trial →</button>
     </div>
@@ -692,10 +696,10 @@
         <span class="billing-mo" data-i18n="per_mo">per month, billed monthly</span>
         <span class="billing-an" style="display:none"><span data-i18n="per_an">per month ·</span> <span class="yr" data-plan="pro">$2,388</span> <span data-i18n="per_yr">per year</span></span>
       </div>
-      <div class="p-members" data-i18n="m_2000">👥 Up to 2,000 members · Unlimited trainers</div>
+      <div class="p-members"><svg aria-hidden="true"><use href="#ic-users"/></svg><span data-i18n="m_2000">Up to 2,000 members · Unlimited trainers</span></div>
       <ul class="p-feats">
         <li data-i18n="f_all_growth">Everything in Growth</li>
-        <li><span class="ai-q" data-plan="pro">1,500</span> <span data-i18n="f_aiplans">AI plans per month</span></li>
+        <li><span><span class="ai-q" data-plan="pro">1,500</span> <span data-i18n="f_aiplans">AI plans per month</span></span></li>
         <li data-i18n="f_unlim_p">Unlimited partners</li>
         <li data-i18n="f_multi">Multiple branches</li>
         <li data-i18n="f_api_wh">API access and webhooks</li>
@@ -708,9 +712,9 @@
     <!-- ENTERPRISE -->
     <div class="p-card enterprise fade d4">
       <div class="p-tier">ENTERPRISE</div>
-      <div class="p-price" style="font-size:30px;margin-bottom:6px;" data-i18n="ent_custom">Custom</div>
+      <div class="p-price word" data-i18n="ent_custom">Custom</div>
       <div class="p-period" data-i18n="ent_talk">Price on request</div>
-      <div class="p-members" data-i18n="m_ent">👥 More than 2,000 members</div>
+      <div class="p-members"><svg aria-hidden="true"><use href="#ic-users"/></svg><span data-i18n="m_ent">More than 2,000 members</span></div>
       <ul class="p-feats">
         <li data-i18n="f_all_pro">Everything in Pro</li>
         <li data-i18n="f_quota">Custom AI plan limit</li>
