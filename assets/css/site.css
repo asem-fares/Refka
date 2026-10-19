@@ -1013,7 +1013,7 @@ html[lang="zh-Hans"] h1, html[lang="zh-Hant"] h1 { line-height: 1.3; }
 }
 
 /* v5: annual price anchor, payback referral line, mission strip, initials for members shown without a photo */
-s.was { color: var(--t3); text-decoration-thickness: 1.5px; margin-inline-end: 2px; }
+s.was { color: var(--t3); text-decoration-thickness: 2px; font-size: .42em; font-weight: 600; align-self: center; margin-inline-end: var(--sp-8); white-space: nowrap; }
 .pb-ref { margin: var(--sp-24) auto 0; max-width: 560px; color: var(--t2); font-size: var(--fs-md); }
 .pb-ref b { color: var(--a); }
 .mission .eye { justify-content: center; }
@@ -1022,3 +1022,14 @@ s.was { color: var(--t3); text-decoration-thickness: 1.5px; margin-inline-end: 2
 .ph-av.ph-photo.veil { background: linear-gradient(135deg, var(--p), var(--a)); }
 .ph-av.ph-photo.veil img { display: none; }
 .ph-av.ph-photo.veil::after { content: attr(data-ini); color: var(--on-accent); }
+
+/* v5: real payment marks. They sit on a white plate in both themes, as card brands require. */
+.pm-logos { display: inline-flex; align-items: center; gap: 6px; height: 26px; padding: 0 8px; border-radius: 6px; background: #fff; flex-shrink: 0; }
+.pm-logos img { display: block; height: 15px; width: auto; }
+.pm-vf { display: block; width: 26px; height: 26px; border-radius: 7px; flex-shrink: 0; }
+.cc-eg .oa-m[data-pm]::before { content: ""; display: block; margin: 0 auto 4px; height: 16px; border-radius: 4px; }
+.cc-eg .oa-m[data-pm="1"]::before { width: 36px; background: #fff url(../images/pay/instapay.png) center / auto 11px no-repeat; }
+.cc-eg .oa-m[data-pm="2"]::before { width: 16px; background: url(../images/pay/vodafone-cash.png) center / contain no-repeat; }
+.cc-eg .oa-way [data-pm]::before { content: ""; display: inline-block; vertical-align: -3px; margin-inline-end: 5px; height: 14px; border-radius: 3px; }
+.cc-eg .oa-way [data-pm="1"]::before { width: 30px; background: #fff url(../images/pay/instapay.png) center / auto 9px no-repeat; }
+.cc-eg .oa-way [data-pm="2"]::before { width: 14px; background: url(../images/pay/vodafone-cash.png) center / contain no-repeat; }

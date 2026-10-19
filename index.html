@@ -665,10 +665,10 @@
     <!-- STARTER -->
     <div class="p-card fade d1">
       <div class="p-tier">STARTER</div>
-      <div class="p-price"><span class="pv" data-plan="starter">$49</span></div>
+      <div class="p-price"><s class="was billing-an" data-plan="starter" style="display:none"></s><span class="pv" data-plan="starter">$49</span></div>
       <div class="p-period">
         <span class="billing-mo" data-i18n="per_mo">per month, billed monthly</span>
-        <span class="billing-an" style="display:none"><span data-i18n="per_an">per month ·</span> <s class="was" data-plan="starter"></s> <span class="yr" data-plan="starter">$468</span> <span data-i18n="per_yr">per year</span></span>
+        <span class="billing-an" style="display:none"><span data-i18n="per_an">per month ·</span> <span class="yr" data-plan="starter">$468</span> <span data-i18n="per_yr">per year</span></span>
       </div>
       <div class="p-members"><svg aria-hidden="true"><use href="#ic-users"/></svg><span data-i18n="m_150">Up to 150 members · 2 trainers</span></div>
       <ul class="p-feats">
@@ -687,10 +687,10 @@
     <div class="p-card featured fade d2">
       <div class="p-pop" data-i18n="popular">Most Popular</div>
       <div class="p-tier">GROWTH</div>
-      <div class="p-price"><span class="pv" data-plan="growth">$99</span></div>
+      <div class="p-price"><s class="was billing-an" data-plan="growth" style="display:none"></s><span class="pv" data-plan="growth">$99</span></div>
       <div class="p-period">
         <span class="billing-mo" data-i18n="per_mo">per month, billed monthly</span>
-        <span class="billing-an" style="display:none"><span data-i18n="per_an">per month ·</span> <s class="was" data-plan="growth"></s> <span class="yr" data-plan="growth">$948</span> <span data-i18n="per_yr">per year</span></span>
+        <span class="billing-an" style="display:none"><span data-i18n="per_an">per month ·</span> <span class="yr" data-plan="growth">$948</span> <span data-i18n="per_yr">per year</span></span>
       </div>
       <div class="p-members"><svg aria-hidden="true"><use href="#ic-users"/></svg><span data-i18n="m_500">Up to 500 members · 10 trainers</span></div>
       <ul class="p-feats">
@@ -705,10 +705,10 @@
     <!-- PRO -->
     <div class="p-card fade d3">
       <div class="p-tier">PRO</div>
-      <div class="p-price"><span class="pv" data-plan="pro">$249</span></div>
+      <div class="p-price"><s class="was billing-an" data-plan="pro" style="display:none"></s><span class="pv" data-plan="pro">$249</span></div>
       <div class="p-period">
         <span class="billing-mo" data-i18n="per_mo">per month, billed monthly</span>
-        <span class="billing-an" style="display:none"><span data-i18n="per_an">per month ·</span> <s class="was" data-plan="pro"></s> <span class="yr" data-plan="pro">$2,388</span> <span data-i18n="per_yr">per year</span></span>
+        <span class="billing-an" style="display:none"><span data-i18n="per_an">per month ·</span> <span class="yr" data-plan="pro">$2,388</span> <span data-i18n="per_yr">per year</span></span>
       </div>
       <div class="p-members"><svg aria-hidden="true"><use href="#ic-users"/></svg><span data-i18n="m_2000">Up to 2,000 members · Unlimited trainers</span></div>
       <ul class="p-feats">
@@ -744,9 +744,9 @@
 
   <div class="pay-row fade" id="payRow">
     <span class="pay-lbl" data-i18n="pay_after">After your free trial, pay with</span>
-    <span class="pm-chip"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><rect x="2.5" y="5" width="19" height="14" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M2.5 9.5h19" stroke="currentColor" stroke-width="2.2"/><path d="M6 15h4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><span data-i18n="pay_card">Card (Visa, Mastercard)</span></span>
-    <span class="pm-chip eg-only"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M13 2.5 5 13.5h6l-1 8 8-11h-6z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg><span data-i18n="pay_insta">InstaPay</span></span>
-    <span class="pm-chip eg-only"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><rect x="3" y="6" width="18" height="13" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M3 9.5h13a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2H3" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="15.5" cy="12" r="1.1" fill="currentColor"/><path d="M6 6l9-3 1.5 3" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg><span data-i18n="pay_voda">Vodafone Cash</span></span>
+    <span class="pm-chip"><span class="pm-logos"><img src="assets/images/pay/visa.svg" alt="Visa" width="38" height="13"><img src="assets/images/pay/mastercard.svg" alt="Mastercard" width="26" height="16"></span><span data-i18n="pay_card">Card</span></span>
+    <span class="pm-chip eg-only"><span class="pm-logos"><img src="assets/images/pay/instapay.png" alt="" width="40" height="16"></span><span data-i18n="pay_insta">InstaPay</span></span>
+    <span class="pm-chip eg-only"><img class="pm-vf" src="assets/images/pay/vodafone-cash.png" alt="" width="26" height="26"><span data-i18n="pay_voda">Vodafone Cash</span></span>
   </div>
 
   <p class="p-note" id="locNote">Converted from US dollars at today's rate. Your final price depends on your gym's country at sign-up.</p>

@@ -209,7 +209,7 @@
   e6_c2: "Freeze requests",
   e6_c3: "Reminder before it ends",
   pay_after: "After your free trial, pay with",
-  pay_card: "Card (Visa, Mastercard)",
+  pay_card: "Card",
   pay_insta: "InstaPay",
   pay_voda: "Vodafone Cash",
   fm_ref: "Referred by (optional)",

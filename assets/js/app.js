@@ -270,7 +270,7 @@ function renderPrices() {
   });
   document.querySelectorAll('s.was').forEach(function(el) {
     var p = P[el.dataset.plan], f = F && F[el.dataset.plan];
-    el.textContent = fmt(f ? f.m * 12 : local(p.m) * 12);
+    el.textContent = fmt(f ? f.m : local(p.m));
   });
   document.querySelectorAll('.ai-q').forEach(function(el) { el.textContent = fmtNum(P[el.dataset.plan].ai); });
   document.querySelectorAll('[data-usd]').forEach(function(el) { el.textContent = fmt(local(+el.dataset.usd)); });
