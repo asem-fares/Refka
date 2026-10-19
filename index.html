@@ -62,6 +62,7 @@
 <meta name="twitter:image" content="https://refka.tech/assets/images/og-image.jpg?v=5">
 
 <!-- Fonts (self-hosted) and styles -->
+<script src="assets/js/boot.js"></script>
 <link rel="preload" as="font" type="font/woff2" href="assets/fonts/sora-latin-800-normal.woff2" crossorigin>
 <link rel="preload" as="font" type="font/woff2" href="assets/fonts/inter-latin-400-normal.woff2" crossorigin>
 <link rel="stylesheet" href="assets/css/fonts.css">
@@ -154,13 +155,13 @@
   </button>
 </nav>
 
-<div class="mob-menu" id="mobMenu">
+<nav class="mob-menu" id="mobMenu" data-i18n-aria="menu" aria-label="Menu">
   <a href="#how" data-click="closeMob" data-i18n="n1">How It Works</a>
   <a href="#features" data-click="closeMob" data-i18n="n2">Features</a>
   <a href="#pricing" data-click="closeMob" data-i18n="n3">Pricing</a>
   <a href="#faq" data-click="closeMob" data-i18n="n4">FAQ</a>
   <a href="#" class="mob-cta" id="mobCta" data-click="closeMobRegister" data-i18n="cta">Start Free Trial</a>
-</div>
+</nav>
 
 <main id="main" tabindex="-1">
 <!-- HERO -->
@@ -324,11 +325,11 @@
   </div>
   <!-- Training together: photo mosaic (decorative; the text above carries the message) -->
   <div class="duo-grid fade d1" aria-hidden="true">
-    <figure class="duo duo-a"><img src="assets/images/gym/duo-core.webp" alt="" width="900" height="600" loading="lazy" decoding="async"><figcaption class="duo-tag"><i class="dot"></i><span data-i18n="ph_matched">Matched ✓</span></figcaption></figure>
-    <figure class="duo duo-b"><img src="assets/images/gym/duo-plank.webp" alt="" width="900" height="1350" loading="lazy" decoding="async"><figcaption class="duo-tag gold"><i class="dot"></i><span data-i18n="oa_pairs">Training partners</span></figcaption></figure>
-    <figure class="duo duo-c"><img src="assets/images/gym/duo-selfie.webp" alt="" width="900" height="600" loading="lazy" decoding="async"></figure>
-    <figure class="duo duo-d"><img src="assets/images/gym/duo-boxing.webp" alt="" width="900" height="475" loading="lazy" decoding="async"></figure>
-    <figure class="duo duo-e"><img src="assets/images/gym/duo-stretch.webp" alt="" width="900" height="599" loading="lazy" decoding="async"><figcaption class="duo-tag"><i class="dot"></i><span data-i18n="ph_same">SAME TIME</span></figcaption></figure>
+    <figure class="duo duo-a"><img src="assets/images/gym/duo-core.webp" alt="" width="900" height="600" loading="lazy" fetchpriority="low" decoding="async"><figcaption class="duo-tag"><i class="dot"></i><span data-i18n="ph_matched">Matched ✓</span></figcaption></figure>
+    <figure class="duo duo-b"><img src="assets/images/gym/duo-plank.webp" alt="" width="900" height="1350" loading="lazy" fetchpriority="low" decoding="async"><figcaption class="duo-tag gold"><i class="dot"></i><span data-i18n="oa_pairs">Training partners</span></figcaption></figure>
+    <figure class="duo duo-c"><img src="assets/images/gym/duo-selfie.webp" alt="" width="900" height="600" loading="lazy" fetchpriority="low" decoding="async"></figure>
+    <figure class="duo duo-d"><img src="assets/images/gym/duo-boxing.webp" alt="" width="900" height="475" loading="lazy" fetchpriority="low" decoding="async"></figure>
+    <figure class="duo duo-e"><img src="assets/images/gym/duo-stretch.webp" alt="" width="900" height="599" loading="lazy" fetchpriority="low" decoding="async"><figcaption class="duo-tag"><i class="dot"></i><span data-i18n="ph_same">SAME TIME</span></figcaption></figure>
   </div>
 </section>
 
@@ -340,20 +341,20 @@
     <div class="step fade d1">
       <div class="step-n">01</div>
       <h3 data-i18n="s1_t">Set up your gym profile</h3>
-      <p data-i18n="s1_p"></p>
+      <p data-i18n="s1_p">Send us your membership packages, prices and payment numbers on WhatsApp. Our team builds your gym on Refka with you, including the members' app with your logo and colors.</p>
       <span class="step-tag" data-i18n="s1_tag">Done in minutes</span>
     </div>
     <div class="step fade d2">
       <div class="step-n">02</div>
       <h3 data-i18n="s2_t">Print one QR code</h3>
-      <p data-i18n="s2_p"></p>
-      <span class="step-tag" data-i18n="s2_tag"></span>
+      <p data-i18n="s2_p">Use the barcode cards and scanner you already have, so your members keep their cards. New members join with one QR code at the entrance.</p>
+      <span class="step-tag" data-i18n="s2_tag">No new hardware</span>
     </div>
     <div class="step fade d3">
       <div class="step-n">03</div>
       <h3 data-i18n="s3_t">Your community builds itself</h3>
-      <p data-i18n="s3_p"></p>
-      <span class="step-tag" data-i18n="s3_tag"></span>
+      <p data-i18n="s3_p">Refka reminds members before they expire, collects renewals on WhatsApp and pairs members with training partners. You follow the money and the members from your phone.</p>
+      <span class="step-tag" data-i18n="s3_tag">Runs on its own after launch</span>
     </div>
   </div>
 </section>
@@ -361,8 +362,8 @@
 <!-- ECOSYSTEM: the owner app (interactive) and the member side -->
 <section class="sec alt" id="features">
   <div class="eye fade" data-i18n="eco_eye">Everything in one place</div>
-  <h2 class="fade" data-i18n-html="eco_h2"></h2>
-  <p class="s-sub fade" data-i18n="eco_sub"></p>
+  <h2 class="fade" data-i18n-html="eco_h2">One system.<br>Both sides of your gym.</h2>
+  <p class="s-sub fade" data-i18n="eco_sub">What you need to run the gym and what keeps members coming back, working on the same data. Use what fits and switch off what doesn't.</p>
 
   <svg class="oa-defs" width="0" height="0" aria-hidden="true" focusable="false">
     <defs>
@@ -557,21 +558,21 @@
       <div class="eco-cards">
         <div class="eco-card fade d1">
           <div class="eco-icon" aria-hidden="true"><svg><use href="#ic-users"/></svg></div>
-          <h3 data-i18n="e1_t"></h3>
-          <p data-i18n="e1_p"></p>
-          <div class="chips"><span class="chip" data-i18n="e1_c1"></span><span class="chip" data-i18n="e1_c2"></span><span class="chip" data-i18n="e1_c3"></span></div>
+          <h3 data-i18n="e1_t">Members and Community</h3>
+          <p data-i18n="e1_p">Members who train at the same time find each other through smart scheduling. A community feed keeps them in touch. Nobody has to train alone.</p>
+          <div class="chips"><span class="chip" data-i18n="e1_c1">Smart Scheduling</span><span class="chip" data-i18n="e1_c2">Community Feed</span><span class="chip" data-i18n="e1_c3">Who's at the gym now</span></div>
         </div>
         <div class="eco-card fade d2">
           <div class="eco-icon" aria-hidden="true"><svg><use href="#ic-phone"/></svg></div>
-          <h3 data-i18n="e6_t"></h3>
-          <p data-i18n="e6_p"></p>
-          <div class="chips"><span class="chip" data-i18n="e6_c1"></span><span class="chip" data-i18n="e6_c2"></span><span class="chip" data-i18n="e6_c3"></span></div>
+          <h3 data-i18n="e6_t">Their Membership in Their Pocket</h3>
+          <p data-i18n="e6_p">Members see when their membership ends, renew from the app and ask for a freeze when they travel. Fewer questions at the desk.</p>
+          <div class="chips"><span class="chip" data-i18n="e6_c1">Renew in the app</span><span class="chip" data-i18n="e6_c2">Freeze requests</span><span class="chip" data-i18n="e6_c3">Reminder before it ends</span></div>
         </div>
         <div class="eco-card fade d3">
           <div class="eco-icon" aria-hidden="true"><svg><use href="#ic-store"/></svg></div>
-          <h3 data-i18n="e3_t"></h3>
-          <p data-i18n="e3_p"></p>
-          <div class="chips"><span class="chip" data-i18n="e3_c1"></span><span class="chip" data-i18n="e3_c2"></span><span class="chip" data-i18n="e3_c3"></span></div>
+          <h3 data-i18n="e3_t">Products and Partners</h3>
+          <p data-i18n="e3_p">Show your supplements, gym merchandise and partner brands in the app. Members browse, then pay at your front desk. A new source of income, built in.</p>
+          <div class="chips"><span class="chip" data-i18n="e3_c1">Your Products</span><span class="chip" data-i18n="e3_c2">Partner Brands</span><span class="chip" data-i18n="e3_c3">Extra Income</span></div>
         </div>
       </div>
     </div>
@@ -581,29 +582,29 @@
 <!-- MEMBER APP -->
 <section class="sec">
   <div class="eye fade" data-i18n="app_eye">What your members see</div>
-  <h2 class="fade" data-i18n-html="app_h2"></h2>
-  <p class="s-sub fade" data-i18n="app_sub"></p>
+  <h2 class="fade" data-i18n-html="app_h2">An app for your members.<br>With your gym's name and logo.</h2>
+  <p class="s-sub fade" data-i18n="app_sub">Four sections, working from day one, with your gym's name, logo and colors on every plan. Powered by Refka.</p>
   <div class="app-grid">
     <div class="app-card fade d1">
       <div class="tab-n"><span data-i18n="a_tab">TAB</span> 01</div>
-      <h3 data-i18n="a1_t"></h3>
-      <p data-i18n="a1_p"></p>
+      <h3 data-i18n="a1_t">AI Training and Nutrition</h3>
+      <p data-i18n="a1_p">Personal plans built around your gym's equipment and each member's goals. Updated every month.</p>
     </div>
     <div class="app-card core fade d2">
       <div class="core-b" data-i18n="a_core">CORE</div>
       <div class="tab-n"><span data-i18n="a_tab">TAB</span> 02</div>
-      <h3 data-i18n="a2_t"></h3>
-      <p data-i18n="a2_p"></p>
+      <h3 data-i18n="a2_t">Community and Scheduling</h3>
+      <p data-i18n="a2_p">Members see who trains at the same time, share their progress and join events. This is what keeps them coming back.</p>
     </div>
     <div class="app-card fade d3">
       <div class="tab-n"><span data-i18n="a_tab">TAB</span> 03</div>
-      <h3 data-i18n="a3_t"></h3>
-      <p data-i18n="a3_p"></p>
+      <h3 data-i18n="a3_t">Partners and Products</h3>
+      <p data-i18n="a3_p">Your products, supplements and partner brands in the app. Members browse, then buy at your front desk.</p>
     </div>
     <div class="app-card fade d4">
       <div class="tab-n"><span data-i18n="a_tab">TAB</span> 04</div>
-      <h3 data-i18n="a4_t"></h3>
-      <p data-i18n="a4_p"></p>
+      <h3 data-i18n="a4_t">Gym Info and Trainers</h3>
+      <p data-i18n="a4_p">Your opening hours, trainer profiles and announcements. Always up to date from your dashboard.</p>
     </div>
   </div>
 </section>
@@ -626,15 +627,15 @@
   <h2 class="fade" data-i18n="ref_h2">Know another gym owner?</h2>
   <div class="ref-card fade">
     <div>
-      <h3 data-i18n-html="ref_h3"></h3>
-      <p data-i18n="ref_p"></p>
+      <h3 data-i18n-html="ref_h3">Refer a gym.<br>Get 50% off your<br>next month.</h3>
+      <p data-i18n="ref_p">Tell a gym owner you know about Refka. When their gym subscribes, your next month costs half.</p>
       <button class="btn-teal" id="refBtn" data-i18n="ref" data-click="goRefer">Refer a Gym →</button>
     </div>
     <div class="ref-steps">
-      <div class="ref-row"><div class="ref-dot">1</div><p data-i18n="ref_1"></p></div>
-      <div class="ref-row"><div class="ref-dot">2</div><p data-i18n="ref_2"></p></div>
-      <div class="ref-row"><div class="ref-dot">3</div><p data-i18n="ref_3"></p></div>
-      <div class="ref-row"><div class="ref-dot">4</div><p data-i18n="ref_4"></p></div>
+      <div class="ref-row"><div class="ref-dot">1</div><p data-i18n="ref_1">Tell a gym owner you know about Refka</p></div>
+      <div class="ref-row"><div class="ref-dot">2</div><p data-i18n="ref_2">They write your name in the sign-up form</p></div>
+      <div class="ref-row"><div class="ref-dot">3</div><p data-i18n="ref_3">When they subscribe, your next month is 50% off</p></div>
+      <div class="ref-row"><div class="ref-dot">4</div><p data-i18n="ref_4">We confirm your reward with you on WhatsApp</p></div>
     </div>
   </div>
 </section>
@@ -643,8 +644,8 @@
 <section class="sec alt" id="pricing">
   <div class="eye fade" data-i18n="pr_eye">Pricing</div>
   <h2 class="fade" data-i18n-html="pr_h2">Try it free for 30 days.<br>Choose your plan when you're ready.</h2>
-  <p class="s-sub fade" data-i18n="pr_sub"></p>
-  <div class="trial-pill fade"><p data-i18n-html="trial"></p></div>
+  <p class="s-sub fade" data-i18n="pr_sub">No contracts. No credit card. Prices in your local currency.</p>
+  <div class="trial-pill fade"><p data-i18n-html="trial">Every plan starts with a <b>30-day free trial. Every feature included, no credit card needed.</b></p></div>
 
   <div class="price-controls fade">
     <div class="billing-switch">
@@ -753,13 +754,13 @@
   <div class="eye fade" data-i18n="faq_eye">Questions</div>
   <h2 class="fade" data-i18n="faq_h2">What gym owners ask us</h2>
   <div class="faq-list fade">
-    <details class="faq"><summary data-i18n="faq_q1">Does Refka work with the cards and scanner I already have?</summary><p data-i18n="faq_a1"></p></details>
-    <details class="faq"><summary data-i18n="faq_q2">Does my members' money pass through Refka?</summary><p data-i18n="faq_a2"></p></details>
-    <details class="faq"><summary data-i18n="faq_q3">Do I need internet at the front desk?</summary><p data-i18n="faq_a3"></p></details>
-    <details class="faq"><summary data-i18n="faq_q4">Who owns my gym's and my members' data?</summary><p data-i18n="faq_a4"></p></details>
-    <details class="faq"><summary data-i18n="faq_q5">What happens if I stop paying?</summary><p data-i18n="faq_a5"></p></details>
-    <details class="faq"><summary data-i18n="faq_q6">Who sets it up, and is it in Arabic?</summary><p><span data-i18n="faq_a6"></span> <span data-i18n="faq_247">After that, our support team answers on WhatsApp 24/7, wherever you are.</span></p></details>
-    <details class="faq"><summary data-i18n="faq_q7">Can I try it before I pay?</summary><p data-i18n="faq_a7"></p></details>
+    <details class="faq"><summary data-i18n="faq_q1">Does Refka work with the cards and scanner I already have?</summary><p data-i18n="faq_a1">Yes. Refka reads the barcode cards your members already carry with a standard USB scanner, and members can also check in with the QR code in their app. You do not need to buy new hardware.</p></details>
+    <details class="faq"><summary data-i18n="faq_q2">Does my members' money pass through Refka?</summary><p data-i18n="faq_a2">No. Members pay you directly, in cash, by card or by local methods such as InstaPay or Vodafone Cash in Egypt. Refka records each payment and sends reminders and payment links, but never holds your money.</p></details>
+    <details class="faq"><summary data-i18n="faq_q3">Do I need internet at the front desk?</summary><p data-i18n="faq_a3">Yes. The front desk works in a web browser and needs an internet connection. A mobile data connection is enough.</p></details>
+    <details class="faq"><summary data-i18n="faq_q4">Who owns my gym's and my members' data?</summary><p data-i18n="faq_a4">You do. Refka uses your data only to run the service for you, never sells it, and you can export it at any time.</p></details>
+    <details class="faq"><summary data-i18n="faq_q5">What happens if I stop paying?</summary><p data-i18n="faq_a5">There is no contract. After a 7-day grace period your account is paused. Your member data is kept for 90 days, so you can come back or export it, and is then deleted.</p></details>
+    <details class="faq"><summary data-i18n="faq_q6">Who sets it up, and is it in Arabic?</summary><p><span data-i18n="faq_a6">Our team sets up your gym with you on WhatsApp, at no extra cost. Refka works in 22 languages, including Arabic, for you, your desk staff and your members.</span> <span data-i18n="faq_247">After that, our support team answers on WhatsApp 24/7, wherever you are.</span></p></details>
+    <details class="faq"><summary data-i18n="faq_q7">Can I try it before I pay?</summary><p data-i18n="faq_a7">Yes. You get 30 days free with every feature and no credit card. If you choose a plan during the trial, you keep your remaining free days.</p></details>
   </div>
   <p class="faq-more fade"><span data-i18n="faq_more">Another question?</span> <a href="https://wa.me/201149421081" target="_blank" rel="noopener" class="wa-link" data-i18n="faq_wa">Ask us on WhatsApp</a></p>
 </section>
@@ -1163,13 +1164,15 @@
 <!-- COOKIE CONSENT BANNER                         -->
 <!-- ══════════════════════════════════════════════ -->
 <!-- WHATSAPP: chat with the Refka team. The link and message are set by app.js in the visitor's language. -->
-<a class="wa-fab" id="waBtn" href="https://wa.me/201149421081" target="_blank" rel="noopener" data-i18n-aria="wa_aria" aria-label="Chat with Refka on WhatsApp">
+<aside class="wa-dock" data-i18n-aria="wa_aria" aria-label="Chat with Refka on WhatsApp">
+<a class="wa-fab away" id="waBtn" href="https://wa.me/201149421081" target="_blank" rel="noopener" data-i18n-aria="wa_aria" aria-label="Chat with Refka on WhatsApp">
   <svg viewBox="0 0 32 32" width="30" height="30" aria-hidden="true"><path fill="#fff" d="M16.04 3C9 3 3.3 8.66 3.3 15.67c0 2.24.6 4.43 1.73 6.36L3.2 28.8l6.95-1.8a12.8 12.8 0 0 0 5.89 1.43h.01c7.03 0 12.75-5.66 12.75-12.67C28.8 8.66 23.08 3 16.04 3zm0 23.24h-.01a10.6 10.6 0 0 1-5.38-1.47l-.39-.23-4.13 1.07 1.1-4-.25-.41a10.42 10.42 0 0 1-1.62-5.53c0-5.8 4.75-10.53 10.6-10.53 2.83 0 5.49 1.1 7.49 3.09a10.43 10.43 0 0 1 3.1 7.45c0 5.81-4.75 10.56-10.51 10.56zm5.81-7.88c-.32-.16-1.88-.92-2.17-1.03-.29-.1-.5-.16-.71.16-.21.31-.82 1.03-1 1.24-.19.21-.37.24-.69.08-.32-.16-1.34-.49-2.56-1.57-.95-.84-1.59-1.88-1.77-2.2-.19-.31-.02-.48.14-.64.14-.14.32-.37.48-.55.16-.19.21-.32.32-.53.1-.21.05-.4-.03-.55-.08-.16-.71-1.71-.98-2.34-.26-.62-.52-.53-.71-.54h-.61c-.21 0-.55.08-.84.39-.29.31-1.1 1.07-1.1 2.62s1.13 3.04 1.29 3.25c.16.21 2.22 3.37 5.38 4.72.75.32 1.34.52 1.8.66.75.24 1.44.2 1.98.12.6-.09 1.88-.76 2.14-1.5.27-.74.27-1.37.19-1.5-.08-.13-.29-.21-.61-.37z"/></svg>
 </a>
 <div class="wa-bubble" id="waBubble" hidden>
   <a href="https://wa.me/201149421081" target="_blank" rel="noopener" id="waBubbleLink" data-i18n="wa_bubble">Questions? Chat with us on WhatsApp.</a>
   <button type="button" class="wa-x" id="waClose" data-i18n-aria="fm_close" aria-label="Close">&#x2715;</button>
 </div>
+</aside>
 
 
 
@@ -1304,7 +1307,7 @@
   </div>
 </div>
 
-<script src="assets/js/i18n.js" defer></script>
+<script src="assets/js/i18n/en.js" defer></script>
 <script src="assets/js/app.js" defer></script>
 <script src="assets/js/form.js" defer></script>
 </body>

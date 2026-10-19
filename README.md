@@ -20,7 +20,8 @@ index.html               page markup, meta tags, CSP, structured data, legal doc
 404.html                 "page not found" (served by GitHub Pages for unknown URLs)
 assets/css/fonts.css     self-hosted fonts (Sora, Inter, IBM Plex Sans Arabic)
 assets/css/site.css      all styles: layout, legibility layer, Arabic/RTL, form
-assets/js/i18n.js        translations: one object per language inside T
+assets/js/boot.js        runs first (in <head>): picks country and language, sets lang/dir, starts the language file
+assets/js/i18n/<lang>.js translations: one file per language (en.js always loads; the visitor's language loads on demand)
 assets/js/app.js         menu, background, pricing engine, language switcher, member phone demo, owner app section, modals, WhatsApp button
 assets/js/form.js        click handling, modal focus handling, the signup/contact form
 assets/fonts/            woff2 files + LICENSE.txt (SIL Open Font License)
@@ -29,14 +30,19 @@ assets/images/           social sharing image (1200x630) and logo
 manifest.json, robots.txt, sitemap.xml, _headers
 ```
 
-Scripts are classic scripts loaded with `defer`, in the order i18n.js → app.js → form.js.
+`boot.js` is the only script in `<head>` and runs before the page is drawn. The others are classic scripts
+loaded with `defer`, in the order i18n/en.js → app.js → form.js; app.js waits for the visitor's language file
+(`RFK.whenLang`) before it fills the page. Sections start hidden only when boot.js has added the class `js`,
+so the page shows in full without JavaScript, and boot.js shows everything if the scripts have not finished
+within 6 seconds.
 
 ## Common changes
 
-**Edit copy.** Every visible string is in `assets/js/i18n.js` under `T.<language>.<key>`; the
-English text in `index.html` is only the fallback before JavaScript runs. Change the key in every
-language you support. Brand rules: "Refka" in Latin script, "رفقة" in Arabic text; German uses
-"Sie"; plan names (Starter, Growth, Pro) stay in English.
+**Edit copy.** Every visible string is in `assets/js/i18n/<language>.js` under its key; the English
+text in `index.html` is the fallback without JavaScript. A new key goes into all 22 files (English
+first). Brand rules: "Refka" in Latin letters in every language, Arabic included; German uses "Sie";
+plan names (Starter, Growth, Pro) stay in English. A new language needs its file, its code in `LANGS`
+in boot.js, a button in the language picker and an hreflang line in index.html and sitemap.xml.
 
 **Change prices.** `PRICING` at the top of `assets/js/app.js` (USD, per zone). Zone A is the
 `ZONE_A` country list; every other country is Zone B. The zone comes from the gym's country,

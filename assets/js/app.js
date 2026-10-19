@@ -1,5 +1,5 @@
 /* Refka website: page behaviour: menu, background, pricing engine, language, phone demos, owner app, modals, WhatsApp. Classic scripts, loaded with defer in this order:
-   i18n.js -> app.js -> form.js. No build step. */
+   boot.js (in <head>) -> i18n/en.js -> app.js -> form.js. No build step. */
 // ─── NON-LANG JS (mobile menu, canvas, scroll, fade) ─────────
 // MOBILE MENU
 var burger = document.getElementById('burger');
@@ -30,7 +30,7 @@ document.addEventListener('keydown', function(e) {
 var canvas = document.getElementById('canvas');
 var ctx = canvas.getContext('2d');
 var nodes = [];
-var W, H, running = true;
+var W, H, rafId = 0;
 
 function resize() {
   W = canvas.width = canvas.offsetWidth;
@@ -53,7 +53,8 @@ function initNodes() {
 }
 
 function draw() {
-  if (!running) return;
+  rafId = 0;
+  if (!shouldRun()) return;
   ctx.clearRect(0, 0, W, H);
   for (var i = 0; i < nodes.length; i++) {
     for (var j = i + 1; j < nodes.length; j++) {
@@ -81,28 +82,40 @@ function draw() {
     if (n2.x < 0 || n2.x > W) n2.vx *= -1;
     if (n2.y < 0 || n2.y > H) n2.vy *= -1;
   }
-  requestAnimationFrame(draw);
+  rafId = requestAnimationFrame(draw);
 }
 
-resize();
+// The dots only move while the hero is on screen and the tab is visible: no work, no battery, once
+// the visitor has scrolled on. A phone's address bar showing or hiding changes only the height,
+// so the dots are rebuilt only when the width changes.
+var heroVisible = true, lastW = 0;
+function shouldRun() { return heroVisible && !document.hidden && nodes.length > 0; }
+function start() { if (!rafId && shouldRun()) rafId = requestAnimationFrame(draw); }
+function stop() { if (rafId) { cancelAnimationFrame(rafId); rafId = 0; } }
+resize(); lastW = W;
 initNodes();
-draw();
-window.addEventListener('resize', function() { resize(); initNodes(); });
-document.addEventListener('visibilitychange', function() {
-  running = !document.hidden;
-  if (running) draw();
+start();
+window.addEventListener('resize', function() {
+  resize();
+  if (W !== lastW) { lastW = W; initNodes(); }
+  start();
 });
+document.addEventListener('visibilitychange', function() { document.hidden ? stop() : start(); });
+if ('IntersectionObserver' in window) {
+  new IntersectionObserver(function(es) { heroVisible = es[0].isIntersecting; heroVisible ? start() : stop(); }).observe(canvas);
+}
 
-// SCROLL REVEAL
-var observer = new IntersectionObserver(function(entries) {
-  entries.forEach(function(e) {
-    if (e.isIntersecting) {
-      e.target.classList.add('in');
-      observer.unobserve(e.target);
-    }
-  });
-}, { threshold: .1, rootMargin: '0px 0px -40px 0px' });
-document.querySelectorAll('.fade').forEach(function(el) { observer.observe(el); });
+// SCROLL REVEAL: starts once the page text is in the visitor's language (see the init below),
+// so nobody sees English for a moment before their own language.
+function startReveal() {
+  if (!('IntersectionObserver' in window)) { document.querySelectorAll('.fade').forEach(function(el) { el.classList.add('in'); }); return; }
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) { e.target.classList.add('in'); observer.unobserve(e.target); }
+    });
+  }, { threshold: .1, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.fade').forEach(function(el) { observer.observe(el); });
+}
 
 // ─── LANGUAGE SYSTEM ─────────────────────────────────────────
 // Fonts: self-hosted in /assets/css/fonts.css; CJK, Thai and Hindi use system fonts.
@@ -156,62 +169,15 @@ var FIXED = {
 };
 function fixedList() { return FIXED[_zone + ':' + _cur] || null; }
 
-var TZ = {
-  'Africa/Cairo':'EG','Asia/Riyadh':'SA','Asia/Dubai':'AE','Asia/Qatar':'QA','Asia/Kuwait':'KW','Asia/Bahrain':'BH',
-  'Asia/Muscat':'OM','Asia/Amman':'JO','Asia/Beirut':'LB','Asia/Baghdad':'IQ','Asia/Damascus':'SY','Asia/Aden':'YE',
-  'Asia/Gaza':'PS','Asia/Hebron':'PS','Africa/Casablanca':'MA','Africa/El_Aaiun':'MA','Africa/Tunis':'TN',
-  'Africa/Algiers':'DZ','Africa/Tripoli':'LY','Africa/Khartoum':'SD','Africa/Nouakchott':'MR',
-  'Europe/Tirane':'AL','Europe/Berlin':'DE','Europe/Busingen':'DE','Europe/Vienna':'AT','Europe/Zurich':'CH',
-  'Europe/Vaduz':'LI','Europe/Paris':'FR','Europe/Monaco':'MC','Europe/London':'GB','Europe/Dublin':'IE',
-  'Europe/Madrid':'ES','Atlantic/Canary':'ES','Europe/Lisbon':'PT','Atlantic/Madeira':'PT','Europe/Rome':'IT',
-  'Europe/Amsterdam':'NL','Europe/Brussels':'BE','Europe/Luxembourg':'LU','Europe/Copenhagen':'DK',
-  'Europe/Stockholm':'SE','Europe/Oslo':'NO','Europe/Helsinki':'FI','Europe/Warsaw':'PL','Europe/Prague':'CZ',
-  'Europe/Bratislava':'SK','Europe/Budapest':'HU','Europe/Bucharest':'RO','Europe/Sofia':'BG','Europe/Athens':'GR',
-  'Europe/Istanbul':'TR','Asia/Istanbul':'TR','Europe/Belgrade':'RS','Europe/Skopje':'MK','Europe/Zagreb':'HR',
-  'Europe/Ljubljana':'SI','Europe/Sarajevo':'BA','Europe/Podgorica':'ME','Europe/Kiev':'UA','Europe/Kyiv':'UA',
-  'Europe/Moscow':'RU','Europe/Minsk':'BY','Europe/Riga':'LV','Europe/Vilnius':'LT','Europe/Tallinn':'EE',
-  'Europe/Malta':'MT','Asia/Nicosia':'CY','Europe/Nicosia':'CY','Europe/Chisinau':'MD','Atlantic/Reykjavik':'IS',
-  'Asia/Jerusalem':'IL','Asia/Tel_Aviv':'IL','Asia/Tehran':'IR','Asia/Karachi':'PK','Asia/Kolkata':'IN',
-  'Asia/Calcutta':'IN','Asia/Dhaka':'BD','Asia/Colombo':'LK','Asia/Kathmandu':'NP','Asia/Jakarta':'ID',
-  'Asia/Makassar':'ID','Asia/Jayapura':'ID','Asia/Pontianak':'ID','Asia/Kuala_Lumpur':'MY','Asia/Kuching':'MY',
-  'Asia/Singapore':'SG','Asia/Manila':'PH','Asia/Bangkok':'TH','Asia/Ho_Chi_Minh':'VN','Asia/Saigon':'VN',
-  'Asia/Seoul':'KR','Asia/Tokyo':'JP','Asia/Shanghai':'CN','Asia/Urumqi':'CN','Asia/Hong_Kong':'HK',
-  'Asia/Taipei':'TW','Asia/Macau':'MO','Asia/Almaty':'KZ','Asia/Tbilisi':'GE','Asia/Yerevan':'AM','Asia/Baku':'AZ',
-  'Asia/Tashkent':'UZ','Africa/Lagos':'NG','Africa/Nairobi':'KE','Africa/Accra':'GH','Africa/Johannesburg':'ZA',
-  'Africa/Dar_es_Salaam':'TZ','Africa/Kampala':'UG','Africa/Addis_Ababa':'ET','Africa/Kigali':'RW',
-  'Africa/Dakar':'SN','Africa/Abidjan':'CI','Australia/Sydney':'AU','Australia/Melbourne':'AU',
-  'Australia/Brisbane':'AU','Australia/Perth':'AU','Australia/Adelaide':'AU','Australia/Hobart':'AU',
-  'Pacific/Auckland':'NZ','America/Sao_Paulo':'BR','America/Mexico_City':'MX','America/Argentina/Buenos_Aires':'AR',
-  'America/Buenos_Aires':'AR','America/Bogota':'CO','America/Santiago':'CL','America/Lima':'PE',
-  'America/Toronto':'CA','America/Vancouver':'CA','America/Edmonton':'CA','America/Winnipeg':'CA',
-  'America/Halifax':'CA','America/St_Johns':'CA','America/New_York':'US','America/Chicago':'US',
-  'America/Denver':'US','America/Los_Angeles':'US','America/Phoenix':'US','America/Anchorage':'US',
-  'America/Detroit':'US','Pacific/Honolulu':'US','America/Puerto_Rico':'PR'
-};
+// Country detection and the time-zone table live in boot.js (they run before the page is drawn).
+var TZ = RFK.TZ;
 
 var _billing = 'm', _country = 'US', _zone = 'A', _cur = 'USD';
 
 function zoneOf(cc) { return ZONE_A.indexOf(cc) > -1 ? 'A' : 'B'; }
 function curOf(cc) { var c = CUR[cc] || 'USD'; return FX[c] ? c : 'USD'; }
 
-function detectCountry() {
-  try {
-    var q = new URLSearchParams(window.location.search).get('country');
-    if (q && /^[A-Za-z]{2}$/.test(q)) return q.toUpperCase();
-  } catch(e) {}
-  try { var s = localStorage.getItem('rfk_cc'); if (s) return s; } catch(e) {}
-  if (window.REFKA_GEO && window.REFKA_GEO.country) return String(window.REFKA_GEO.country).toUpperCase();
-  try {
-    var tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
-    if (TZ[tz]) return TZ[tz];
-  } catch(e) {}
-  var langs = navigator.languages || [navigator.language || ''];
-  for (var i = 0; i < langs.length; i++) {
-    var m = /[-_]([A-Za-z]{2})$/.exec(langs[i] || '');
-    if (m) return m[1].toUpperCase();
-  }
-  return 'US';
-}
+function detectCountry() { return RFK.country; }
 
 function numLocale() {
   var map = { 'ar':'ar-EG', 'tl':'fil', 'zh-Hans':'zh-CN', 'zh-Hant':'zh-TW' };
@@ -406,7 +372,7 @@ function applyLang(code) {
     else if (!e.shiftKey && (i === f.length - 1 || i === -1)) { e.preventDefault(); f[0].focus(); }
   });
   document.querySelectorAll('.lang-opt').forEach(function(btn) {
-    btn.addEventListener('click', function() { applyLang(btn.dataset.l); closeLang(); });
+    btn.addEventListener('click', function() { setLang(btn.dataset.l); closeLang(); });
   });
 })();
 
@@ -420,29 +386,16 @@ function applyLang(code) {
     if (window.gtag) gtag('event', 'country_change', { country: sel.value });
   });
 
-  var code = null;
-  try {
-    var q = new URLSearchParams(window.location.search).get('lang');
-    if (q && T[q]) code = q;
-  } catch(e) {}
-  if (!code) { try { var st = localStorage.getItem('rfk_l'); if (st && T[st]) code = st; } catch(e) {} }
-  // Egypt and the Gulf open in Arabic. The UAE and Qatar are mostly expats, so there the site
-  // opens in Arabic only when the browser lists Arabic, and otherwise in the browser's language.
-  if (!code) {
-    var navs = (navigator.languages || [navigator.language || '']).map(function(l) { return String(l).toLowerCase(); });
-    var hasAr = navs.some(function(l) { return l.indexOf('ar') === 0; });
-    if (['EG', 'SA', 'KW', 'BH', 'OM'].indexOf(_country) > -1 || (hasAr && ['AE', 'QA'].indexOf(_country) > -1)) code = 'ar';
-  }
-  if (!code) {
-    var nav = (navigator.language || 'en').toLowerCase();
-    if (nav.indexOf('zh-tw') === 0 || nav.indexOf('zh-hk') === 0 || nav.indexOf('zh-hant') === 0) code = 'zh-Hant';
-    else if (nav.indexOf('zh') === 0) code = 'zh-Hans';
-    else if (nav.indexOf('fil') === 0) code = 'tl';
-    else if (T[nav.substring(0, 2)]) code = nav.substring(0, 2);
-    else code = 'en';
-  }
-  applyLang(code);
+  // boot.js already chose the language and started loading its file; apply it as soon as it is here.
+  RFK.whenLang(RFK.lang, function(code) {
+    applyLang(code);
+    document.documentElement.classList.add('ready');
+    startReveal();
+  });
 })();
+
+// Switching language later: load that language's file first (once), then apply it.
+function setLang(code) { RFK.whenLang(code, function(c) { applyLang(c); }); }
 
 // ═══════════════════════════════════════════════════════════════
 // PHONE DEMOS: the owner phone and the member phone, 4 scenes each,
@@ -661,7 +614,8 @@ function fitText() {
 // On phones the WhatsApp button would sit on top of the hero text and buttons: it waits until they scroll away.
 (function () {
   var fab = g('waBtn'), ctas = document.querySelector('#hero .hero-text');   // the headline, text and buttons
-  if (!fab || !ctas || !('IntersectionObserver' in window)) return;
+  if (!fab) return;
+  if (!ctas || !('IntersectionObserver' in window)) { fab.classList.remove('away'); return; }   // starts hidden in the HTML so it never flashes over the hero
   var phone = window.matchMedia('(max-width: 900px)');
   var r = ctas.getBoundingClientRect();   // decide before the first animation frame, so it never flashes over the buttons
   if (phone.matches && r.top < window.innerHeight && r.bottom > 0) fab.classList.add('away');

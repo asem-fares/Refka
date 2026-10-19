@@ -152,14 +152,15 @@ h2 { font-family: var(--font-display); font-size: var(--fs-h2); font-weight: 800
 .lang-x:focus-visible, .modal-close:focus-visible, button:focus-visible, a:focus-visible,
 select:focus-visible { outline: 2px solid var(--p-txt); outline-offset: 2px; }
 
-.fade { opacity: 0; transform: translateY(var(--sp-16)); transition: opacity var(--dur-slow) var(--ease-out), transform var(--dur-slow) var(--ease-out); }
-.fade.in { opacity: 1; transform: none; }
+.js .fade { opacity: 0; transform: translateY(var(--sp-16)); transition: opacity var(--dur-slow) var(--ease-out), transform var(--dur-slow) var(--ease-out); }
+/* Sections start hidden only when boot.js has run (class .js); without JavaScript everything shows. */
+.js .fade.in { opacity: 1; transform: none; }
 .d1 { transition-delay: 80ms; } .d2 { transition-delay: 160ms; } .d3 { transition-delay: 240ms; } .d4 { transition-delay: 320ms; }
 
 /* 3. LAYOUT =============================================================== */
 
 /* nav (the header only: the footer has its own <nav class="f-links">) */
-body > nav {
+body > nav:not(.mob-menu) {
   position: sticky; top: 0; z-index: 200;
   display: flex; align-items: center; justify-content: space-between;
   padding: 0 var(--pad-x); height: 64px;
@@ -239,7 +240,7 @@ body > nav {
   gap: var(--sp-48); align-items: center;
   padding: var(--sp-96) var(--pad-x) var(--sp-80); min-height: 88vh;
 }
-#canvas { position: absolute; inset: 0; z-index: 0; opacity: .6; }
+#canvas { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; opacity: .6; }
 .hero-text { position: relative; z-index: 1; }
 .hero-chip {
   display: inline-flex; align-items: center; gap: var(--sp-8);
@@ -426,7 +427,7 @@ footer .f-links a { font-size: var(--fs-md); color: var(--t-footer); text-decora
   box-shadow: 0 8px 24px rgba(0,0,0,.45); transition: transform var(--dur-fast) var(--ease-std), bottom var(--dur-base) var(--ease-std), opacity var(--dur-base) var(--ease-std);
 }
 .wa-fab:hover { transform: scale(1.06); }
-.wa-fab.away { opacity: 0; transform: scale(.6); pointer-events: none; }   /* phones: waits until the hero is scrolled past */
+.js .wa-fab.away { opacity: 0; transform: scale(.6); pointer-events: none; }   /* phones: waits until the hero is scrolled past */
 .wa-bubble {
   position: fixed; bottom: 90px; inset-inline-end: 20px; z-index: 8500; max-width: 260px;
   background: var(--on-accent); color: var(--ink); border-radius: var(--r-card); padding: var(--sp-12) var(--sp-16); padding-inline-end: var(--sp-40);
@@ -966,6 +967,8 @@ html[lang="zh-Hans"] h1, html[lang="zh-Hant"] h1 { line-height: 1.3; }
 }
 @media (max-width: 340px) {
   h1 { font-size: var(--fs-xl); }   /* Galaxy Fold cover screen (280 px) */
+  #hero { grid-template-columns: minmax(0, 1fr); }
+  .ctas .btn-teal, .ctas .btn-outline { white-space: normal; text-align: center; }
 }
 @media (max-width: 480px) {
   .duo-tag { inset-inline-start: var(--sp-8); bottom: var(--sp-8); max-width: calc(100% - 2 * var(--sp-8)); padding: var(--sp-4) var(--sp-8); font-size: var(--fs-xs); }
@@ -994,7 +997,7 @@ html[lang="zh-Hans"] h1, html[lang="zh-Hant"] h1 { line-height: 1.3; }
 
 /* 9. REDUCED MOTION ====================================================== */
 @media (prefers-reduced-motion: reduce) {
-  .fade { opacity: 1; transform: none; transition: none; }
+  .js .fade { opacity: 1; transform: none; transition: none; }
   .btn-teal:active, .btn-outline:active, .btn-sm-outline:active, .eco-card:hover { transform: none; }
   .duo img { transition: none; }
   .duo:hover img { transform: none; }

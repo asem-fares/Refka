@@ -1,5 +1,5 @@
 /* Refka website: click dispatcher, modal focus handling, signup/contact form. Classic scripts, loaded with defer in this order:
-   i18n.js -> app.js -> form.js. No build step. */
+   boot.js (in <head>) -> i18n/en.js -> app.js -> form.js. No build step. */
 // ═══════════════════════════════════════════════════════════════
 // CLICK DISPATCHER
 // The Content-Security-Policy forbids inline handlers (onclick="…"),
