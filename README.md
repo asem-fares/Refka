@@ -89,6 +89,11 @@ refka.tech run in preview mode and send nothing.
   for state changes, `--ease-out` for arrivals. Always name the property, never `transition: all`.
   Everything that moves has a `prefers-reduced-motion` fallback. Phone-demo keyframes are story
   timelines and keep their own timing.
+- **Contrast:** every text pair is at least 4.5:1 (3:1 for 24px+ or bold 18.66px+), measured on the
+  rendered page. `--t3` is the dimmest color for labels and small text; `--t-off` is only for large
+  display text (step numbers). Links inside the legal documents use `--p-txt`.
+- **Font sizes:** only the `--fs-*` scale. Arabic uses the same scale one step up for card text
+  (`--fs-body`) and an 18px body, because Arabic glyphs read smaller at the same size.
 - **Layout:** every band (nav, hero, sections, footer) uses `padding-inline: var(--pad-x)`, which
   centers content in `--container` (1200px) with a `--gutter` of 64px (20px under 900px).
 - **Breakpoints:** 1240, 900, 600, 480 px (plus `max-height: 520px` for phones held sideways).
