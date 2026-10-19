@@ -81,6 +81,9 @@ refka.tech run in preview mode and send nothing.
 - **Shapes:** buttons, inputs and selects `--r-control` (10px); cards `--r-card` (16px); panels
   `--r-panel` (20px); pills `--r-pill`. Buttons: `.btn-teal`, `.btn-outline`, `.btn-sm-outline`,
   48px tall, `.lg` and `.btn-outline` 52px.
+- **Spacing:** 4px base, 8px rhythm. Padding, margin and gap use only `--sp-*` tokens
+  (2, 4, 8, 12, 16, 20, 24, 32, 40, 48, 56, 64, 80, 96 px). Phone demos are scaled-down app
+  screens and keep their own fine values.
 - **Layout:** every band (nav, hero, sections, footer) uses `padding-inline: var(--pad-x)`, which
   centers content in `--container` (1200px) with a `--gutter` of 64px (20px under 900px).
 - **Breakpoints:** 1240, 900, 600, 480 px (plus `max-height: 520px` for phones held sideways).
