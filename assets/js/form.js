@@ -134,8 +134,14 @@ function afterLang() {
 var _origApplyLang = applyLang;
 applyLang = function (code) { _origApplyLang(code); afterLang(); };
 
+// Arabic keyboards type ٠١٢… (and Persian/Urdu ۰۱۲…): read them as 0-9 so the number is accepted and arrives in a form WhatsApp understands.
+function latinDigits(s) {
+  return String(s).replace(/[\u0660-\u0669]/g, function (d) { return d.charCodeAt(0) - 0x0660; })
+                  .replace(/[\u06F0-\u06F9]/g, function (d) { return d.charCodeAt(0) - 0x06F0; });
+}
+
 function checkField(f) {
-  var v = (f.value || '').trim(), rules = (f.getAttribute('data-check') || '').split(','), msg = '';
+  var v = latinDigits((f.value || '').trim()), rules = (f.getAttribute('data-check') || '').split(','), msg = '';
   for (var i = 0; i < rules.length && !msg; i++) {
     var r = rules[i];
     if (r === 'req' && !v) msg = tr('fm_req');
@@ -181,7 +187,7 @@ function showDone() {
     });
     if (!ok) { firstBad.focus(); return; }
 
-    var val = function (id) { return (g(id).value || '').trim(); };
+    var val = function (id) { return latinDigits((g(id).value || '').trim()); };
     var cCode = val('suCountry'), cName = cCode;
     try { cName = new Intl.DisplayNames(['en'], { type: 'region' }).of(cCode); } catch (e) {}   // inbox reads English
     var payload = {

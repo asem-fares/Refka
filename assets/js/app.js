@@ -106,11 +106,11 @@ var PRICING = {
 };
 var ZONE_A = ('US CA GB DE FR AE SA QA KW BH OM JP KR SG AU NZ HK IL CH NL BE AT DK SE NO FI IE ES IT PT PL CZ ' +
               'SI EE SK HU LV LT HR MT CY IS LU GR TW MO SM AD PR').split(' ');
-var EURO = 'DE FR NL BE AT FI IE ES IT PT SI EE SK LV LT HR MT CY LU GR SM AD MC ME XK'.split(' ');
+var EURO = 'DE FR NL BE AT FI IE ES IT PT SI EE SK LV LT HR MT CY LU GR BG SM AD MC ME XK'.split(' ');   // Bulgaria: euro since 1 Jan 2026
 var CUR = {
   EG:'EGP', SA:'SAR', AE:'AED', QA:'QAR', KW:'KWD', BH:'BHD', OM:'OMR', JO:'JOD', MA:'MAD', TN:'TND', DZ:'DZD',
   IQ:'IQD', LY:'LYD', AL:'ALL', TR:'TRY', GB:'GBP', CH:'CHF', LI:'CHF', SE:'SEK', NO:'NOK', DK:'DKK', PL:'PLN',
-  CZ:'CZK', HU:'HUF', RO:'RON', BG:'BGN', IS:'ISK', RS:'RSD', MK:'MKD', BA:'BAM', UA:'UAH', RU:'RUB', GE:'GEL',
+  CZ:'CZK', HU:'HUF', RO:'RON', IS:'ISK', RS:'RSD', MK:'MKD', BA:'BAM', UA:'UAH', RU:'RUB', GE:'GEL',
   KZ:'KZT', US:'USD', PR:'USD', CA:'CAD', MX:'MXN', BR:'BRL', AR:'ARS', CO:'COP', CL:'CLP', PE:'PEN',
   AU:'AUD', NZ:'NZD', JP:'JPY', KR:'KRW', CN:'CNY', HK:'HKD', MO:'MOP', TW:'TWD', SG:'SGD', MY:'MYR',
   ID:'IDR', TH:'THB', PH:'PHP', VN:'VND', IN:'INR', PK:'PKR', BD:'BDT', LK:'LKR', NP:'NPR', IL:'ILS',
@@ -119,8 +119,8 @@ var CUR = {
 EURO.forEach(function(c){ CUR[c] = 'EUR'; });
 
 // FX snapshot: USD -> currency. ECB reference rates 16 Oct 2026 (via EUR/USD 1.1253),
-// GCC/JOD official pegs, EGP market rate 14 Oct 2026, ALL Bank of Albania official 16 Oct 2026. Replaced at runtime by a live
-// feed when reachable (window.REFKA_FX from the server, or open.er-api.com).
+// GCC/JOD official pegs, EGP market rate 14 Oct 2026, ALL Bank of Albania official 16 Oct 2026. A server can
+// replace it by defining window.REFKA_FX before this script; the browser never calls an FX provider.
 var FX = { USD:1, EUR:0.8887, JPY:158.02, CZK:21.615, DKK:6.6425, GBP:0.74989, HUF:322.65, PLN:3.8834,
   RON:4.7374, SEK:9.904, CHF:0.82396, ISK:121.03, NOK:9.441, TRY:49.527, AUD:1.437, BRL:5.0828,
   CAD:1.4161, CNY:6.6862, HKD:7.8482, IDR:18031, ILS:3.0945, INR:94.965, KRW:1332.1, MXN:18.384,
