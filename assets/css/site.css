@@ -434,8 +434,8 @@ footer .f-links a { font-size: var(--fs-md); color: var(--t-footer); text-decora
 .duo-c img { object-position: 30% 25%; }
 .duo-d { grid-column: 1 / span 2; grid-row: 2; }
 .duo-d img { object-position: center 30%; }
-.duo-mark { grid-column: 4; grid-row: 2; display: grid; place-items: center; background: radial-gradient(120% 120% at 30% 20%, var(--p-tint-20), transparent 60%), radial-gradient(120% 120% at 80% 90%, rgba(201,151,58,.14), transparent 60%), var(--card); }
-.duo-mark::after { display: none; }
+.duo-e { grid-column: 4; grid-row: 2; }
+.duo-e img { object-position: 45% center; }
 
 /* how it works */
 .steps { display: grid; grid-template-columns: repeat(3, 1fr); margin-top: 48px; border: 1.5px solid var(--bd); border-radius: var(--r-card); overflow: hidden; background: var(--card); }
@@ -915,7 +915,7 @@ html[lang="zh-Hans"] h1, html[lang="zh-Hant"] h1 { line-height: 1.3; }
   .duo-a { grid-column: 1 / span 2; grid-row: 1; }
   .duo-b { grid-column: 1; grid-row: 2 / span 2; }
   .duo-c { grid-column: 2; grid-row: 2; }
-  .duo-mark { grid-column: 2; grid-row: 3; }
+  .duo-e { grid-column: 2; grid-row: 3; }
   .duo-d { grid-column: 1 / span 2; grid-row: 4; }
 }
 @media (max-width: 600px) {
