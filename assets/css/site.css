@@ -421,6 +421,22 @@ footer .f-links a { font-size: var(--fs-md); color: var(--t-footer); text-decora
 .big-stat { font-family: var(--font-display); font-size: clamp(80px,12vw,112px); font-weight: 800; color: var(--a); line-height: 1; letter-spacing: -4px; margin-bottom: 4px; }
 .stat-label { font-size: var(--fs-lead); color: var(--t1); line-height: 1.6; margin-bottom: 6px; font-weight: 500; }
 
+/* training together: photo mosaic under the problem statement */
+.duo-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); grid-auto-rows: 210px; gap: 12px; margin-top: 48px; }
+.duo { position: relative; margin: 0; overflow: hidden; border-radius: var(--r-card); border: 1px solid var(--bd); background: var(--s2); }
+.duo img { width: 100%; height: 100%; object-fit: cover; display: block; filter: saturate(.92) brightness(.94); }   /* one tone for photos from different sources */
+.duo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 55%, rgba(8,8,8,.45)); pointer-events: none; }
+.duo-a { grid-column: 1 / span 2; grid-row: 1; }
+.duo-a img { object-position: center 30%; }
+.duo-b { grid-column: 3; grid-row: 1 / span 2; }
+.duo-b img { object-position: center 45%; filter: saturate(.9) brightness(.8); }   /* white wall: toned down to sit on the dark page */
+.duo-c { grid-column: 4; grid-row: 1; }
+.duo-c img { object-position: 30% 25%; }
+.duo-d { grid-column: 1 / span 2; grid-row: 2; }
+.duo-d img { object-position: center 30%; }
+.duo-mark { grid-column: 4; grid-row: 2; display: grid; place-items: center; background: radial-gradient(120% 120% at 30% 20%, var(--p-tint-20), transparent 60%), radial-gradient(120% 120% at 80% 90%, rgba(201,151,58,.14), transparent 60%), var(--card); }
+.duo-mark::after { display: none; }
+
 /* how it works */
 .steps { display: grid; grid-template-columns: repeat(3, 1fr); margin-top: 48px; border: 1.5px solid var(--bd); border-radius: var(--r-card); overflow: hidden; background: var(--card); }
 .step { padding: 32px 28px; border-inline-end: 1.5px solid var(--bd); }
@@ -895,6 +911,12 @@ html[lang="zh-Hans"] h1, html[lang="zh-Hant"] h1 { line-height: 1.3; }
   .oa-wrap { grid-template-columns: minmax(0, 1fr); grid-template-areas: "head" "stage" "list"; row-gap: 26px; }
   .eco-side.oa { padding: 18px 16px 24px; }
   .wa-bubble { display: none !important; }
+  .duo-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-auto-rows: 180px; gap: 10px; margin-top: 36px; }
+  .duo-a { grid-column: 1 / span 2; grid-row: 1; }
+  .duo-b { grid-column: 1; grid-row: 2 / span 2; }
+  .duo-c { grid-column: 2; grid-row: 2; }
+  .duo-mark { grid-column: 2; grid-row: 3; }
+  .duo-d { grid-column: 1 / span 2; grid-row: 4; }
 }
 @media (max-width: 600px) {
   .phone { width: 262px; height: 520px; }
@@ -925,6 +947,7 @@ html[lang="zh-Hans"] h1, html[lang="zh-Hant"] h1 { line-height: 1.3; }
   .oa-pain b { font-size: var(--fs-card); }
   .oa-phone { border-radius: 44px; }
   .oa-way { grid-template-columns: 76px minmax(0, 1fr) auto; }
+  .duo-grid { grid-auto-rows: 140px; gap: 8px; }
 }
 @media (max-height: 520px) {
   .mob-menu { padding-top: 68px; gap: 12px; }
