@@ -1,0 +1,12 @@
+Photos from Pexels (pexels.com), free for commercial use under the Pexels License. No attribution required; sources kept for the record.
+
+duo-friends.webp  https://www.pexels.com/photo/11327781/
+duo-hug.webp      https://www.pexels.com/photo/19406578/
+duo-women.webp    https://www.pexels.com/photo/32695892/
+duo-spot.webp     https://www.pexels.com/photo/2204196/
+duo-coach.webp    https://www.pexels.com/photo/37963582/
+
+../members/m1.webp  crop of https://www.pexels.com/photo/4976937/
+../members/m2.webp  crop of https://www.pexels.com/photo/2204196/
+../members/w1.webp  crop of https://www.pexels.com/photo/32695892/
+../members/w2.webp  crop of https://www.pexels.com/photo/32695892/

@@ -1033,3 +1033,5 @@ s.was { color: var(--t3); text-decoration-thickness: 2px; font-size: .42em; font
 .cc-eg .oa-way [data-pm]::before { content: ""; display: inline-block; vertical-align: -3px; margin-inline-end: 5px; height: 14px; border-radius: 3px; }
 .cc-eg .oa-way [data-pm="1"]::before { width: 30px; background: #fff url(../images/pay/instapay.png) center / auto 9px no-repeat; }
 .cc-eg .oa-way [data-pm="2"]::before { width: 14px; background: url(../images/pay/vodafone-cash.png) center / contain no-repeat; }
+
+.duo-d img { object-position: 50% 8%; }
