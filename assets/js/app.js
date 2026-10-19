@@ -179,8 +179,61 @@ function curOf(cc) { var c = CUR[cc] || 'USD'; return FX[c] ? c : 'USD'; }
 
 function detectCountry() { return RFK.country; }
 
+// ═══════════════════════════════════════════════════════════════
+// ARABIC PERSONAS: the names in the demos match the visitor's country,
+// so a gym owner in Riyadh sees Saudi names and one in Cairo sees Egyptian ones.
+// m: two men, w: two women, s: the front-desk staff member.
+// In the Gulf and Yemen, women are shown with their initial instead of a photo.
+// ═══════════════════════════════════════════════════════════════
+var PERSONA = {
+  EG: { m: ['أحمد محمود', 'محمد عادل'], w: ['مريم أحمد', 'نورهان سامي'], s: 'مصطفى' },
+  SA: { m: ['عبدالعزيز القحطاني', 'محمد الغامدي'], w: ['نورة العتيبي', 'سارة الدوسري'], s: 'فهد' },
+  AE: { m: ['سعيد المزروعي', 'خالد الكعبي'], w: ['مريم الشامسي', 'فاطمة النعيمي'], s: 'راشد' },
+  KW: { m: ['عبدالله العنزي', 'فهد المطيري'], w: ['دانة العجمي', 'شيخة الرشيدي'], s: 'بدر' },
+  QA: { m: ['حمد المري', 'علي الكواري'], w: ['العنود الهاجري', 'مها السليطي'], s: 'جاسم' },
+  BH: { m: ['يوسف الذوادي', 'أحمد الدوسري'], w: ['زينب الجودر', 'فاطمة المناعي'], s: 'عيسى' },
+  OM: { m: ['سالم البلوشي', 'خالد الحارثي'], w: ['أمل الرواحي', 'شيماء البوسعيدي'], s: 'ناصر' },
+  YE: { m: ['عبدالله العولقي', 'محمد الحضرمي'], w: ['أروى العبسي', 'سمر الشرعبي'], s: 'صالح' },
+  JO: { m: ['محمد العبادي', 'يزن الخطيب'], w: ['رزان الزعبي', 'لينا الحياري'], s: 'عمر' },
+  LB: { m: ['كريم حداد', 'رامي خوري'], w: ['ريم حمدان', 'نادين سلامة'], s: 'جاد' },
+  SY: { m: ['محمد الأحمد', 'باسل العلي'], w: ['ريم الحسن', 'لمى الخطيب'], s: 'حسام' },
+  PS: { m: ['محمد أبو علي', 'يوسف الشوا'], w: ['ديما عودة', 'ريم ناصر'], s: 'أحمد' },
+  IQ: { m: ['علي الجبوري', 'حيدر الربيعي'], w: ['زينب العبيدي', 'نور الدليمي'], s: 'مصطفى' },
+  MA: { m: ['يوسف العلوي', 'مهدي بناني'], w: ['سلمى الإدريسي', 'هند التازي'], s: 'حمزة' },
+  DZ: { m: ['أمين بن علي', 'رياض بوزيد'], w: ['أمينة بلقاسم', 'ياسمين حداد'], s: 'كريم' },
+  TN: { m: ['أيمن الطرابلسي', 'وسيم بن سالم'], w: ['إيناس الهمامي', 'مريم الجبالي'], s: 'سامي' },
+  LY: { m: ['محمد الورفلي', 'أحمد المصراتي'], w: ['سارة الترهوني', 'هبة الزوي'], s: 'علي' },
+  SD: { m: ['محمد عثمان', 'أحمد الطيب'], w: ['سارة عبدالله', 'آمنة الأمين'], s: 'معتز' },
+  _:  { m: ['عمر حسن', 'خالد منصور'], w: ['سارة عادل', 'ليلى سمير'], s: 'يوسف' }
+};
+var VEIL = ['SA', 'AE', 'KW', 'QA', 'BH', 'OM', 'YE'];
+function isVeiled() { return _lang === 'ar' && VEIL.indexOf(_country) > -1; }
+function firstName(n) { return String(n).split(' ')[0]; }
+function applyPersona(t) {
+  var P = PERSONA[_country] || PERSONA._;
+  t.ph_n1 = P.m[0]; t.ph_n2 = P.m[1]; t.ph_w1 = P.w[0]; t.ph_w2 = P.w[1]; t.oa_staff = P.s;
+  t.ph_post = 'رقم شخصي جديد في الديدلفت اليوم. شكراً على المساعدة يا ' + firstName(P.m[0]) + ' 💪';
+  t.ph_post_w = 'رقم شخصي جديد في الديدلفت اليوم. شكراً على المساعدة يا ' + firstName(P.w[0]) + ' 💪';
+  t.ph_m_toast = firstName(P.m[1]) + ' قَبِل طلبك. محادثتكما مفتوحة الآن.';
+  t.ph_m_toast_w = firstName(P.w[1]) + ' قَبِلت طلبك. محادثتكما مفتوحة الآن.';
+}
+// Owner app: a woman's photo becomes her initial where the visitor's country expects it.
+function veilOwnerApp(root) {
+  root.querySelectorAll('img.oa-av').forEach(function (img) {
+    if (!/members\/w/.test(img.getAttribute('src') || '')) return;
+    var ini = img.nextElementSibling && img.nextElementSibling.classList.contains('oa-veil') ? img.nextElementSibling : null;
+    if (isVeiled()) {
+      var nm = img.parentNode.querySelector('.oa-nm');
+      if (!ini) { ini = document.createElement('span'); ini.className = 'oa-av oa-ini oa-veil'; ini.setAttribute('aria-hidden', 'true'); img.after(ini); }
+      ini.textContent = Array.from(nm ? nm.textContent.trim() : '')[0] || '';
+      img.style.display = 'none'; ini.style.display = '';
+    } else { img.style.display = ''; if (ini) ini.style.display = 'none'; }
+  });
+}
+
+
 function numLocale() {
-  var map = { 'ar':'ar-EG', 'tl':'fil', 'zh-Hans':'zh-CN', 'zh-Hant':'zh-TW' };
+  var map = { 'ar':'ar-EG-u-nu-latn', 'tl':'fil', 'zh-Hans':'zh-CN', 'zh-Hant':'zh-TW' };
   return map[_lang] || _lang;
 }
 
@@ -214,6 +267,10 @@ function renderPrices() {
   document.querySelectorAll('.yr').forEach(function(el) {
     var p = P[el.dataset.plan], f = F && F[el.dataset.plan];
     el.textContent = fmt(f ? f.y : (_cur === 'USD' ? p.y : local(p.a) * 12));
+  });
+  document.querySelectorAll('s.was').forEach(function(el) {
+    var p = P[el.dataset.plan], f = F && F[el.dataset.plan];
+    el.textContent = fmt(f ? f.m * 12 : local(p.m) * 12);
   });
   document.querySelectorAll('.ai-q').forEach(function(el) { el.textContent = fmtNum(P[el.dataset.plan].ai); });
   document.querySelectorAll('[data-usd]').forEach(function(el) { el.textContent = fmt(local(+el.dataset.usd)); });
@@ -259,6 +316,7 @@ function setCountry(cc, remember) {
   _country = cc; _zone = zoneOf(cc); _cur = curOf(cc);
   if (remember) { try { localStorage.setItem('rfk_cc', cc); } catch(e) {} }
   var sel = g('countrySel'); if (sel && sel.value !== cc) sel.value = cc;
+  if (_lang === 'ar') { applyLang('ar'); if (window.rfkSetPair) window.rfkSetPair(); return; }
   renderPrices();
 }
 
@@ -288,6 +346,7 @@ function applyLang(code) {
   var t = T[code];
   if (!t) return;
   _lang = code;
+  if (code === 'ar') applyPersona(t);
   try { localStorage.setItem('rfk_l', code); } catch(e) {}
   loadFont(code);
 
@@ -475,6 +534,7 @@ function oaMoney() {
     cashExp: fee * 4, cashCnt: fee * 4 - short, short: short, pm1: fee * 3, pm2: fee * 2
   };
 }
+
 function renderOwnerApp() {
   var root = g('ownerApp'); if (!root) return;
   var t = T[_lang] || T.en, loc = numLocale();
@@ -506,6 +566,7 @@ function renderOwnerApp() {
   root.querySelectorAll('[data-oa-hour]').forEach(function (el) { el.textContent = hm(+el.getAttribute('data-oa-hour')); });
   root.querySelectorAll('[data-oa-time]').forEach(function (el) { var p = el.getAttribute('data-oa-time').split(':'); el.textContent = hm(+p[0], +p[1]); });
   root.querySelectorAll('[data-oa-ini]').forEach(function (el) { el.textContent = Array.from(tr(el.getAttribute('data-oa-ini')))[0] || ''; });
+  veilOwnerApp(root);
   oaFit(root);
 }
 // Long amounts (JP¥, Rp, ₫) shrink to fit their box instead of being cut off.
@@ -680,7 +741,14 @@ function setPair(p) {
     el.setAttribute('data-i18n', k);
     el.textContent = t[k] !== undefined ? t[k] : T.en[k];
   });
+  var veil = p === 'w' && isVeiled();
+  document.querySelectorAll('[data-pair-img]').forEach(function (im) {
+    var box = im.parentNode, k = P.key[im.getAttribute('data-pair-img') === 'a' ? '1' : '2'];
+    box.classList.toggle('veil', veil);
+    box.setAttribute('data-ini', Array.from(String(t[k] || T.en[k] || ''))[0] || '');
+  });
 }
+window.rfkSetPair = function () { setPair(_pair); };
 function swapPair() { setPair(_pair === 'm' ? 'w' : 'm'); }
 (function () {
   var cc = _country || 'US';

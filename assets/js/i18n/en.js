@@ -324,5 +324,9 @@
   nav_main: "Main",
   nav_foot: "Footer",
   menu: "Menu",
+  pb_ref: "Refer one gym and your next month costs half: <b>half a member.</b>",
+  ms_eye: "Why Refka",
+  ms_vision: "Nobody should train alone.",
+  ms_mission: "We give every gym owner one system to run the gym, and an app that brings them closer to their members and brings members together.",
   lang_sel: "Choose language"
 };
