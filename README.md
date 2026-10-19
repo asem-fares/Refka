@@ -84,6 +84,11 @@ refka.tech run in preview mode and send nothing.
 - **Spacing:** 4px base, 8px rhythm. Padding, margin and gap use only `--sp-*` tokens
   (2, 4, 8, 12, 16, 20, 24, 32, 40, 48, 56, 64, 80, 96 px). Phone demos are scaled-down app
   screens and keep their own fine values.
+- **Motion:** durations `--dur-fast` 150ms (hover/press), `--dur-base` 250ms (component state),
+  `--dur-slow` 400ms (content arriving), `--dur-ambient` 600ms (photo zoom only); easing `--ease-std`
+  for state changes, `--ease-out` for arrivals. Always name the property, never `transition: all`.
+  Everything that moves has a `prefers-reduced-motion` fallback. Phone-demo keyframes are story
+  timelines and keep their own timing.
 - **Layout:** every band (nav, hero, sections, footer) uses `padding-inline: var(--pad-x)`, which
   centers content in `--container` (1200px) with a `--gutter` of 64px (20px under 900px).
 - **Breakpoints:** 1240, 900, 600, 480 px (plus `max-height: 520px` for phones held sideways).
