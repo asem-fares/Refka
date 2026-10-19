@@ -78,6 +78,7 @@ refka.tech run in preview mode and send nothing.
 
 - **Tokens first.** Every color, font family, font size, radius and the page width live in the
   single `:root` block at the top of `site.css`. A raw color anywhere else is a bug; add a token.
+- **Company:** Refka, being registered in Dubai, UAE. The Terms (governing law: UAE as applied in Dubai, Dubai courts) and the Privacy Policy say so; add the registered name, licence number and address there once registration is complete.
 - **Brand:** teal `--p` (fills), `--p-txt` (teal text on dark), gold `--a`. Logo gradient: teal to gold.
   The wordmark is Sora ExtraBold (800), tracking −0.01em, color `--t1`. `assets/images/refka-logo.svg`
   is the outlined master logo (no font needed).

@@ -86,7 +86,8 @@
     "hoursAvailable": {"@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"], "opens": "00:00", "closes": "23:59"},
     "availableLanguage": ["English", "Arabic", "German", "Albanian", "French", "Spanish", "Portuguese", "Italian", "Polish", "Turkish", "Russian", "Hindi", "Indonesian", "Malay", "Filipino", "Vietnamese", "Thai", "Korean", "Japanese", "Chinese", "Swahili"]
   },
-  "telephone": "+201149421081"
+  "telephone": "+201149421081",
+  "address": {"@type": "PostalAddress", "addressLocality": "Dubai", "addressCountry": "AE"}
 }
 </script>
 <script type="application/ld+json">
@@ -112,7 +113,7 @@
   "@type": "FAQPage",
   "mainEntity": [
     {"@type": "Question", "name": "Does Refka work with the cards and scanner I already have?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Refka reads the barcode cards your members already carry with a standard USB scanner, and members can also check in with the QR code in their app. You do not need to buy new hardware."}},
-    {"@type": "Question", "name": "Does my members' money pass through Refka?", "acceptedAnswer": {"@type": "Answer", "text": "No. Members pay you directly, in cash, by card or by local methods such as InstaPay or Vodafone Cash in Egypt. Refka records each payment and sends reminders and payment links, but never holds your money."}},
+    {"@type": "Question", "name": "Does my members' money pass through Refka?", "acceptedAnswer": {"@type": "Answer", "text": "No. Your members pay you directly, into your own accounts: cash, card, or local methods such as InstaPay and Vodafone Cash in Egypt. Refka records each payment and sends members reminders with a link to pay you, but never touches your members' money."}},
     {"@type": "Question", "name": "What happens if I stop paying?", "acceptedAnswer": {"@type": "Answer", "text": "There is no contract. After a 7-day grace period your account is paused. Your member data is kept for 90 days, so you can come back or export it, and is then deleted."}},
     {"@type": "Question", "name": "Can I try it before I pay?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. You get 30 days free with every feature and no credit card."}}
   ]
@@ -534,7 +535,7 @@
             <li><button class="oa-pain" type="button" aria-pressed="false">
               <span class="oa-ic"><svg aria-hidden="true"><use href="#oa-i2"/></svg></span>
               <span class="oa-txt"><q data-i18n="oa_q3">I chase payments on WhatsApp all day.</q><b data-i18n="oa_b3">Reminders go out by themselves</b>
-              <small data-i18n="oa_d3">From your gym's own WhatsApp number, with a link to pay.</small></span>
+              <small data-i18n="oa_d3">From your gym's own WhatsApp number, with a link to pay you directly.</small></span>
               <span class="oa-bar" aria-hidden="true"></span></button></li>
             <li><button class="oa-pain" type="button" aria-pressed="false">
               <span class="oa-ic"><svg aria-hidden="true"><use href="#oa-i3"/></svg></span>
@@ -612,12 +613,12 @@
 <!-- PAYBACK: what Refka costs against what one member brings -->
 <section class="sec alt center" id="payback">
   <div class="eye fade" data-i18n="pb_eye">The math</div>
-  <h2 class="fade" data-i18n-html="pb_h2">Refka pays for itself<br>with one or two members.</h2>
-  <p class="s-sub fade" data-i18n="pb_sub">Starter costs about what one or two members pay you in a month. Keep one or two more members renewing, and Refka has paid for itself. Every member after that is profit.</p>
+  <h2 class="fade" data-i18n-html="pb_h2">Refka pays for itself<br>with one member.</h2>
+  <p class="s-sub fade" data-i18n="pb_sub">Starter costs about what one member pays you in a month. Keep one more member renewing, and Refka has paid for itself. Every member after that is profit.</p>
   <div class="pb-eq fade">
     <div class="pb-box"><span class="pb-k" data-i18n="pb_cost">Refka Starter, per month</span><b class="pb-v"><span class="pv" data-plan="starter">$49</span></b></div>
     <div class="pb-sign" aria-hidden="true">≈</div>
-    <div class="pb-box gold"><span class="pb-k" data-i18n="pb_gain">Members who renew because of Refka</span><b class="pb-v" data-i18n="pb_n">1 to 2</b></div>
+    <div class="pb-box gold"><span class="pb-k" data-i18n="pb_gain">Member who renews because of Refka</span><b class="pb-v" data-i18n="pb_n">1</b></div>
   </div>
 </section>
 
@@ -755,7 +756,7 @@
   <h2 class="fade" data-i18n="faq_h2">What gym owners ask us</h2>
   <div class="faq-list fade">
     <details class="faq"><summary data-i18n="faq_q1">Does Refka work with the cards and scanner I already have?</summary><p data-i18n="faq_a1">Yes. Refka reads the barcode cards your members already carry with a standard USB scanner, and members can also check in with the QR code in their app. You do not need to buy new hardware.</p></details>
-    <details class="faq"><summary data-i18n="faq_q2">Does my members' money pass through Refka?</summary><p data-i18n="faq_a2">No. Members pay you directly, in cash, by card or by local methods such as InstaPay or Vodafone Cash in Egypt. Refka records each payment and sends reminders and payment links, but never holds your money.</p></details>
+    <details class="faq"><summary data-i18n="faq_q2">Does my members' money pass through Refka?</summary><p data-i18n="faq_a2">No. Your members pay you directly, into your own accounts: cash, card, or local methods such as InstaPay and Vodafone Cash in Egypt. Refka records each payment and sends members reminders with a link to pay you, but never touches your members' money.</p></details>
     <details class="faq"><summary data-i18n="faq_q3">Do I need internet at the front desk?</summary><p data-i18n="faq_a3">Yes. The front desk works in a web browser and needs an internet connection. A mobile data connection is enough.</p></details>
     <details class="faq"><summary data-i18n="faq_q4">Who owns my gym's and my members' data?</summary><p data-i18n="faq_a4">You do. Refka uses your data only to run the service for you, never sells it, and you can export it at any time.</p></details>
     <details class="faq"><summary data-i18n="faq_q5">What happens if I stop paying?</summary><p data-i18n="faq_a5">There is no contract. After a 7-day grace period your account is paused. Your member data is kept for 90 days, so you can come back or export it, and is then deleted.</p></details>
@@ -819,11 +820,12 @@
     <button class="modal-close" data-click="closeModal" data-click-arg="privacyModal" aria-label="Close">✕</button>
     <div class="modal-badge">Legal Document</div>
     <h1 id="ppTitle">Privacy Policy</h1>
-    <div class="modal-meta">Effective: October 18, 2026 &nbsp;·&nbsp; Version 1.1 &nbsp;·&nbsp; Global scope</div>
+    <div class="modal-meta">Effective: October 19, 2026 &nbsp;·&nbsp; Version 1.2 &nbsp;·&nbsp; Global scope</div>
     <p class="modal-legal-note" style="display:none"></p>
 
     <h2>1. Who We Are</h2>
-    <p>Refka ("we," "us," or "our") is a B2B2C fitness technology platform that provides gym management, member engagement, and AI-powered personalization services. Refka is the <strong>Data Controller</strong> for gym owner accounts, trainer accounts, brand partner accounts and website visitors. For gym member data, the <strong>gym owner is the Data Controller</strong> and Refka acts as the <strong>Data Processor</strong> on the gym owner's instructions, as set out in the Data Processing Addendum (Section 18 of our Terms of Service).</p>
+    <p>Refka ("we," "us," or "our") is a company being registered in Dubai, United Arab Emirates. Our full registered name, licence number and address will be added here once registration is complete. You can reach us at <strong>community@refka.tech</strong>.</p>
+    <p>Refka is a B2B2C fitness technology platform that provides gym management, member engagement, and AI-powered personalization services. Refka is the <strong>Data Controller</strong> for gym owner accounts, trainer accounts, brand partner accounts and website visitors. For gym member data, the <strong>gym owner is the Data Controller</strong> and Refka acts as the <strong>Data Processor</strong> on the gym owner's instructions, as set out in the Data Processing Addendum (Section 18 of our Terms of Service).</p>
 
     <h2>2. Who This Policy Covers</h2>
     <p>This policy applies to: <strong>Gym Owners</strong> (B2B customers who pay for and manage the platform), <strong>Gym Members</strong> (end users who join a gym via Refka), <strong>Personal Trainers</strong> (gym staff invited by owners), <strong>Brand Partners</strong> (marketplace partners), and <strong>Website Visitors</strong>.</p>
@@ -902,7 +904,7 @@
     <p>This section supplements the general policy above with jurisdiction-specific rights and obligations. Where a regional provision conflicts with the general policy, the regional provision controls for users in that jurisdiction.</p>
 
     <p><strong>United Arab Emirates: Federal Decree-Law No. 45 of 2021 (PDPL-UAE)</strong><br>
-    UAE residents have the right to access their personal data, request correction of inaccurate data, and request deletion where processing is no longer legally required. Data transfers outside the UAE comply with Article 26 of the PDPL-UAE through contractual guarantees with all sub-processors. We appoint a local representative upon reaching 100 active UAE-based gym owners. Requests: community@refka.tech: processed within 30 days.</p>
+    UAE residents have the right to access their personal data, request correction of inaccurate data, and request deletion where processing is no longer legally required. Refka is established in Dubai, so the PDPL-UAE applies to our processing of personal data. Transfers outside the UAE follow Articles 22 and 23 of the PDPL-UAE, through contractual guarantees with every sub-processor. Requests: community@refka.tech, answered within 30 days.</p>
 
     <p><strong>Turkey: KVKK Law No. 6698</strong><br>
     Turkish residents have the right to: learn whether their personal data is being processed; request information about the purpose and use of that data; know whether data is transferred domestically or internationally; request rectification of incomplete or inaccurate data; request erasure or destruction of data where the grounds for processing no longer exist; and lodge a complaint with the Kişisel Verileri Koruma Kurumu (KVKK Authority). Explicit consent (açık rıza) is obtained for all health data processing before collection. International transfers are conducted under adequate safeguards consistent with KVKK Article 9. Requests: community@refka.tech.</p>
@@ -914,7 +916,7 @@
     Saudi residents have the right to access, correct, and request destruction of their personal data. Processing of sensitive personal data (body composition) is conducted only with explicit consent under Article 4. Data retention complies with Article 18 minimum and maximum periods. Cross-border transfers comply with Article 29 requirements. Requests are processed within 30 days: community@refka.tech.</p>
 
     <div class="modal-footer-note">
-      <span>© 2026 Refka · v1.0 · September 12, 2026</span>
+      <span>© 2026 Refka · Dubai, United Arab Emirates · v1.2 · October 19, 2026</span>
       <span>Contact: community@refka.tech</span>
     </div>
   </div>
@@ -928,15 +930,16 @@
     <button class="modal-close" data-click="closeModal" data-click-arg="termsModal" aria-label="Close">✕</button>
     <div class="modal-badge">Legal Document</div>
     <h1 id="tosTitle">Terms of Service</h1>
-    <div class="modal-meta">Effective: October 18, 2026 &nbsp;·&nbsp; Version 1.1 &nbsp;·&nbsp; Global scope</div>
+    <div class="modal-meta">Effective: October 19, 2026 &nbsp;·&nbsp; Version 1.2 &nbsp;·&nbsp; Global scope</div>
     <p class="modal-legal-note" style="display:none"></p>
 
     <h2>1. Acceptance</h2>
     <p>By registering for, accessing, or using the Refka platform (the "Service"), you agree to be bound by these Terms of Service ("Terms"). If you are registering on behalf of a business entity, you represent that you have authority to bind that entity to these Terms. If you do not agree, do not use the Service.</p>
-    <p>These Terms form a legally binding agreement between you and Refka ("Refka," "we," "us," or "our"). They apply to all users: gym owners, gym members, personal trainers, and brand partners.</p>
+    <p>These Terms form a legally binding agreement between you and Refka ("Refka," "we," "us," or "our"), a company being registered in Dubai, United Arab Emirates. They apply to all users: gym owners, gym members, personal trainers, and brand partners.</p>
 
     <h2>2. Description of Service</h2>
     <p>Refka is a B2B2C fitness technology platform that enables gym owners to manage members, trainers, products, and operations through a digital platform; enables gym members to receive AI-generated personalized fitness and nutrition plans and connect with training partners; and enables brand partners to reach gym audiences through a curated marketplace. Refka operates as a "platform as a service" and does not itself provide fitness, medical, or nutritional services.</p>
+    <p><strong>Members' payments:</strong> your members pay you directly, into your own accounts. Refka never receives, holds or transfers the money your members pay you. It records those payments and sends your members reminders with a link to pay you.</p>
 
     <h2>3. Eligibility and Accounts</h2>
     <p>You must be at least 18 years old to create a gym owner or trainer account. Gym members must be at least 16 years old; members under 18 require parental or guardian consent, which the gym owner is responsible for obtaining. You are responsible for maintaining the confidentiality of your account credentials and for all activity under your account. You must notify us immediately of any unauthorized use at community@refka.tech.</p>
@@ -993,8 +996,8 @@
     <p>You may terminate your account at any time from account settings. Termination by you does not entitle you to any refund of prepaid subscription fees.</p>
 
     <h2>15. Governing Law and Dispute Resolution</h2>
-    <p>These Terms are governed by the laws of the country where Refka's operating company is registered, which we will name here once registration is complete, except where mandatory consumer protection law of your country requires otherwise.</p>
-    <p>If a dispute arises out of or relating to these Terms or the Service, we will first try to resolve it with you in good faith. Please write to community@refka.tech and we will respond within 14 days. Either party may seek injunctive or other equitable relief in any court of competent jurisdiction to prevent irreparable harm.</p>
+    <p>These Terms are governed by the laws of the United Arab Emirates as applied in the Emirate of Dubai, except where mandatory consumer protection law of your country requires otherwise.</p>
+    <p>If a dispute arises out of or relating to these Terms or the Service, we will first try to resolve it with you in good faith. Please write to community@refka.tech and we will respond within 14 days. If it is not resolved within 30 days of your message, it may be brought before the competent courts of Dubai. Either party may seek injunctive or other equitable relief in any court of competent jurisdiction to prevent irreparable harm.</p>
     <p>For users in the EU/EEA: nothing in this clause limits your rights to bring claims before courts in your country of residence under applicable consumer protection laws.</p>
 
     <h2>16. Changes to These Terms</h2>
@@ -1045,7 +1048,7 @@
     Response time: within 5 business days.</p>
 
     <div class="modal-footer-note">
-      <span>© 2026 Refka · v1.0 · September 12, 2026</span>
+      <span>© 2026 Refka · Dubai, United Arab Emirates · v1.2 · October 19, 2026</span>
       <span>Contact: community@refka.tech</span>
     </div>
   </div>
