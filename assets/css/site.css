@@ -424,12 +424,17 @@ footer .f-links a { font-size: var(--fs-md); color: var(--t-footer); text-decora
 /* training together: photo mosaic under the problem statement */
 .duo-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); grid-auto-rows: 210px; gap: 12px; margin-top: 48px; }
 .duo { position: relative; margin: 0; overflow: hidden; border-radius: var(--r-card); border: 1px solid var(--bd); background: var(--s2); }
-.duo img { width: 100%; height: 100%; object-fit: cover; display: block; filter: saturate(.92) brightness(.94); }   /* one tone for photos from different sources */
-.duo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 55%, rgba(8,8,8,.45)); pointer-events: none; }
+.duo img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .8s cubic-bezier(.2,.7,.2,1); }   /* photos carry the Refka grade baked in: teal shadows, gold highlights, page-black blacks, grain */
+.duo::after { content: ""; position: absolute; inset: 0; border-radius: inherit; box-shadow: inset 0 0 0 1px rgba(255,255,255,.04); background: linear-gradient(180deg, transparent 50%, rgba(8,8,8,.55)), linear-gradient(90deg, var(--p-tint-10), transparent 40%); pointer-events: none; }
+.duo:hover img { transform: scale(1.03); }
+.duo-tag { position: absolute; inset-inline-start: 14px; bottom: 14px; z-index: 1; display: inline-flex; align-items: center; gap: 8px; padding: 7px 12px; border-radius: var(--r-pill); background: rgba(8,8,8,.72); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); border: 1px solid var(--p-line-40); font-family: var(--font-display); font-weight: 700; font-size: var(--fs-sm); color: var(--t1); white-space: nowrap; }
+.duo-tag .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--p-txt); box-shadow: 0 0 0 3px var(--p-tint-20); }
+.duo-tag.gold { border-color: var(--a-line-40); }
+.duo-tag.gold .dot { background: var(--a); box-shadow: 0 0 0 3px var(--a-tint-10); }
 .duo-a { grid-column: 1 / span 2; grid-row: 1; }
 .duo-a img { object-position: center 30%; }
 .duo-b { grid-column: 3; grid-row: 1 / span 2; }
-.duo-b img { object-position: center 45%; filter: saturate(.9) brightness(.8); }   /* white wall: toned down to sit on the dark page */
+.duo-b img { object-position: center 45%; }
 .duo-c { grid-column: 4; grid-row: 1; }
 .duo-c img { object-position: 30% 25%; }
 .duo-d { grid-column: 1 / span 2; grid-row: 2; }
@@ -956,6 +961,8 @@ html[lang="zh-Hans"] h1, html[lang="zh-Hant"] h1 { line-height: 1.3; }
 
 /* 9. REDUCED MOTION ====================================================== */
 @media (prefers-reduced-motion: reduce) {
+  .duo img { transition: none; }
+  .duo:hover img { transform: none; }
   .ph-scene, .ph-scene.live .anim, .ph-link i, .ph-badge.pop,
   .ph-bar u, .ph-toast, .ph-prod.picked { animation: none !important; transition: none !important }
   .ph-scene.live .anim, .ph-badge.pop, .ph-toast { opacity: 1 !important }
