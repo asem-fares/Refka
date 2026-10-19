@@ -458,6 +458,7 @@ footer .f-links a { font-size: var(--fs-md); color: var(--t-footer); text-decora
 .duo::after { content: ""; position: absolute; inset: 0; border-radius: inherit; box-shadow: inset 0 0 0 1px rgba(255,255,255,.04); background: linear-gradient(180deg, transparent 50%, rgba(8,8,8,.55)), linear-gradient(90deg, var(--p-tint-10), transparent 40%); pointer-events: none; }
 .duo:hover img { transform: scale(1.03); }
 .duo-tag { position: absolute; inset-inline-start: var(--sp-16); bottom: var(--sp-16); z-index: 1; display: inline-flex; align-items: center; gap: var(--sp-8); padding: var(--sp-8) var(--sp-12); border-radius: var(--r-pill); background: rgba(8,8,8,.72); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); border: 1px solid var(--p-line-40); font-family: var(--font-display); font-weight: 700; font-size: var(--fs-sm); color: var(--t1); max-width: calc(100% - 2 * var(--sp-16)); line-height: 1.3; }
+.duo-tag span { hyphens: auto; -webkit-hyphens: auto; overflow-wrap: break-word; min-width: 0; }
 .duo-tag .dot { flex-shrink: 0; width: 7px; height: 7px; border-radius: 50%; background: var(--p-txt); box-shadow: 0 0 0 3px var(--p-tint-20); }
 .duo-tag.gold { border-color: var(--a-line-40); }
 .duo-tag.gold .dot { background: var(--a); box-shadow: 0 0 0 3px var(--a-tint-10); }
@@ -969,6 +970,7 @@ html[lang="zh-Hans"] h1, html[lang="zh-Hant"] h1 { line-height: 1.3; }
   h1 { font-size: var(--fs-xl); }   /* Galaxy Fold cover screen (280 px) */
   #hero { grid-template-columns: minmax(0, 1fr); }
   .ctas .btn-teal, .ctas .btn-outline { white-space: normal; text-align: center; }
+  .duo-b .duo-tag, .duo-e .duo-tag { display: none; }   /* narrow tiles: long single words (Trainingspartner) cannot fit */
 }
 @media (max-width: 480px) {
   .duo-tag { inset-inline-start: var(--sp-8); bottom: var(--sp-8); max-width: calc(100% - 2 * var(--sp-8)); padding: var(--sp-4) var(--sp-8); font-size: var(--fs-xs); }
