@@ -330,5 +330,12 @@
   ms_mission: "We give every gym owner one system to run the gym, and an app that brings them closer to their members and brings members together.",
   fm_wa: "Chat with us on WhatsApp",
   pay_wallets: "Mobile wallets",
+  wa_hint: "Ask us",
+  wa_pr_q: "Not sure which plan fits?",
+  wa_pr_a: "Ask us on WhatsApp",
+  wa_setup: "Talk to our team on WhatsApp",
+  wa_msg_pricing: "Hi Refka, I have a gym in {c} and a question about the plans and prices.",
+  wa_msg_setup: "Hi Refka, I have a gym in {c} and I'd like your team to set it up with me.",
+  oa_gap: "Missing from the drawer",
   lang_sel: "Choose language"
 };

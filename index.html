@@ -319,7 +319,7 @@
 <!-- PROBLEM -->
 <section class="sec alt center">
   <div class="prob-inner fade">
-    <div class="big-stat" data-i18n="prob_stat">35%</div>
+    <div class="big-stat" data-count data-i18n="prob_stat">35%</div>
     <div class="stat-label" data-i18n="prob_lbl">more gym visits when working out was tied to a friend, compared with members who trained on their own.</div>
     <p class="src" data-i18n="prob_src">Source: Gershon, Cryder &amp; Milkman, Management Science, January 2025. Field experiment with 774 gym members.</p>
     <h2 data-i18n-html="prob_h2">Not your equipment.<br>Not your prices.<br>They train alone.</h2>
@@ -339,12 +339,13 @@
 <section class="sec" id="how">
   <div class="eye fade" data-i18n="how_eye">As simple as it gets</div>
   <h2 class="fade" data-i18n="how_h2">Three steps. Your gym is ready.</h2>
-  <div class="steps">
+  <div class="steps" data-journey>
     <div class="step fade d1">
       <div class="step-n">01</div>
       <h3 data-i18n="s1_t">Set up your gym profile</h3>
       <p data-i18n="s1_p">Send us your membership packages, prices and payment numbers on WhatsApp. Our team builds your gym on Refka with you, including the members' app with your logo and colors.</p>
       <span class="step-tag" data-i18n="s1_tag">Done in minutes</span>
+      <a class="wa-link step-wa" data-wa="setup" href="https://wa.me/201149421081" target="_blank" rel="noopener"><svg viewBox="0 0 32 32" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M16.04 3C9 3 3.3 8.66 3.3 15.67c0 2.24.6 4.43 1.73 6.36L3.2 28.8l6.95-1.8a12.8 12.8 0 0 0 5.89 1.43h.01c7.03 0 12.75-5.66 12.75-12.67C28.8 8.66 23.08 3 16.04 3zm0 23.24h-.01a10.6 10.6 0 0 1-5.38-1.47l-.39-.23-4.13 1.07 1.1-4-.25-.41a10.42 10.42 0 0 1-1.62-5.53c0-5.8 4.75-10.53 10.6-10.53 2.83 0 5.49 1.1 7.49 3.09a10.43 10.43 0 0 1 3.1 7.45c0 5.81-4.75 10.56-10.51 10.56zm5.81-7.88c-.32-.16-1.88-.92-2.17-1.03-.29-.1-.5-.16-.71.16-.21.31-.82 1.03-1 1.24-.19.21-.37.24-.69.08-.32-.16-1.34-.49-2.56-1.57-.95-.84-1.59-1.88-1.77-2.2-.19-.31-.02-.48.14-.64.14-.14.32-.37.48-.55.16-.19.21-.32.32-.53.1-.21.05-.4-.03-.55-.08-.16-.71-1.71-.98-2.34-.26-.62-.52-.53-.71-.54h-.61c-.21 0-.55.08-.84.39-.29.31-1.1 1.07-1.1 2.62s1.13 3.04 1.29 3.25c.16.21 2.22 3.37 5.38 4.72.75.32 1.34.52 1.8.66.75.24 1.44.2 1.98.12.6-.09 1.88-.76 2.14-1.5.27-.74.27-1.37.19-1.5-.08-.13-.29-.21-.61-.37z"/></svg><span data-i18n="wa_setup">Talk to our team on WhatsApp</span></a>
     </div>
     <div class="step fade d2">
       <div class="step-n">02</div>
@@ -479,19 +480,19 @@
                   <div class="oa-row"><span class="oa-av oa-ini" data-oa-ini="oa_staff"></span><div class="oa-grow"><div class="oa-nm" data-oa-t="oa_shift"></div><div class="oa-mt" data-i18n="oa_shift_sub">14 payments</div></div></div>
                 </div>
                 <div class="oa-ways oa-box oa-in" style="--d:.12s">
-                  <div class="oa-way"><span data-i18n="ow_cash">Cash</span><span class="oa-track"><i style="--w:100%;--d:.3s;--c:var(--oa-gold)"></i></span><span class="oa-num" data-oa-m="cashExp"></span></div>
-                  <div class="oa-way"><span data-pm="1">InstaPay</span><span class="oa-track"><i style="--w:75%;--d:.42s"></i></span><span class="oa-num" data-oa-m="pm1"></span></div>
-                  <div class="oa-way"><span data-pm="2">Vodafone Cash</span><span class="oa-track"><i style="--w:50%;--d:.54s;--c:#e2554f"></i></span><span class="oa-num" data-oa-m="pm2"></span></div>
+                  <div class="oa-way"><span data-i18n="ow_cash">Cash</span><span class="oa-track"><i style="--w:100%;--d:.3s;--c:var(--oa-gold)"></i></span><span class="oa-num" data-oa-m="cashExp" data-oa-c="m"></span></div>
+                  <div class="oa-way"><span data-pm="1">InstaPay</span><span class="oa-track"><i style="--w:75%;--d:.42s"></i></span><span class="oa-num" data-oa-m="pm1" data-oa-c="m"></span></div>
+                  <div class="oa-way"><span data-pm="2">Vodafone Cash</span><span class="oa-track"><i style="--w:50%;--d:.54s;--c:#e2554f"></i></span><span class="oa-num" data-oa-m="pm2" data-oa-c="m"></span></div>
                 </div>
                 <div class="oa-count">
-                  <div class="oa-box oa-in" style="--d:1.1s"><span class="oa-lbl" data-i18n="oa_exp_c">Cash expected</span><span class="oa-num" data-oa-m="cashExp"></span></div>
-                  <div class="oa-box short oa-pop" style="--d:1.9s"><span class="oa-lbl" data-i18n="oa_cnt_c">Cash counted</span><span class="oa-num" data-oa-m="cashCnt"></span></div>
+                  <div class="oa-box oa-in" style="--d:1.1s"><span class="oa-lbl" data-i18n="oa_exp_c">Cash expected</span><span class="oa-num" data-oa-m="cashExp" data-oa-c="m"></span></div>
+                  <div class="oa-box short oa-in" style="--d:1.2s"><span class="oa-lbl" data-i18n="oa_cnt_c">Cash counted</span><span class="oa-num" data-oa-m="cashCnt" data-oa-c="m" data-oa-dur="1900"></span></div>
                 </div>
-                <div class="oa-log oa-in" style="--d:2.4s">
-                  <div><span data-i18n="oa_log1">1-month membership · cash</span><b data-oa-m="fee"></b></div>
-                  <div><span data-i18n="oa_log2">Day pass · cash</span><b data-oa-m="day"></b></div>
+                <div class="oa-gap oa-in" style="--d:1.2s" aria-hidden="true">
+                  <div class="oa-gap-bar"><i class="oa-gap-ok"></i><i class="oa-gap-miss"></i></div>
+                  <div class="oa-gap-row"><span data-i18n="oa_gap">Missing from the drawer</span><b class="oa-num" data-oa-m="short"></b></div>
                 </div>
-                <div class="oa-toast amber oa-pop" style="--d:2.9s"><span class="oa-tk">!</span><span><b data-oa-t="oa_short"></b><span data-i18n="oa_short_sub">Sent to you right away</span></span></div>
+                <div class="oa-toast amber oa-pop" style="--d:3.3s"><span class="oa-tk">!</span><span><b data-oa-t="oa_short"></b><span data-i18n="oa_short_sub">Sent to you right away</span></span></div>
               </div>
 
               <!-- S4 AT RISK: members going quiet, brought back by their training partner -->
@@ -749,6 +750,7 @@
     <span class="pm-chip eg-only"><span class="pm-logos pm-wallets"><img src="assets/images/pay/vodafone-cash.png" alt="Vodafone Cash" width="24" height="24"><img src="assets/images/pay/etisalat-money.png" alt="etisalat money" width="33" height="26"><img src="assets/images/pay/orange.svg" alt="Orange Cash" width="24" height="24"><img src="assets/images/pay/we-pay.png" alt="WE Pay" width="28" height="24"></span><span data-i18n="pay_wallets">Mobile wallets</span></span>
   </div>
 
+  <p class="wa-inline fade"><span data-i18n="wa_pr_q">Not sure which plan fits?</span> <a class="wa-link wa-cta" data-wa="pricing" href="https://wa.me/201149421081" target="_blank" rel="noopener"><svg viewBox="0 0 32 32" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M16.04 3C9 3 3.3 8.66 3.3 15.67c0 2.24.6 4.43 1.73 6.36L3.2 28.8l6.95-1.8a12.8 12.8 0 0 0 5.89 1.43h.01c7.03 0 12.75-5.66 12.75-12.67C28.8 8.66 23.08 3 16.04 3zm0 23.24h-.01a10.6 10.6 0 0 1-5.38-1.47l-.39-.23-4.13 1.07 1.1-4-.25-.41a10.42 10.42 0 0 1-1.62-5.53c0-5.8 4.75-10.53 10.6-10.53 2.83 0 5.49 1.1 7.49 3.09a10.43 10.43 0 0 1 3.1 7.45c0 5.81-4.75 10.56-10.51 10.56zm5.81-7.88c-.32-.16-1.88-.92-2.17-1.03-.29-.1-.5-.16-.71.16-.21.31-.82 1.03-1 1.24-.19.21-.37.24-.69.08-.32-.16-1.34-.49-2.56-1.57-.95-.84-1.59-1.88-1.77-2.2-.19-.31-.02-.48.14-.64.14-.14.32-.37.48-.55.16-.19.21-.32.32-.53.1-.21.05-.4-.03-.55-.08-.16-.71-1.71-.98-2.34-.26-.62-.52-.53-.71-.54h-.61c-.21 0-.55.08-.84.39-.29.31-1.1 1.07-1.1 2.62s1.13 3.04 1.29 3.25c.16.21 2.22 3.37 5.38 4.72.75.32 1.34.52 1.8.66.75.24 1.44.2 1.98.12.6-.09 1.88-.76 2.14-1.5.27-.74.27-1.37.19-1.5-.08-.13-.29-.21-.61-.37z"/></svg><span data-i18n="wa_pr_a">Ask us on WhatsApp</span></a></p>
   <p class="p-note" id="locNote">Converted from US dollars at today's rate. Your final price depends on your gym's country at sign-up.</p>
 </section>
 
@@ -1156,6 +1158,7 @@
 <!-- WHATSAPP: chat with the Refka team. The link and message are set by app.js in the visitor's language. -->
 <aside class="wa-dock" data-i18n-aria="wa_aria" aria-label="Chat with Refka on WhatsApp">
 <a class="wa-fab away" id="waBtn" href="https://wa.me/201149421081" target="_blank" rel="noopener" data-i18n-aria="wa_aria" aria-label="Chat with Refka on WhatsApp">
+  <span class="wa-hint" data-i18n="wa_hint" aria-hidden="true">Ask us</span>
   <svg viewBox="0 0 32 32" width="30" height="30" aria-hidden="true"><path fill="#fff" d="M16.04 3C9 3 3.3 8.66 3.3 15.67c0 2.24.6 4.43 1.73 6.36L3.2 28.8l6.95-1.8a12.8 12.8 0 0 0 5.89 1.43h.01c7.03 0 12.75-5.66 12.75-12.67C28.8 8.66 23.08 3 16.04 3zm0 23.24h-.01a10.6 10.6 0 0 1-5.38-1.47l-.39-.23-4.13 1.07 1.1-4-.25-.41a10.42 10.42 0 0 1-1.62-5.53c0-5.8 4.75-10.53 10.6-10.53 2.83 0 5.49 1.1 7.49 3.09a10.43 10.43 0 0 1 3.1 7.45c0 5.81-4.75 10.56-10.51 10.56zm5.81-7.88c-.32-.16-1.88-.92-2.17-1.03-.29-.1-.5-.16-.71.16-.21.31-.82 1.03-1 1.24-.19.21-.37.24-.69.08-.32-.16-1.34-.49-2.56-1.57-.95-.84-1.59-1.88-1.77-2.2-.19-.31-.02-.48.14-.64.14-.14.32-.37.48-.55.16-.19.21-.32.32-.53.1-.21.05-.4-.03-.55-.08-.16-.71-1.71-.98-2.34-.26-.62-.52-.53-.71-.54h-.61c-.21 0-.55.08-.84.39-.29.31-1.1 1.07-1.1 2.62s1.13 3.04 1.29 3.25c.16.21 2.22 3.37 5.38 4.72.75.32 1.34.52 1.8.66.75.24 1.44.2 1.98.12.6-.09 1.88-.76 2.14-1.5.27-.74.27-1.37.19-1.5-.08-.13-.29-.21-.61-.37z"/></svg>
 </a>
 <div class="wa-bubble" id="waBubble" hidden>
@@ -1301,5 +1304,6 @@
 <script src="assets/js/i18n/en.js" defer></script>
 <script src="assets/js/app.js" defer></script>
 <script src="assets/js/form.js" defer></script>
+<script src="assets/js/motion.js" defer></script>
 </body>
 </html>

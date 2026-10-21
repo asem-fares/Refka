@@ -26,29 +26,29 @@ document.addEventListener('keydown', function(e) {
   else if (!e.shiftKey && (i === f.length - 1 || i === -1)) { e.preventDefault(); f[0].focus(); }
 });
 
-// CANVAS ANIMATION
+// CANVAS ANIMATION: "companions". Every dot has one partner. Partners drift toward each other,
+// a teal-to-gold thread appears as they get close, they glow when they meet, then part and meet again.
+// It is the product in one picture: nobody trains alone. Pairs only, never every-dot-to-every-dot.
 var canvas = document.getElementById('canvas');
 var ctx = canvas.getContext('2d');
 var nodes = [];
-var W, H, rafId = 0;
+var W, H, DPR = 1, rafId = 0;
 
 function resize() {
-  W = canvas.width = canvas.offsetWidth;
-  H = canvas.height = canvas.offsetHeight;
+  DPR = Math.min(window.devicePixelRatio || 1, 2);
+  W = canvas.offsetWidth; H = canvas.offsetHeight;
+  canvas.width = Math.round(W * DPR); canvas.height = Math.round(H * DPR);
+  ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
 }
 
 function initNodes() {
   nodes = [];
-  var n = Math.min(Math.floor(W * H / 15000), 55);
+  var n = Math.min(Math.floor(W * H / 26000), 34);
+  if (n % 2) n--;
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) n = 0;
   for (var i = 0; i < n; i++) {
-    nodes.push({
-      x: Math.random() * W,
-      y: Math.random() * H,
-      vx: (Math.random() - .5) * .28,
-      vy: (Math.random() - .5) * .28,
-      r: Math.random() * 2 + 1.5
-    });
+    nodes.push({ x: Math.random() * W, y: Math.random() * H, vx: (Math.random() - .5) * .3, vy: (Math.random() - .5) * .3,
+                 r: Math.random() * .8 + 1.6, met: 0, hold: 300 + Math.random() * 260 });
   }
 }
 
@@ -56,31 +56,47 @@ function draw() {
   rafId = 0;
   if (!shouldRun()) return;
   ctx.clearRect(0, 0, W, H);
-  for (var i = 0; i < nodes.length; i++) {
-    for (var j = i + 1; j < nodes.length; j++) {
-      var dx = nodes[i].x - nodes[j].x;
-      var dy = nodes[i].y - nodes[j].y;
-      var d = Math.sqrt(dx * dx + dy * dy);
-      if (d < 120) {
-        ctx.beginPath();
-        ctx.strokeStyle = 'rgba(13,107,110,' + ((1 - d / 120) * .14) + ')';
-        ctx.lineWidth = 1;
-        ctx.moveTo(nodes[i].x, nodes[i].y);
-        ctx.lineTo(nodes[j].x, nodes[j].y);
-        ctx.stroke();
-      }
+  for (var i = 0; i < nodes.length; i += 2) {
+    var a = nodes[i], b = nodes[i + 1];
+    var dx = b.x - a.x, dy = b.y - a.y, d = Math.sqrt(dx * dx + dy * dy) || 1;
+    // gentle pull between partners; once they have been together a while, they part
+    if (a.met > a.hold) {
+      a.vx -= dx / d * .55; a.vy -= dy / d * .55; b.vx += dx / d * .55; b.vy += dy / d * .55;
+      a.met = 0; a.hold = 300 + Math.random() * 260;
+    } else if (d < 320) {
+      var f = d > 44 ? .0022 : -.0012;
+      a.vx += dx / d * f * Math.min(d, 120) / 60; a.vy += dy / d * f * Math.min(d, 120) / 60;
+      b.vx -= dx / d * f * Math.min(d, 120) / 60; b.vy -= dy / d * f * Math.min(d, 120) / 60;
     }
+    if (d < 70) a.met++;
+    // the thread between partners
+    if (d < 240) {
+      var k = 1 - d / 240, g2 = ctx.createLinearGradient(a.x, a.y, b.x, b.y);
+      g2.addColorStop(0, 'rgba(20,184,189,' + (k * .55) + ')');
+      g2.addColorStop(1, 'rgba(201,151,58,' + (k * .55) + ')');
+      ctx.beginPath(); ctx.strokeStyle = g2; ctx.lineWidth = .6 + k * 1.1;
+      ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
+    }
+    var together = d < 70;
+    [a, b].forEach(function (p, j) {
+      if (together) {
+        ctx.beginPath(); ctx.arc(p.x, p.y, p.r + 6, 0, Math.PI * 2);
+        ctx.fillStyle = j ? 'rgba(201,151,58,.10)' : 'rgba(20,184,189,.10)'; ctx.fill();
+      }
+      ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = together ? (j ? 'rgba(201,151,58,.85)' : 'rgba(20,184,189,.85)') : 'rgba(20,184,189,.38)';
+      ctx.fill();
+    });
   }
-  for (var k = 0; k < nodes.length; k++) {
-    var n2 = nodes[k];
-    ctx.beginPath();
-    ctx.arc(n2.x, n2.y, n2.r, 0, Math.PI * 2);
-    ctx.fillStyle = 'rgba(13,107,110,.22)';
-    ctx.fill();
-    n2.x += n2.vx;
-    n2.y += n2.vy;
-    if (n2.x < 0 || n2.x > W) n2.vx *= -1;
-    if (n2.y < 0 || n2.y > H) n2.vy *= -1;
+  for (var q = 0; q < nodes.length; q++) {
+    var p = nodes[q];
+    p.vx += (Math.random() - .5) * .012; p.vy += (Math.random() - .5) * .012;   // a little wander
+    var s = Math.sqrt(p.vx * p.vx + p.vy * p.vy), max = .42;
+    if (s > max) { p.vx *= max / s; p.vy *= max / s; }
+    p.vx *= .995; p.vy *= .995;
+    p.x += p.vx; p.y += p.vy;
+    if (p.x < 0 || p.x > W) { p.vx *= -1; p.x = Math.max(0, Math.min(W, p.x)); }
+    if (p.y < 0 || p.y > H) { p.vy *= -1; p.y = Math.max(0, Math.min(H, p.y)); }
   }
   rafId = requestAnimationFrame(draw);
 }
@@ -566,6 +582,7 @@ function renderOwnerApp() {
   root.querySelectorAll('[data-oa-hour]').forEach(function (el) { el.textContent = hm(+el.getAttribute('data-oa-hour')); });
   root.querySelectorAll('[data-oa-time]').forEach(function (el) { var p = el.getAttribute('data-oa-time').split(':'); el.textContent = hm(+p[0], +p[1]); });
   root.querySelectorAll('[data-oa-ini]').forEach(function (el) { el.textContent = Array.from(tr(el.getAttribute('data-oa-ini')))[0] || ''; });
+  root.style.setProperty('--oa-okw', (M.cashCnt / M.cashExp * 100).toFixed(1) + '%');
   veilOwnerApp(root);
   oaFit(root);
 }
@@ -600,7 +617,7 @@ if (document.fonts && document.fonts.ready) document.fonts.ready.then(function (
         var t0 = null;
         requestAnimationFrame(function f(now) {
           if (t0 === null) t0 = now;
-          var p = Math.min(1, (now - t0) / 1100);
+          var p = Math.min(1, (now - t0) / (+el.getAttribute('data-oa-dur') || 1100));
           el.textContent = shown(p < 1 ? Math.round(to * (1 - Math.pow(1 - p, 3))) : to);
           if (p < 1) requestAnimationFrame(f);
         });
@@ -681,7 +698,14 @@ function fitText() {
   var r = ctas.getBoundingClientRect();   // decide before the first animation frame, so it never flashes over the buttons
   if (phone.matches && r.top < window.innerHeight && r.bottom > 0) fab.classList.add('away');
   new IntersectionObserver(function (es) {
-    es.forEach(function (e) { fab.classList.toggle('away', e.isIntersecting && phone.matches); });
+    es.forEach(function (e) {
+      fab.classList.toggle('away', e.isIntersecting && phone.matches);
+      var said = false; try { said = sessionStorage.getItem('rfk_wah') === '1'; } catch (x) {}
+      if (!e.isIntersecting && phone.matches && !said) {
+        try { sessionStorage.setItem('rfk_wah', '1'); } catch (x) {}
+        setTimeout(function () { fab.classList.add('hint'); setTimeout(function () { fab.classList.remove('hint'); }, 4200); }, 500);
+      }
+    });
   }).observe(ctas);
 })();
 
@@ -765,8 +789,10 @@ var WA_NUMBER = '201149421081';
 function setWhatsApp() {
   var t = T[_lang] || T.en, msg = t.wa_msg || T.en.wa_msg, cname = _country;
   try { cname = new Intl.DisplayNames([numLocale(), 'en'], { type: 'region' }).of(_country); } catch (e) {}
-  var href = 'https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(msg.replace('{c}', cname));
-  document.querySelectorAll('#waBtn, #waBubbleLink, .wa-link').forEach(function(a) { a.href = href; });
+  document.querySelectorAll('#waBtn, #waBubbleLink, .wa-link').forEach(function(a) {
+    var ctx = a.getAttribute('data-wa'), m = (ctx && t['wa_msg_' + ctx]) || msg;   // a link knows where it sits: pricing, setup
+    a.href = 'https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(m.replace('{c}', cname));
+  });
 }
 (function() {
   var fab = g('waBtn'), bub = g('waBubble');
