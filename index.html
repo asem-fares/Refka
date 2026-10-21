@@ -201,7 +201,7 @@
 
   <div class="nav-right">
     <div class="lang-wrap"><button class="lang-btn-nav" id="langBtn" type="button" aria-label="Choose language" data-i18n-aria="lang_sel" aria-haspopup="dialog" aria-expanded="false" aria-controls="langOverlay"><span id="lc">EN</span> <span class="lang-caret" aria-hidden="true">&#9660;</span></button></div>
-    <button class="btn-teal" id="navCta" data-i18n="cta" data-click="goRegister">Start Free Trial</button>
+    <button class="btn-teal" id="navCta" data-i18n="cta" data-click="goRegister">Join now</button>
   </div>
 
   <button class="burger" id="burger" type="button" aria-label="Menu" data-i18n-aria="menu" aria-expanded="false" aria-controls="mobMenu">
@@ -214,7 +214,7 @@
   <a href="#features" data-click="closeMob" data-i18n="n2">Features</a>
   <a href="#pricing" data-click="closeMob" data-i18n="n3">Pricing</a>
   <a href="#faq" data-click="closeMob" data-i18n="n4">FAQ</a>
-  <a href="#" class="mob-cta" id="mobCta" data-click="closeMobRegister" data-i18n="cta">Start Free Trial</a>
+  <a href="#" class="mob-cta" id="mobCta" data-click="closeMobRegister" data-i18n="cta">Join now</a>
 </nav>
 
 <main id="main" tabindex="-1">
@@ -222,11 +222,11 @@
 <section id="hero">
   <canvas id="canvas" aria-hidden="true"></canvas>
   <div class="hero-text fade">
-    <div class="hero-chip" data-i18n="hero_chip">30-day free trial · No credit card</div>
+    <div class="hero-chip" data-i18n="hero_chip">Welcoming our founding gyms · 30 days free</div>
     <h1 data-i18n-html="h1">At your gym,<br><span class="c-teal">nobody trains</span> <span class="c-gold">alone.</span></h1>
     <p class="hero-body" data-i18n-html="body">Refka runs your front desk, memberships and payments in one app for you and your team. Your members get an app with your gym's name, where they meet, train together, and stay. <strong>One system for you. One family for your members.</strong></p>
     <div class="ctas">
-      <button class="btn-teal lg" id="ctaMain" data-i18n="ctaM" data-click="goRegister">Start Your 30-Day Free Trial</button>
+      <button class="btn-teal lg" id="ctaMain" data-i18n="ctaM" data-click="goRegister">Join the founding gyms</button>
       <button class="btn-outline" id="ctaSec" data-i18n="ctaS" data-click="scrollHow">See How It Works ↓</button>
     </div>
     <p class="hero-note" data-i18n-html="note">Referred by another gym owner? <b>Add their name when you sign up.</b></p>
@@ -708,7 +708,7 @@
         <li data-i18n="f_support">Support on WhatsApp, 24/7</li>
         <li data-i18n="f_ai150">150 AI plans per month</li>
       </ul>
-      <button class="btn-sm-outline" id="p1btn" data-i18n="p1" data-click="goRegister" data-click-arg="starter">Start Free Trial →</button>
+      <button class="btn-sm-outline" id="p1btn" data-i18n="p1" data-click="goRegister" data-click-arg="starter">Start with Starter →</button>
     </div>
 
     <!-- GROWTH -->
@@ -727,7 +727,7 @@
         <li data-i18n="f_analytics">Reports dashboard</li>
         <li data-i18n="f_partner3">Partner marketplace (up to 3)</li>
       </ul>
-      <button class="btn-teal" id="p2btn" data-i18n="p2" data-click="goRegister" data-click-arg="growth">Start Free Trial →</button>
+      <button class="btn-teal" id="p2btn" data-i18n="p2" data-click="goRegister" data-click-arg="growth">Start with Growth →</button>
     </div>
 
     <!-- PRO -->
@@ -748,7 +748,7 @@
         <li data-i18n="f_priority">Priority support</li>
         <li data-i18n="f_branding">Full custom branding</li>
       </ul>
-      <button class="btn-sm-outline" id="p3btn" data-i18n="p3" data-click="goRegister" data-click-arg="pro">Start Free Trial →</button>
+      <button class="btn-sm-outline" id="p3btn" data-i18n="p3" data-click="goRegister" data-click-arg="pro">Start with Pro →</button>
     </div>
 
     <!-- ENTERPRISE -->
@@ -791,7 +791,7 @@
       <h3 data-i18n-html="ref_h3" data-one-line>Refer a gym. Get 50% off your next month.</h3>
       <p data-i18n="ref_p">Tell a gym owner you know about Refka. When their gym subscribes, your next month costs half.</p>
     </div>
-    <button class="btn-outline" id="refBtn" data-i18n="ref" data-click="goRefer">Refer a Gym →</button>
+    <button class="btn-outline" id="refBtn" data-i18n="ref" data-click="goRefer">Share Refka on WhatsApp →</button>
   </div>
 
 </section>
@@ -817,7 +817,7 @@
   <div class="eye fade" data-i18n="ms_eye">Why Refka</div>
   <p class="ms-vision fade" id="msVision" data-i18n="ms_vision">Nobody should train alone.</p>
   <p class="ms-mission fade" data-i18n="ms_mission">We give every gym owner one system to run the gym, and an app that brings them closer to their members and brings members together.</p>
-  <div class="ms-cta fade"><button class="btn-teal lg" id="ctaEnd" data-i18n="ctaM" data-click="goRegister">Start Your 30-Day Free Trial</button></div>
+  <div class="ms-cta fade"><button class="btn-teal lg" id="ctaEnd" data-i18n="ctaM" data-click="goRegister">Join the founding gyms</button></div>
 </section>
 
 </main>
@@ -1261,86 +1261,19 @@
 <!-- SIGNUP / CONTACT FORM (until app.refka.tech)   -->
 <!-- ══════════════════════════════════════════════ -->
 <div class="modal-overlay" id="signupModal" role="dialog" aria-modal="true" aria-labelledby="suTitle">
-  <div class="modal-box su-box">
-    <button class="modal-close" data-click="closeModal" data-click-arg="signupModal" aria-label="Close" data-i18n-aria="fm_close">✕</button>
-
-    <div id="suFormWrap">
-      <h2 class="su-title" id="suTitle" data-i18n="fm_title">Start your free trial</h2>
-      <p class="su-sub" id="suSub" data-i18n="fm_sub">Leave your details and our team will set up Refka for your gym with you. 30 days free, no credit card needed.</p>
-      <p class="su-plan" id="suPlan" hidden><span data-i18n="fm_plan_sel">Selected plan:</span> <b id="suPlanName"></b></p>
-
-      <form id="suForm" novalidate>
-        <div class="su-hp" aria-hidden="true">
-          <label for="suWebsite">Leave this field empty</label>
-          <input type="text" id="suWebsite" name="rfk_hp_7b" tabindex="-1" autocomplete="off">
-        </div>
-
-        <div class="su-field">
-          <label for="suName" data-i18n="fm_name">Your name</label>
-          <input id="suName" name="name" type="text" autocomplete="name" maxlength="80" required data-check="req" aria-describedby="suNameErr">
-          <p class="su-err" id="suNameErr" aria-live="polite"></p>
-        </div>
-        <div class="su-field">
-          <label for="suGym" data-i18n="fm_gym">Gym name</label>
-          <input id="suGym" name="gym" type="text" autocomplete="organization" maxlength="100" required data-check="req" aria-describedby="suGymErr">
-          <p class="su-err" id="suGymErr" aria-live="polite"></p>
-        </div>
-        <div class="su-field">
-          <label for="suPhone" data-i18n="fm_phone">WhatsApp number</label>
-          <input id="suPhone" name="phone" type="tel" inputmode="tel" autocomplete="tel" maxlength="24" dir="ltr" placeholder="+20 100 123 4567" required data-check="req,phone" aria-describedby="suPhoneErr">
-          <p class="su-err" id="suPhoneErr" aria-live="polite"></p>
-        </div>
-        <div class="su-field">
-          <label for="suEmail" data-i18n="fm_email">Email (optional)</label>
-          <input id="suEmail" name="email" type="email" autocomplete="email" maxlength="120" dir="ltr" data-check="email" aria-describedby="suEmailErr">
-          <p class="su-err" id="suEmailErr" aria-live="polite"></p>
-        </div>
-        <div class="su-two">
-          <div class="su-field">
-            <label for="suCountry" data-i18n="fm_country">Country</label>
-            <select id="suCountry" name="country" autocomplete="country" required data-check="req" aria-describedby="suCountryErr"></select>
-            <p class="su-err" id="suCountryErr" aria-live="polite"></p>
-          </div>
-          <div class="su-field">
-            <label for="suCity" data-i18n="fm_city">City (optional)</label>
-            <input id="suCity" name="city" type="text" autocomplete="address-level2" maxlength="80">
-            <p class="su-err" aria-live="polite"></p>
-          </div>
-        </div>
-        <div class="su-field">
-          <label for="suMembers" data-i18n="fm_members">Active members</label>
-          <select id="suMembers" name="members">
-            <option value="" data-i18n="fm_choose">Choose</option>
-            <option value="<150">&lt; 150</option>
-            <option value="150-500">150 – 500</option>
-            <option value="500-2000">500 – 2,000</option>
-            <option value="2000+">2,000+</option>
-          </select>
-          <p class="su-err" aria-live="polite"></p>
-        </div>
-        <div class="su-field">
-          <label for="suMsg" data-i18n="fm_msg">Message (optional)</label>
-          <textarea id="suMsg" name="message" rows="3" maxlength="1000"></textarea>
-          <p class="su-err" aria-live="polite"></p>
-        </div>
-        <div class="su-field">
-          <label for="suRef" data-i18n="fm_ref">Referred by (optional)</label>
-          <input id="suRef" name="referred_by" type="text" maxlength="100" autocomplete="off">
-        </div>
-
-        <p class="su-consent" data-i18n-html="fm_consent">By sending this form you agree that we may contact you about Refka. See our <a href="#" data-click="openModal" data-click-arg="privacyModal">Privacy Policy</a>.</p>
-        <button type="submit" class="btn-teal lg su-send" id="suSend" data-i18n="fm_send">Request my free trial</button>
-        <p class="su-status" id="suStatus" role="status" aria-live="polite"></p>
-      </form>
+  <div class="modal-box chat-box">
+    <div class="chat-head">
+      <img src="assets/icons/favicon.svg" alt="" width="36" height="36" class="chat-avatar">
+      <div class="chat-who"><b id="suTitle">Refka</b><small data-i18n="ch_status">Founding team · we reply within 24 hours</small></div>
+      <button class="chat-x" data-click="closeModal" data-click-arg="signupModal" aria-label="Close" data-i18n-aria="fm_close">✕</button>
     </div>
-
-    <div class="su-done" id="suDone" hidden>
-      <div class="su-check" aria-hidden="true">✓</div>
-      <h2 class="su-title" data-i18n="fm_ok_t" tabindex="-1" id="suDoneTitle">Request received</h2>
-      <p class="su-sub" data-i18n="fm_ok">Thank you. A member of our team will contact you on WhatsApp within 24 hours to set up your gym with you. If you would rather start now, we are happy to talk right away.</p>
-      <a class="btn-teal wa-link su-wa" href="https://wa.me/201149421081" target="_blank" rel="noopener" data-i18n="fm_wa">Chat with us on WhatsApp</a>
-      <button type="button" class="btn-sm-outline" data-click="closeModal" data-click-arg="signupModal" data-i18n="fm_close">Close</button>
-    </div>
+    <div class="chat-log" id="chatLog" aria-live="polite"></div>
+    <form class="chat-in" id="chatForm" novalidate autocomplete="on">
+      <div class="su-hp" aria-hidden="true"><label for="suWebsite">Leave this field empty</label><input type="text" id="suWebsite" name="rfk_hp_7b" tabindex="-1" autocomplete="off"></div>
+      <div class="chat-fields" id="chatFields"></div>
+      <p class="chat-err" id="chatErr" role="alert"></p>
+    </form>
+    <p class="chat-consent" data-i18n-html="fm_consent">By sending this form you agree that we may contact you about Refka. See our <a href="#" data-click="openModal" data-click-arg="privacyModal">Privacy Policy</a>.</p>
   </div>
 </div>
 

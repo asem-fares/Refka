@@ -7,7 +7,7 @@
 // ═══════════════════════════════════════════════════════════════
 var CLICK_ACTIONS = {
   goRegister: function (arg) { goRegister(arg || null); },
-  goRefer: function () { goRegister(null); setTimeout(function () { var r = g('suRef'); if (r) r.focus(); }, 80); },
+  goRefer: function () { shareRefka(); },
   goContact: function () { goContact(); },
   closeMob: function () { closeMob(); },
   closeMobRegister: function () { closeMob(); goRegister(); },
@@ -36,7 +36,7 @@ openModal = function (id) {
   _lastFocus = document.activeElement;
   m.classList.add('open');
   document.body.style.overflow = 'hidden';
-  var first = id === 'signupModal' && !g('suFormWrap').hidden ? g('suName') : m.querySelector('.modal-close');
+  var first = id === 'signupModal' ? (m.querySelector('#chatFields input') || m.querySelector('.chat-x')) : m.querySelector('.modal-close');
   if (first) setTimeout(function () { first.focus(); }, 30);
 };
 closeModal = function (id) {
@@ -90,161 +90,184 @@ openOut = function (u) {
   }
 };
 
-var _suMode = 'trial', _suPlan = null, _suLast = 0;
+// ─── PRE-LAUNCH: every button opens one short conversation ───────────
+// Six questions, one at a time, like a WhatsApp chat. When the number is in, the answers are
+// emailed to the team (so no lead is lost even if WhatsApp never opens) and the visitor gets a
+// ready-written WhatsApp message to send us. The same answers, two channels.
+var WA_NUMBER = '201149421081';
 var PLAN_NAMES = { starter: 'Starter', growth: 'Growth', pro: 'Pro', enterprise: 'Enterprise' };
+var DIAL = { EG:'20', SA:'966', AE:'971', KW:'965', QA:'974', BH:'973', OM:'968', JO:'962', LB:'961', IQ:'964', MA:'212', TN:'216',
+  DZ:'213', LY:'218', SD:'249', YE:'967', PS:'970', SY:'963', AL:'355', DE:'49', AT:'43', CH:'41', GB:'44', IE:'353', US:'1', CA:'1',
+  FR:'33', IT:'39', ES:'34', PT:'351', NL:'31', BE:'32', PL:'48', GR:'30', SE:'46', TR:'90', RU:'7', UA:'380', IN:'91', PK:'92',
+  ID:'62', MY:'60', SG:'65', PH:'63', NG:'234', KE:'254', ZA:'27', AU:'61', NZ:'64', BR:'55', MX:'52', XK:'383', MK:'389', RS:'381' };
+
+var _ch = { mode: 'trial', plan: null, step: 0, a: {}, sent: false, last: 0 };
+var STEPS = [
+  { k: 'name', q: 'ch_q_name', kind: 'text', ph: 'ch_ph_name', ac: 'name', max: 80 },
+  { k: 'gym', q: 'ch_q_gym', kind: 'text', ph: 'ch_ph_gym', ac: 'organization', max: 100 },
+  { k: 'city', q: 'ch_q_city', kind: 'text', ph: 'ch_ph_city', ac: 'address-level2', max: 80 },
+  { k: 'members', q: 'ch_q_members', kind: 'chips', opts: [['<150', '\u2066< 150\u2069'], ['150-500', '\u2066150 – 500\u2069'], ['500-2000', '\u2066500 – 2,000\u2069'], ['2000+', '\u20662,000+\u2069']] },
+  { k: 'need', q: 'ch_q_need', kind: 'chips', opts: [['retention', 'ch_n1'], ['desk', 'ch_n2'], ['community', 'ch_n3'], ['income', 'ch_n4']], i18n: true },
+  { k: 'phone', q: 'ch_q_phone', kind: 'phone' }
+];
 
 function tr(k) { var t = T[_lang] || T.en; return t[k] !== undefined ? t[k] : T.en[k]; }
+function fill(s) { return String(s).replace(/\{(\w+)\}/g, function (m, k) { return _ch.a[k] !== undefined ? _ch.a[k] : (k === 'plan' && _ch.plan ? PLAN_NAMES[_ch.plan] : m); }); }
+function esc(s) { var d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
+function reduced() { return matchMedia('(prefers-reduced-motion: reduce)').matches; }
 
-function setI18n(el, key) { if (!el) return; el.setAttribute('data-i18n', key); el.textContent = tr(key); }
-
-function openSignup(mode, plan) {
-  _suMode = mode; _suPlan = plan || null;
-  setI18n(g('suTitle'), mode === 'contact' ? 'fm_ctitle' : 'fm_title');
-  setI18n(g('suSub'), mode === 'contact' ? 'fm_csub' : 'fm_sub');
-  setI18n(g('suSend'), mode === 'contact' ? 'fm_csend' : 'fm_send');
-  var p = g('suPlan');
-  if (_suPlan && PLAN_NAMES[_suPlan]) { g('suPlanName').textContent = PLAN_NAMES[_suPlan]; p.hidden = false; }
-  else p.hidden = true;
-  syncFormCountries();
-  g('suFormWrap').hidden = false; g('suDone').hidden = true;
-  clearStatus();
-  openModal('signupModal');
-}
-
-function syncFormCountries() {
-  var src = g('countrySel'), dst = g('suCountry');
-  if (!src || !dst) return;
-  var keep = dst.value || _country;
-  dst.innerHTML = '';
-  Array.prototype.forEach.call(src.options, function (o) {
-    var n = document.createElement('option');
-    n.value = o.value; n.textContent = o.textContent.replace(/\s*\([A-Z]{3}\)$/, '');
-    dst.appendChild(n);
-  });
-  dst.value = keep;
-}
-
-// Re-translate the form's dynamic bits whenever the language changes
-function afterLang() {
-  document.querySelectorAll('[data-i18n-aria]').forEach(function (el) { el.setAttribute('aria-label', tr(el.getAttribute('data-i18n-aria'))); });
-  var lx = g('langClose'); if (lx) lx.setAttribute('aria-label', tr('fm_close'));
-  syncFormCountries();
-  document.querySelectorAll('#suForm .su-err.on').forEach(function (e) { var f = e.parentNode.querySelector('input,select,textarea'); if (f) checkField(f); });
-}
-var _origApplyLang = applyLang;
-applyLang = function (code) { _origApplyLang(code); afterLang(); };
-
-// Arabic keyboards type ٠١٢… (and Persian/Urdu ۰۱۲…): read them as 0-9 so the number is accepted and arrives in a form WhatsApp understands.
+// Arabic keyboards type ٠١٢… (and Persian/Urdu ۰۱۲…): read them as 0-9 so the number arrives in a form WhatsApp understands.
 function latinDigits(s) {
-  return String(s).replace(/[\u0660-\u0669]/g, function (d) { return d.charCodeAt(0) - 0x0660; })
-                  .replace(/[\u06F0-\u06F9]/g, function (d) { return d.charCodeAt(0) - 0x06F0; });
+  return String(s).replace(/[٠-٩]/g, function (d) { return d.charCodeAt(0) - 0x0660; })
+                  .replace(/[۰-۹]/g, function (d) { return d.charCodeAt(0) - 0x06F0; });
 }
 
-function checkField(f) {
-  var v = latinDigits((f.value || '').trim()), rules = (f.getAttribute('data-check') || '').split(','), msg = '';
-  for (var i = 0; i < rules.length && !msg; i++) {
-    var r = rules[i];
-    if (r === 'req' && !v) msg = tr('fm_req');
-    if (r === 'phone' && v) {
-      var digits = v.replace(/\D/g, '');
-      if (!/^\+?[\d\s\-().]+$/.test(v) || digits.length < 7 || digits.length > 15) msg = tr('fm_bad_phone');
-    }
-    if (r === 'email' && v && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v)) msg = tr('fm_bad_email');
-  }
-  var err = f.parentNode.querySelector('.su-err');
-  f.classList.toggle('bad', !!msg);
-  if (msg) f.setAttribute('aria-invalid', 'true'); else f.removeAttribute('aria-invalid');
-  if (err) { err.textContent = msg; err.classList.toggle('on', !!msg); }
-  return !msg;
+function bubble(html, who, cls) {
+  var log = g('chatLog'), b = document.createElement('div');
+  b.className = 'cb ' + (who || 'bot') + (cls ? ' ' + cls : '');
+  b.innerHTML = html; log.appendChild(b);
+  requestAnimationFrame(function () { b.classList.add('in'); log.scrollTop = log.scrollHeight; });
+  return b;
+}
+// Refka "types" for a moment before each question: the pause makes it read like a person, not a form.
+function say(html, then, cls) {
+  if (reduced()) { bubble(html, 'bot', cls); if (then) then(); return; }
+  var t = bubble('<i></i><i></i><i></i>', 'bot', 'typing');
+  setTimeout(function () { t.remove(); bubble(html, 'bot', cls); if (then) setTimeout(then, 120); }, 650);
 }
 
-function setStatus(type, text) { var s = g('suStatus'); s.className = 'su-status ' + type; s.textContent = text; }
-function clearStatus() { var s = g('suStatus'); if (s) { s.className = 'su-status'; s.textContent = ''; } }
-
-function showDone() {
-  g('suFormWrap').hidden = true; g('suDone').hidden = false;
-  var h = g('suDoneTitle'); if (h) setTimeout(function () { h.focus(); }, 30);
-  g('suForm').reset();
-}
-
-(function initForm() {
-  var form = g('suForm'); if (!form) return;
-  form.querySelectorAll('[data-check]').forEach(function (f) {
-    f.addEventListener('blur', function () { if (f.value) checkField(f); });
-    f.addEventListener('input', function () { if (f.classList.contains('bad')) checkField(f); });
-  });
-
-  form.addEventListener('submit', function (e) {
-    e.preventDefault();
-    clearStatus();
-
-    if (g('suWebsite').value) { showDone(); return; }          // bot filled the hidden field
-    if (Date.now() - _suLast < 10000) { setStatus('err', tr('fm_wait')); return; }
-
-    var ok = true, firstBad = null;
-    form.querySelectorAll('[data-check]').forEach(function (f) {
-      if (!checkField(f)) { ok = false; if (!firstBad) firstBad = f; }
-    });
-    if (!ok) { firstBad.focus(); return; }
-
-    var val = function (id) { return latinDigits((g(id).value || '').trim()); };
-    var cCode = val('suCountry'), cName = cCode;
-    try { cName = new Intl.DisplayNames(['en'], { type: 'region' }).of(cCode); } catch (e) {}   // inbox reads English
-    var payload = {
-      _subject: (_suMode === 'contact' ? 'Refka contact request: ' : 'Refka free trial request: ') + val('suGym') + ' (' + val('suCountry') + ')',
-      _template: 'table',
-      _captcha: 'false',
-      'Request type': _suMode === 'contact' ? 'Enterprise / contact' : 'Free trial',
-      'Plan': _suPlan ? PLAN_NAMES[_suPlan] : 'Not chosen',
-      'Name': val('suName'),
-      'Gym': val('suGym'),
-      'WhatsApp': val('suPhone'),
-      'Email': val('suEmail') || 'Not provided',
-      'Country': cName + ' (' + val('suCountry') + ')',
-      'City': val('suCity') || 'Not provided',
-      'Active members': val('suMembers') || 'Not provided',
-      'Referred by': val('suRef') || '-',
-      'Message': val('suMsg') || '-',
-      'Language': _lang,
-      'Prices shown in': _cur + ', zone ' + _zone + ', ' + (_billing === 'm' ? 'monthly' : 'annual'),
-      'Submitted (UTC)': new Date().toISOString().replace('T', ' ').slice(0, 16)
-    };
-    if (val('suEmail')) payload._replyto = val('suEmail');
-
-    var btn = g('suSend'), label = btn.textContent;
-    btn.disabled = true; btn.textContent = tr('fm_sending');
-    var done = function () { btn.disabled = false; btn.textContent = label; };
-
-    // Previews and local tests never email the team.
-    if (!LIVE_HOST.test(location.hostname)) {
-      if (window.console) console.info('[Refka form] preview mode, not sent:', payload);
-      setTimeout(function () { done(); _suLast = Date.now(); showDone(); }, 500);
+function askStep() {
+  var st = STEPS[_ch.step], box = g('chatFields'); box.innerHTML = ''; g('chatErr').textContent = '';
+  say(esc(fill(tr(st.q))), function () {
+    if (st.kind === 'chips') {
+      var row = document.createElement('div'); row.className = 'chat-chips';
+      st.opts.forEach(function (o) {
+        var c = document.createElement('button'); c.type = 'button'; c.className = 'chat-chip';
+        c.textContent = st.i18n ? tr(o[1]) : o[1];
+        c.addEventListener('click', function () { answer(o[0], c.textContent); });
+        row.appendChild(c);
+      });
+      box.appendChild(row);
+      var first = row.querySelector('button'); if (first) first.focus();
       return;
     }
-
-    var ctl = window.AbortController ? new AbortController() : null;
-    var timer = setTimeout(function () { if (ctl) ctl.abort(); }, 12000);
-    fetch(LEADS_ENDPOINT, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-      body: JSON.stringify(payload),
-      signal: ctl ? ctl.signal : undefined
-    }).then(function (r) { return r.json(); }).then(function (res) {
-      clearTimeout(timer); done();
-      // FormSubmit answers success:"true". Before the inbox is activated it answers with an
-      // activation notice and does NOT forward the request, so the visitor sees the email fallback.
-      if (res && (res.success === true || res.success === 'true')) {
-        _suLast = Date.now();
-        if (window.gtag) gtag('event', 'generate_lead', { plan: _suPlan || 'unspecified', type: _suMode, country: val('suCountry'), language: _lang });
-        showDone();
-      } else {
-        setStatus('err', tr('fm_err'));
-      }
-    }).catch(function () {
-      clearTimeout(timer); done();
-      setStatus('err', tr('fm_err'));
-    });
+    var line = document.createElement('div'); line.className = 'chat-line';
+    var inp = document.createElement('input');
+    inp.id = 'chatField'; inp.maxLength = st.max || 24;
+    if (st.kind === 'phone') {
+      inp.type = 'tel'; inp.inputMode = 'tel'; inp.autocomplete = 'tel'; inp.dir = 'ltr';
+      inp.value = DIAL[_country] ? '+' + DIAL[_country] + ' ' : '+';
+      inp.setAttribute('aria-label', tr('fm_phone'));
+    } else {
+      inp.type = 'text'; inp.autocomplete = st.ac; inp.placeholder = tr(st.ph); inp.setAttribute('aria-label', tr(st.ph));
+    }
+    var btn = document.createElement('button'); btn.type = 'submit'; btn.className = 'chat-send'; btn.setAttribute('aria-label', tr('ch_next'));
+    btn.innerHTML = '<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M3.4 20.4 21 12 3.4 3.6 3.4 10l12.6 2-12.6 2z"/></svg>';
+    line.appendChild(inp); line.appendChild(btn); box.appendChild(line);
+    if (st.kind === 'phone') {
+      var ref = document.createElement('input'); ref.type = 'text'; ref.id = 'chatRef'; ref.className = 'chat-ref'; ref.maxLength = 100;
+      ref.placeholder = tr('ch_ref_ph'); ref.setAttribute('aria-label', tr('ch_ref_ph')); ref.autocomplete = 'off';
+      box.appendChild(ref);
+    }
+    setTimeout(function () { inp.focus(); var n = inp.value.length; try { inp.setSelectionRange(n, n); } catch (e) {} }, 30);
   });
+}
 
-  afterLang();
+function answer(value, shown) {
+  var st = STEPS[_ch.step];
+  _ch.a[st.k] = value; if (st.kind === 'chips') _ch.a[st.k + '_t'] = shown;
+  g('chatFields').innerHTML = ''; g('chatErr').textContent = '';
+  bubble(st.kind === 'phone' ? '<span dir="ltr">' + esc(shown) + '</span>' : esc(shown), 'me');
+  _ch.step++;
+  if (_ch.step < STEPS.length) askStep(); else finish();
+}
+
+function onSubmit(e) {
+  e.preventDefault();
+  var st = STEPS[_ch.step], inp = g('chatField'); if (!st || !inp) return;
+  var v = latinDigits(inp.value.trim()), err = '';
+  if (st.kind === 'phone') {
+    var d = v.replace(/\D/g, '');
+    if (!/^\+?[\d\s\-().]+$/.test(v) || d.length < 7 || d.length > 15) err = tr('fm_bad_phone');
+    var r = g('chatRef'); _ch.a.ref = r ? r.value.trim() : '';
+  } else if (!v) err = tr('fm_req');
+  if (err) { g('chatErr').textContent = err; inp.setAttribute('aria-invalid', 'true'); inp.focus(); return; }
+  answer(v, v);
+}
+
+function waText() {
+  var a = _ch.a, lines = [fill(tr('ch_wa_1')), fill(tr('ch_wa_2'))];
+  lines.push(tr('ch_wa_members') + ' ' + a.members_t);
+  lines.push(tr('ch_wa_need') + ' ' + a.need_t);
+  if (_ch.plan) lines.push(tr('ch_wa_plan') + ' ' + PLAN_NAMES[_ch.plan]);
+  if (a.ref) lines.push(tr('ch_wa_ref') + ' ' + a.ref);
+  return lines.join('\n');
+}
+
+function finish() {
+  saveLead();
+  say(esc(fill(tr('ch_done'))), function () {
+    var txt = waText();
+    var p = bubble(esc(txt).replace(/\u2066([^\u2069]*)\u2069/g, '<bdi dir="ltr">$1</bdi>').replace(/\n/g, '<br>'), 'bot', 'wa-preview');
+    p.setAttribute('dir', 'auto');
+    var box = g('chatFields'); box.innerHTML = '';
+    var a = document.createElement('a'); a.className = 'btn-teal chat-wa'; a.target = '_blank'; a.rel = 'noopener';
+    a.href = 'https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(txt);
+    a.innerHTML = '<svg viewBox="0 0 32 32" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M16 3C9 3 3.3 8.7 3.3 15.7c0 2.2.6 4.4 1.7 6.3L3.2 28.8l7-1.8a12.8 12.8 0 0 0 5.8 1.4c7 0 12.8-5.7 12.8-12.7S23 3 16 3zm5.9 15.4c-.3-.2-1.9-.9-2.2-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-1 1.2-.2.2-.4.2-.7.1-.3-.2-1.3-.5-2.6-1.6-1-.8-1.6-1.9-1.8-2.2-.2-.3 0-.5.1-.6l.5-.6c.2-.2.2-.3.3-.5.1-.2 0-.4 0-.6l-1-2.3c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.8.4-.3.3-1.1 1.1-1.1 2.6s1.1 3 1.3 3.3c.2.2 2.2 3.4 5.4 4.7 2.6 1 3.2.8 3.8.8.6-.1 1.9-.8 2.1-1.5.3-.7.3-1.4.2-1.5-.1-.1-.3-.2-.6-.4z"/></svg><span>' + esc(tr('ch_send')) + '</span>';
+    a.addEventListener('click', function () { if (window.gtag) gtag('event', 'whatsapp_lead', { plan: _ch.plan || 'none' }); });
+    box.appendChild(a);
+    setTimeout(function () { a.focus(); }, 30);
+  });
+}
+
+// Email the answers to the team. Previews never email; refka.tech does.
+function saveLead() {
+  if (g('suWebsite') && g('suWebsite').value) return;               // bot filled the hidden field
+  if (_ch.sent || Date.now() - _ch.last < 10000) return;
+  _ch.sent = true; _ch.last = Date.now();
+  var a = _ch.a, cName = _country;
+  try { cName = new Intl.DisplayNames(['en'], { type: 'region' }).of(_country); } catch (e) {}
+  var payload = {
+    _subject: 'Refka lead: ' + a.gym + ', ' + a.city + ' (' + _country + ')',
+    _template: 'table', _captcha: 'false',
+    'Type': _ch.mode === 'contact' ? 'Enterprise / contact' : 'Founding gym',
+    'Plan': _ch.plan ? PLAN_NAMES[_ch.plan] : 'Not chosen',
+    'Name': a.name, 'Gym': a.gym, 'City': a.city, 'Country (detected)': cName + ' (' + _country + ')',
+    'Active members': a.members, 'First thing to fix': a.need_t + ' (' + a.need + ')',
+    'WhatsApp': a.phone, 'Referred by': a.ref || '-',
+    'Language': _lang, 'Prices shown in': _cur + ', ' + (_billing === 'm' ? 'monthly' : 'annual'),
+    'Submitted (UTC)': new Date().toISOString().replace('T', ' ').slice(0, 16)
+  };
+  if (window.gtag) gtag('event', 'generate_lead', { plan: _ch.plan || 'none', type: _ch.mode, country: _country, language: _lang });
+  var ok = function () { say(esc(tr('ch_saved')), null, 'note'); };
+  if (!LIVE_HOST.test(location.hostname)) { if (window.console) console.info('[Refka lead] preview mode, not sent:', payload); setTimeout(ok, 1600); return; }
+  fetch(LEADS_ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }, body: JSON.stringify(payload) })
+    .then(function (r) { return r.json(); })
+    .then(function (res) { if (res && (res.success === true || res.success === 'true')) setTimeout(ok, 900); else _ch.sent = false; })
+    .catch(function () { _ch.sent = false; });
+}
+
+function openSignup(mode, plan) {
+  _ch.mode = mode; _ch.plan = plan || null; _ch.step = 0; _ch.a = {}; _ch.sent = false;
+  g('chatLog').innerHTML = ''; g('chatFields').innerHTML = ''; g('chatErr').textContent = '';
+  openModal('signupModal');
+  var hi = mode === 'contact' ? tr('ch_hi_contact') : (_ch.plan ? fill(tr('ch_hi_plan')) : tr('ch_hi'));
+  say(esc(hi), askStep);
+}
+
+// Refer a gym, before launch: share Refka on WhatsApp (or the phone's share sheet).
+function shareRefka() {
+  var url = 'https://refka.tech/', text = tr('ch_share');
+  if (navigator.share) { navigator.share({ title: 'Refka', text: text, url: url }).catch(function () {}); return; }
+  openOut('https://wa.me/?text=' + encodeURIComponent(text + ' ' + url));
+}
+
+(function initChat() {
+  var f = g('chatForm'); if (f) f.addEventListener('submit', onSubmit);
+  var _orig = applyLang;
+  applyLang = function (code) {
+    _orig(code);
+    document.querySelectorAll('[data-i18n-aria]').forEach(function (el) { el.setAttribute('aria-label', tr(el.getAttribute('data-i18n-aria'))); });
+    var lx = g('langClose'); if (lx) lx.setAttribute('aria-label', tr('fm_close'));
+  };
 })();
