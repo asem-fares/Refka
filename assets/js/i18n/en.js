@@ -337,5 +337,6 @@
   wa_msg_pricing: "Hi Refka, I have a gym in {c} and a question about the plans and prices.",
   wa_msg_setup: "Hi Refka, I have a gym in {c} and I'd like your team to set it up with me.",
   oa_gap: "Missing from the drawer",
+  pay_cash: "Cash",
   lang_sel: "Choose language"
 };

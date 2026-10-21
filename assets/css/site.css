@@ -1154,3 +1154,22 @@ s.was.drawn { background-size: 100% 2px; }
   .steps::before { transform: scaleX(1); } .step-n { opacity: 1; }
   .btn-teal::after, .big-stat.counted, #biAnnual.active .save-tag, .wa-fab.hint { animation: none; }
 }
+
+/* v5: cash, the fourth way to pay Refka in Egypt: bills settle onto the stack, the coin drops in and catches the light */
+.pm-logos.pm-cash { height: 34px; padding: 0 8px; background: var(--s2); border: 1px solid var(--p-line-25); }
+.cash-ico { display: block; overflow: visible; }
+.cash-ico .bill, .cash-ico .coin { transform-box: fill-box; transform-origin: center; }
+@media (prefers-reduced-motion: reduce) { .cash-ico .bill-shine { display: none; } }
+@media (prefers-reduced-motion: no-preference) {
+  .cash-ico .b1 { animation: billIn 4.8s var(--ease-expo) infinite; }
+  .cash-ico .b2 { animation: billIn2 4.8s var(--ease-expo) infinite; }
+  .cash-ico .coin { animation: coinDrop 4.8s cubic-bezier(.3,1.5,.5,1) infinite; }
+  .cash-ico .coin-shine { animation: coinShine 4.8s ease infinite; }
+  .cash-ico .bill-shine { animation: billShine 4.8s ease-in-out infinite; }
+  .pm-chip:hover .cash-ico .b1, .pm-chip:hover .cash-ico .b2, .pm-chip:hover .cash-ico .coin, .pm-chip:hover .cash-ico .coin-shine { animation-duration: 2.4s; }
+}
+@keyframes billIn { 0% { transform: translate(-10px,-8px) rotate(-10deg); opacity: 0; } 14%, 100% { transform: none; opacity: 1; } }
+@keyframes billIn2 { 0%, 4% { transform: translate(-6px,-5px) rotate(-6deg); opacity: 0; } 18%, 100% { transform: none; opacity: 1; } }
+@keyframes coinDrop { 0%, 20% { transform: translateY(-16px) scale(.6); opacity: 0; } 32% { transform: translateY(0) scale(1.08); opacity: 1; } 38%, 64% { transform: none; } 70% { transform: scaleX(.15); } 76%, 100% { transform: none; opacity: 1; } }
+@keyframes billShine { 0%, 42% { transform: translateX(0); opacity: 0; } 46% { opacity: 1; } 60%, 100% { transform: translateX(52px); opacity: 0; } }
+@keyframes coinShine { 0%, 40% { opacity: 0; } 46% { opacity: 1; } 56%, 100% { opacity: 0; } }
