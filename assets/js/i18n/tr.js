@@ -160,7 +160,7 @@
   f5: "Hizmet Şartları",
   f6: "Çerez Politikası",
   f7: "Kabul Edilebilir Kullanım",
-  foot: "© 2026 Refka · Dünyadaki her salon için",
+  foot: "© 2026 Refka",
   legal_en: "Bu belge İngilizce olarak sunulmaktadır.",
   fm_title: "Ücretsiz denemenizi başlatın",
   fm_sub: "Bilgilerinizi bırakın, ekibimiz Refka'yı salonunuz için sizinle birlikte kursun. 30 gün ücretsiz, kredi kartı gerekmez.",

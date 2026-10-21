@@ -160,7 +160,7 @@
   f5: "Termini di servizio",
   f6: "Cookie policy",
   f7: "Uso accettabile",
-  foot: "© 2026 Refka · Per ogni palestra del mondo",
+  foot: "© 2026 Refka",
   legal_en: "Questo documento è disponibile in inglese.",
   fm_title: "Inizi la prova gratuita",
   fm_sub: "Lasci i Suoi dati e il nostro team configurerà Refka per la Sua palestra insieme a Lei. 30 giorni gratis, senza carta di credito.",

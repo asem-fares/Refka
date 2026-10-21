@@ -160,7 +160,7 @@
   f5: "Ketentuan Layanan",
   f6: "Kebijakan Cookie",
   f7: "Penggunaan yang Diizinkan",
-  foot: "© 2026 Refka · Untuk setiap gym di dunia",
+  foot: "© 2026 Refka",
   legal_en: "Dokumen ini tersedia dalam bahasa Inggris.",
   fm_title: "Mulai uji coba gratis",
   fm_sub: "Tinggalkan data Anda dan tim kami akan menyiapkan Refka untuk gym Anda bersama Anda. Gratis 30 hari, tanpa kartu kredit.",

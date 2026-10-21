@@ -160,7 +160,7 @@
   f5: "AGB",
   f6: "Cookie-Richtlinie",
   f7: "Nutzungsrichtlinie",
-  foot: "© 2026 Refka · Für jedes Studio weltweit",
+  foot: "© 2026 Refka",
   legal_en: "Dieses Dokument ist auf Englisch verfügbar.",
   fm_title: "Kostenlose Testphase starten",
   fm_sub: "Hinterlassen Sie Ihre Daten, und unser Team richtet Refka gemeinsam mit Ihnen für Ihr Studio ein. 30 Tage kostenlos, ohne Kreditkarte.",

@@ -160,7 +160,7 @@
   f5: "Kushtet e shërbimit",
   f6: "Politika e cookies",
   f7: "Përdorimi i pranueshëm",
-  foot: "© 2026 Refka · Për çdo palestër në botë",
+  foot: "© 2026 Refka",
   legal_en: "Ky dokument është i disponueshëm në anglisht.",
   fm_title: "Filloni provën falas",
   fm_sub: "Lini të dhënat tuaja dhe ekipi ynë do të konfigurojë Refka për palestrën tuaj bashkë me ju. 30 ditë falas, pa kartë krediti.",

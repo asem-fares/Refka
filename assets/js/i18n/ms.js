@@ -160,7 +160,7 @@
   f5: "Terma Perkhidmatan",
   f6: "Dasar Kuki",
   f7: "Penggunaan yang Dibenarkan",
-  foot: "© 2026 Refka · Untuk setiap gim di dunia",
+  foot: "© 2026 Refka",
   legal_en: "Dokumen ini tersedia dalam bahasa Inggeris.",
   fm_title: "Mulakan percubaan percuma",
   fm_sub: "Tinggalkan butiran anda dan pasukan kami akan menyediakan Refka untuk gim anda bersama anda. Percuma 30 hari, tanpa kad kredit.",

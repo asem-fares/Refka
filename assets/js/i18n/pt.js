@@ -160,7 +160,7 @@
   f5: "Termos de serviço",
   f6: "Política de cookies",
   f7: "Uso aceitável",
-  foot: "© 2026 Refka · Para todas as academias do mundo",
+  foot: "© 2026 Refka",
   legal_en: "Este documento está disponível em inglês.",
   fm_title: "Comece seu teste grátis",
   fm_sub: "Deixe seus dados e nossa equipe vai configurar a Refka para a sua academia com você. 30 dias grátis, sem cartão de crédito.",

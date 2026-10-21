@@ -160,7 +160,7 @@
   f5: "Mga Tuntunin ng Serbisyo",
   f6: "Patakaran sa Cookie",
   f7: "Katanggap-tanggap na Paggamit",
-  foot: "© 2026 Refka · Para sa bawat gym sa mundo",
+  foot: "© 2026 Refka",
   legal_en: "Available ang dokumentong ito sa Ingles.",
   fm_title: "Simulan ang libreng trial",
   fm_sub: "Iwan ang inyong detalye at ise-set up ng aming team ang Refka para sa inyong gym kasama ninyo. Libre sa loob ng 30 araw, walang credit card.",

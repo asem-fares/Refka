@@ -1045,3 +1045,14 @@ s.was { color: var(--t3); text-decoration-thickness: 2px; font-size: .42em; font
 .pm-logos.pm-wallets img { height: 24px; width: auto; }
 .pm-logos.pm-wallets img[src$="etisalat-money.png"] { height: 26px; }
 .pm-logos.pm-wallets img[src$="vodafone-cash.png"], .pm-logos.pm-wallets img[src$="orange.svg"] { border-radius: 4px; }
+
+/* v5: footer in one line: identity and email on one side, legal links on the other */
+footer { padding-top: var(--sp-24); }
+.f-bottom { align-items: center; gap: var(--sp-12) var(--sp-24); }
+.f-id { display: flex; align-items: center; flex-wrap: wrap; gap: var(--sp-8); font-size: var(--fs-sm); color: var(--t3); margin: 0; }
+.f-id a { color: var(--t-footer); text-decoration: none; transition: color var(--dur-fast) var(--ease-std); }
+.f-id a:hover { color: var(--t1); }
+@media (max-width: 900px) {
+  .f-bottom { flex-direction: column; align-items: center; text-align: center; }
+  .f-id, .f-legal { justify-content: center; }
+}

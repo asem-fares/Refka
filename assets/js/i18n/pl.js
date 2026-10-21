@@ -160,7 +160,7 @@
   f5: "Regulamin",
   f6: "Polityka plików cookie",
   f7: "Zasady korzystania",
-  foot: "© 2026 Refka · Dla każdej siłowni na świecie",
+  foot: "© 2026 Refka",
   legal_en: "Ten dokument jest dostępny w języku angielskim.",
   fm_title: "Rozpocznij darmowy okres próbny",
   fm_sub: "Zostaw dane, a nasz zespół skonfiguruje z Tobą Refka dla Twojego klubu. 30 dni za darmo, bez karty kredytowej.",

@@ -160,7 +160,7 @@
   f5: "Masharti ya Huduma",
   f6: "Sera ya Vidakuzi",
   f7: "Matumizi Yanayokubalika",
-  foot: "© 2026 Refka · Kwa kila gym duniani",
+  foot: "© 2026 Refka",
   legal_en: "Hati hii inapatikana kwa Kiingereza.",
   fm_title: "Anza jaribio lako la bure",
   fm_sub: "Acha maelezo yako na timu yetu itaweka Refka kwa ajili ya gym yako pamoja nawe. Siku 30 bure, bila kadi ya mkopo.",

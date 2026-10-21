@@ -160,7 +160,7 @@
   f5: "Điều khoản dịch vụ",
   f6: "Chính sách cookie",
   f7: "Quy định sử dụng",
-  foot: "© 2026 Refka · Cho mọi phòng gym trên thế giới",
+  foot: "© 2026 Refka",
   legal_en: "Tài liệu này có sẵn bằng tiếng Anh.",
   fm_title: "Bắt đầu dùng thử miễn phí",
   fm_sub: "Để lại thông tin, đội ngũ của chúng tôi sẽ cùng quý vị thiết lập Refka cho phòng tập. Miễn phí 30 ngày, không cần thẻ tín dụng.",

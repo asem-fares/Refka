@@ -160,7 +160,7 @@
   f5: "Terms of Service",
   f6: "Cookie Policy",
   f7: "Acceptable Use",
-  foot: "© 2026 Refka · Built for every gym on earth",
+  foot: "© 2026 Refka",
   legal_en: "This document is available in English.",
   fm_title: "Start your free trial",
   fm_sub: "Leave your details and our team will set up Refka for your gym with you. 30 days free, no credit card needed.",

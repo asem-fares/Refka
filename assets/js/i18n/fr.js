@@ -160,7 +160,7 @@
   f5: "Conditions d'utilisation",
   f6: "Politique relative aux cookies",
   f7: "Utilisation acceptable",
-  foot: "© 2026 Refka · Pour chaque salle dans le monde",
+  foot: "© 2026 Refka",
   legal_en: "Ce document est disponible en anglais.",
   fm_title: "Démarrez votre essai gratuit",
   fm_sub: "Laissez vos coordonnées et notre équipe configurera Refka pour votre salle avec vous. 30 jours offerts, sans carte bancaire.",
