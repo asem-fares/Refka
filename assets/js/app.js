@@ -363,7 +363,6 @@ function applyLang(code) {
   if (!t) return;
   _lang = code;
   if (code === 'ar') applyPersona(t);
-  try { localStorage.setItem('rfk_l', code); } catch(e) {}
   loadFont(code);
 
   document.documentElement.dir  = t.dir;
@@ -380,7 +379,7 @@ function applyLang(code) {
   document.querySelectorAll('[data-i18n-html]').forEach(function(el) {
     var v = t[el.dataset.i18nHtml];
     if (v === undefined) v = T.en[el.dataset.i18nHtml];
-    if (v !== undefined) el.innerHTML = v;
+    if (v !== undefined) el.innerHTML = el.hasAttribute('data-one-line') ? String(v).replace(/<br\s*\/?>/gi, ' ') : v;   // one-line spots reuse a multi-line text
   });
 
   // Avatar initials follow the localized names
@@ -470,7 +469,7 @@ function applyLang(code) {
 })();
 
 // Switching language later: load that language's file first (once), then apply it.
-function setLang(code) { RFK.whenLang(code, function(c) { applyLang(c); }); }
+function setLang(code) { try { localStorage.setItem('rfk_lang', code); } catch(e) {} RFK.whenLang(code, function(c) { applyLang(c); }); }
 
 // ═══════════════════════════════════════════════════════════════
 // PHONE DEMOS: the owner phone and the member phone, 4 scenes each,
@@ -720,7 +719,7 @@ function trackCTA(location, plan) {
 (function() {
   [['navCta','navbar',null], ['mobCta','mobile_menu',null], ['ctaMain','hero',null],
    ['p1btn','pricing','starter'], ['p2btn','pricing','growth'], ['p3btn','pricing','pro'],
-   ['entBtn','pricing','enterprise'], ['refBtn','referral',null]
+   ['entBtn','pricing','enterprise'], ['refBtn','referral',null], ['ctaEnd','closing',null]
   ].forEach(function(m) { var el = g(m[0]); if (el) el.addEventListener('click', function(){ trackCTA(m[1], m[2]); }); });
   var hit = {};
   window.addEventListener('scroll', function() {

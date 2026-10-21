@@ -55,19 +55,11 @@
     return 'US';
   }
 
-  // Language: the link (?lang=), then the visitor's last choice, then Arabic for Egypt and the Gulf
-  // (the UAE and Qatar only when the browser lists Arabic: mostly expats), then the browser's language.
-  function pickLang(cc) {
+  // Language: English is the front door for everyone. A link can ask for a language (?lang=ar), and a
+  // visitor who picked one from the menu gets it again next time. Nothing is guessed from the browser.
+  function pickLang() {
     try { var q = new URLSearchParams(location.search).get('lang'); if (q && LANGS.indexOf(q) > -1) return q; } catch (e) {}
-    try { var st = localStorage.getItem('rfk_l'); if (st && LANGS.indexOf(st) > -1) return st; } catch (e) {}
-    var navs = (navigator.languages || [navigator.language || '']).map(function (l) { return String(l).toLowerCase(); });
-    var hasAr = navs.some(function (l) { return l.indexOf('ar') === 0; });
-    if (['EG', 'SA', 'KW', 'BH', 'OM'].indexOf(cc) > -1 || (hasAr && ['AE', 'QA'].indexOf(cc) > -1)) return 'ar';
-    var nav = (navigator.language || 'en').toLowerCase();
-    if (nav.indexOf('zh-tw') === 0 || nav.indexOf('zh-hk') === 0 || nav.indexOf('zh-hant') === 0) return 'zh-Hant';
-    if (nav.indexOf('zh') === 0) return 'zh-Hans';
-    if (nav.indexOf('fil') === 0) return 'tl';
-    if (LANGS.indexOf(nav.substring(0, 2)) > -1) return nav.substring(0, 2);
+    try { var st = localStorage.getItem('rfk_lang'); if (st && LANGS.indexOf(st) > -1) return st; } catch (e) {}
     return 'en';
   }
 
@@ -86,7 +78,7 @@
     document.head.appendChild(s);
   }
 
-  var country = detectCountry(), lang = pickLang(country);
+  var country = detectCountry(), lang = pickLang();
   html.lang = lang;
   html.dir = lang === 'ar' ? 'rtl' : 'ltr';
   html.className += (html.className ? ' ' : '') + 'js';
