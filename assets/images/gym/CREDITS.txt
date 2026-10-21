@@ -10,3 +10,11 @@ duo-coach.webp    https://www.pexels.com/photo/37963582/
 ../members/m2.webp  crop of https://www.pexels.com/photo/2204196/
 ../members/w1.webp  crop of https://www.pexels.com/photo/32695892/
 ../members/w2.webp  crop of https://www.pexels.com/photo/32695892/
+
+Payment marks (assets/images/pay), used as acceptance marks only:
+visa.svg, mastercard.svg   official brand marks (Visa wordmark from Simple Icons)
+instapay.png               from the InstaPay logo supplied by Assem
+vodafone-cash.png          cropped from the Vodafone Cash artwork supplied by Assem
+etisalat-money.png         official "etisalat money" app icon, Google Play (e& Egypt)
+we-pay.png                 official "WE Pay EG" app icon, Google Play (Telecom Egypt)
+orange.svg                 Orange brand mark (orange square with the white bar)

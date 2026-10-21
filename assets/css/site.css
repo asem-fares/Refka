@@ -1038,3 +1038,10 @@ s.was { color: var(--t3); text-decoration-thickness: 2px; font-size: .42em; font
 
 .su-wa { display: inline-flex; justify-content: center; text-decoration: none; margin-block: var(--sp-16) var(--sp-8); }
 .su-done a.su-wa, .su-done a.su-wa:hover { color: var(--on-accent); text-decoration: none; }
+
+/* v5: the four Egyptian mobile wallets in one chip */
+.pm-logos.pm-wallets { gap: 7px; }
+.pm-logos.pm-wallets { height: 34px; padding: 0 10px; gap: 9px; }
+.pm-logos.pm-wallets img { height: 24px; width: auto; }
+.pm-logos.pm-wallets img[src$="etisalat-money.png"] { height: 26px; }
+.pm-logos.pm-wallets img[src$="vodafone-cash.png"], .pm-logos.pm-wallets img[src$="orange.svg"] { border-radius: 4px; }
