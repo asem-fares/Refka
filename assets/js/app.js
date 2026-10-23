@@ -404,12 +404,12 @@ function applyLang(code) {
   if (t.pageTitle) document.title = t.pageTitle;
   try {
     var u = new URL(window.location);
-    if (code === 'en') u.searchParams.delete('lang'); else u.searchParams.set('lang', code);
+    var arPage = /^\/ar(\/|$)/.test(u.pathname);
+    if (code === 'en' || (code === 'ar' && arPage)) u.searchParams.delete('lang'); else u.searchParams.set('lang', code);
     window.history.replaceState({}, '', u);
   } catch(e) {}
   var can = document.querySelector('link[rel=canonical]');
-  if (can) can.href = 'https://refka.tech/' + (code === 'en' ? '' : '?lang=' + code);
-  var ogt = document.querySelector('meta[property="og:title"]'); if (ogt && t.pageTitle) ogt.content = t.pageTitle;
+  if (can) can.href = 'https://refka.tech/' + (code === 'en' ? '' : code === 'ar' ? 'ar/' : '?lang=' + code);
   var md = document.querySelector('meta[name=description]'); if (md && t.metaDesc) md.content = t.metaDesc;
 
   buildCountrySelect();
@@ -469,7 +469,14 @@ function applyLang(code) {
 })();
 
 // Switching language later: load that language's file first (once), then apply it.
-function setLang(code) { try { localStorage.setItem('rfk_lang', code); } catch(e) {} RFK.whenLang(code, function(c) { applyLang(c); }); }
+function setLang(code) {
+  try { localStorage.setItem('rfk_lang', code); } catch(e) {}
+  // Arabic has its own page (/ar/) that search engines index; the other languages live on /.
+  var onAr = /^\/ar(\/|$)/.test(location.pathname), home = /(^|\.)refka\.tech$|^localhost$|^127\./.test(location.hostname);
+  if (onAr && code !== 'ar') { location.href = '/' + (code === 'en' ? '' : '?lang=' + code); return; }
+  if (!onAr && code === 'ar' && home) { location.href = '/ar/'; return; }
+  RFK.whenLang(code, function(c) { applyLang(c); });
+}
 
 // ═══════════════════════════════════════════════════════════════
 // PHONE DEMOS: the owner phone and the member phone, 4 scenes each,
@@ -746,9 +753,9 @@ document.addEventListener('keydown', function(e) {
 // demo switches to the other pair, so everyone sees both.
 // ═══════════════════════════════════════════════════════════════
 var PAIRS = {
-  m: { img: ['assets/images/members/m1.webp', 'assets/images/members/m2.webp'],
+  m: { img: ['/assets/images/members/m1.webp', '/assets/images/members/m2.webp'],
        key: { '1': 'ph_n1', '2': 'ph_n2', toast: 'ph_m_toast', post: 'ph_post' } },
-  w: { img: ['assets/images/members/w1.webp', 'assets/images/members/w2.webp'],
+  w: { img: ['/assets/images/members/w1.webp', '/assets/images/members/w2.webp'],
        key: { '1': 'ph_w1', '2': 'ph_w2', toast: 'ph_m_toast_w', post: 'ph_post_w' } }
 };
 var _pair = 'm';

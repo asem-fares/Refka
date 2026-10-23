@@ -25,6 +25,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Write the page text for search engines (English index.html, Arabic ar/index.html)
+        run: python3 tools/build_pages.py
+
       - name: Refresh sitemap lastmod
         run: |
           TODAY=$(date -u +%Y-%m-%d)

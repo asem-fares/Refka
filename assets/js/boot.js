@@ -55,10 +55,11 @@
     return 'US';
   }
 
-  // Language: English is the front door for everyone. A link can ask for a language (?lang=ar), and a
-  // visitor who picked one from the menu gets it again next time. Nothing is guessed from the browser.
+  // Language: English is the front door for everyone. A link can ask for a language (?lang=ar), the Arabic
+  // page at /ar/ is Arabic, and a visitor who picked one from the menu gets it again next time.
   function pickLang() {
     try { var q = new URLSearchParams(location.search).get('lang'); if (q && LANGS.indexOf(q) > -1) return q; } catch (e) {}
+    if (/^\/ar(\/|$)/.test(location.pathname)) return 'ar';   // the Arabic page lives at /ar/
     try { var st = localStorage.getItem('rfk_lang'); if (st && LANGS.indexOf(st) > -1) return st; } catch (e) {}
     return 'en';
   }
