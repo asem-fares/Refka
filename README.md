@@ -113,3 +113,12 @@ Open `index.html` in a browser (the form runs in preview mode), then check at le
 Arabic (right-to-left) and German; a phone-width window; every "Start Free Trial" button; the
 pricing country selector; the legal documents in the footer. The browser console must show no
 errors, and there must be no horizontal scrolling on a phone.
+
+## Search engines (SEO)
+- `tools/build_pages.py` writes the English text into `index.html` and builds the Arabic page `ar/index.html`
+  (its own address, title, description and FAQ data). The deploy workflow runs it before every publish;
+  run it locally too after editing `index.html`, `en.js` or `ar.js`. Do not edit `ar/index.html` by hand.
+- English lives at `/`, Arabic at `/ar/`, the other languages at `/?lang=xx`. The language menu moves between
+  `/` and `/ar/` so the address always matches the language.
+- Icons use the file names `refka-icon*` and `/favicon.ico`. Change the file name whenever the logo changes,
+  or search engines keep showing the old one.

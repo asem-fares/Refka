@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Refka | At your gym, nobody trains alone.</title>
-<meta name="description" content="Refka runs your gym&#x27;s front desk, memberships and payments in one app, and gives your members an app with your gym&#x27;s name that brings them together. 30 days free.">
+<title>Refka | Gym Management Software + Branded Member App</title>
+<meta name="description" content="At your gym, nobody trains alone. Run memberships, payments and the front desk in one app, and give members an app with your gym&#x27;s name. 30 days free.">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <link rel="canonical" href="https://refka.tech/">
 <link rel="alternate" hreflang="en" href="https://refka.tech/">
-<link rel="alternate" hreflang="ar" href="https://refka.tech/?lang=ar">
+<link rel="alternate" hreflang="ar" href="https://refka.tech/ar/">
 <link rel="alternate" hreflang="sq" href="https://refka.tech/?lang=sq">
 <link rel="alternate" hreflang="de" href="https://refka.tech/?lang=de">
 <link rel="alternate" hreflang="fr" href="https://refka.tech/?lang=fr">
@@ -43,7 +43,7 @@
 <link rel="icon" type="image/png" sizes="96x96" href="/assets/icons/refka-icon-96.png">
 <link rel="icon" type="image/png" sizes="192x192" href="/assets/icons/refka-icon-192.png">
 <link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/refka-apple-touch-180.png">
-<link rel="manifest" href="manifest.json">
+<link rel="manifest" href="/manifest.json">
 <meta name="theme-color" content="#080808">
 
 <!-- Social sharing -->
@@ -51,7 +51,7 @@
 <meta property="og:url" content="https://refka.tech/">
 <meta property="og:site_name" content="Refka">
 <meta property="og:title" content="Refka | At your gym, nobody trains alone.">
-<meta property="og:description" content="Refka runs your gym&#x27;s front desk, memberships and payments in one app, and gives your members an app with your gym&#x27;s name that brings them together. 30 days free.">
+<meta property="og:description" content="At your gym, nobody trains alone. Run memberships, payments and the front desk in one app, and give members an app with your gym&#x27;s name. 30 days free.">
 <meta property="og:image" content="https://refka.tech/assets/images/og-image.jpg?v=6">
 <meta property="og:image:type" content="image/jpeg">
 <meta property="og:image:width" content="1200">
@@ -60,17 +60,36 @@
 <meta property="og:locale" content="en_US">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Refka | At your gym, nobody trains alone.">
-<meta name="twitter:description" content="Refka runs your gym&#x27;s front desk, memberships and payments in one app, and gives your members an app with your gym&#x27;s name that brings them together. 30 days free.">
+<meta name="twitter:description" content="At your gym, nobody trains alone. Run memberships, payments and the front desk in one app, and give members an app with your gym&#x27;s name. 30 days free.">
 <meta name="twitter:image" content="https://refka.tech/assets/images/og-image.jpg?v=6">
 
 <!-- Fonts (self-hosted) and styles -->
-<script src="assets/js/boot.js"></script>
-<link rel="preload" as="font" type="font/woff2" href="assets/fonts/sora-latin-800-normal.woff2" crossorigin>
-<link rel="preload" as="font" type="font/woff2" href="assets/fonts/inter-latin-400-normal.woff2" crossorigin>
-<link rel="stylesheet" href="assets/css/fonts.css">
-<link rel="stylesheet" href="assets/css/site.css">
+<script src="/assets/js/boot.js"></script>
+<link rel="preload" as="font" type="font/woff2" href="/assets/fonts/sora-latin-800-normal.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="/assets/fonts/inter-latin-400-normal.woff2" crossorigin>
+<link rel="stylesheet" href="/assets/css/fonts.css">
+<link rel="stylesheet" href="/assets/css/site.css">
 
 <!-- Structured data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Refka",
+  "alternateName": [
+    "رفقة"
+  ],
+  "url": "https://refka.tech/",
+  "inLanguage": [
+    "en",
+    "ar"
+  ],
+  "publisher": {
+    "@type": "Organization",
+    "name": "Refka"
+  }
+}
+</script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -85,12 +104,59 @@
     "telephone": "+201149421081",
     "contactType": "customer support",
     "areaServed": "Worldwide",
-    "hoursAvailable": {"@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"], "opens": "00:00", "closes": "23:59"},
-    "availableLanguage": ["English", "Arabic", "German", "Albanian", "French", "Spanish", "Portuguese", "Italian", "Polish", "Turkish", "Russian", "Hindi", "Indonesian", "Malay", "Filipino", "Vietnamese", "Thai", "Korean", "Japanese", "Chinese", "Swahili"]
+    "hoursAvailable": {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday"
+      ],
+      "opens": "00:00",
+      "closes": "23:59"
+    },
+    "availableLanguage": [
+      "English",
+      "Arabic",
+      "German",
+      "Albanian",
+      "French",
+      "Spanish",
+      "Portuguese",
+      "Italian",
+      "Polish",
+      "Turkish",
+      "Russian",
+      "Hindi",
+      "Indonesian",
+      "Malay",
+      "Filipino",
+      "Vietnamese",
+      "Thai",
+      "Korean",
+      "Japanese",
+      "Chinese",
+      "Swahili"
+    ]
   },
   "telephone": "+201149421081",
-  "address": {"@type": "PostalAddress", "addressCountry": "EG"},
-  "founder": {"@type": "Person", "name": "Assem Sabry"}
+  "address": {
+    "@type": "PostalAddress",
+    "addressCountry": "EG"
+  },
+  "founder": {
+    "@type": "Person",
+    "name": "Assem Sabry"
+  },
+  "alternateName": [
+    "رفقة",
+    "Refka Gym"
+  ],
+  "description": "Gym management software and a branded member app that brings gym members together.",
+  "slogan": "At your gym, nobody trains alone."
 }
 </script>
 <script type="application/ld+json">
@@ -100,14 +166,41 @@
   "name": "Refka",
   "applicationCategory": "BusinessApplication",
   "operatingSystem": "Web",
-  "description": "Gym management and member app in one: front desk check-in, WhatsApp renewal reminders, payments, staff shifts, training-partner matching, AI training plans and a community feed, with a 30-day free trial.",
+  "description": "Gym management software with a branded member app: front desk check-in, memberships, payments and renewal reminders for the owner, and an app with the gym's name where members meet training partners and join the gym community. 30-day free trial.",
   "url": "https://refka.tech/",
   "offers": [
-    {"@type": "Offer", "name": "Starter", "price": "49", "priceCurrency": "USD", "description": "Monthly price in Zone A. Zone B from 25 USD."},
-    {"@type": "Offer", "name": "Growth", "price": "99", "priceCurrency": "USD"},
-    {"@type": "Offer", "name": "Pro", "price": "249", "priceCurrency": "USD"}
+    {
+      "@type": "Offer",
+      "name": "Starter",
+      "price": "49",
+      "priceCurrency": "USD",
+      "description": "Monthly price in Zone A. Zone B from 25 USD."
+    },
+    {
+      "@type": "Offer",
+      "name": "Growth",
+      "price": "99",
+      "priceCurrency": "USD"
+    },
+    {
+      "@type": "Offer",
+      "name": "Pro",
+      "price": "249",
+      "priceCurrency": "USD"
+    }
   ],
-  "featureList": ["Front desk check-in with barcode and QR", "WhatsApp renewal reminders", "Payments and cash per shift", "Staff roles", "Training partner matching", "AI training plans", "Community feed", "In-gym shop", "Reports"]
+  "featureList": [
+    "Front desk check-in with barcode and QR",
+    "WhatsApp renewal reminders",
+    "Payments and cash per shift",
+    "Staff roles",
+    "Training partner matching",
+    "AI training plans",
+    "Community feed",
+    "In-gym shop",
+    "Reports"
+  ],
+  "applicationSubCategory": "Gym management software"
 }
 </script>
 <script type="application/ld+json">
@@ -226,7 +319,7 @@
   <div class="hero-text fade">
     <div class="hero-chip" data-i18n="hero_chip">Welcoming our founding gyms · 30 days free</div>
     <h1 data-i18n-html="h1">At your gym,<br><span class="c-teal">nobody trains</span> <span class="c-gold">alone.</span></h1>
-    <p class="hero-body" data-i18n-html="body">Refka runs your front desk, memberships and payments in one app for you and your team. Your members get an app with your gym's name, where they meet, train together, and stay. <strong>One system for you. One family for your members.</strong></p>
+    <p class="hero-body" data-i18n-html="body">Refka is gym management software for your front desk, memberships and payments, in one app for you and your team. Your members get an app with your gym's name, where they meet, train together, and stay. <strong>One system for you. One family for your members.</strong></p>
     <div class="ctas">
       <button class="btn-teal lg" id="ctaMain" data-i18n="ctaM" data-click="goRegister">Join the founding gyms</button>
       <button class="btn-outline" id="ctaSec" data-i18n="ctaS" data-click="scrollHow">See How It Works ↓</button>
@@ -264,7 +357,7 @@
           <div class="ph-scene live" data-scene="0">
             <div class="ph-label anim d1" data-i18n="ph_partners">YOUR TRAINING PARTNERS</div>
             <div class="ph-card anim d2">
-              <div class="ph-av ph-photo t"><img src="assets/images/members/m1.webp" alt="" width="34" height="34" data-pair-img="a"></div>
+              <div class="ph-av ph-photo t"><img src="/assets/images/members/m1.webp" alt="" width="34" height="34" data-pair-img="a"></div>
               <div class="ph-info">
                 <div class="ph-name" data-i18n="ph_n1" data-pair-key="1">James T.</div>
                 <div class="ph-sub" data-i18n="ph_s1">Same schedule · Weight loss</div>
@@ -272,7 +365,7 @@
             </div>
             <div class="ph-link"><i></i><b data-i18n="ph_same">Train with me?</b><i></i></div>
             <div class="ph-card anim d4">
-              <div class="ph-av ph-photo g"><img src="assets/images/members/m2.webp" alt="" width="34" height="34" data-pair-img="b"></div>
+              <div class="ph-av ph-photo g"><img src="/assets/images/members/m2.webp" alt="" width="34" height="34" data-pair-img="b"></div>
               <div class="ph-info">
                 <div class="ph-name" data-i18n="ph_n2" data-pair-key="2">Chris P.</div>
                 <div class="ph-sub" data-i18n="ph_s2">Strength · Morning sessions</div>
@@ -319,7 +412,7 @@
             <div class="ph-label anim d1" data-i18n="ph_feed">COMMUNITY</div>
             <div class="ph-post anim d2">
               <div class="hd">
-                <div class="ph-av sm ph-photo g"><img src="assets/images/members/m2.webp" alt="" width="26" height="26" data-pair-img="b"></div>
+                <div class="ph-av sm ph-photo g"><img src="/assets/images/members/m2.webp" alt="" width="26" height="26" data-pair-img="b"></div>
                 <div class="ph-info">
                   <div class="ph-name" data-i18n="ph_n2" data-pair-key="2">Chris P.</div>
                   <div class="ph-sub" data-i18n="ph_ago">20 min ago</div>
@@ -379,11 +472,11 @@
   </div>
   <!-- Training together: photo mosaic (decorative; the text above carries the message) -->
   <div class="duo-grid fade d1" aria-hidden="true">
-    <figure class="duo duo-a"><img src="assets/images/gym/duo-friends.webp" alt="" width="900" height="600" loading="lazy" fetchpriority="low" decoding="async"><figcaption class="duo-tag"><i class="dot"></i><span data-i18n="ph_matched">Accepted ✓</span></figcaption></figure>
-    <figure class="duo duo-b"><img src="assets/images/gym/duo-hug.webp" alt="" width="900" height="1350" loading="lazy" fetchpriority="low" decoding="async"><figcaption class="duo-tag gold"><i class="dot"></i><span data-i18n="oa_pairs">Training partners</span></figcaption></figure>
-    <figure class="duo duo-c"><img src="assets/images/gym/duo-women.webp" alt="" width="900" height="600" loading="lazy" fetchpriority="low" decoding="async"></figure>
-    <figure class="duo duo-d"><img src="assets/images/gym/duo-spot.webp" alt="" width="900" height="475" loading="lazy" fetchpriority="low" decoding="async"></figure>
-    <figure class="duo duo-e"><img src="assets/images/gym/duo-coach.webp" alt="" width="900" height="599" loading="lazy" fetchpriority="low" decoding="async"><figcaption class="duo-tag"><i class="dot"></i><span data-i18n="ph_same">Train with me?</span></figcaption></figure>
+    <figure class="duo duo-a"><img src="/assets/images/gym/duo-friends.webp" alt="" width="900" height="600" loading="lazy" fetchpriority="low" decoding="async"><figcaption class="duo-tag"><i class="dot"></i><span data-i18n="ph_matched">Accepted ✓</span></figcaption></figure>
+    <figure class="duo duo-b"><img src="/assets/images/gym/duo-hug.webp" alt="" width="900" height="1350" loading="lazy" fetchpriority="low" decoding="async"><figcaption class="duo-tag gold"><i class="dot"></i><span data-i18n="oa_pairs">Training partners</span></figcaption></figure>
+    <figure class="duo duo-c"><img src="/assets/images/gym/duo-women.webp" alt="" width="900" height="600" loading="lazy" fetchpriority="low" decoding="async"></figure>
+    <figure class="duo duo-d"><img src="/assets/images/gym/duo-spot.webp" alt="" width="900" height="475" loading="lazy" fetchpriority="low" decoding="async"></figure>
+    <figure class="duo duo-e"><img src="/assets/images/gym/duo-coach.webp" alt="" width="900" height="599" loading="lazy" fetchpriority="low" decoding="async"><figcaption class="duo-tag"><i class="dot"></i><span data-i18n="ph_same">Train with me?</span></figcaption></figure>
   </div>
 </section>
 
@@ -492,7 +585,7 @@
                 <div class="oa-ttl oa-in"><span data-i18n="oa_desk">Front desk</span><small data-i18n="oa_scan">Scan a member card</small></div>
                 <div class="oa-scan oa-in" style="--d:.05s"><div class="oa-qr"></div><div class="oa-beam"></div></div>
                 <div class="oa-box oa-pop" style="--d:1s">
-                  <div class="oa-row"><img class="oa-av lg" src="assets/images/members/m1.webp" alt="" width="46" height="46"><div class="oa-grow"><div class="oa-nm" data-i18n="ph_n1">James T.</div><div class="oa-mt"><span dir="ltr">#11226</span> · <span data-oa-t="oa_plan"></span></div></div></div>
+                  <div class="oa-row"><img class="oa-av lg" src="/assets/images/members/m1.webp" alt="" width="46" height="46"><div class="oa-grow"><div class="oa-nm" data-i18n="ph_n1">James T.</div><div class="oa-mt"><span dir="ltr">#11226</span> · <span data-oa-t="oa_plan"></span></div></div></div>
                   <div class="oa-st"><span class="oa-pill bad s1" data-i18n="oa_exp2">Expired 2 days ago</span><span class="oa-pill warn s2" data-i18n="oa_grace">Grace day 2 of 2 · let in</span></div>
                 </div>
                 <div class="oa-renew"><span data-i18n="oa_renew">Renew 1 month</span><span class="oa-num" data-oa-m="fee"></span></div>
@@ -551,12 +644,12 @@
               <div class="oa-scr" data-scr="4">
                 <div class="oa-ttl oa-in"><span data-i18n="oa_risk">At risk</span><small data-i18n="oa_risk_n">9 members</small></div>
                 <div class="oa-risk">
-                  <div class="oa-row oa-in" style="--d:.08s"><img class="oa-av" src="assets/images/members/w2.webp" alt="" width="34" height="34"><div class="oa-grow"><div class="oa-nm" data-i18n="ph_w2">Emma L.</div><div class="oa-mt" data-i18n="oa_last11">Last visit 11 days ago</div></div><div class="oa-meter"><i style="--w:90%;--c:var(--oa-bad)"></i></div></div>
-                  <div class="oa-row oa-flip oa-in" style="--d:.16s"><img class="oa-av" src="assets/images/members/m2.webp" alt="" width="34" height="34"><div class="oa-grow"><div class="oa-nm" data-i18n="ph_n2">Chris P.</div><div class="oa-mt" data-i18n="oa_last8">Last visit 8 days ago</div></div><span class="oa-pill bad p1" data-i18n="oa_days8">8 days</span><span class="oa-pill ok p2" data-i18n="oa_coming">Coming tomorrow ✓</span></div>
+                  <div class="oa-row oa-in" style="--d:.08s"><img class="oa-av" src="/assets/images/members/w2.webp" alt="" width="34" height="34"><div class="oa-grow"><div class="oa-nm" data-i18n="ph_w2">Emma L.</div><div class="oa-mt" data-i18n="oa_last11">Last visit 11 days ago</div></div><div class="oa-meter"><i style="--w:90%;--c:var(--oa-bad)"></i></div></div>
+                  <div class="oa-row oa-flip oa-in" style="--d:.16s"><img class="oa-av" src="/assets/images/members/m2.webp" alt="" width="34" height="34"><div class="oa-grow"><div class="oa-nm" data-i18n="ph_n2">Chris P.</div><div class="oa-mt" data-i18n="oa_last8">Last visit 8 days ago</div></div><span class="oa-pill bad p1" data-i18n="oa_days8">8 days</span><span class="oa-pill ok p2" data-i18n="oa_coming">Coming tomorrow ✓</span></div>
                   <div class="oa-more oa-in" style="--d:.24s" data-i18n="oa_more">+ 7 more members</div>
                 </div>
                 <div class="oa-pair oa-pop" style="--d:.6s">
-                  <div class="oa-row"><div class="oa-duoav"><img class="oa-av" src="assets/images/members/m2.webp" alt="" width="30" height="30"><img class="oa-av" src="assets/images/members/m1.webp" alt="" width="30" height="30"></div><span class="oa-pill tl" data-i18n="oa_pairs">Training partners</span></div>
+                  <div class="oa-row"><div class="oa-duoav"><img class="oa-av" src="/assets/images/members/m2.webp" alt="" width="30" height="30"><img class="oa-av" src="/assets/images/members/m1.webp" alt="" width="30" height="30"></div><span class="oa-pill tl" data-i18n="oa_pairs">Training partners</span></div>
                   <p data-oa-h="oa_pair_p"></p>
                   <div class="oa-nudge" data-oa-t="oa_nudge"></div>
                 </div>
@@ -774,9 +867,9 @@
 
   <div class="pay-row fade" id="payRow">
     <span class="pay-lbl" data-i18n="pay_after">After your free trial, pay with</span>
-    <span class="pm-chip"><span class="pm-logos"><img src="assets/images/pay/visa.svg" alt="Visa" width="38" height="13"><img src="assets/images/pay/mastercard.svg" alt="Mastercard" width="26" height="16"></span><span data-i18n="pay_card">Card</span></span>
-    <span class="pm-chip eg-only"><span class="pm-logos"><img src="assets/images/pay/instapay.png" alt="" width="40" height="16"></span><span data-i18n="pay_insta">InstaPay</span></span>
-    <span class="pm-chip eg-only"><span class="pm-logos pm-wallets"><img src="assets/images/pay/vodafone-cash.png" alt="Vodafone Cash" width="24" height="24"><img src="assets/images/pay/etisalat-money.png" alt="etisalat money" width="33" height="26"><img src="assets/images/pay/orange.svg" alt="Orange Cash" width="24" height="24"><img src="assets/images/pay/we-pay.png" alt="WE Pay" width="28" height="24"></span><span data-i18n="pay_wallets">Mobile wallets</span></span>
+    <span class="pm-chip"><span class="pm-logos"><img src="/assets/images/pay/visa.svg" alt="Visa" width="38" height="13"><img src="/assets/images/pay/mastercard.svg" alt="Mastercard" width="26" height="16"></span><span data-i18n="pay_card">Card</span></span>
+    <span class="pm-chip eg-only"><span class="pm-logos"><img src="/assets/images/pay/instapay.png" alt="" width="40" height="16"></span><span data-i18n="pay_insta">InstaPay</span></span>
+    <span class="pm-chip eg-only"><span class="pm-logos pm-wallets"><img src="/assets/images/pay/vodafone-cash.png" alt="Vodafone Cash" width="24" height="24"><img src="/assets/images/pay/etisalat-money.png" alt="etisalat money" width="33" height="26"><img src="/assets/images/pay/orange.svg" alt="Orange Cash" width="24" height="24"><img src="/assets/images/pay/we-pay.png" alt="WE Pay" width="28" height="24"></span><span data-i18n="pay_wallets">Mobile wallets</span></span>
     <span class="pm-chip eg-only"><span class="pm-logos pm-cash" aria-hidden="true"><svg class="cash-ico" viewBox="0 0 64 40" width="48" height="30"><defs><clipPath id="cashClip"><rect x="12" y="5" width="44" height="24" rx="4"/></clipPath></defs>
       <g class="bill b3"><rect x="6" y="11" width="44" height="24" rx="4" fill="#0A5254"/></g>
       <g class="bill b2"><rect x="9" y="8" width="44" height="24" rx="4" fill="#0D6B6E"/></g>
@@ -850,7 +943,7 @@
   <div class="modal-box">
     <button class="modal-close" data-click="closeModal" data-click-arg="privacyModal" aria-label="Close">✕</button>
     <div class="modal-badge">Legal Document</div>
-    <h1 id="ppTitle">Privacy Policy</h1>
+    <h2 class="modal-h1" id="ppTitle">Privacy Policy</h2>
     <div class="modal-meta">Effective: October 19, 2026 &nbsp;·&nbsp; Version 1.3 &nbsp;·&nbsp; Global scope</div>
     <p class="modal-legal-note" style="display:none"></p>
 
@@ -963,7 +1056,7 @@
   <div class="modal-box">
     <button class="modal-close" data-click="closeModal" data-click-arg="termsModal" aria-label="Close">✕</button>
     <div class="modal-badge">Legal Document</div>
-    <h1 id="tosTitle">Terms of Service</h1>
+    <h2 class="modal-h1" id="tosTitle">Terms of Service</h2>
     <div class="modal-meta">Effective: October 19, 2026 &nbsp;·&nbsp; Version 1.3 &nbsp;·&nbsp; Global scope</div>
     <p class="modal-legal-note" style="display:none"></p>
 
@@ -1096,7 +1189,7 @@
   <div class="modal-box">
     <button class="modal-close" data-click="closeModal" data-click-arg="cookieModal" aria-label="Close">✕</button>
     <div class="modal-badge">Legal Document</div>
-    <h1 id="cookieTitle">Cookie Policy</h1>
+    <h2 class="modal-h1" id="cookieTitle">Cookie Policy</h2>
     <div class="modal-meta">Effective: October 18, 2026 &nbsp;·&nbsp; Version 1.1 &nbsp;·&nbsp; Global scope</div>
     <p class="modal-legal-note" style="display:none"></p>
 
@@ -1132,7 +1225,7 @@
   <div class="modal-box">
     <button class="modal-close" data-click="closeModal" data-click-arg="aupModal" aria-label="Close">✕</button>
     <div class="modal-badge">Legal Document</div>
-    <h1 id="aupTitle">Acceptable Use Policy</h1>
+    <h2 class="modal-h1" id="aupTitle">Acceptable Use Policy</h2>
     <div class="modal-meta">Effective: September 12, 2026 &nbsp;·&nbsp; Version 1.0 &nbsp;·&nbsp; Global scope</div>
     <p class="modal-legal-note" style="display:none"></p>
 
@@ -1265,7 +1358,7 @@
 <div class="modal-overlay" id="signupModal" role="dialog" aria-modal="true" aria-labelledby="suTitle">
   <div class="modal-box chat-box">
     <div class="chat-head">
-      <img src="assets/icons/favicon.svg" alt="" width="36" height="36" class="chat-avatar">
+      <img src="/assets/icons/favicon.svg" alt="" width="36" height="36" class="chat-avatar">
       <div class="chat-who"><b id="suTitle">Refka</b><small data-i18n="ch_status">Founding team · we reply within 24 hours</small></div>
       <button class="chat-x" data-click="closeModal" data-click-arg="signupModal" aria-label="Close" data-i18n-aria="fm_close">✕</button>
     </div>
@@ -1279,9 +1372,9 @@
   </div>
 </div>
 
-<script src="assets/js/i18n/en.js" defer></script>
-<script src="assets/js/app.js" defer></script>
-<script src="assets/js/form.js" defer></script>
-<script src="assets/js/motion.js" defer></script>
+<script src="/assets/js/i18n/en.js" defer></script>
+<script src="/assets/js/app.js" defer></script>
+<script src="/assets/js/form.js" defer></script>
+<script src="/assets/js/motion.js" defer></script>
 </body>
 </html>

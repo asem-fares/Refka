@@ -345,7 +345,7 @@ footer .f-links a { font-size: var(--fs-md); color: var(--t-footer); text-decora
   padding: var(--sp-4) var(--sp-8); border-radius: var(--r-sm); margin-bottom: var(--sp-16);
   background: var(--p-tint-15); color: var(--p-txt); border: 1px solid var(--p);
 }
-.modal-box h1 { font-size: var(--fs-xl); font-weight: 700; color: var(--t1); margin-bottom: var(--sp-8); line-height: 1.2; }
+.modal-box h1, .modal-box .modal-h1 { font-size: var(--fs-xl); font-weight: 700; color: var(--t1); margin-bottom: var(--sp-8); line-height: 1.2; }
 .modal-meta { font-size: var(--fs-sm); color: var(--t3); margin-bottom: var(--sp-40); }
 .modal-legal-note { font-size: var(--fs-sm); color: var(--p-pale); margin: calc(-1 * var(--sp-24)) 0 var(--sp-32); }
 .modal-box h2 {
