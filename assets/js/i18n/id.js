@@ -244,7 +244,7 @@
   faq_q5: "Apa yang terjadi jika saya berhenti membayar?",
   faq_a5: "Tidak ada kontrak. Setelah masa tenggang 7 hari, akun Anda dijeda. Data member disimpan 90 hari agar Anda bisa kembali atau mengekspornya, lalu dihapus.",
   faq_q6: "Siapa yang menyiapkan, dan apakah ada bahasa Indonesia?",
-  faq_a6: "Tim kami menyiapkan gym Anda bersama Anda lewat WhatsApp, tanpa biaya tambahan. Refka tersedia dalam 22 bahasa, termasuk bahasa Indonesia, untuk Anda, staf resepsionis, dan member.",
+  faq_a6: "Tim kami menyiapkan gym Anda bersama Anda lewat WhatsApp, tanpa biaya tambahan. Refka tersedia dalam bahasa Inggris dan Arab, untuk Anda, staf resepsionis, dan member; bahasa lain segera hadir.",
   faq_q7: "Bisakah saya mencoba sebelum membayar?",
   faq_a7: "Bisa. Gratis 30 hari dengan semua fitur dan tanpa kartu kredit. Jika Anda memilih paket selama uji coba, sisa hari gratis tetap milik Anda.",
   faq_more: "Ada pertanyaan lain?",

@@ -244,7 +244,7 @@
   faq_q5: "Que se passe-t-il si j'arrête de payer ?",
   faq_a5: "Il n'y a pas de contrat. Après un délai de grâce de 7 jours, votre compte est suspendu. Les données de vos adhérents sont conservées 90 jours pour que vous puissiez revenir ou les exporter, puis supprimées.",
   faq_q6: "Qui s'occupe de la mise en place, et est-ce en français ?",
-  faq_a6: "Notre équipe configure votre salle avec vous sur WhatsApp, sans frais supplémentaires. Refka fonctionne en 22 langues, dont le français, pour vous, votre équipe d'accueil et vos adhérents.",
+  faq_a6: "Notre équipe configure votre salle avec vous sur WhatsApp, sans frais supplémentaires. Refka fonctionne en anglais et en arabe, pour vous, votre équipe d'accueil et vos adhérents ; d'autres langues arrivent.",
   faq_q7: "Puis-je essayer avant de payer ?",
   faq_a7: "Oui. Vous avez 30 jours gratuits, toutes fonctions incluses, sans carte bancaire. Si vous choisissez une formule pendant l'essai, vous gardez vos jours gratuits restants.",
   faq_more: "Une autre question ?",

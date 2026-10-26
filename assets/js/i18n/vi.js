@@ -244,7 +244,7 @@
   faq_q5: "Nếu tôi ngừng thanh toán thì sao?",
   faq_a5: "Không có hợp đồng. Sau 7 ngày gia hạn, tài khoản sẽ tạm dừng. Dữ liệu hội viên được giữ 90 ngày để quý vị quay lại hoặc xuất ra, sau đó bị xóa.",
   faq_q6: "Ai thiết lập, và có tiếng Việt không?",
-  faq_a6: "Đội ngũ của chúng tôi cùng quý vị thiết lập qua WhatsApp, không tốn thêm chi phí. Refka có 22 ngôn ngữ, gồm tiếng Việt, cho quý vị, nhân viên lễ tân và hội viên.",
+  faq_a6: "Đội ngũ của chúng tôi cùng quý vị thiết lập qua WhatsApp, không tốn thêm chi phí. Refka có tiếng Anh và tiếng Ả Rập cho quý vị, nhân viên lễ tân và hội viên; các ngôn ngữ khác sẽ sớm có.",
   faq_q7: "Tôi có thể dùng thử trước khi trả tiền không?",
   faq_a7: "Có. 30 ngày miễn phí, đầy đủ tính năng, không cần thẻ tín dụng. Nếu chọn gói trong thời gian dùng thử, quý vị vẫn giữ những ngày miễn phí còn lại.",
   faq_more: "Còn câu hỏi khác?",

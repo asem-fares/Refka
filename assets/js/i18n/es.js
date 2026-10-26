@@ -244,7 +244,7 @@
   faq_q5: "¿Qué pasa si dejo de pagar?",
   faq_a5: "No hay contrato. Tras 7 días de margen, su cuenta se pausa. Los datos de sus socios se guardan 90 días para que pueda volver o exportarlos, y después se eliminan.",
   faq_q6: "¿Quién lo configura y está en español?",
-  faq_a6: "Nuestro equipo configura su gimnasio con usted por WhatsApp, sin coste adicional. Refka funciona en 22 idiomas, incluido el español, para usted, su recepción y sus socios.",
+  faq_a6: "Nuestro equipo configura su gimnasio con usted por WhatsApp, sin coste adicional. Refka funciona en inglés y árabe, para usted, su recepción y sus socios; pronto llegarán más idiomas.",
   faq_q7: "¿Puedo probarlo antes de pagar?",
   faq_a7: "Sí. Tiene 30 días gratis con todas las funciones y sin tarjeta de crédito. Si elige un plan durante la prueba, conserva los días gratis que le queden.",
   faq_more: "¿Otra pregunta?",

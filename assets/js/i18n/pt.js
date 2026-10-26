@@ -244,7 +244,7 @@
   faq_q5: "O que acontece se eu parar de pagar?",
   faq_a5: "Não há contrato. Depois de 7 dias de carência, sua conta é pausada. Os dados dos alunos ficam guardados por 90 dias, para você voltar ou exportá-los, e depois são apagados.",
   faq_q6: "Quem configura, e está em português?",
-  faq_a6: "Nossa equipe configura sua academia com você pelo WhatsApp, sem custo extra. A Refka funciona em 22 idiomas, incluindo português, para você, sua recepção e seus alunos.",
+  faq_a6: "Nossa equipe configura sua academia com você pelo WhatsApp, sem custo extra. A Refka funciona em inglês e árabe, para você, sua recepção e seus alunos; mais idiomas em breve.",
   faq_q7: "Posso testar antes de pagar?",
   faq_a7: "Sim. São 30 dias grátis, com todos os recursos e sem cartão de crédito. Se escolher um plano durante o teste, você mantém os dias grátis que faltam.",
   faq_more: "Outra dúvida?",

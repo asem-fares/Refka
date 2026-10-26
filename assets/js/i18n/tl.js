@@ -244,7 +244,7 @@
   faq_q5: "Ano ang mangyayari kapag tumigil akong magbayad?",
   faq_a5: "Walang kontrata. Pagkatapos ng 7 araw na palugit, ipo-pause ang inyong account. Itatabi ang data ng mga miyembro nang 90 araw para makabalik kayo o ma-export ito, at saka buburahin.",
   faq_q6: "Sino ang magse-set up, at may Filipino ba?",
-  faq_a6: "Kasama ninyo itong ise-set up ng aming team sa WhatsApp, walang dagdag na bayad. Gumagana ang Refka sa 22 wika, kasama ang Filipino, para sa inyo, sa staff sa desk at sa mga miyembro.",
+  faq_a6: "Kasama ninyo itong ise-set up ng aming team sa WhatsApp, walang dagdag na bayad. Gumagana ang Refka sa English at Arabic, para sa inyo, sa staff sa desk at sa mga miyembro; may iba pang wikang darating.",
   faq_q7: "Puwede ko bang subukan bago magbayad?",
   faq_a7: "Oo. 30 araw na libre, kumpleto ang feature at walang credit card. Kapag pumili kayo ng plan habang nasa trial, hindi mawawala ang natitirang libreng araw.",
   faq_more: "May iba pang tanong?",

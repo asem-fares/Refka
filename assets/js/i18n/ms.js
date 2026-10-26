@@ -244,7 +244,7 @@
   faq_q5: "Apa berlaku jika saya berhenti membayar?",
   faq_a5: "Tiada kontrak. Selepas tempoh tangguh 7 hari, akaun anda dijeda. Data ahli disimpan 90 hari supaya anda boleh kembali atau mengeksportnya, kemudian dipadam.",
   faq_q6: "Siapa yang menyediakannya, dan adakah dalam bahasa Melayu?",
-  faq_a6: "Pasukan kami menyediakan gim anda bersama anda melalui WhatsApp, tanpa kos tambahan. Refka berfungsi dalam 22 bahasa, termasuk bahasa Melayu, untuk anda, kakitangan kaunter dan ahli.",
+  faq_a6: "Pasukan kami menyediakan gim anda bersama anda melalui WhatsApp, tanpa kos tambahan. Refka berfungsi dalam bahasa Inggeris dan Arab, untuk anda, kakitangan kaunter dan ahli; bahasa lain akan menyusul.",
   faq_q7: "Bolehkah saya cuba sebelum membayar?",
   faq_a7: "Boleh. 30 hari percuma dengan semua ciri dan tanpa kad kredit. Jika anda memilih pelan semasa percubaan, baki hari percuma kekal milik anda.",
   faq_more: "Ada soalan lain?",

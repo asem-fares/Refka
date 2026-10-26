@@ -244,7 +244,7 @@
   faq_q5: "Cosa succede se smetto di pagare?",
   faq_a5: "Non c'è contratto. Dopo 7 giorni di tolleranza l'account viene sospeso. I dati degli iscritti restano conservati 90 giorni, per tornare o esportarli, e poi vengono cancellati.",
   faq_q6: "Chi lo configura, ed è in italiano?",
-  faq_a6: "Il nostro team configura la Sua palestra con Lei su WhatsApp, senza costi aggiuntivi. Refka funziona in 22 lingue, italiano compreso, per Lei, lo staff della reception e gli iscritti.",
+  faq_a6: "Il nostro team configura la Sua palestra con Lei su WhatsApp, senza costi aggiuntivi. Refka funziona in inglese e arabo, per Lei, lo staff della reception e gli iscritti; altre lingue in arrivo.",
   faq_q7: "Posso provarlo prima di pagare?",
   faq_a7: "Sì. Ha 30 giorni gratis con tutte le funzioni e senza carta di credito. Se sceglie un piano durante la prova, mantiene i giorni gratuiti rimasti.",
   faq_more: "Un'altra domanda?",
