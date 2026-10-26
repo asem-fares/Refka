@@ -793,7 +793,7 @@
         <span class="billing-mo" data-i18n="per_mo">per month, billed monthly</span>
         <span class="billing-an" style="display:none"><span data-i18n="per_an">per month ·</span> <span class="yr" data-plan="starter">$468</span> <span data-i18n="per_yr">per year</span></span>
       </div>
-      <div class="p-members"><svg aria-hidden="true"><use href="#ic-users"/></svg><span data-i18n="m_150">Up to 150 members</span></div>
+      <div class="p-members"><svg aria-hidden="true"><use href="#ic-users"/></svg><span data-i18n-html="m_150">Up to 300 members<br>5 staff</span></div>
       <ul class="p-feats">
         <li data-i18n="f_brand">App with your gym's name, logo and colors</li>
         <li data-i18n="f_qr">Member sign-up by QR code</li>
@@ -802,6 +802,7 @@
         <li data-i18n="f_renewal">Renewal reminders in the app and on WhatsApp</li>
         <li data-i18n="f_support">Support on WhatsApp, 24/7</li>
         <li data-i18n="f_ai150">150 AI plans per month</li>
+        <li data-i18n="f_unlim_p">Unlimited partners</li>
       </ul>
       <button class="btn-sm-outline" id="p1btn" data-i18n="p1" data-click="goRegister" data-click-arg="starter">Start with Starter →</button>
     </div>
@@ -815,12 +816,11 @@
         <span class="billing-mo" data-i18n="per_mo">per month, billed monthly</span>
         <span class="billing-an" style="display:none"><span data-i18n="per_an">per month ·</span> <span class="yr" data-plan="growth">$948</span> <span data-i18n="per_yr">per year</span></span>
       </div>
-      <div class="p-members"><svg aria-hidden="true"><use href="#ic-users"/></svg><span data-i18n="m_500">Up to 500 members</span></div>
+      <div class="p-members"><svg aria-hidden="true"><use href="#ic-users"/></svg><span data-i18n-html="m_500">Up to 1,000 members<br>15 staff</span></div>
       <ul class="p-feats">
         <li data-i18n="f_all_starter">Everything in Starter</li>
-        <li><span><span class="ai-q" data-plan="growth">500</span> <span data-i18n="f_aiplans">AI plans per month</span></span></li>
+        <li><span><span class="ai-q" data-plan="growth">300</span> <span data-i18n="f_aiplans">AI plans per month</span></span></li>
         <li data-i18n="f_analytics">Reports dashboard</li>
-        <li data-i18n="f_partner3">Partner marketplace (up to 3)</li>
       </ul>
       <button class="btn-teal" id="p2btn" data-i18n="p2" data-click="goRegister" data-click-arg="growth">Start with Growth →</button>
     </div>
@@ -833,12 +833,10 @@
         <span class="billing-mo" data-i18n="per_mo">per month, billed monthly</span>
         <span class="billing-an" style="display:none"><span data-i18n="per_an">per month ·</span> <span class="yr" data-plan="pro">$2,388</span> <span data-i18n="per_yr">per year</span></span>
       </div>
-      <div class="p-members"><svg aria-hidden="true"><use href="#ic-users"/></svg><span data-i18n="m_2000">Up to 2,000 members</span></div>
+      <div class="p-members"><svg aria-hidden="true"><use href="#ic-users"/></svg><span data-i18n-html="m_2000">Up to 3,000 members<br>Unlimited staff</span></div>
       <ul class="p-feats">
         <li data-i18n="f_all_growth">Everything in Growth</li>
-        <li><span><span class="ai-q" data-plan="pro">1,500</span> <span data-i18n="f_aiplans">AI plans per month</span></span></li>
-        <li data-i18n="f_unlim_p">Unlimited partners</li>
-        <li data-i18n="f_multi">Multiple branches</li>
+        <li><span><span class="ai-q" data-plan="pro">800</span> <span data-i18n="f_aiplans">AI plans per month</span></span></li>
         <li data-i18n="f_api_wh">API access and webhooks</li>
         <li data-i18n="f_priority">Priority support</li>
         <li data-i18n="f_branding">Full custom branding</li>
@@ -851,7 +849,7 @@
       <div class="p-tier">ENTERPRISE</div>
       <div class="p-price word" data-i18n="ent_custom">Custom</div>
       <div class="p-period" data-i18n="ent_talk">Price on request</div>
-      <div class="p-members"><svg aria-hidden="true"><use href="#ic-users"/></svg><span data-i18n="m_ent">More than 2,000 members</span></div>
+      <div class="p-members"><svg aria-hidden="true"><use href="#ic-users"/></svg><span data-i18n="m_ent">More than 3,000 members or 10+ branches</span></div>
       <ul class="p-feats">
         <li data-i18n="f_all_pro">Everything in Pro</li>
         <li data-i18n="f_quota">Custom AI plan limit</li>
@@ -864,6 +862,8 @@
       <button class="btn-sm-outline" id="entBtn" data-i18n="ent" data-click="goContact">Talk to Us →</button>
     </div>
   </div>
+
+  <p class="p-branches fade" data-i18n="pr_branches">More than one gym? Every extra branch gets 15% off, all on one invoice.</p>
 
   <div class="pay-row fade" id="payRow">
     <span class="pay-lbl" data-i18n="pay_after">After your free trial, pay with</span>
@@ -1080,7 +1080,7 @@
     </div>
 
     <h2>5. Free Trial</h2>
-    <p>New gym owner accounts receive a 30-day free trial with access to all features, within the limits of the Growth plan for your zone (up to 500 active members, 10 trainers and the Growth plan's monthly AI plan quota). No credit card is required to start a trial. If you choose a paid plan during the trial, you keep your remaining free days and the paid plan starts when the trial ends. At the end of the trial period, your account will be paused unless you select a paid plan. Member data is kept for 90 days after the account is paused, then permanently deleted unless you reactivate.</p>
+    <p>New gym owner accounts receive a 30-day free trial with access to all features, within the limits of the Growth plan (up to 1,000 active members, 15 staff accounts and the Growth plan's monthly AI plan quota). Active members are members with a running membership, including grace days; frozen, expired and cancelled members do not count. If a gym stays above its plan's member limit for 30 days, the next plan applies from the following billing period. When a gym owner runs more than one branch, each branch has its own plan and every branch after the most expensive one is billed at 15% off, on one invoice. No credit card is required to start a trial. If you choose a paid plan during the trial, you keep your remaining free days and the paid plan starts when the trial ends. At the end of the trial period, your account will be paused unless you select a paid plan. Member data is kept for 90 days after the account is paused, then permanently deleted unless you reactivate.</p>
     <p>Refka reserves the right to modify or discontinue the free trial offer at any time without notice. One free trial per gym owner. Trial abuse, including creating multiple accounts to extend trial access, is grounds for immediate account termination.</p>
 
     <h2>6. Cancellation and Refunds</h2>

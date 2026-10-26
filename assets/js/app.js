@@ -146,7 +146,7 @@ var _lang = 'en';
 // + GCC per v3.0). Display currency = visitor's country.
 // ═══════════════════════════════════════════════════════════════
 var PRICING = {
-  A: { starter:{m:49,  a:39,  y:468,  ai:150},  growth:{m:99, a:79, y:948, ai:500}, pro:{m:249, a:199, y:2388, ai:1500} },
+  A: { starter:{m:49,  a:39,  y:468,  ai:150},  growth:{m:99, a:79, y:948, ai:300}, pro:{m:249, a:199, y:2388, ai:800} },
   B: { starter:{m:25,  a:20,  y:240,  ai:150},  growth:{m:55, a:44, y:528, ai:300}, pro:{m:119, a:95,  y:1140, ai:800}  }
 };
 var ZONE_A = ('US CA GB DE FR AE SA QA KW BH OM JP KR SG AU NZ HK IL CH NL BE AT DK SE NO FI IE ES IT PT PL CZ ' +

@@ -106,7 +106,7 @@ var STEPS = [
   { k: 'name', q: 'ch_q_name', kind: 'text', ph: 'ch_ph_name', ac: 'name', max: 80 },
   { k: 'gym', q: 'ch_q_gym', kind: 'text', ph: 'ch_ph_gym', ac: 'organization', max: 100 },
   { k: 'city', q: 'ch_q_city', kind: 'text', ph: 'ch_ph_city', ac: 'address-level2', max: 80 },
-  { k: 'members', q: 'ch_q_members', kind: 'chips', opts: [['<150', '\u2066< 150\u2069'], ['150-500', '\u2066150 – 500\u2069'], ['500-2000', '\u2066500 – 2,000\u2069'], ['2000+', '\u20662,000+\u2069']] },
+  { k: 'members', q: 'ch_q_members', kind: 'chips', opts: [['<300', '\u2066< 300\u2069'], ['300-1000', '\u2066300 – 1,000\u2069'], ['1000-3000', '\u20661,000 – 3,000\u2069'], ['3000+', '\u20663,000+\u2069']] },
   { k: 'need', q: 'ch_q_need', kind: 'chips', opts: [['retention', 'ch_n1'], ['desk', 'ch_n2'], ['community', 'ch_n3'], ['income', 'ch_n4']], i18n: true },
   { k: 'phone', q: 'ch_q_phone', kind: 'phone' }
 ];
