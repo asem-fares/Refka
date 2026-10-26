@@ -784,16 +784,27 @@
     </label>
   </div>
 
+  <div class="plan-finder fade" id="planFinder">
+    <p class="pf-q" id="pfQ" data-i18n="pf_q">How many active members does your gym have?</p>
+    <div class="pf-opts" role="group" aria-labelledby="pfQ">
+      <button class="pf-btn" type="button" aria-pressed="false" data-click="pickSize" data-click-arg="starter" data-i18n="pf_1">Under 500</button>
+      <button class="pf-btn" type="button" aria-pressed="false" data-click="pickSize" data-click-arg="growth" data-i18n="pf_2">500 to 1,500</button>
+      <button class="pf-btn" type="button" aria-pressed="false" data-click="pickSize" data-click-arg="pro" data-i18n="pf_3">1,500 to 3,000</button>
+      <button class="pf-btn" type="button" aria-pressed="false" data-click="pickSize" data-click-arg="enterprise" data-i18n="pf_4">More than 3,000</button>
+    </div>
+  </div>
+
   <div class="price-grid rail">
     <!-- STARTER -->
-    <div class="p-card fade d1">
+    <div class="p-card fade d1" data-plan-card="starter">
       <div class="p-tier">STARTER</div>
+      <span class="p-fit" data-i18n="pf_fit" hidden>Fits your gym ✓</span>
       <div class="p-price"><s class="was billing-an" data-plan="starter" style="display:none"></s><span class="pv" data-plan="starter">$49</span></div>
       <div class="p-period">
         <span class="billing-mo" data-i18n="per_mo">per month, billed monthly</span>
         <span class="billing-an" style="display:none"><span data-i18n="per_an">per month ·</span> <span class="yr" data-plan="starter">$468</span> <span data-i18n="per_yr">per year</span></span>
       </div>
-      <div class="p-members"><svg aria-hidden="true"><use href="#ic-users"/></svg><span data-i18n="m_150">Up to 150 members</span></div>
+      <div class="p-members"><svg aria-hidden="true"><use href="#ic-users"/></svg><span data-i18n="m_150">Up to 500 members</span></div>
       <ul class="p-feats">
         <li data-i18n="f_brand">App with your gym's name, logo and colors</li>
         <li data-i18n="f_qr">Member sign-up by QR code</li>
@@ -807,15 +818,16 @@
     </div>
 
     <!-- GROWTH -->
-    <div class="p-card featured fade d2">
+    <div class="p-card featured fade d2" data-plan-card="growth">
       <div class="p-pop" data-i18n="popular">Most Popular</div>
       <div class="p-tier">GROWTH</div>
+      <span class="p-fit" data-i18n="pf_fit" hidden>Fits your gym ✓</span>
       <div class="p-price"><s class="was billing-an" data-plan="growth" style="display:none"></s><span class="pv" data-plan="growth">$99</span></div>
       <div class="p-period">
         <span class="billing-mo" data-i18n="per_mo">per month, billed monthly</span>
         <span class="billing-an" style="display:none"><span data-i18n="per_an">per month ·</span> <span class="yr" data-plan="growth">$948</span> <span data-i18n="per_yr">per year</span></span>
       </div>
-      <div class="p-members"><svg aria-hidden="true"><use href="#ic-users"/></svg><span data-i18n="m_500">Up to 500 members</span></div>
+      <div class="p-members"><svg aria-hidden="true"><use href="#ic-users"/></svg><span data-i18n="m_500">Up to 1,500 members</span></div>
       <ul class="p-feats">
         <li data-i18n="f_all_starter">Everything in Starter</li>
         <li><span><span class="ai-q" data-plan="growth">500</span> <span data-i18n="f_aiplans">AI plans per month</span></span></li>
@@ -826,14 +838,15 @@
     </div>
 
     <!-- PRO -->
-    <div class="p-card fade d3">
+    <div class="p-card fade d3" data-plan-card="pro">
       <div class="p-tier">PRO</div>
+      <span class="p-fit" data-i18n="pf_fit" hidden>Fits your gym ✓</span>
       <div class="p-price"><s class="was billing-an" data-plan="pro" style="display:none"></s><span class="pv" data-plan="pro">$249</span></div>
       <div class="p-period">
         <span class="billing-mo" data-i18n="per_mo">per month, billed monthly</span>
         <span class="billing-an" style="display:none"><span data-i18n="per_an">per month ·</span> <span class="yr" data-plan="pro">$2,388</span> <span data-i18n="per_yr">per year</span></span>
       </div>
-      <div class="p-members"><svg aria-hidden="true"><use href="#ic-users"/></svg><span data-i18n="m_2000">Up to 2,000 members</span></div>
+      <div class="p-members"><svg aria-hidden="true"><use href="#ic-users"/></svg><span data-i18n="m_2000">Up to 3,000 members</span></div>
       <ul class="p-feats">
         <li data-i18n="f_all_growth">Everything in Growth</li>
         <li><span><span class="ai-q" data-plan="pro">1,500</span> <span data-i18n="f_aiplans">AI plans per month</span></span></li>
@@ -847,11 +860,12 @@
     </div>
 
     <!-- ENTERPRISE -->
-    <div class="p-card enterprise fade d4">
+    <div class="p-card enterprise fade d4" data-plan-card="enterprise">
       <div class="p-tier">ENTERPRISE</div>
+      <span class="p-fit" data-i18n="pf_fit" hidden>Fits your gym ✓</span>
       <div class="p-price word" data-i18n="ent_custom">Custom</div>
       <div class="p-period" data-i18n="ent_talk">Price on request</div>
-      <div class="p-members"><svg aria-hidden="true"><use href="#ic-users"/></svg><span data-i18n="m_ent">More than 2,000 members</span></div>
+      <div class="p-members"><svg aria-hidden="true"><use href="#ic-users"/></svg><span data-i18n="m_ent">More than 3,000 members or a custom setup</span></div>
       <ul class="p-feats">
         <li data-i18n="f_all_pro">Everything in Pro</li>
         <li data-i18n="f_quota">Custom AI plan limit</li>
@@ -865,6 +879,7 @@
     </div>
   </div>
 
+  <p class="p-active fade" data-i18n="pr_note">Members means active members: people with a running membership. Frozen and expired members don't count, and nothing stops if your gym grows past its plan: we'll simply suggest the next one. Every AI plan includes up to 3 edits a month.</p>
   <p class="p-branches fade" data-i18n="pr_branches">More than one gym? Every extra branch gets 15% off, all on one invoice.</p>
 
   <div class="pay-row fade" id="payRow">
@@ -1082,7 +1097,7 @@
     </div>
 
     <h2>5. Free Trial</h2>
-    <p>New gym owner accounts receive a 30-day free trial with access to all features, within the limits of the Growth plan for your zone (up to 500 active members and the Growth plan's monthly AI plan quota). When a gym owner runs more than one branch, each branch has its own plan and every branch after the most expensive one is billed at 15% off, on one invoice. No credit card is required to start a trial. If you choose a paid plan during the trial, you keep your remaining free days and the paid plan starts when the trial ends. At the end of the trial period, your account will be paused unless you select a paid plan. Member data is kept for 90 days after the account is paused, then permanently deleted unless you reactivate.</p>
+    <p>New gym owner accounts receive a 30-day free trial with access to all features, within the limits of the Growth plan for your zone (up to 1,500 active members and the Growth plan's monthly AI plan quota). Active members are members with a running membership, including grace days; frozen, expired and cancelled members do not count. Each AI plan includes up to 3 edits in the same month; a further edit counts as a new plan. If a gym stays above its plan's member limit for 30 days, Refka will suggest the next plan; the service is not interrupted. When a gym owner runs more than one branch, each branch has its own plan and every branch after the most expensive one is billed at 15% off, on one invoice. No credit card is required to start a trial. If you choose a paid plan during the trial, you keep your remaining free days and the paid plan starts when the trial ends. At the end of the trial period, your account will be paused unless you select a paid plan. Member data is kept for 90 days after the account is paused, then permanently deleted unless you reactivate.</p>
     <p>Refka reserves the right to modify or discontinue the free trial offer at any time without notice. One free trial per gym owner. Trial abuse, including creating multiple accounts to extend trial access, is grounds for immediate account termination.</p>
 
     <h2>6. Cancellation and Refunds</h2>

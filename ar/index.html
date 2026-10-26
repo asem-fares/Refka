@@ -785,16 +785,27 @@
     </label>
   </div>
 
+  <div class="plan-finder fade" id="planFinder">
+    <p class="pf-q" id="pfQ" data-i18n="pf_q">كم عضواً نشطاً في جيمك؟</p>
+    <div class="pf-opts" role="group" aria-labelledby="pfQ">
+      <button class="pf-btn" type="button" aria-pressed="false" data-click="pickSize" data-click-arg="starter" data-i18n="pf_1">أقل من 500</button>
+      <button class="pf-btn" type="button" aria-pressed="false" data-click="pickSize" data-click-arg="growth" data-i18n="pf_2">من 500 إلى 1,500</button>
+      <button class="pf-btn" type="button" aria-pressed="false" data-click="pickSize" data-click-arg="pro" data-i18n="pf_3">من 1,500 إلى 3,000</button>
+      <button class="pf-btn" type="button" aria-pressed="false" data-click="pickSize" data-click-arg="enterprise" data-i18n="pf_4">أكثر من 3,000</button>
+    </div>
+  </div>
+
   <div class="price-grid rail">
     <!-- STARTER -->
-    <div class="p-card fade d1">
+    <div class="p-card fade d1" data-plan-card="starter">
       <div class="p-tier">STARTER</div>
+      <span class="p-fit" data-i18n="pf_fit" hidden>مناسبة لجيمك ✓</span>
       <div class="p-price"><s class="was billing-an" data-plan="starter" style="display:none"></s><span class="pv" data-plan="starter">$49</span></div>
       <div class="p-period">
         <span class="billing-mo" data-i18n="per_mo">شهرياً، بدفع شهري</span>
         <span class="billing-an" style="display:none"><span data-i18n="per_an">شهرياً ·</span> <span class="yr" data-plan="starter">$468</span> <span data-i18n="per_yr">سنوياً</span></span>
       </div>
-      <div class="p-members"><svg aria-hidden="true"><use href="#ic-users"/></svg><span data-i18n="m_150">حتى 150 عضواً</span></div>
+      <div class="p-members"><svg aria-hidden="true"><use href="#ic-users"/></svg><span data-i18n="m_150">حتى 500 عضو</span></div>
       <ul class="p-feats">
         <li data-i18n="f_brand">تطبيق باسم جيمك واللوجو والألوان</li>
         <li data-i18n="f_qr">تسجيل الأعضاء بكود QR</li>
@@ -808,15 +819,16 @@
     </div>
 
     <!-- GROWTH -->
-    <div class="p-card featured fade d2">
+    <div class="p-card featured fade d2" data-plan-card="growth">
       <div class="p-pop" data-i18n="popular">الأكثر اختياراً</div>
       <div class="p-tier">GROWTH</div>
+      <span class="p-fit" data-i18n="pf_fit" hidden>مناسبة لجيمك ✓</span>
       <div class="p-price"><s class="was billing-an" data-plan="growth" style="display:none"></s><span class="pv" data-plan="growth">$99</span></div>
       <div class="p-period">
         <span class="billing-mo" data-i18n="per_mo">شهرياً، بدفع شهري</span>
         <span class="billing-an" style="display:none"><span data-i18n="per_an">شهرياً ·</span> <span class="yr" data-plan="growth">$948</span> <span data-i18n="per_yr">سنوياً</span></span>
       </div>
-      <div class="p-members"><svg aria-hidden="true"><use href="#ic-users"/></svg><span data-i18n="m_500">حتى 500 عضو</span></div>
+      <div class="p-members"><svg aria-hidden="true"><use href="#ic-users"/></svg><span data-i18n="m_500">حتى 1,500 عضو</span></div>
       <ul class="p-feats">
         <li data-i18n="f_all_starter">كل مزايا Starter</li>
         <li><span><span class="ai-q" data-plan="growth">500</span> <span data-i18n="f_aiplans">خطة ذكاء اصطناعي شهرياً</span></span></li>
@@ -827,14 +839,15 @@
     </div>
 
     <!-- PRO -->
-    <div class="p-card fade d3">
+    <div class="p-card fade d3" data-plan-card="pro">
       <div class="p-tier">PRO</div>
+      <span class="p-fit" data-i18n="pf_fit" hidden>مناسبة لجيمك ✓</span>
       <div class="p-price"><s class="was billing-an" data-plan="pro" style="display:none"></s><span class="pv" data-plan="pro">$249</span></div>
       <div class="p-period">
         <span class="billing-mo" data-i18n="per_mo">شهرياً، بدفع شهري</span>
         <span class="billing-an" style="display:none"><span data-i18n="per_an">شهرياً ·</span> <span class="yr" data-plan="pro">$2,388</span> <span data-i18n="per_yr">سنوياً</span></span>
       </div>
-      <div class="p-members"><svg aria-hidden="true"><use href="#ic-users"/></svg><span data-i18n="m_2000">حتى 2,000 عضو</span></div>
+      <div class="p-members"><svg aria-hidden="true"><use href="#ic-users"/></svg><span data-i18n="m_2000">حتى 3,000 عضو</span></div>
       <ul class="p-feats">
         <li data-i18n="f_all_growth">كل مزايا Growth</li>
         <li><span><span class="ai-q" data-plan="pro">1,500</span> <span data-i18n="f_aiplans">خطة ذكاء اصطناعي شهرياً</span></span></li>
@@ -848,11 +861,12 @@
     </div>
 
     <!-- ENTERPRISE -->
-    <div class="p-card enterprise fade d4">
+    <div class="p-card enterprise fade d4" data-plan-card="enterprise">
       <div class="p-tier">ENTERPRISE</div>
+      <span class="p-fit" data-i18n="pf_fit" hidden>مناسبة لجيمك ✓</span>
       <div class="p-price word" data-i18n="ent_custom">حسب الطلب</div>
       <div class="p-period" data-i18n="ent_talk">السعر عند التواصل</div>
-      <div class="p-members"><svg aria-hidden="true"><use href="#ic-users"/></svg><span data-i18n="m_ent">أكثر من 2,000 عضو</span></div>
+      <div class="p-members"><svg aria-hidden="true"><use href="#ic-users"/></svg><span data-i18n="m_ent">أكثر من 3,000 عضو أو إعداد خاص</span></div>
       <ul class="p-feats">
         <li data-i18n="f_all_pro">كل مزايا Pro</li>
         <li data-i18n="f_quota">عدد خطط ذكاء اصطناعي حسب احتياجك</li>
@@ -866,6 +880,7 @@
     </div>
   </div>
 
+  <p class="p-active fade" data-i18n="pr_note">العضو هنا هو العضو النشط: من لديه اشتراك سارٍ. المجمّدون ومن انتهى اشتراكهم لا يُحسبون، ولا يتوقف شيء إذا كبر جيمك عن باقته: سنقترح عليك الباقة التالية فقط. وكل خطة ذكاء اصطناعي تشمل حتى 3 تعديلات في الشهر.</p>
   <p class="p-branches fade" data-i18n="pr_branches">عندك أكثر من جيم؟ كل فرع إضافي بخصم 15%، وكلها في فاتورة واحدة.</p>
 
   <div class="pay-row fade" id="payRow">
@@ -1083,7 +1098,7 @@
     </div>
 
     <h2>5. Free Trial</h2>
-    <p>New gym owner accounts receive a 30-day free trial with access to all features, within the limits of the Growth plan for your zone (up to 500 active members and the Growth plan's monthly AI plan quota). When a gym owner runs more than one branch, each branch has its own plan and every branch after the most expensive one is billed at 15% off, on one invoice. No credit card is required to start a trial. If you choose a paid plan during the trial, you keep your remaining free days and the paid plan starts when the trial ends. At the end of the trial period, your account will be paused unless you select a paid plan. Member data is kept for 90 days after the account is paused, then permanently deleted unless you reactivate.</p>
+    <p>New gym owner accounts receive a 30-day free trial with access to all features, within the limits of the Growth plan for your zone (up to 1,500 active members and the Growth plan's monthly AI plan quota). Active members are members with a running membership, including grace days; frozen, expired and cancelled members do not count. Each AI plan includes up to 3 edits in the same month; a further edit counts as a new plan. If a gym stays above its plan's member limit for 30 days, Refka will suggest the next plan; the service is not interrupted. When a gym owner runs more than one branch, each branch has its own plan and every branch after the most expensive one is billed at 15% off, on one invoice. No credit card is required to start a trial. If you choose a paid plan during the trial, you keep your remaining free days and the paid plan starts when the trial ends. At the end of the trial period, your account will be paused unless you select a paid plan. Member data is kept for 90 days after the account is paused, then permanently deleted unless you reactivate.</p>
     <p>Refka reserves the right to modify or discontinue the free trial offer at any time without notice. One free trial per gym owner. Trial abuse, including creating multiple accounts to extend trial access, is grounds for immediate account termination.</p>
 
     <h2>6. Cancellation and Refunds</h2>
