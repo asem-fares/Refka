@@ -14,8 +14,27 @@ var CLICK_ACTIONS = {
   scrollHow: function () { var h = g('how'); if (h) h.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' }); },
   openModal: function (arg) { openModal(arg); },
   closeModal: function (arg) { closeModal(arg); },
-  setBilling: function (arg) { setBilling(arg); }
+  setBilling: function (arg) { setBilling(arg); },
+  pickSize: function (arg) { pickSize(arg); }
 };
+// Plan finder: the owner says how many active members the gym has, the matching plan lights up.
+var PF_CHIP = { starter: '<500', growth: '500-1500', pro: '1500-3000', enterprise: '3000+' };
+function pickSize(plan) {
+  window.PF_PICK = plan;
+  document.querySelectorAll('.pf-btn').forEach(function (b) { var on = b.getAttribute('data-click-arg') === plan; b.classList.toggle('on', on); b.setAttribute('aria-pressed', on ? 'true' : 'false'); });
+  var card = null;
+  document.querySelectorAll('.price-grid .p-card').forEach(function (c) {
+    var on = c.getAttribute('data-plan-card') === plan; c.classList.toggle('pf-match', on);
+    var f = c.querySelector('.p-fit'); if (f) f.hidden = !on; if (on) card = c;
+  });
+  var rail = card && card.parentElement;
+  if (card && rail && rail.scrollWidth > rail.clientWidth + 4) {   // phones: bring the plan into view inside the swipe rail
+    var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var rr = rail.getBoundingClientRect(), cr = card.getBoundingClientRect();
+    rail.scrollBy({ left: (cr.left + cr.width / 2) - (rr.left + rr.width / 2), behavior: reduce ? 'auto' : 'smooth' });
+  }
+  if (window.gtag) gtag('event', 'plan_finder', { plan: plan });
+}
 document.addEventListener('click', function (e) {
   var el = e.target.closest ? e.target.closest('[data-click]') : null;
   if (!el) return;
@@ -106,7 +125,7 @@ var STEPS = [
   { k: 'name', q: 'ch_q_name', kind: 'text', ph: 'ch_ph_name', ac: 'name', max: 80 },
   { k: 'gym', q: 'ch_q_gym', kind: 'text', ph: 'ch_ph_gym', ac: 'organization', max: 100 },
   { k: 'city', q: 'ch_q_city', kind: 'text', ph: 'ch_ph_city', ac: 'address-level2', max: 80 },
-  { k: 'members', q: 'ch_q_members', kind: 'chips', opts: [['<150', '\u2066< 150\u2069'], ['150-500', '\u2066150 – 500\u2069'], ['500-2000', '\u2066500 – 2,000\u2069'], ['2000+', '\u20662,000+\u2069']] },
+  { k: 'members', q: 'ch_q_members', kind: 'chips', opts: [['<500', '\u2066< 500\u2069'], ['500-1500', '\u2066500 – 1,500\u2069'], ['1500-3000', '\u20661,500 – 3,000\u2069'], ['3000+', '\u20663,000+\u2069']] },
   { k: 'need', q: 'ch_q_need', kind: 'chips', opts: [['retention', 'ch_n1'], ['desk', 'ch_n2'], ['community', 'ch_n3'], ['income', 'ch_n4']], i18n: true },
   { k: 'phone', q: 'ch_q_phone', kind: 'phone' }
 ];
@@ -144,6 +163,7 @@ function askStep() {
       st.opts.forEach(function (o) {
         var c = document.createElement('button'); c.type = 'button'; c.className = 'chat-chip';
         c.textContent = st.i18n ? tr(o[1]) : o[1];
+        if (st.k === 'members' && window.PF_PICK && PF_CHIP[window.PF_PICK] === o[0]) c.classList.add('suggest');   // what the owner chose in the plan finder
         c.addEventListener('click', function () { answer(o[0], c.textContent); });
         row.appendChild(c);
       });
