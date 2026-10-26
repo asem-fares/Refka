@@ -66,6 +66,15 @@ def faq_ld(s, T):
 en, ar = load('en'), load('ar')
 src = open(os.path.join(ROOT, 'index.html'), encoding='utf-8').read()
 
+# Cache busting: every script and stylesheet URL carries ?v=<hash of all JS and CSS>, so after a deploy
+# no visitor mixes a new page with yesterday's cached script (GitHub Pages caches files for 10 minutes).
+import glob, hashlib
+_h = hashlib.sha1()
+for p in sorted(glob.glob(os.path.join(ROOT, 'assets/js/**/*.js'), recursive=True) + glob.glob(os.path.join(ROOT, 'assets/css/*.css'))):
+    _h.update(open(p, 'rb').read())
+VER = _h.hexdigest()[:10]
+src = re.sub(r'((?:src|href)="/assets/(?:js|css)/[^"?]+\.(?:js|css))(?:\?v=[0-9a-f]+)?"', lambda m: m.group(1) + '?v=' + VER + '"', src)
+
 page = faq_ld(meta(fill(src, en, en), en, SITE + '/', 'en_US', 'Refka | At your gym, nobody trains alone.'), en)
 open(os.path.join(ROOT, 'index.html'), 'w', encoding='utf-8').write(page)
 

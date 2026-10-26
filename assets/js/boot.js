@@ -66,13 +66,13 @@
 
   // Language files: one per language, loaded once. whenLang(code, done) calls done(code) when the
   // text is there, or done('en') if the file cannot be loaded.
-  var waiting = {}, base = (document.currentScript && document.currentScript.src || '').replace(/boot\.js.*$/, '');
+  var waiting = {}, me = (document.currentScript && document.currentScript.src) || '', base = me.replace(/boot\.js.*$/, ''), ver = (me.match(/\?v=([0-9a-f]+)/) || [])[1];
   function whenLang(code, done) {
     if (window.T && window.T[code]) return done(code);
     if (waiting[code]) { waiting[code].push(done); return; }
     waiting[code] = [done];
     var s = document.createElement('script');
-    s.src = base + 'i18n/' + code + '.js';
+    s.src = base + 'i18n/' + code + '.js' + (ver ? '?v=' + ver : '');   // same version as this page's scripts
     s.async = true;
     s.onload = function () { var q = waiting[code]; waiting[code] = null; q.forEach(function (f) { f(window.T && window.T[code] ? code : 'en'); }); };
     s.onerror = function () { var q = waiting[code]; waiting[code] = null; q.forEach(function (f) { f('en'); }); };
