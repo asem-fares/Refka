@@ -244,7 +244,7 @@
   faq_q5: "Co się stanie, jeśli przestanę płacić?",
   faq_a5: "Nie ma umowy. Po 7 dniach karencji konto zostaje wstrzymane. Dane klubowiczów przechowujemy 90 dni, żebyś mógł wrócić lub je wyeksportować, a potem je usuwamy.",
   faq_q6: "Kto to konfiguruje i czy jest po polsku?",
-  faq_a6: "Nasz zespół konfiguruje klub razem z Tobą przez WhatsApp, bez dodatkowych kosztów. Refka działa w 22 językach, w tym po polsku, dla Ciebie, recepcji i klubowiczów.",
+  faq_a6: "Nasz zespół konfiguruje klub razem z Tobą przez WhatsApp, bez dodatkowych kosztów. Refka działa po angielsku i arabsku, dla Ciebie, recepcji i klubowiczów; kolejne języki wkrótce.",
   faq_q7: "Czy mogę przetestować przed zapłatą?",
   faq_a7: "Tak. Masz 30 dni za darmo, ze wszystkimi funkcjami i bez karty kredytowej. Jeśli wybierzesz plan w trakcie testu, pozostałe darmowe dni zostają.",
   faq_more: "Masz inne pytanie?",

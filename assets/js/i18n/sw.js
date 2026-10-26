@@ -244,7 +244,7 @@
   faq_q5: "Nini kitatokea nikiacha kulipa?",
   faq_a5: "Hakuna mkataba. Baada ya siku 7 za neema, akaunti yako inasitishwa. Data ya wanachama inahifadhiwa siku 90 ili urudi au uihamishe, kisha inafutwa.",
   faq_q6: "Nani anaiweka, na je, kuna Kiswahili?",
-  faq_a6: "Timu yetu inaweka gym yako pamoja nawe kupitia WhatsApp, bila gharama ya ziada. Refka inapatikana kwa lugha 22, ikiwemo Kiswahili, kwa ajili yako, wafanyakazi wa mapokezi na wanachama.",
+  faq_a6: "Timu yetu inaweka gym yako pamoja nawe kupitia WhatsApp, bila gharama ya ziada. Refka inapatikana kwa Kiingereza na Kiarabu, kwa ajili yako, wafanyakazi wa mapokezi na wanachama; lugha nyingine zinakuja.",
   faq_q7: "Je, naweza kujaribu kabla ya kulipa?",
   faq_a7: "Ndiyo. Siku 30 bure, vipengele vyote, bila kadi ya mkopo. Ukichagua kifurushi wakati wa majaribio, siku za bure zilizobaki zinabaki kuwa zako.",
   faq_more: "Una swali jingine?",

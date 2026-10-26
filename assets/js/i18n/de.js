@@ -244,7 +244,7 @@
   faq_q5: "Was passiert, wenn ich nicht mehr zahle?",
   faq_a5: "Es gibt keinen Vertrag. Nach 7 Tagen Kulanz wird Ihr Konto pausiert. Ihre Mitgliederdaten bleiben 90 Tage erhalten, damit Sie zurückkommen oder sie exportieren können, und werden dann gelöscht.",
   faq_q6: "Wer richtet es ein, und gibt es es auf Deutsch?",
-  faq_a6: "Unser Team richtet Ihr Studio per WhatsApp mit Ihnen ein, ohne Zusatzkosten. Refka funktioniert in 22 Sprachen, darunter Deutsch, für Sie, Ihr Empfangsteam und Ihre Mitglieder.",
+  faq_a6: "Unser Team richtet Ihr Studio per WhatsApp mit Ihnen ein, ohne Zusatzkosten. Refka funktioniert auf Englisch und Arabisch, für Sie, Ihr Empfangsteam und Ihre Mitglieder; weitere Sprachen folgen.",
   faq_q7: "Kann ich es testen, bevor ich zahle?",
   faq_a7: "Ja. Sie bekommen 30 Tage kostenlos, mit allen Funktionen und ohne Kreditkarte. Wählen Sie während des Tests einen Tarif, behalten Sie die restlichen Gratistage.",
   faq_more: "Noch eine Frage?",

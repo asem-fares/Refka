@@ -244,7 +244,7 @@
   faq_q5: "Çfarë ndodh nëse ndaloj së paguari?",
   faq_a5: "Nuk ka kontratë. Pas 7 ditësh afat, llogaria juaj pezullohet. Të dhënat e anëtarëve ruhen 90 ditë, që të ktheheni ose t'i eksportoni, dhe pastaj fshihen.",
   faq_q6: "Kush e konfiguron dhe a është në shqip?",
-  faq_a6: "Ekipi ynë e konfiguron palestrën bashkë me ju në WhatsApp, pa kosto shtesë. Refka punon në 22 gjuhë, përfshirë shqipen, për ju, stafin e recepsionit dhe anëtarët.",
+  faq_a6: "Ekipi ynë e konfiguron palestrën bashkë me ju në WhatsApp, pa kosto shtesë. Refka punon në anglisht dhe arabisht, për ju, stafin e recepsionit dhe anëtarët; gjuhë të tjera vijnë së shpejti.",
   faq_q7: "A mund ta provoj para se të paguaj?",
   faq_a7: "Po. Merrni 30 ditë falas me të gjitha funksionet dhe pa kartë krediti. Nëse zgjidhni një paketë gjatë provës, ditët falas që mbeten i mbani.",
   faq_more: "Keni pyetje tjetër?",

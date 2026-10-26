@@ -244,7 +244,7 @@
   faq_q5: "Ödemeyi bırakırsam ne olur?",
   faq_a5: "Sözleşme yok. 7 günlük ek süreden sonra hesabınız durdurulur. Üye verileriniz geri dönmeniz ya da dışa aktarmanız için 90 gün saklanır, sonra silinir.",
   faq_q6: "Kurulumu kim yapar, Türkçe var mı?",
-  faq_a6: "Ekibimiz salonunuzu WhatsApp üzerinden sizinle birlikte, ek ücret olmadan kurar. Refka Türkçe dahil 22 dilde, sizin, resepsiyon ekibinizin ve üyelerinizin dilinde çalışır.",
+  faq_a6: "Ekibimiz salonunuzu WhatsApp üzerinden sizinle birlikte, ek ücret olmadan kurar. Refka İngilizce ve Arapça olarak sizin, resepsiyon ekibinizin ve üyelerinizin kullanımına sunulur; diğer diller yakında.",
   faq_q7: "Ödemeden önce deneyebilir miyim?",
   faq_a7: "Evet. Tüm özelliklerle ve kredi kartı olmadan 30 gün ücretsiz. Deneme sırasında paket seçerseniz kalan ücretsiz günleriniz korunur.",
   faq_more: "Başka sorunuz mu var?",
