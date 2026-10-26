@@ -1225,7 +1225,6 @@ s.was.drawn { background-size: 100% 2px; }
   .rail::-webkit-scrollbar { display: none; }
   .rail > * { flex: 0 0 min(84%, 360px); scroll-snap-align: start; }
   .js .rail > .fade { opacity: 1; transform: none; }
-  .price-grid.rail > .featured { order: -1; }   /* the plan most gyms pick comes first */
   .price-grid.rail { margin-top: var(--sp-24); padding-top: var(--sp-20); }   /* room for the "Most popular" badge */
   .eco-side.member .rail { margin-inline: calc(-1 * var(--sp-16)); padding-inline: var(--sp-16); scroll-padding-inline: var(--sp-16); }   /* stays inside its panel */
   .pb-strip { padding: var(--sp-16); }
