@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Pay Refka</title>
+<meta name="robots" content="noindex, nofollow">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; base-uri 'self'; form-action 'none'; object-src 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<link rel="icon" type="image/svg+xml" href="/assets/icons/refka-icon.svg">
+<link rel="stylesheet" href="/assets/css/fonts.css">
+<style>
+:root{--bg:#080808;--card:#111;--bd:#1E1E1E;--bd2:#2A2A2A;--t1:#F0F0EE;--t2:#B4B4AC;--t3:#A2A29A;--p:#0D6B6E;--p-txt:#14B8BD;--a:#C9973A;color-scheme:dark}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--t2);font:16px/1.6 Inter,"IBM Plex Sans Arabic",system-ui,sans-serif;padding:24px max(16px,env(safe-area-inset-right,0px)) 48px max(16px,env(safe-area-inset-left,0px))}
+[dir=rtl] body{font-family:"IBM Plex Sans Arabic",Inter,system-ui,sans-serif}
+.wrap{max-width:520px;margin:0 auto;display:flex;flex-direction:column;gap:20px}
+.top{display:flex;justify-content:space-between;align-items:center}.top a{color:var(--t3);text-decoration:none;font-weight:600;font-size:14px}
+.brand{display:flex;gap:8px;align-items:center;color:var(--t1);font:800 20px Sora,Inter,sans-serif}.brand img{width:28px;height:28px}
+h1{color:var(--t1);font:800 clamp(26px,6vw,34px)/1.2 Sora,Inter,sans-serif;margin:0;text-wrap:balance}[dir=rtl] h1,[dir=rtl] h2{font-family:"IBM Plex Sans Arabic",sans-serif}
+.lead{margin:-8px 0 0}
+.card{background:var(--card);border:1.5px solid var(--bd);border-radius:18px;padding:20px;display:flex;flex-direction:column;gap:14px}
+h2{color:var(--t1);font:700 20px Sora,Inter,sans-serif;margin:0}
+.qr{background:#fff;border-radius:14px;padding:12px;width:min(260px,100%);align-self:center}.qr img{display:block;width:100%;height:auto}
+.btn{display:flex;align-items:center;justify-content:center;gap:8px;min-height:50px;border-radius:12px;font-weight:700;text-decoration:none;font-size:16px;border:1.5px solid var(--bd2);color:var(--t1);background:transparent;cursor:pointer;padding:0 16px;text-align:center}
+.btn.primary{background:var(--p);border-color:var(--p);color:#fff}.btn.wa{background:#1fa855;border-color:#1fa855;color:#fff}
+.line{display:flex;align-items:center;gap:8px;border:1.5px solid var(--bd2);border-radius:12px;padding:8px 8px 8px 14px}[dir=rtl] .line{padding:8px 14px 8px 8px}
+.line code{flex:1;min-width:0;color:var(--t1);font-size:15px;overflow-wrap:anywhere;direction:ltr;text-align:start}
+.line button{border:1.5px solid var(--bd2);background:none;color:var(--t1);border-radius:999px;padding:8px 14px;font-weight:600;cursor:pointer;min-height:40px}
+.label{font-size:13px;color:var(--t3);font-weight:600;margin-bottom:-6px}
+ol{margin:0;padding-inline-start:20px;display:flex;flex-direction:column;gap:6px}
+.note{font-size:14px;color:var(--t3)}.safe{border-inline-start:3px solid var(--a);padding-inline-start:12px;font-size:14px}
+</style>
+</head>
+<body>
+<main class="wrap">
+<div class="top"><a class="brand" href="/"><img src="/assets/icons/refka-icon.svg" alt="">Refka</a><a href="/ar/pay/" lang="ar">العربية</a></div>
+<h1>Pay your Refka subscription</h1>
+<p class="lead">Two ways, both in a couple of minutes. Pay the amount on your invoice.</p>
+<section class="card">
+<h2>InstaPay</h2>
+<p style="margin:0">Scan the code with your InstaPay app, or open the link on your phone.</p>
+<div class="qr"><img src="/assets/images/pay/instapay-qr.png" width="360" height="360" alt="InstaPay QR: assemsabry2025@instapay"></div>
+<a class="btn primary" href="https://ipn.eg/S/assemsabry2025/instapay/8jFZYL" target="_blank" rel="noopener">Open InstaPay</a>
+<div class="label">InstaPay address</div>
+<div class="line"><code>assemsabry2025@instapay</code><button type="button" data-copy="assemsabry2025@instapay" data-done="Copied">Copy</button></div>
+<p class="note" style="margin:0">The transfer goes to Assem Sabry, Refka's founder.</p>
+<ol><li>Scan the code or tap Open InstaPay.</li><li>Enter the amount on your invoice. Write your invoice number in the note.</li><li>Send us the screenshot on WhatsApp. We confirm within one working day and send your receipt.</li></ol>
+<a class="btn wa" href="https://wa.me/201149421081?text=Hi%20Refka%2C%20I%20paid%20my%20invoice%20by%20InstaPay.%20Gym%3A%20___%20Invoice%3A%20___%20%28screenshot%20attached%29" target="_blank" rel="noopener">Send the screenshot on WhatsApp</a>
+</section>
+<section class="card">
+<h2>Cash at your gym</h2>
+<p style="margin:0">Prefer cash? A Refka team member visits your gym, takes the payment by hand and gives you a signed receipt.</p>
+<a class="btn" href="https://wa.me/201149421081?text=Hi%20Refka%2C%20I%20want%20to%20pay%20my%20invoice%20in%20cash.%20Gym%3A%20___%20Area%3A%20___%20Best%20time%20for%20the%20visit%3A%20___" target="_blank" rel="noopener">Ask for a visit on WhatsApp</a>
+</section>
+<p class="safe">Pay only to the account on this page. Refka never asks for your card number or your InstaPay PIN.</p>
+</main>
+<script src="/assets/js/pay.js"></script>
+</body>
+</html>
