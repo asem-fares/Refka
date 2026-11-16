@@ -1,0 +1,19 @@
+{
+  "name": "refka-dev",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Local dev tooling for Refka: Supabase-compatible mock server, seed and tests",
+  "scripts": {
+    "db:start": "./db.sh start",
+    "db:reset": "./db.sh reset",
+    "server": "node server.js",
+    "seed": "node seed.js",
+    "test": "node ../supabase/tests/run.js"
+  },
+  "dependencies": {
+    "pg": "^8.13.0"
+  },
+  "devDependencies": {
+    "@supabase/supabase-js": "^2.45.0"
+  }
+}

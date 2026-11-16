@@ -26,3 +26,4 @@ build/
 node_modules/
 dev/READY
 *.log
+app/*/tests/vendor/

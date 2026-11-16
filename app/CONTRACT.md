@@ -113,3 +113,5 @@ The client maps codes to friendly EN/AR text; unknown codes show a generic messa
 
 ## Deviations
 (backend agent: list any change to a signature here, with the reason)
+
+See the list below (written by the backend agent, 16 Nov 2026).
