@@ -1,4 +1,6 @@
 -- Refka v1 schema. Runs unchanged on Supabase (Postgres 15+) and on local Postgres 16 after tests/local_prelude.sql.
+-- Re-runnable: tables and indexes use "if not exists" (a re-run never changes an existing table; write a new
+-- migration for that).
 -- Rule: the front end never touches tables. RLS is enabled on every table with NO policies and all table
 -- privileges are revoked from anon and authenticated. Every read and write goes through a function in 0002.
 
@@ -6,7 +8,7 @@ create schema if not exists extensions;
 create extension if not exists pgcrypto with schema extensions;
 
 -- ---------------------------------------------------------------- gyms
-create table public.gyms (
+create table if not exists public.gyms (
   id          uuid primary key default gen_random_uuid(),
   slug        text not null unique
               check (slug ~ '^[a-z0-9]([a-z0-9-]{1,28})[a-z0-9]$' and slug !~ '--'),
@@ -22,9 +24,9 @@ create table public.gyms (
   qr_secret   text not null default encode(extensions.gen_random_bytes(32), 'hex'),
   created_at  timestamptz not null default now()
 );
-create unique index gyms_owner_uq on public.gyms(owner_id);   -- one gym per owner in v1
+create unique index if not exists gyms_owner_uq on public.gyms(owner_id);   -- one gym per owner in v1
 
-create table public.gym_staff (
+create table if not exists public.gym_staff (
   gym_id  uuid not null references public.gyms(id) on delete cascade,
   user_id uuid not null references auth.users(id) on delete cascade,
   role    text not null default 'owner' check (role in ('owner')),
@@ -33,7 +35,7 @@ create table public.gym_staff (
 );
 
 -- ---------------------------------------------------------------- packages
-create table public.packages (
+create table if not exists public.packages (
   id           uuid primary key default gen_random_uuid(),
   gym_id       uuid not null references public.gyms(id) on delete cascade,
   name         text not null check (char_length(name) between 1 and 60),
@@ -48,10 +50,10 @@ create table public.packages (
   created_at   timestamptz not null default now(),
   check (before_price is null or until is not null)
 );
-create index packages_gym_ix on public.packages(gym_id, sort);
+create index if not exists packages_gym_ix on public.packages(gym_id, sort);
 
 -- ---------------------------------------------------------------- memberships
-create table public.memberships (
+create table if not exists public.memberships (
   id         uuid primary key default gen_random_uuid(),
   gym_id     uuid not null references public.gyms(id) on delete cascade,
   phone      text not null check (phone ~ '^\+[0-9]{10,15}$'),
@@ -69,11 +71,11 @@ create table public.memberships (
   check (status = 'listed' or user_id is not null),
   check (status <> 'listed' or user_id is null)
 );
-create unique index memberships_gym_user_uq on public.memberships(gym_id, user_id) where user_id is not null;
-create index memberships_user_ix on public.memberships(user_id) where user_id is not null;
+create unique index if not exists memberships_gym_user_uq on public.memberships(gym_id, user_id) where user_id is not null;
+create index if not exists memberships_user_ix on public.memberships(user_id) where user_id is not null;
 
 -- ---------------------------------------------------------------- profiles
-create table public.profiles (
+create table if not exists public.profiles (
   user_id    uuid primary key references auth.users(id) on delete cascade,
   phone      text not null unique check (phone ~ '^\+[0-9]{10,15}$'),
   name       text not null check (char_length(name) between 2 and 60),
@@ -89,7 +91,7 @@ create table public.profiles (
 );
 
 -- ---------------------------------------------------------------- payments
-create table public.payments (
+create table if not exists public.payments (
   id            uuid primary key default gen_random_uuid(),
   gym_id        uuid not null references public.gyms(id) on delete cascade,
   membership_id uuid not null references public.memberships(id) on delete cascade,
@@ -102,22 +104,22 @@ create table public.payments (
   decided_by    uuid references auth.users(id) on delete set null,
   decided_at    timestamptz
 );
-create unique index payments_one_pending_uq on public.payments(membership_id) where status = 'pending';
-create index payments_gym_ix on public.payments(gym_id, status, created_at);
+create unique index if not exists payments_one_pending_uq on public.payments(membership_id) where status = 'pending';
+create index if not exists payments_gym_ix on public.payments(gym_id, status, created_at);
 
 -- ---------------------------------------------------------------- checkins
-create table public.checkins (
+create table if not exists public.checkins (
   id            uuid primary key default gen_random_uuid(),
   gym_id        uuid not null references public.gyms(id) on delete cascade,
   membership_id uuid not null references public.memberships(id) on delete cascade,
   at            timestamptz not null default now(),
   via           text not null check (via in ('qr','desk'))
 );
-create index checkins_gym_at_ix on public.checkins(gym_id, at desc);
-create index checkins_membership_ix on public.checkins(membership_id, at desc);
+create index if not exists checkins_gym_at_ix on public.checkins(gym_id, at desc);
+create index if not exists checkins_membership_ix on public.checkins(membership_id, at desc);
 
 -- ---------------------------------------------------------------- requests
-create table public.requests (
+create table if not exists public.requests (
   id         uuid primary key default gen_random_uuid(),
   gym_id     uuid not null references public.gyms(id) on delete cascade,
   from_user  uuid not null references auth.users(id) on delete cascade,
@@ -129,12 +131,12 @@ create table public.requests (
   decided_at timestamptz,
   check (from_user <> to_user)
 );
-create unique index requests_one_pending_uq on public.requests(gym_id, from_user, to_user) where status = 'pending';
-create index requests_to_ix on public.requests(to_user, gym_id, status);
-create index requests_from_ix on public.requests(from_user, created_at desc);
+create unique index if not exists requests_one_pending_uq on public.requests(gym_id, from_user, to_user) where status = 'pending';
+create index if not exists requests_to_ix on public.requests(to_user, gym_id, status);
+create index if not exists requests_from_ix on public.requests(from_user, created_at desc);
 
 -- ---------------------------------------------------------------- refkas
-create table public.refkas (
+create table if not exists public.refkas (
   id        uuid primary key default gen_random_uuid(),
   gym_id    uuid not null references public.gyms(id) on delete cascade,
   a         uuid not null references auth.users(id) on delete cascade,
@@ -145,31 +147,31 @@ create table public.refkas (
   b_read_at timestamptz,
   check (a < b)
 );
-create unique index refkas_one_open_uq on public.refkas(gym_id, a, b) where ended_at is null;
-create index refkas_a_ix on public.refkas(a);
-create index refkas_b_ix on public.refkas(b);
+create unique index if not exists refkas_one_open_uq on public.refkas(gym_id, a, b) where ended_at is null;
+create index if not exists refkas_a_ix on public.refkas(a);
+create index if not exists refkas_b_ix on public.refkas(b);
 
-create table public.messages (
+create table if not exists public.messages (
   id        uuid primary key default gen_random_uuid(),
   refka_id  uuid not null references public.refkas(id) on delete cascade,
   from_user uuid not null references auth.users(id) on delete cascade,
   body      text not null check (char_length(body) between 1 and 1000),
   at        timestamptz not null default now()
 );
-create index messages_refka_ix on public.messages(refka_id, at);
-create index messages_from_ix on public.messages(from_user, at desc);
+create index if not exists messages_refka_ix on public.messages(refka_id, at);
+create index if not exists messages_from_ix on public.messages(from_user, at desc);
 
 -- ---------------------------------------------------------------- blocks, posts, reports
-create table public.blocks (
+create table if not exists public.blocks (
   blocker uuid not null references auth.users(id) on delete cascade,
   blocked uuid not null references auth.users(id) on delete cascade,
   at      timestamptz not null default now(),
   primary key (blocker, blocked),
   check (blocker <> blocked)
 );
-create index blocks_blocked_ix on public.blocks(blocked);
+create index if not exists blocks_blocked_ix on public.blocks(blocked);
 
-create table public.posts (
+create table if not exists public.posts (
   id      uuid primary key default gen_random_uuid(),
   gym_id  uuid not null references public.gyms(id) on delete cascade,
   by_user uuid not null references auth.users(id) on delete cascade,
@@ -179,17 +181,17 @@ create table public.posts (
   at      timestamptz not null default now(),
   check (char_length(body) >= 1 or img is not null)
 );
-create index posts_gym_at_ix on public.posts(gym_id, at desc);
-create index posts_by_ix on public.posts(by_user, at desc);
+create index if not exists posts_gym_at_ix on public.posts(gym_id, at desc);
+create index if not exists posts_by_ix on public.posts(by_user, at desc);
 
-create table public.post_respects (
+create table if not exists public.post_respects (
   post_id uuid not null references public.posts(id) on delete cascade,
   user_id uuid not null references auth.users(id) on delete cascade,
   at      timestamptz not null default now(),
   primary key (post_id, user_id)
 );
 
-create table public.reports (
+create table if not exists public.reports (
   id         uuid primary key default gen_random_uuid(),
   gym_id     uuid not null references public.gyms(id) on delete cascade,
   by_user    uuid not null references auth.users(id) on delete cascade,
@@ -199,7 +201,7 @@ create table public.reports (
   status     text not null default 'open' check (status in ('open','done')),
   at         timestamptz not null default now()
 );
-create index reports_gym_ix on public.reports(gym_id, status, at);
+create index if not exists reports_gym_ix on public.reports(gym_id, status, at);
 
 -- ---------------------------------------------------------------- lock everything down
 do $$

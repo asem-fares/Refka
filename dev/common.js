@@ -71,7 +71,7 @@ async function rpc(pool, claims, fn, args) {
   const client = await pool.connect();
   try {
     const meta = await client.query(
-      `select p.proargnames as names,
+      `select p.proargnames as names, p.provolatile as vol,
               array(select format_type(t, null) from unnest(p.proargtypes) with ordinality as x(t, i) order by i) as types
        from pg_proc p join pg_namespace n on n.oid = p.pronamespace
        where n.nspname = 'public' and p.proname = $1`, [fn]);
@@ -88,6 +88,9 @@ async function rpc(pool, claims, fn, args) {
     }
     await client.query('begin');
     try {
+      // PostgREST runs STABLE and IMMUTABLE functions in a read-only transaction; do the same so a
+      // function that writes but is declared stable fails here exactly as it would on Supabase.
+      if (meta.rows[0].vol !== 'v') await client.query('set transaction read only');
       await client.query('set local role ' + (claims ? 'authenticated' : 'anon'));
       await client.query(`select set_config('request.jwt.claims', $1, true)`, [JSON.stringify(claims || { role: 'anon' })]);
       const r = await client.query('select public."' + fn + '"(' + parts.join(', ') + ') as r', vals);

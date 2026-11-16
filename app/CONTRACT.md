@@ -114,4 +114,68 @@ The client maps codes to friendly EN/AR text; unknown codes show a generic messa
 ## Deviations
 (backend agent: list any change to a signature here, with the reason)
 
-See the list below (written by the backend agent, 16 Nov 2026).
+See the list below (written by the backend agent, 16 Nov 2026). No function name or argument changed. Items marked
+(+) only add keys to a result; front ends can ignore them.
+
+Platform and security
+1. `search_path = public, extensions, pg_temp` on every function (pg_temp last). Without it a session's temporary
+   table could shadow a public table inside a security definer function (shown by a test, fixed).
+2. `my_phone()` does NOT read `user_metadata.phone` (the user can edit his own metadata with `auth.updateUser`).
+   It returns the profile's phone once a profile exists, and before that derives it from the synthetic login email
+   `p<digits>@m.refka.tech`, which is unique in auth. `user_metadata.phone` is ignored by the backend.
+3. Only `gym_public` is executable by anon; every other RPC by authenticated only; `rf_*`, `can_see`, `my_phone`
+   and any function not on the list in 0004 by nobody. Default privileges for future objects in public are revoked.
+4. STABLE functions never write, because PostgREST runs them read-only (dev/common.js now does the same).
+5. Owner password minimum 8 is a client rule. The Supabase project minimum is 6 (member PIN), so the backend accepts 6.
+6. `can_see(viewer, target, gym, p_known boolean default false)`: extra optional arg. `p_known = true` is the relaxed
+   form for an existing refka: a partner who later chose vis 'none' stays visible to him; blocks, membership, the
+   minors rule and the gender rule still apply (cross gender then needs gym.cross and neither side vis 'gender').
+7. The gym's gender on the membership row wins over the self declared profile gender, in can_see and in member_join.
+8. "Active membership" for social features means linked, status 'active', and ends null or >= today - 7 (7 day grace).
+   QR, scan and desk check-in use the strict rule (ends >= today). Dates are Africa/Cairo dates.
+
+Public and owner
+9. `gym_public` (+) `currency`. Package prices are effective prices: while an offer runs `price` is the offer and
+   `before_price`/`until` are shown; once `until` has passed `price` becomes `before_price` and the offer fields are null.
+10. Gym json everywhere (+) `country, currency, settings, pay, created_at`; never `owner_id` or `qr_secret`.
+11. `owner_create_gym`: `dup` when the owner already has a gym. Slug is trimmed and lower cased first.
+12. `owner_upsert_package`: at most 20 packages per gym (`limit`); `bad_input` when before_price <= price.
+    `owner_delete_package` is a soft delete (old payments and memberships keep their package).
+    On a live gym, any change that leaves no active package or no pay method is refused (`need_package`, `need_pay`).
+13. `owner_import_members`: `errors[].row` is the 0 based index; codes `bad_row, bad_phone, bad_name, bad_gender,
+    bad_package, bad_date`; max 2000 rows (`limit`). With starts + package and no ends, ends = starts + months.
+    A row whose phone is a guest turns that guest active.
+14. `owner_home` needs (+): pay `{phone, membership_id, amount, method, ref, package, ends, member_status}`,
+    guest `{phone, gender}`, report `{reason, about:{user_id,name}|null, post:{id,body,img,status,at}|null}`,
+    post `{body, img}` (only authors with vis 'all').
+15. `owner_members` (+) `starts`. Search matches name, or phone digits (a leading 0 is dropped so 010.. finds +2010..).
+16. `owner_decide_payment` and `owner_decide_guest` return `{ok, ends}` (+). `owner_decide_guest(false)` deletes the
+    guest membership (and his pending payment). Approving a payment of a guest also makes him active.
+17. `owner_scan`: a bad, foreign or tampered token raises `bad_input`; a token older than the previous 60 s bucket, or a
+    reused token (except the same token again within 10 s, answered with `already:true`), raises `expired`.
+    A good token of a member whose membership is over returns `{ok:false, valid:false, name, ends}`.
+    Result (+) `already` (true when a check-in exists in the last 3 hours, so none was written).
+18. `owner_checkin` returns `{ok, already}` (+); `not_member` for a guest, `expired` for an expired membership.
+
+Member
+19. `me()` (+) `is_owner`; memberships (+) `starts, days_left`.
+20. `member_join`: `bad_input` for an account without a phone email; birth year must give age 13..90; `dup` if the
+    phone's membership is linked to another account; a guest cap of 500 per gym (`limit`). Joining again never
+    changes the existing profile's name, gender or birth year.
+21. `update_profile`: switching away from vis 'all' publishes his pending posts (the owner may no longer see them) and
+    cancels pending requests with people who can no longer see him. Avatar: png/jpeg/webp data URL <= 56000 chars.
+22. `member_home` (+) `membership.id, membership.starts`, `qr.exp_at, qr.ttl` (`exp` is epoch seconds),
+    `gym.currency, settings, pay, status, packages`. `here_now` counts only people the member may see, himself, and not yet joined listed members of his gender.
+23. `member_renew`: the method must be one the gym takes; amount is the effective package price.
+24. `request_send`: `dup` also while a refka is open and for 14 days after the same person declined; the 5 a day limit
+    counts every request sent that Cairo day in any gym, cancelled ones included.
+25. `request_respond`: decline needs no visibility; accept needs both to see each other (`hidden`).
+26. `requests_list.outgoing` also lists accepted and declined requests of the last 14 days (with `status`).
+27. `chat_list` returns at most the latest 200 messages. `chat_send`: 30 messages a minute (`limit`); `hidden` when the
+    partner can no longer be seen, `not_member` when the caller's membership lapsed, `not_found` after end or block.
+28. `report`: the reason is required although it has a default (Postgres needs defaults after p_user/p_post);
+    10 reports a day; only a live post the reporter can see; `p_user` with `p_post` must be the post's author.
+29. `feed` returns `[]` when posts are 'off'; the author also sees his own pending and hidden posts (with `status`).
+30. `post_create`: approve mode sets 'pending' only for authors with vis 'all' (the owner may not see the others);
+    10 posts a day; image png/jpeg/webp data URL <= 205000 chars (about 150 KB binary), no svg.
+31. `post_respect` toggles and returns `{ok, respected}` (+).

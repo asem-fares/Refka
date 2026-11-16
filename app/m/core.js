@@ -1,6 +1,6 @@
 // Shared state, the screen shell (header, scroll area, tabs) and navigation.
 import { t, L, lang, setLang } from './i18n.js';
-import { h, add, fill, icon, gymLogo, closeSheet, toast } from './ui.js';
+import { h, add, fill, icon, gymLogo, closeSheet, toast, closeToast } from './ui.js';
 
 export const rf = window.rf;
 export const S = {
@@ -70,7 +70,7 @@ window.addEventListener('popstate', () => {
 export function langButton() {
   return h('button', { type: 'button', class: 'langb', lang: lang() === 'ar' ? 'en' : 'ar', onclick: toggleLang }, icon('globe', 16), t('otherLang'));
 }
-export function toggleLang() { setLang(lang() === 'ar' ? 'en' : 'ar'); setTitle(); render(); }
+export function toggleLang() { closeToast(); setLang(lang() === 'ar' ? 'en' : 'ar'); setTitle(); render(); }
 export function setTitle() { document.title = S.gym ? gymName() : 'Refka'; }
 
 export async function signOutToEntry(msg) {

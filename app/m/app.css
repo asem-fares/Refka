@@ -199,7 +199,7 @@ textarea.in{resize:none;line-height:1.45}
 .sheet .grab{width:40px;height:5px;border-radius:3px;background:var(--mline);align-self:center}
 .sheet .sh{display:flex;align-items:center;gap:10px}
 .sheet .sh h3{flex:1}
-.toast{position:absolute;left:14px;right:14px;bottom:calc(84px + env(safe-area-inset-bottom,0px));background:var(--mfg);color:var(--mbg);padding:12px 14px;border-radius:12px;font-size:14px;font-weight:600;z-index:30;box-shadow:0 8px 24px rgba(0,0,0,.35);text-align:center}
+.toast{position:fixed;left:0;right:0;margin:0 auto;width:min(452px,calc(100% - 28px));bottom:calc(84px + env(safe-area-inset-bottom,0px));background:var(--mfg);color:var(--mbg);padding:12px 14px;border-radius:12px;font-size:14px;font-weight:600;z-index:30;box-shadow:0 8px 24px rgba(0,0,0,.35);text-align:center}
 .opt{display:flex;gap:12px;align-items:flex-start;text-align:start;cursor:pointer;color:inherit;width:100%;position:relative}
 .opt .rd{width:22px;height:22px;border-radius:50%;border:2px solid var(--mmut);flex:0 0 auto;margin-top:2px;display:grid;place-items:center}
 .opt.sel .rd{border-color:var(--gt)}

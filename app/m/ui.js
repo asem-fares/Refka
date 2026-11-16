@@ -139,14 +139,15 @@ export function field(labelText, input, hint) {
 
 /* ---------- feedback ---------- */
 let toastEl = null, toastTm = 0;
+// Lives in <body>, outside #root, so it survives the re-render that often follows an action (back, tab change).
 export function toast(msg) {
-  const root = document.getElementById('root');
   if (toastEl) toastEl.remove();
-  toastEl = h('div', { class: 'toast', role: 'status' }, msg);
-  root.appendChild(toastEl);
+  toastEl = h('div', { class: 'toast', role: 'status', 'aria-live': 'polite' }, msg);
+  document.body.appendChild(toastEl);
   clearTimeout(toastTm);
   toastTm = setTimeout(() => { if (toastEl) { toastEl.remove(); toastEl = null; } }, 2800);
 }
+export function closeToast() { clearTimeout(toastTm); if (toastEl) { toastEl.remove(); toastEl = null; } }
 function errHost(el) { return el.closest('.errhost') || el.parentElement; }
 export function showErr(el, msg) {
   const host = errHost(el);

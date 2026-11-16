@@ -1,5 +1,5 @@
 // Home tab, renew flow and the gym page.
-import { t, L, fdate, money, months } from './i18n.js';
+import { t, L, fdate, money, months, errCode } from './i18n.js';
 import { h, fill, icon, btn, tag, note, gate, chips, field, act, load, toast, copyText, qrSvg, gymLogo, applyGym } from './ui.js';
 import { S, rf, screens, hooks, push, back, gymName, gid, firstName } from './core.js';
 
@@ -77,6 +77,7 @@ screens.home = () => ({
       try { const d = await fetchHome(); if (alive) paint(d); }
       catch (e) {
         if (!alive) return;
+        if (errCode(e) === 'not_auth') { alive = false; return hooks.authLost && hooks.authLost(); }
         clearInterval(tick);
         const q = box.querySelector('#qr'); if (q) q.remove();
         const host = box.querySelector('#qrcard');

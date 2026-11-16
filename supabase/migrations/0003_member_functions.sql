@@ -2,7 +2,7 @@
 -- p_gym arguments are text and accept the gym id or its slug.
 
 create or replace function public.me() returns jsonb
-language plpgsql stable security definer set search_path = public, extensions as $$
+language plpgsql stable security definer set search_path = public, extensions, pg_temp as $$
 declare v_uid uuid; p profiles;
 begin
   v_uid := rf_uid();
@@ -16,7 +16,7 @@ end $$;
 
 create or replace function public.member_join(p_slug text, p_name text, p_gender text, p_birth_year int)
 returns jsonb
-language plpgsql security definer set search_path = public, extensions as $$
+language plpgsql security definer set search_path = public, extensions, pg_temp as $$
 declare
   v_uid uuid; v_phone text; g gyms; p profiles; m memberships;
   v_name text; v_gender text; v_year int; v_matched boolean := false;
@@ -72,7 +72,7 @@ begin
 end $$;
 
 create or replace function public.update_profile(p_patch jsonb) returns jsonb
-language plpgsql security definer set search_path = public, extensions as $$
+language plpgsql security definer set search_path = public, extensions, pg_temp as $$
 declare v_uid uuid; p profiles; t text; v_old_vis text; v_times text[];
 begin
   v_uid := rf_uid();
@@ -160,7 +160,7 @@ begin
 end $$;
 
 create or replace function public.member_home(p_gym text) returns jsonb
-language plpgsql stable security definer set search_path = public, extensions as $$
+language plpgsql stable security definer set search_path = public, extensions, pg_temp as $$
 declare
   v_uid uuid; g gyms; m memberships; v_qr jsonb; v_bucket bigint; v_gender text; v_here int;
 begin
@@ -206,7 +206,7 @@ end $$;
 
 create or replace function public.member_renew(p_gym text, p_package_id uuid, p_method text, p_ref text)
 returns jsonb
-language plpgsql security definer set search_path = public, extensions as $$
+language plpgsql security definer set search_path = public, extensions, pg_temp as $$
 declare v_uid uuid; g gyms; m memberships; pk packages; v_ref text; pay payments;
 begin
   v_uid := rf_uid();
@@ -241,7 +241,7 @@ end $$;
 -- ================================================================ people and requests
 
 create or replace function public.people(p_gym text, p_q text default '') returns jsonb
-language plpgsql stable security definer set search_path = public, extensions as $$
+language plpgsql stable security definer set search_path = public, extensions, pg_temp as $$
 declare v_uid uuid; me_m memberships; me_p profiles; v_q text;
 begin
   me_m := rf_member(p_gym);
@@ -274,7 +274,7 @@ begin
 end $$;
 
 create or replace function public.request_send(p_gym text, p_to uuid, p_kind text, p_slot text) returns jsonb
-language plpgsql security definer set search_path = public, extensions as $$
+language plpgsql security definer set search_path = public, extensions, pg_temp as $$
 declare v_uid uuid; m memberships; v_slot text; r requests;
 begin
   m := rf_member(p_gym);
@@ -315,7 +315,7 @@ begin
 end $$;
 
 create or replace function public.request_respond(p_id uuid, p_accept boolean) returns jsonb
-language plpgsql security definer set search_path = public, extensions as $$
+language plpgsql security definer set search_path = public, extensions, pg_temp as $$
 declare v_uid uuid; r requests; v_refka uuid; m memberships;
 begin
   v_uid := rf_uid();
@@ -345,7 +345,7 @@ begin
 end $$;
 
 create or replace function public.request_cancel(p_id uuid) returns jsonb
-language plpgsql security definer set search_path = public, extensions as $$
+language plpgsql security definer set search_path = public, extensions, pg_temp as $$
 declare v_uid uuid;
 begin
   v_uid := rf_uid();
@@ -356,7 +356,7 @@ begin
 end $$;
 
 create or replace function public.requests_list(p_gym text) returns jsonb
-language plpgsql stable security definer set search_path = public, extensions as $$
+language plpgsql stable security definer set search_path = public, extensions, pg_temp as $$
 declare v_uid uuid; m memberships;
 begin
   m := rf_member(p_gym);
@@ -386,7 +386,7 @@ end $$;
 
 -- the open refka p_refka if the caller is one of the two and may still deal with the other, else an error
 create or replace function public.rf_refka(p_refka uuid) returns public.refkas
-language plpgsql stable security definer set search_path = public, extensions as $$
+language plpgsql stable security definer set search_path = public, extensions, pg_temp as $$
 declare v_uid uuid; r refkas; v_other uuid; m memberships;
 begin
   v_uid := rf_uid();
@@ -404,7 +404,7 @@ begin
 end $$;
 
 create or replace function public.refkas_list(p_gym text) returns jsonb
-language plpgsql stable security definer set search_path = public, extensions as $$
+language plpgsql stable security definer set search_path = public, extensions, pg_temp as $$
 declare v_uid uuid; m memberships;
 begin
   m := rf_member(p_gym);
@@ -430,7 +430,7 @@ begin
 end $$;
 
 create or replace function public.refka_end(p_id uuid) returns jsonb
-language plpgsql security definer set search_path = public, extensions as $$
+language plpgsql security definer set search_path = public, extensions, pg_temp as $$
 declare v_uid uuid;
 begin
   v_uid := rf_uid();
@@ -440,7 +440,7 @@ begin
 end $$;
 
 create or replace function public.chat_list(p_refka uuid, p_after timestamptz default null) returns jsonb
-language plpgsql security definer set search_path = public, extensions as $$
+language plpgsql security definer set search_path = public, extensions, pg_temp as $$
 declare v_uid uuid; r refkas; v_out jsonb;
 begin
   v_uid := rf_uid();
@@ -459,7 +459,7 @@ begin
 end $$;
 
 create or replace function public.chat_send(p_refka uuid, p_body text) returns jsonb
-language plpgsql security definer set search_path = public, extensions as $$
+language plpgsql security definer set search_path = public, extensions, pg_temp as $$
 declare v_uid uuid; r refkas; v_body text; msg messages;
 begin
   v_uid := rf_uid();
@@ -475,7 +475,7 @@ begin
 end $$;
 
 create or replace function public.block_user(p_user uuid) returns jsonb
-language plpgsql security definer set search_path = public, extensions as $$
+language plpgsql security definer set search_path = public, extensions, pg_temp as $$
 declare v_uid uuid;
 begin
   v_uid := rf_uid();
@@ -493,7 +493,7 @@ end $$;
 -- p_reason has a default only because Postgres wants defaults after p_user and p_post; it is required.
 create or replace function public.report(p_gym text, p_user uuid default null, p_post uuid default null,
   p_reason text default null) returns jsonb
-language plpgsql security definer set search_path = public, extensions as $$
+language plpgsql security definer set search_path = public, extensions, pg_temp as $$
 declare v_uid uuid; m memberships; v_reason text; po posts; v_about uuid;
 begin
   m := rf_member(p_gym);
@@ -512,6 +512,8 @@ begin
     v_about := po.by_user;
   end if;
   if p_user is not null then
+    -- a post report names its author; a different p_user would pin the post on someone else
+    if p_post is not null and p_user <> v_about then raise exception 'bad_input'; end if;
     if not exists (select 1 from memberships x where x.gym_id = m.gym_id and x.user_id = p_user) then
       raise exception 'not_found';
     end if;
@@ -528,7 +530,7 @@ end $$;
 -- ================================================================ feed
 
 create or replace function public.feed(p_gym text, p_before timestamptz default null) returns jsonb
-language plpgsql stable security definer set search_path = public, extensions as $$
+language plpgsql stable security definer set search_path = public, extensions, pg_temp as $$
 declare v_uid uuid; m memberships; g gyms;
 begin
   m := rf_member(p_gym);
@@ -546,7 +548,7 @@ begin
 end $$;
 
 create or replace function public.post_create(p_gym text, p_body text, p_img text default null) returns jsonb
-language plpgsql security definer set search_path = public, extensions as $$
+language plpgsql security definer set search_path = public, extensions, pg_temp as $$
 declare v_uid uuid; m memberships; g gyms; v_mode text; v_body text; v_vis text; po posts;
 begin
   m := rf_member(p_gym);
@@ -573,7 +575,7 @@ end $$;
 
 -- toggles; returns the new state in "respected"
 create or replace function public.post_respect(p_id uuid) returns jsonb
-language plpgsql security definer set search_path = public, extensions as $$
+language plpgsql security definer set search_path = public, extensions, pg_temp as $$
 declare v_uid uuid; po posts; m memberships; v_on boolean;
 begin
   v_uid := rf_uid();
@@ -593,7 +595,7 @@ begin
 end $$;
 
 create or replace function public.post_delete(p_id uuid) returns jsonb
-language plpgsql security definer set search_path = public, extensions as $$
+language plpgsql security definer set search_path = public, extensions, pg_temp as $$
 declare v_uid uuid;
 begin
   v_uid := rf_uid();

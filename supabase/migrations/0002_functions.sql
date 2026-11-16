@@ -1,21 +1,22 @@
 -- Refka v1 functions, part 1: internal helpers, the visibility rule, public and owner RPCs.
--- Every function: security definer, search_path = public, extensions, returns jsonb (RPCs), raises a short code.
+-- Every function: security definer, search_path = public, extensions, pg_temp (pg_temp last, so a caller's
+-- temporary table can never shadow a public table inside a definer function), returns jsonb (RPCs), raises a short code.
 -- Internal helpers are prefixed rf_ and are NOT executable by anon or authenticated (see 0004_grants.sql).
 
 -- ================================================================ small helpers
 
 create or replace function public.rf_today() returns date
-language sql stable security definer set search_path = public, extensions as $$
+language sql stable security definer set search_path = public, extensions, pg_temp as $$
   select (now() at time zone 'Africa/Cairo')::date
 $$;
 
 create or replace function public.rf_day_start() returns timestamptz
-language sql stable security definer set search_path = public, extensions as $$
+language sql stable security definer set search_path = public, extensions, pg_temp as $$
   select (public.rf_today()::timestamp) at time zone 'Africa/Cairo'
 $$;
 
 create or replace function public.rf_uid() returns uuid
-language plpgsql stable security definer set search_path = public, extensions as $$
+language plpgsql stable security definer set search_path = public, extensions, pg_temp as $$
 declare v uuid;
 begin
   v := auth.uid();
@@ -25,7 +26,7 @@ end $$;
 
 -- same normalisation as app/lib/api.js phoneDigits(): digits only, 00 prefix dropped, 01xxxxxxxxx -> 201xxxxxxxxx
 create or replace function public.rf_phone(p text) returns text
-language plpgsql immutable security definer set search_path = public, extensions as $$
+language plpgsql immutable security definer set search_path = public, extensions, pg_temp as $$
 declare d text;
 begin
   if p is null or char_length(p) > 40 then return null; end if;
@@ -40,7 +41,7 @@ end $$;
 -- synthetic login email p<digits>@m.refka.tech (unique in auth), never from user_metadata, because
 -- user_metadata can be edited by the user himself (see Deviations in CONTRACT.md).
 create or replace function public.my_phone() returns text
-language plpgsql stable security definer set search_path = public, extensions as $$
+language plpgsql stable security definer set search_path = public, extensions, pg_temp as $$
 declare v_uid uuid; v_phone text; v_email text;
 begin
   v_uid := auth.uid();
@@ -55,7 +56,7 @@ begin
 end $$;
 
 create or replace function public.rf_int(p text) returns int
-language plpgsql immutable security definer set search_path = public, extensions as $$
+language plpgsql immutable security definer set search_path = public, extensions, pg_temp as $$
 begin
   if p is null then return null; end if;
   return p::int;
@@ -63,7 +64,7 @@ exception when others then raise exception 'bad_input';
 end $$;
 
 create or replace function public.rf_date(p text) returns date
-language plpgsql immutable security definer set search_path = public, extensions as $$
+language plpgsql immutable security definer set search_path = public, extensions, pg_temp as $$
 begin
   if p is null or btrim(p) = '' then return null; end if;
   if p !~ '^\s*[0-9]{4}-[0-9]{1,2}-[0-9]{1,2}' then raise exception 'bad_input'; end if;
@@ -72,7 +73,7 @@ exception when others then raise exception 'bad_input';
 end $$;
 
 create or replace function public.rf_uuid(p text) returns uuid
-language plpgsql immutable security definer set search_path = public, extensions as $$
+language plpgsql immutable security definer set search_path = public, extensions, pg_temp as $$
 begin
   if p is null or btrim(p) = '' then return null; end if;
   return p::uuid;
@@ -81,12 +82,12 @@ end $$;
 
 -- one line text: trimmed, inner whitespace collapsed
 create or replace function public.rf_line(p text) returns text
-language sql immutable security definer set search_path = public, extensions as $$
+language sql immutable security definer set search_path = public, extensions, pg_temp as $$
   select nullif(btrim(regexp_replace(coalesce(p, ''), '\s+', ' ', 'g')), '')
 $$;
 
 create or replace function public.rf_gender(p text) returns text
-language sql immutable security definer set search_path = public, extensions as $$
+language sql immutable security definer set search_path = public, extensions, pg_temp as $$
   select case
     when lower(btrim(coalesce(p, ''))) in ('m', 'male', 'man', 'ذكر', 'راجل', 'رجل') then 'm'
     when lower(btrim(coalesce(p, ''))) in ('f', 'female', 'woman', 'أنثى', 'انثى', 'انثي', 'أنثي', 'ست', 'بنت') then 'f'
@@ -95,13 +96,13 @@ $$;
 
 -- raster data URL only (no svg: it can carry script), with a length cap on the whole string
 create or replace function public.rf_img_ok(p text, p_max int) returns boolean
-language sql immutable security definer set search_path = public, extensions as $$
+language sql immutable security definer set search_path = public, extensions, pg_temp as $$
   select p is not null and char_length(p) <= p_max
      and p ~ '^data:image/(png|jpeg|webp);base64,[A-Za-z0-9+/]+={0,2}$'
 $$;
 
 create or replace function public.rf_reserved_slug(p text) returns boolean
-language sql immutable security definer set search_path = public, extensions as $$
+language sql immutable security definer set search_path = public, extensions, pg_temp as $$
   select p = any (array[
     'app','admin','api','www','pay','ar','en','de','owner','owners','login','logout','signup','signin','register',
     'auth','rest','rpc','m','member','members','gym','gyms','refka','refqa','rifqa','support','help','about','blog',
@@ -113,7 +114,7 @@ $$;
 -- ================================================================ lookups
 
 create or replace function public.rf_owner_gym() returns public.gyms
-language plpgsql stable security definer set search_path = public, extensions as $$
+language plpgsql stable security definer set search_path = public, extensions, pg_temp as $$
 declare v_uid uuid; g gyms;
 begin
   v_uid := rf_uid();
@@ -124,7 +125,7 @@ end $$;
 
 -- p_gym arguments accept the gym id or its slug
 create or replace function public.rf_gym(p text) returns public.gyms
-language plpgsql stable security definer set search_path = public, extensions as $$
+language plpgsql stable security definer set search_path = public, extensions, pg_temp as $$
 declare g gyms;
 begin
   if p is null or char_length(p) > 64 then raise exception 'not_found'; end if;
@@ -139,14 +140,14 @@ end $$;
 
 -- "active membership" of the visibility rule: linked, status active, not expired for more than 7 days
 create or replace function public.rf_active(m public.memberships) returns boolean
-language sql stable security definer set search_path = public, extensions as $$
+language sql stable security definer set search_path = public, extensions, pg_temp as $$
   select m.id is not null and m.user_id is not null and m.status = 'active'
      and (m.ends is null or m.ends >= public.rf_today() - 7)
 $$;
 
 -- the caller's active membership in a gym, or not_member. Used by every social member function.
 create or replace function public.rf_member(p_gym text) returns public.memberships
-language plpgsql stable security definer set search_path = public, extensions as $$
+language plpgsql stable security definer set search_path = public, extensions, pg_temp as $$
 declare v_uid uuid; g gyms; m memberships;
 begin
   v_uid := rf_uid();
@@ -163,7 +164,7 @@ end $$;
 -- (cross gender then needs: gym.cross on and neither side has vis='gender').
 create or replace function public.can_see(viewer uuid, target uuid, gym uuid, p_known boolean default false)
 returns boolean
-language plpgsql stable security definer set search_path = public, extensions as $$
+language plpgsql stable security definer set search_path = public, extensions, pg_temp as $$
 declare
   pv profiles; pt profiles; mv memberships; mt memberships;
   v_settings jsonb; v_year int; gv text; gt text;
@@ -200,41 +201,41 @@ end $$;
 -- both directions: used wherever two people interact (requests, chat)
 create or replace function public.rf_mutual(p_a uuid, p_b uuid, p_gym uuid, p_known boolean default false)
 returns boolean
-language sql stable security definer set search_path = public, extensions as $$
+language sql stable security definer set search_path = public, extensions, pg_temp as $$
   select public.can_see(p_a, p_b, p_gym, p_known) and public.can_see(p_b, p_a, p_gym, p_known)
 $$;
 
 -- ================================================================ json builders (never include qr_secret)
 
 create or replace function public.rf_gym_json(g public.gyms) returns jsonb
-language sql stable security definer set search_path = public, extensions as $$
+language sql stable security definer set search_path = public, extensions, pg_temp as $$
   select jsonb_build_object('id', g.id, 'slug', g.slug, 'name', g.name, 'name_ar', g.name_ar,
     'country', g.country, 'currency', g.currency, 'brand', g.brand, 'settings', g.settings, 'pay', g.pay,
     'status', g.status, 'created_at', g.created_at)
 $$;
 
 create or replace function public.rf_gym_brief(g public.gyms) returns jsonb
-language sql stable security definer set search_path = public, extensions as $$
+language sql stable security definer set search_path = public, extensions, pg_temp as $$
   select jsonb_build_object('id', g.id, 'slug', g.slug, 'name', g.name, 'name_ar', g.name_ar, 'brand', g.brand)
 $$;
 
 -- owner view of a package: raw values
 create or replace function public.rf_pkg_json(p public.packages) returns jsonb
-language sql stable security definer set search_path = public, extensions as $$
+language sql stable security definer set search_path = public, extensions, pg_temp as $$
   select jsonb_build_object('id', p.id, 'name', p.name, 'name_ar', p.name_ar, 'months', p.months, 'price', p.price,
     'before_price', p.before_price, 'until', p.until, 'active', p.active, 'sort', p.sort)
 $$;
 
 -- price a member pays today: the offer price while the offer runs, the before_price once "until" has passed
 create or replace function public.rf_pkg_price(p public.packages) returns int
-language sql stable security definer set search_path = public, extensions as $$
+language sql stable security definer set search_path = public, extensions, pg_temp as $$
   select case when p.before_price is not null and p.until is not null and p.until < public.rf_today()
               then p.before_price else p.price end
 $$;
 
 -- member/public view of a package: effective price, offer fields only while the offer runs
 create or replace function public.rf_pkg_public(p public.packages) returns jsonb
-language sql stable security definer set search_path = public, extensions as $$
+language sql stable security definer set search_path = public, extensions, pg_temp as $$
   select jsonb_build_object('id', p.id, 'name', p.name, 'name_ar', p.name_ar, 'months', p.months,
     'price', public.rf_pkg_price(p),
     'before_price', case when p.until is not null and p.until >= public.rf_today() then p.before_price end,
@@ -242,20 +243,20 @@ language sql stable security definer set search_path = public, extensions as $$
 $$;
 
 create or replace function public.rf_pkg_brief(p_id uuid) returns jsonb
-language sql stable security definer set search_path = public, extensions as $$
+language sql stable security definer set search_path = public, extensions, pg_temp as $$
   select (select jsonb_build_object('id', p.id, 'name', p.name, 'name_ar', p.name_ar, 'months', p.months)
           from public.packages p where p.id = p_id)
 $$;
 
 create or replace function public.rf_packages_public(p_gym uuid) returns jsonb
-language sql stable security definer set search_path = public, extensions as $$
+language sql stable security definer set search_path = public, extensions, pg_temp as $$
   select coalesce(jsonb_agg(public.rf_pkg_public(p) order by p.sort, p.price, p.created_at), '[]'::jsonb)
   from public.packages p where p.gym_id = p_gym and p.active and p.deleted_at is null
 $$;
 
 -- own profile (the only place a phone is returned to a member, and it is his own)
 create or replace function public.rf_profile_json(p public.profiles) returns jsonb
-language sql stable security definer set search_path = public, extensions as $$
+language sql stable security definer set search_path = public, extensions, pg_temp as $$
   select jsonb_build_object('user_id', p.user_id, 'phone', p.phone, 'name', p.name, 'gender', p.gender,
     'birth_year', p.birth_year, 'bio', p.bio, 'goal', p.goal, 'level', p.level, 'times', to_jsonb(p.times),
     'vis', p.vis, 'avatar', p.avatar, 'created_at', p.created_at)
@@ -263,7 +264,7 @@ $$;
 
 -- what one member may learn about another: never the phone, never the birth year
 create or replace function public.rf_person(p_user uuid, p_goal boolean default false) returns jsonb
-language sql stable security definer set search_path = public, extensions as $$
+language sql stable security definer set search_path = public, extensions, pg_temp as $$
   select (select case when p_goal
             then jsonb_build_object('user_id', p.user_id, 'name', p.name, 'avatar', p.avatar, 'goal', p.goal)
             else jsonb_build_object('user_id', p.user_id, 'name', p.name, 'avatar', p.avatar) end
@@ -271,7 +272,7 @@ language sql stable security definer set search_path = public, extensions as $$
 $$;
 
 create or replace function public.rf_membership_json(m public.memberships) returns jsonb
-language sql stable security definer set search_path = public, extensions as $$
+language sql stable security definer set search_path = public, extensions, pg_temp as $$
   select jsonb_build_object('id', m.id,
     'gym', (select public.rf_gym_brief(g) from public.gyms g where g.id = m.gym_id),
     'status', m.status, 'package', public.rf_pkg_brief(m.package_id), 'starts', m.starts, 'ends', m.ends,
@@ -279,7 +280,7 @@ language sql stable security definer set search_path = public, extensions as $$
 $$;
 
 create or replace function public.rf_post_json(p public.posts, p_viewer uuid) returns jsonb
-language sql stable security definer set search_path = public, extensions as $$
+language sql stable security definer set search_path = public, extensions, pg_temp as $$
   select jsonb_build_object('id', p.id, 'body', p.body, 'img', p.img, 'at', p.at, 'status', p.status,
     'mine', p.by_user = p_viewer,
     'by', public.rf_person(p.by_user),
@@ -290,18 +291,18 @@ $$;
 
 -- rotating member QR: rf1.<membership id>.<60 s bucket>.<first 32 hex of HMAC-SHA256(id.bucket, gym secret)>
 create or replace function public.rf_qr_sig(p_secret text, p_membership uuid, p_bucket bigint) returns text
-language sql immutable security definer set search_path = public, extensions as $$
+language sql immutable security definer set search_path = public, extensions, pg_temp as $$
   select substr(encode(hmac(p_membership::text || '.' || p_bucket::text, p_secret, 'sha256'), 'hex'), 1, 32)
 $$;
 
 create or replace function public.rf_qr_token(p_secret text, p_membership uuid, p_bucket bigint) returns text
-language sql immutable security definer set search_path = public, extensions as $$
+language sql immutable security definer set search_path = public, extensions, pg_temp as $$
   select 'rf1.' || p_membership::text || '.' || p_bucket::text || '.' || public.rf_qr_sig(p_secret, p_membership, p_bucket)
 $$;
 
 -- a live gym must always keep one active package and one pay method
 create or replace function public.rf_check_live(p_gym uuid) returns void
-language plpgsql stable security definer set search_path = public, extensions as $$
+language plpgsql stable security definer set search_path = public, extensions, pg_temp as $$
 declare g gyms;
 begin
   select * into g from gyms where id = p_gym;
@@ -317,7 +318,7 @@ end $$;
 
 -- writes a check-in unless the member already has one in the last 3 hours. true = written
 create or replace function public.rf_checkin(p_gym uuid, p_membership uuid, p_via text) returns boolean
-language plpgsql security definer set search_path = public, extensions as $$
+language plpgsql security definer set search_path = public, extensions, pg_temp as $$
 begin
   if exists (select 1 from checkins where membership_id = p_membership and at > now() - interval '3 hours') then
     return false;
@@ -329,7 +330,7 @@ end $$;
 -- ================================================================ PUBLIC
 
 create or replace function public.gym_public(p_slug text) returns jsonb
-language plpgsql stable security definer set search_path = public, extensions as $$
+language plpgsql stable security definer set search_path = public, extensions, pg_temp as $$
 declare g gyms;
 begin
   if p_slug is null or char_length(p_slug) > 64 then return null; end if;
@@ -342,7 +343,7 @@ end $$;
 -- ================================================================ OWNER
 
 create or replace function public.owner_create_gym(p_name text, p_name_ar text, p_slug text) returns jsonb
-language plpgsql security definer set search_path = public, extensions as $$
+language plpgsql security definer set search_path = public, extensions, pg_temp as $$
 declare v_uid uuid; v_name text; v_name_ar text; v_slug text; g gyms;
 begin
   v_uid := rf_uid();
@@ -368,7 +369,7 @@ begin
 end $$;
 
 create or replace function public.owner_get_gym() returns jsonb
-language plpgsql stable security definer set search_path = public, extensions as $$
+language plpgsql stable security definer set search_path = public, extensions, pg_temp as $$
 declare v_uid uuid; g gyms;
 begin
   v_uid := rf_uid();
@@ -387,7 +388,7 @@ begin
 end $$;
 
 create or replace function public.owner_update_gym(p_patch jsonb) returns jsonb
-language plpgsql security definer set search_path = public, extensions as $$
+language plpgsql security definer set search_path = public, extensions, pg_temp as $$
 declare
   g gyms; k text; v jsonb; t text;
   v_brand jsonb; v_settings jsonb; v_pay jsonb;
@@ -482,7 +483,7 @@ begin
 end $$;
 
 create or replace function public.owner_upsert_package(p jsonb) returns jsonb
-language plpgsql security definer set search_path = public, extensions as $$
+language plpgsql security definer set search_path = public, extensions, pg_temp as $$
 declare
   g gyms; r packages; v_new boolean := true; v_id uuid;
 begin
@@ -542,7 +543,7 @@ begin
 end $$;
 
 create or replace function public.owner_delete_package(p_id uuid) returns jsonb
-language plpgsql security definer set search_path = public, extensions as $$
+language plpgsql security definer set search_path = public, extensions, pg_temp as $$
 declare g gyms;
 begin
   g := rf_owner_gym();
@@ -555,7 +556,7 @@ end $$;
 
 -- errors[].row is the 0 based index in p_rows; codes: bad_row, bad_phone, bad_name, bad_gender, bad_package, bad_date
 create or replace function public.owner_import_members(p_rows jsonb) returns jsonb
-language plpgsql security definer set search_path = public, extensions as $$
+language plpgsql security definer set search_path = public, extensions, pg_temp as $$
 declare
   g gyms; r jsonb; i int := -1;
   v_added int := 0; v_updated int := 0; v_errors jsonb := '[]'::jsonb;
@@ -629,7 +630,7 @@ begin
 end $$;
 
 create or replace function public.owner_go_live() returns jsonb
-language plpgsql security definer set search_path = public, extensions as $$
+language plpgsql security definer set search_path = public, extensions, pg_temp as $$
 declare g gyms;
 begin
   g := rf_owner_gym();
@@ -639,7 +640,7 @@ begin
 end $$;
 
 create or replace function public.owner_home() returns jsonb
-language plpgsql stable security definer set search_path = public, extensions as $$
+language plpgsql stable security definer set search_path = public, extensions, pg_temp as $$
 declare g gyms; v_needs jsonb; v_stats jsonb;
 begin
   g := rf_owner_gym();
@@ -691,7 +692,7 @@ begin
 end $$;
 
 create or replace function public.owner_members(p_q text default '') returns jsonb
-language plpgsql stable security definer set search_path = public, extensions as $$
+language plpgsql stable security definer set search_path = public, extensions, pg_temp as $$
 declare g gyms; v_q text; v_digits text;
 begin
   g := rf_owner_gym();
@@ -714,7 +715,7 @@ begin
 end $$;
 
 create or replace function public.owner_decide_payment(p_id uuid, p_ok boolean) returns jsonb
-language plpgsql security definer set search_path = public, extensions as $$
+language plpgsql security definer set search_path = public, extensions, pg_temp as $$
 declare g gyms; pay payments; m memberships; pk packages; v_from date; v_ends date;
 begin
   g := rf_owner_gym();
@@ -745,7 +746,7 @@ end $$;
 
 create or replace function public.owner_decide_guest(p_membership_id uuid, p_ok boolean,
   p_package_id uuid default null, p_ends date default null) returns jsonb
-language plpgsql security definer set search_path = public, extensions as $$
+language plpgsql security definer set search_path = public, extensions, pg_temp as $$
 declare g gyms; m memberships; pk packages; v_ends date;
 begin
   g := rf_owner_gym();
@@ -773,7 +774,7 @@ begin
 end $$;
 
 create or replace function public.owner_decide_post(p_id uuid, p_action text) returns jsonb
-language plpgsql security definer set search_path = public, extensions as $$
+language plpgsql security definer set search_path = public, extensions, pg_temp as $$
 declare g gyms;
 begin
   g := rf_owner_gym();
@@ -785,7 +786,7 @@ begin
 end $$;
 
 create or replace function public.owner_resolve_report(p_id uuid) returns jsonb
-language plpgsql security definer set search_path = public, extensions as $$
+language plpgsql security definer set search_path = public, extensions, pg_temp as $$
 declare g gyms;
 begin
   g := rf_owner_gym();
@@ -797,7 +798,7 @@ end $$;
 -- Token problems raise: bad_input (garbage, wrong gym, bad signature) or expired (too old, or already used).
 -- A good token of a member whose membership is over returns {ok:false, valid:false, name, ends}.
 create or replace function public.owner_scan(p_token text) returns jsonb
-language plpgsql security definer set search_path = public, extensions as $$
+language plpgsql security definer set search_path = public, extensions, pg_temp as $$
 declare
   g gyms; m memberships; v_parts text[]; v_bucket bigint; v_now bigint; v_written boolean;
 begin
@@ -838,7 +839,7 @@ begin
 end $$;
 
 create or replace function public.owner_checkin(p_membership_id uuid) returns jsonb
-language plpgsql security definer set search_path = public, extensions as $$
+language plpgsql security definer set search_path = public, extensions, pg_temp as $$
 declare g gyms; m memberships; v_written boolean;
 begin
   g := rf_owner_gym();

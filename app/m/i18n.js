@@ -235,6 +235,9 @@ export const L = (en, ar) => (cur === 'ar' ? (ar || en) : (en || ar)) || '';
 
 export function errCode(e) {
   if (e && e.code) {
+    // PostgREST answers "permission denied" (42501) when the request went out without a session
+    // (signed out in another tab, refresh token gone): that is a lost session, not a generic failure.
+    if (e.code === 'unknown' && e.raw && e.raw.code === '42501') return 'not_auth';
     if (e.code === 'unknown' || e.code === 'auth_failed') {
       const m = String((e.raw && e.raw.message) || '').toLowerCase();
       if ((typeof navigator !== 'undefined' && navigator.onLine === false) || m.includes('failed to fetch') || m.includes('networkerror') || m.includes('load failed')) return 'offline';

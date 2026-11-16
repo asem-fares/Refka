@@ -29,7 +29,7 @@ screens.me = () => ({
         li('shield', t('privacy'), visLabel(p), () => push('privacy'), { id: 'li-privacy' }),
         li('gym', t('aboutGym', { g: gymName() }), null, () => push('gym'), { id: 'li-gym' })),
       h('div', { class: 'card', style: { gap: '0', 'padding-block': '2px' } },
-        li('globe', t('lang'), t('langName') + ' → ' + t('otherLang'), toggleLang, { id: 'li-lang' }),
+        li('globe', t('lang'), [t('langName'), lang() === 'ar' ? ' ← ' : ' → ', h('span', { lang: lang() === 'ar' ? 'en' : 'ar' }, t('otherLang'))], toggleLang, { id: 'li-lang' }),
         h('button', { type: 'button', class: 'li danger', id: 'li-out', onclick: () => confirmSheet({ title: t('signOutH'), text: t('signOutP'), yes: t('signOut'), danger: true, run: () => signOutToEntry() }) },
           h('span', { class: 'ic' }, icon('out')), h('b', { class: 'grow' }, t('signOut')))),
       h('div', { class: 'pw' }, t('powered')));
