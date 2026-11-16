@@ -23,7 +23,7 @@ return `jsonb`, and raise exceptions with a short code as message (see Errors).
 ## Auth
 - Owner: email + password (min 8).
 - Member: phone + 6 digit PIN. Client turns the phone into a synthetic email:
-  digits only, Egyptian local `01xxxxxxxxx` becomes `201xxxxxxxxx`; email = `p<digits>@m.refka.app`; password = PIN.
+  digits only, Egyptian local `01xxxxxxxxx` becomes `201xxxxxxxxx`; email = `p<digits>@m.refka.tech`; password = PIN.
   `signUp` passes `options.data = {phone:'+<digits>', kind:'member'}`; owners pass `{kind:'owner'}`.
 - SQL helper `my_phone()` reads the phone from `auth.jwt() -> 'user_metadata' ->> 'phone'`.
 - Known debt (accepted for pilot): PIN strength, PIN reset needs an admin function, no SMS proof of phone.

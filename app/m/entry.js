@@ -5,7 +5,7 @@ import { S, rf, root, hooks, render, gymName, langButton, setTitle, signOutToEnt
 
 const top = () => h('div', { class: 'top' }, langButton());
 const powered = () => h('div', { class: 'pw' }, t('powered'));
-function page(...kids) { fill(root(), h('main', { class: 'entry' }, top(), ...kids, powered())); }
+function page(...kids) { fill(root(), h('main', { class: 'entry', 'data-screen': (S.entry && S.entry.step) || 'entry' }, top(), ...kids, powered())); }
 function message(ic, title, text, action) {
   page(h('div', { class: 'center', style: { 'margin-top': '12vh' } }, h('span', { class: 'bigic' }, icon(ic, 34)), h('h1', { class: 'big' }, title), h('p', { class: 'mu' }, text), action || null));
 }

@@ -20,7 +20,7 @@ const img = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJA
     return r.rows[0];
   }
   const as = (key, fn, args) => C.rpc(pool, C.claimsFor(users[key]), fn, args);
-  const memberUser = (key, local) => user(key, 'p2' + local + '@m.refka.app', PIN, { kind: 'member', phone: '+2' + local });
+  const memberUser = (key, local) => user(key, 'p2' + local + '@m.refka.tech', PIN, { kind: 'member', phone: '+2' + local });
 
   // ---- owner + gym
   await user('owner', 'owner@atlas.test', 'atlas1234', { kind: 'owner', name: 'Hany Atlas' });
@@ -78,6 +78,8 @@ const img = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJA
   // a guest: joined, but his phone is not on the gym's list -> owner sees a "guest" need
   await memberUser('guest', '01000000020');
   await as('guest', 'member_join', { p_slug: 'atlas', p_name: 'Ziad Guest', p_gender: 'm', p_birth_year: 2001 });
+  await memberUser('guest2', '01000000021');
+  await as('guest2', 'member_join', { p_slug: 'atlas', p_name: 'Hazem Guest', p_gender: 'm', p_birth_year: 1999 });
 
   // ---- requests, one refka with messages
   const id = k => users[k].id;
@@ -105,8 +107,15 @@ const img = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJA
   await as('karim', 'post_respect', { p_id: postIds[0] });
   await as('youssef', 'post_respect', { p_id: postIds[2] });
 
+  // ---- two posts waiting for the owner (feed briefly in approve mode)
+  await as('owner', 'owner_update_gym', { p_patch: { settings: { cross: true, posts: 'approve' } } });
+  await as('salma', 'post_create', { p_gym: 'atlas', p_body: 'New PR on hip thrust today, 120 kg!', p_img: null });
+  await as('youssef', 'post_create', { p_gym: 'atlas', p_body: 'Who is in for Friday morning legs?', p_img: null });
+  await as('owner', 'owner_update_gym', { p_patch: { settings: { cross: true, posts: 'all' } } });
+
   // ---- owner needs: a payment to approve and a report; plus check-ins
   await as('karim', 'member_renew', { p_gym: 'atlas', p_package_id: pk.m3, p_method: 'instapay', p_ref: 'IP-448201' });
+  await as('omar', 'member_renew', { p_gym: 'atlas', p_package_id: pk.m1, p_method: 'wallet', p_ref: 'VF-73310' });
   await as('nour', 'report', { p_gym: 'atlas', p_post: postIds[3], p_reason: 'Demo report: please check this post.' });
   const mem = await as('owner', 'owner_members', { p_q: '' });
   for (const n of ['Omar Hassan', 'Youssef Nabil', 'Salma Fathy', 'Mahmoud Tarek']) {
@@ -127,6 +136,7 @@ const img = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJA
   console.log('Members (phone / PIN ' + PIN + '), already joined with profiles:');
   for (const j of joined) console.log('  ' + j[1] + '  ' + j[2].padEnd(15) + j[3] + '  ' + (j[0] === 'ahmed' ? '(membership expired 3 days ago)' : j[0] === 'mona' || j[0] === 'nour' ? '(vis: gender)' : ''));
   console.log('  01000000020  Ziad Guest     m  (guest, waits for the owner)');
+  console.log('  01000000021  Hazem Guest    m  (guest, waits for the owner)');
   console.log('On the list, not joined yet (sign up with any 6 digit PIN): 01000000008 .. 01000000014');
   console.log('Not on the list (joins as guest): any other phone, e.g. 01000000099');
 })().catch(e => { console.error('seed failed:', e.body || e); process.exit(1); });

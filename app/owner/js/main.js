@@ -63,7 +63,7 @@ const isMember = () => { const u = S.session && S.session.user; return !!(u && u
 
 function view() {
   const [a, b] = route();
-  if (!S.session) return authScreen(a === 'auth' && b === 'up' ? 'up' : a === 'auth' && b === 'in' ? 'in' : (S.returning ? 'in' : 'up'));
+  if (!S.session) return authScreen(a === 'auth' && b === 'up' ? 'up' : a === 'auth' && b === 'in' ? 'in' : (S.signup ? 'up' : S.returning ? 'in' : 'up'));
   if (isMember()) return notOwnerScreen();
   if (!S.gym) return a === 'setup' && b === '1' ? wizard(1) : go('setup/1', true);
   if (S.gym.status !== 'live') return a === 'setup' ? wizard(parseInt(b, 10) || savedStep()) : go('setup/' + savedStep(), true);
@@ -93,6 +93,7 @@ async function start() {
 
 applyLang();
 try { S.returning = !!localStorage.getItem('rf_owner_seen'); } catch (e) { S.returning = false; }
+S.signup = new URLSearchParams(location.search).get('signup') === '1';   // "Join now" on refka.tech
 setRenderer(() => {
   applyLang();
   if (S.session) { try { localStorage.setItem('rf_owner_seen', '1'); } catch (e) { /* private mode */ } }

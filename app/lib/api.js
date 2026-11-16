@@ -11,7 +11,7 @@
     if (/^01\d{9}$/.test(d)) d = '2' + d;          // Egyptian local form
     return d;
   }
-  const phoneEmail = p => 'p' + phoneDigits(p) + '@m.refka.app';
+  const phoneEmail = p => 'p' + phoneDigits(p) + '@m.refka.tech';
   const validPhone = p => /^\d{10,15}$/.test(phoneDigits(p));
   const validPin = p => /^\d{6}$/.test(String(p || ''));
   async function rpc(name, args) {

@@ -37,6 +37,11 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
+      - name: Keep development files off the public site
+        run: |
+          rm -rf dev supabase tools app/owner/tests app/m/tests app/CONTRACT.md
+          echo "Removed dev, supabase, tools, app tests and the internal contract from the upload"
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:

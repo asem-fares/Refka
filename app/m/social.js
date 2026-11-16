@@ -153,7 +153,7 @@ function openReport({ user, post }) {
         await rf.rpc('report', { p_gym: gid(), p_user: post ? null : user.user_id, p_post: post ? post.id : null, p_reason: t('rs_' + reason) });
         closeSheet(); toast(t('reported', { g: gymName() }));
       }, { limit: t('limitReport') });
-    }, 'wide');
+    }, 'wide', { id: 'reportgo' });
     return [h('p', { class: 'mu' }, t('reportP', { g: gymName() })),
       chips(['harassment', 'offensive', 'spam', 'other'].map(k => [k, t('rs_' + k)]), v => v === reason, v => { reason = v; }, { id: 'reasons' }),
       h('div', { class: 'col errhost' }, err, go)];
@@ -298,7 +298,7 @@ function segFeed(box) {
 }
 function postCard(p) {
   const card = h('article', { class: 'card post', 'data-post': p.id, 'data-by': p.by ? p.by.name : '', 'data-mine': p.mine ? '1' : '0' });
-  const menu = h('button', { type: 'button', class: 'ib', 'aria-label': t('postOpts'), onclick: () => postMenu(p, card) }, icon('dots'));
+  const menu = h('button', { type: 'button', class: 'ib', 'aria-label': t('postOpts'), 'data-menu': p.id, onclick: () => postMenu(p, card) }, icon('dots'));
   const who = p.by || { name: '' };
   const head = h('div', { class: 'row' },
     p.mine ? h('span', { class: 'plain grow' }, avatar(who, 40), h('span', { class: 'grow' }, h('span', { class: 'nm', style: { display: 'block' } }, who.name), h('span', { class: 'mu', style: { display: 'block' } }, ago(p.at))))

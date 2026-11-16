@@ -29,7 +29,7 @@ export function render() {
   const head = h('header', { class: 'ah' },
     top ? h('button', { type: 'button', class: 'ib flip', 'aria-label': t('back'), onclick: back }, icon('back')) : gymLogo(S.gym),
     h('h1', { class: 'tt' }, sc.title || gymName()), sc.right || null);
-  const scr = h('main', { class: 'scr ' + (sc.scrClass || ''), id: 'scr' });
+  const scr = h('main', { class: 'scr ' + (sc.scrClass || ''), id: 'scr', 'data-screen': name });
   fill(root(), head, scr, sc.footer || null, top ? null : tabBar());
   const c = sc.build(scr);
   if (typeof c === 'function') cleanup = c;

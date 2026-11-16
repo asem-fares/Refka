@@ -259,6 +259,9 @@ const T = {
 
 const KEY = 'rf_owner_lang';
 let cur = (() => {
+  // A link from refka.tech carries the visitor's language: ?lang=ar
+  const q = new URLSearchParams(location.search).get('lang');
+  if (q === 'ar' || q === 'en') { try { localStorage.setItem(KEY, q); } catch (e) { /* private mode */ } return q; }
   try { const s = localStorage.getItem(KEY); if (s === 'ar' || s === 'en') return s; } catch (e) { /* private mode */ }
   return /^ar\b/i.test(navigator.language || '') ? 'ar' : 'en';
 })();

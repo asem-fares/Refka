@@ -37,7 +37,7 @@ begin
 end $$;
 
 -- The caller's phone. Once a profile exists its phone is final. Before that it is derived from the
--- synthetic login email p<digits>@m.refka.app (unique in auth), never from user_metadata, because
+-- synthetic login email p<digits>@m.refka.tech (unique in auth), never from user_metadata, because
 -- user_metadata can be edited by the user himself (see Deviations in CONTRACT.md).
 create or replace function public.my_phone() returns text
 language plpgsql stable security definer set search_path = public, extensions as $$
@@ -48,7 +48,7 @@ begin
   select phone into v_phone from profiles where user_id = v_uid;
   if v_phone is not null then return v_phone; end if;
   v_email := lower(coalesce(auth.jwt() ->> 'email', ''));
-  if v_email ~ '^p[0-9]{10,15}@m\.refka\.app$' then
+  if v_email ~ '^p[0-9]{10,15}@m\.refka\.tech$' then
     return '+' || substr(v_email, 2, position('@' in v_email) - 2);
   end if;
   return null;
