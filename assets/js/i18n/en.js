@@ -225,6 +225,7 @@
   wa_bubble: "Questions? We answer on WhatsApp, 24/7.",
   wa_msg: "Hi Refka, I have a gym in {c} and I'd like to know more.",
   n4: "FAQ",
+  n5: "Gym login",
   pb_eye: "The math",
   pb_h2: "Refka pays for itself<br>with one member.",
   pb_sub: "Starter costs about what one member pays you in a month. Keep one more member renewing, and Refka has paid for itself. Every member after that is profit.",

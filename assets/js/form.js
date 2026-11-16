@@ -82,20 +82,19 @@ document.addEventListener('keydown', function (e) {
 // APP_URL and every button sends gym owners straight to registration,
 // with their language, country and chosen plan.
 // ═══════════════════════════════════════════════════════════════
-var APP_URL = '';                                   // e.g. 'https://app.refka.tech'
+var APP_URL = '/app/owner/';                        // the owner console, same site
 var LEADS_INBOX = 'community@refka.tech';
 var LEADS_ENDPOINT = 'https://formsubmit.co/ajax/' + LEADS_INBOX;
 var LIVE_HOST = /(^|\.)refka\.tech$/;               // only the real site sends emails
 
 goRegister = function (plan) {
   if (APP_URL) {
-    return openOut(APP_URL + '/register?lang=' + encodeURIComponent(_lang) +
+    return openOut(APP_URL + '?signup=1&lang=' + encodeURIComponent(_lang) +
       '&country=' + encodeURIComponent(_country) + (plan ? '&plan=' + encodeURIComponent(plan) : ''));
   }
   openSignup('trial', plan);
 };
 goContact = function () {
-  if (APP_URL) return openOut(APP_URL + '/contact?lang=' + encodeURIComponent(_lang));
   openSignup('contact', 'enterprise');
 };
 // Same tab on refka.tech; new tab anywhere else (sandboxed previews block in-frame navigation).
