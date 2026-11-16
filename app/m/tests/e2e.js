@@ -38,16 +38,16 @@ const CAST = {
 const ALLOW = /Powered by Refka|Refka|InstaPay|QR|EGP|Atlas|PNG|JPG/g;
 
 function makeRun(browser, lang) {
-  const known = new Set();
+  const known = new Set(['Stay active']);   // a seeded free-text goal with no key: shown as the member wrote it
   const log = m => console.log(`[${lang}] ${m}`);
   // only strings that come from people or the gym, never enum values like "all" or "pending"
   const learn = v => {
     if (Array.isArray(v)) return v.forEach(learn);
     if (!v || typeof v !== 'object') return;
     for (const [k, x] of Object.entries(v)) {
-      if (typeof x === 'string' && ['name', 'name_ar', 'bio', 'body', 'goal', 'level', 'slot'].includes(k) && x.length > 1) { known.add(x); if (k === 'name') known.add(x.trim().split(/\s+/)[0]); }
-      else if (k === 'times' && Array.isArray(x)) x.forEach(s => typeof s === 'string' && known.add(s));
-      else if (x && typeof x === 'object') learn(x);
+      // goal, level and times are not learned: the app has to translate them (seed data stores English free text)
+      if (typeof x === 'string' && ['name', 'name_ar', 'bio', 'body', 'slot'].includes(k) && x.length > 1) { known.add(x); if (k === 'name') known.add(x.trim().split(/\s+/)[0]); }
+      else if (x && typeof x === 'object' && k !== 'times') learn(x);
     }
   };
   let shotN = 0;
@@ -120,7 +120,7 @@ function makeRun(browser, lang) {
     text = text.replace(ALLOW, ' ');
     const leak = langNow === 'ar' ? text.match(/[A-Za-z]{2,}[A-Za-z ]*/) : text.match(/[؀-ۿ]+[؀-ۿ ]*/);
     must(!leak, `other language leaking: "${leak && leak[0]}"`);
-    must(!/[—–]/.test(text), 'dash in copy');
+    must(!/[\u2014\u2013]/.test(text), 'dash in copy');
     must(!/\b[a-z]+_[a-z_0-9]+\b/.test(text), `raw key in copy: ${(text.match(/\b[a-z]+_[a-z_0-9]+\b/) || [])[0]}`);
     must(!P.problems.length, P.problems.join(' ; '));
   }

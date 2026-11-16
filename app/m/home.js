@@ -103,7 +103,11 @@ function payMethods() {
   return out;
 }
 function copyRow(value, id) {
-  const b = btn(t('copy'), async () => { const ok = await copyText(String(value)); if (ok) { b.textContent = t('copied'); toast(t('copied')); setTimeout(() => { b.textContent = t('copy'); }, 1800); } }, 'sec sm');
+  const b = btn(t('copy'), async () => {
+    const ok = await copyText(String(value));
+    if (!ok) return toast(t('copyFail'));
+    b.textContent = t('copied'); toast(t('copied')); setTimeout(() => { b.textContent = t('copy'); }, 1800);
+  }, 'sec sm');
   return h('div', { class: 'copyrow', id }, h('b', { class: 'ltr' }, String(value)), b);
 }
 function pkgCard(p, sel, onclick) {

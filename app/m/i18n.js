@@ -1,7 +1,7 @@
 // Strings (English + Egyptian Arabic), error text and small formatters. No DOM here.
 export const T = {
   en: {
-    back: 'Back', retry: 'Try again', loading: 'Loading…', cancel: 'Cancel', save: 'Save', close: 'Close', copy: 'Copy', copied: 'Copied',
+    back: 'Back', retry: 'Try again', loading: 'Loading…', cancel: 'Cancel', save: 'Save', close: 'Close', copy: 'Copy', copied: 'Copied', copyFail: 'Could not copy. Press and hold the text to copy it.',
     next: 'Next', you: 'You', langName: 'English', otherLang: 'العربية', powered: 'Powered by Refka',
     tabHome: 'Home', tabRefka: 'Refka', tabMe: 'Me', refka: 'Refka', bTT: 'Train together?',
     g_muscle: 'Build muscle', g_fat: 'Lose fat', g_fit: 'Get fit', g_strength: 'Strength', g_crossfit: 'CrossFit', g_fight: 'Fighting sports',
@@ -94,7 +94,7 @@ export const T = {
     justNow: 'Just now', agoM: '{n} min ago', agoH: '{n}h ago', agoD: '{n}d ago',
   },
   ar: {
-    back: 'رجوع', retry: 'جرّب تاني', loading: 'بنحمّل…', cancel: 'إلغاء', save: 'احفظ', close: 'اقفل', copy: 'انسخ', copied: 'اتنسخ',
+    back: 'رجوع', retry: 'جرّب تاني', loading: 'بنحمّل…', cancel: 'إلغاء', save: 'احفظ', close: 'اقفل', copy: 'انسخ', copied: 'اتنسخ', copyFail: 'معرفناش ننسخ. دوس على الكلام كتير عشان تنسخه.',
     next: 'التالي', you: 'إنت', langName: 'العربية', otherLang: 'English', powered: 'بيشتغل بـ Refka',
     tabHome: 'الرئيسية', tabRefka: 'رفقة', tabMe: 'أنا', refka: 'رفقة', bTT: 'نتمرن سوا؟',
     g_muscle: 'تضخيم عضل', g_fat: 'تخسيس', g_fit: 'لياقة', g_strength: 'قوة', g_crossfit: 'كروس فت', g_fight: 'رياضات قتالية',
@@ -230,7 +230,18 @@ export function t(k, v) {
 }
 export const has = k => T.en[k] != null;
 // Known key -> label; unknown value (older data, another client) -> shown as it is.
-export const label = (prefix, val) => (val == null || val === '' ? '' : has(prefix + val) ? t(prefix + val) : String(val));
+// Older or hand-made data may hold free text ("Build muscle", "Intermediate", "night") instead of a key.
+const ALIAS = { x_: { beginner: 'new', intermediate: 'mid', advanced: 'adv', pro: 'pro', expert: 'pro' }, s_: { night: 'late', noon: 'afternoon' } };
+export function keyOf(prefix, val) {
+  if (val == null || val === '') return null;
+  const v = String(val);
+  if (has(prefix + v)) return v;
+  const lc = v.trim().toLowerCase();
+  if (ALIAS[prefix] && ALIAS[prefix][lc]) return ALIAS[prefix][lc];
+  for (const k in T.en) if (k.startsWith(prefix) && (T.en[k].toLowerCase() === lc || T.ar[k] === v.trim())) return k.slice(prefix.length);
+  return null;
+}
+export const label = (prefix, val) => { if (val == null || val === '') return ''; const k = keyOf(prefix, val); return k ? t(prefix + k) : String(val); };
 export const L = (en, ar) => (cur === 'ar' ? (ar || en) : (en || ar)) || '';
 
 export function errCode(e) {

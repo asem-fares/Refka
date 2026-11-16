@@ -1,5 +1,5 @@
 // Me tab: profile, privacy, language, sign out.
-import { t, lang, label } from './i18n.js';
+import { t, lang, label, keyOf } from './i18n.js';
 import { h, fill, icon, btn, tag, note, chips, field, act, toast, avatar, confirmSheet, shrinkImage, photoPicker } from './ui.js';
 import { S, rf, screens, push, back, gymName, toggleLang, signOutToEntry } from './core.js';
 
@@ -40,7 +40,7 @@ screens.edit = () => ({
   title: t('editProfile'),
   build(scr) {
     const p = S.profile;
-    const st = { goal: p.goal || null, level: p.level || null, times: new Set(p.times || []), avatar: p.avatar || null, avatarDirty: false };
+    const st = { goal: keyOf('g_', p.goal) || p.goal || null, level: keyOf('x_', p.level) || p.level || null, times: new Set((p.times || []).map(x => keyOf('s_', x) || x)), avatar: p.avatar || null, avatarDirty: false };
     const name = h('input', { class: 'in', type: 'text', maxlength: '60', autocomplete: 'name', value: p.name || '', name: 'name' });
     const bio = h('textarea', { class: 'in', rows: '2', maxlength: '300', placeholder: t('bioPh'), name: 'bio' }); bio.value = p.bio || '';
     const err = h('div', { class: 'err', role: 'alert' });

@@ -1,5 +1,5 @@
 // Refka tab (For you, Feed, Requests, My Refkas), person sheet, request sheet, chat.
-import { t, label, ago, ftime, fdate, slotLabel, dayLabel, localISO, errText, errCode } from './i18n.js';
+import { t, label, keyOf, ago, ftime, fdate, slotLabel, dayLabel, localISO, errText, errCode } from './i18n.js';
 import { h, fill, icon, btn, tag, note, gate, empty, chips, act, load, toast, avatar, safeImg, openSheet, closeSheet, confirmSheet, shrinkImage, photoPicker, loading, showErr, clearErr } from './ui.js';
 import { S, rf, screens, hooks, push, back, render, setTab, setBadge, gymName, gid, isGuest } from './core.js';
 
@@ -77,9 +77,10 @@ function relAction(p, after) {
   if (p.relation === 'in') return btn(t('answer'), () => { closeSheet(); S.seg = 'req'; if (S.tab !== 'refka' || S.stack.length) setTab('refka'); else render(); }, 'sm sec');
   return btn(t('bTT'), () => openRequest(p, after), 'sm', { 'data-tt': p.user_id });
 }
+const tkey = x => keyOf('s_', x) || x;
 function sharedTimes(p) {
-  const mine = (S.profile && S.profile.times) || [];
-  return (p.times || []).filter(x => mine.includes(x));
+  const mine = ((S.profile && S.profile.times) || []).map(tkey);
+  return (p.times || []).filter(x => mine.includes(tkey(x)));
 }
 function segFor(box) {
   const q = h('input', { class: 'in', type: 'search', placeholder: t('search'), 'aria-label': t('search'), maxlength: '60', enterkeyhint: 'search' });
@@ -367,8 +368,9 @@ screens.chat = ({ id, with: other }) => {
         for (const m of ms) {
           if (seen.has(m.id)) continue;
           seen.add(m.id);
-          const pend = m.mine ? scr.querySelector('.bub.pend[data-id="' + m.id + '"]') : null;
-          if (pend) pend.remove();
+          // a poll can bring my own message back before chat_send answered: it replaces the pending bubble
+          const pend = m.mine ? [...scr.querySelectorAll('.bub.pend')].find(b => b._body === m.body) : null;
+          if (pend) { pend.replaceWith(bubble(m)); continue; }
           scr.appendChild(bubble(m));
           if (!last || String(m.at) > String(last)) last = m.at;
         }
@@ -405,16 +407,18 @@ screens.chat = ({ id, with: other }) => {
         errBox.classList.add('hidden');
         const e0 = scr.querySelector('#chatempty'); if (e0) e0.remove();
         const el = h('div', { class: 'bub me pend', 'data-mine': '1' }, body);
+        el._body = body;
         scr.appendChild(el); toBottom();
         try {
           const r = await rf.rpc('chat_send', { p_refka: id, p_body: body });
+          if (seen.has(r.id) || !el.isConnected) { el.remove(); return; }   // the poll already showed it
           seen.add(r.id); el.classList.remove('pend'); el.dataset.msg = r.id;
           el.appendChild(h('small', null, ftime(r.at)));
         } catch (e) {
           const c = errCode(e);
           el.classList.add('fail');
           if (['not_found', 'blocked', 'hidden', 'not_member'].includes(c)) { el.remove(); return close(c); }
-          const again = h('button', { type: 'button', class: 'linkb', style: { color: 'inherit', 'min-height': '32px', 'text-decoration': 'underline' }, onclick: () => { el.remove(); ta.value = body; send(); } }, t('resend'));
+          const again = h('button', { type: 'button', class: 'linkb', style: { color: 'inherit', 'min-height': '44px', 'text-decoration': 'underline' }, onclick: () => { el.remove(); ta.value = body; send(); } }, t('resend'));
           el.appendChild(h('small', null, t('sendFail') + ' · ', again));
           errBox.textContent = c === 'limit' ? t('limitChat') : errText(e); errBox.classList.remove('hidden');
         }
