@@ -103,7 +103,8 @@ export function gymLogo(gym, cls) {
 const firstLetter = s => Array.from(String(s || '?').trim())[0].toUpperCase();
 function initials(s) {
   const w = String(s || '?').trim().split(/\s+/).filter(Boolean);
-  return (w.length ? w : ['?']).slice(0, 2).map(x => Array.from(x)[0]).join(document.documentElement.lang === 'ar' ? ' ' : '').toUpperCase();
+  // a zero width non-joiner keeps two Arabic letters from joining without adding a visible space
+  return (w.length ? w : ['?']).slice(0, 2).map(x => Array.from(x)[0]).join('\u200c').toUpperCase();
 }
 const AVC = ['#3B6EA8', '#8A5A9E', '#2F8F6B', '#B5653A', '#A8455B', '#5B6770', '#7A6A2E', '#3F7F8C'];
 export function avatar(p, size = 44) {

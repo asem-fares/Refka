@@ -117,7 +117,7 @@ async function openPerson(p0) {
       const blockB = btn([icon('ban', 16), t('block')], () => confirmBlock(p), 'danger');
       const repB = btn([icon('flag', 16), t('report')], () => openReport({ user: p }), 'sec');
       fill(body,
-        h('div', { class: 'center' }, avatar(p, 88), p.bio ? h('p', { class: 'wrapany' }, p.bio) : null),
+        h('div', { class: 'center' }, avatar(p, 88), p.bio ? h('p', { class: 'wrapany', dir: 'auto' }, p.bio) : null),
         rows.length ? h('div', { class: 'card' }, rows) : null,
         p.relation ? h('div', { class: 'errhost col', id: 'personact' }, relActionWide(p)) : null,
         h('div', { class: 'btns' }, repB, blockB));
@@ -227,7 +227,7 @@ function segMine(box) {
     fill(box, rs.map(r => h('button', { type: 'button', class: 'card', 'data-refka': r.id, 'data-name': r.with.name, onclick: () => push('chat', { id: r.id, with: r.with }) },
       h('div', { class: 'row' }, avatar(r.with, 46),
         h('div', { class: 'grow' }, h('div', { class: 'nm' }, r.with.name),
-          h('div', { class: 'mu nm', style: { 'font-weight': '400' } }, r.last ? (r.last.mine ? t('youPfx') : '') + r.last.body : t('noMsgs'))),
+          h('div', { class: 'mu nm', style: { 'font-weight': '400' } }, r.last ? [r.last.mine ? t('youPfx') : '', h('bdi', null, r.last.body)] : t('noMsgs'))),
         h('div', { style: { display: 'flex', 'flex-direction': 'column', 'align-items': 'flex-end', gap: '4px', flex: '0 0 auto' } },
           h('span', { class: 'cnt' }, r.last ? ago(r.last.at) : t('since', { d: fdate(r.since) })),
           r.unread ? tag(String(r.unread) + ' ' + t('unread'), 'bad') : null)))));
@@ -316,7 +316,7 @@ function postCard(p) {
     const rb = btn('', () => act(rb, async () => { const r = await rf.rpc('post_respect', { p_id: p.id }); p.respected = r && typeof r.respected === 'boolean' ? r.respected : !p.respected; paintR(rb); }), 'sm', { 'data-respect': p.id });
     paintR(rb); foot.appendChild(rb);
   }
-  fill(card, head, p.body ? h('p', { class: 'wrapany' }, p.body) : null, src ? h('img', { class: 'pimg', src, alt: t('photoAlt', { n: who.name }), loading: 'lazy' }) : null, foot);
+  fill(card, head, p.body ? h('p', { class: 'wrapany', dir: 'auto' }, p.body) : null, src ? h('img', { class: 'pimg', src, alt: t('photoAlt', { n: who.name }), loading: 'lazy' }) : null, foot);
   return card;
 }
 function postMenu(p, card) {
@@ -361,7 +361,7 @@ screens.chat = ({ id, with: other }) => {
       const atBottom = () => scr.scrollHeight - scr.scrollTop - scr.clientHeight < 80;
       const toBottom = () => { scr.scrollTop = scr.scrollHeight; };
       function bubble(m) {
-        return h('div', { class: 'bub' + (m.mine ? ' me' : ''), 'data-msg': m.id || '', 'data-mine': m.mine ? '1' : '0' }, m.body, h('small', null, ftime(m.at)));
+        return h('div', { class: 'bub' + (m.mine ? ' me' : ''), 'data-msg': m.id || '', 'data-mine': m.mine ? '1' : '0' }, h('span', { dir: 'auto' }, m.body), h('small', null, ftime(m.at)));
       }
       function addMsgs(ms) {
         const stick = first || atBottom();
@@ -406,7 +406,7 @@ screens.chat = ({ id, with: other }) => {
         ta.value = ''; ta.style.height = '';
         errBox.classList.add('hidden');
         const e0 = scr.querySelector('#chatempty'); if (e0) e0.remove();
-        const el = h('div', { class: 'bub me pend', 'data-mine': '1' }, body);
+        const el = h('div', { class: 'bub me pend', 'data-mine': '1' }, h('span', { dir: 'auto' }, body));
         el._body = body;
         scr.appendChild(el); toBottom();
         try {

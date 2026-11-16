@@ -31,9 +31,9 @@ const SEED = {
 // per language: a guest phone, a listed phone (A), the partner (B), and the text this pass types
 const CAST = {
   en: { guest: '0109' + String(Date.now() % 1e7).padStart(7, '0'), guestName: 'Test Guest', listed: '01000000008', aName: 'Mahmoud Tarek',
-    msgA: 'Hi, Saturday evening?', msgB: 'Yes, see you at 7.', post: 'E2E post: squats at 6, who is in?', bio: 'Evenings, working on my squat', newName: 'Mahmoud T.' },
+    msgA: 'Hi, Saturday evening?', msgB: 'Yes, see you at 7.', post: 'E2E post: squats at 6, who is in? <b>x</b><img src=x onerror="window.__xss=1">', bio: 'Evenings, working on my squat', newName: 'Mahmoud T.' },
   ar: { guest: '0108' + String(Date.now() % 1e7).padStart(7, '0'), guestName: 'ضيف تجربة', listed: '01000000009', aName: 'حسن علي',
-    msgA: 'أهلًا، السبت بالليل؟', msgB: 'تمام، نتقابل الساعة 7.', post: 'بوست تجربة: سكوات الساعة 6، مين معايا؟', bio: 'بتمرن بالليل', newName: 'حسن ع.' },
+    msgA: 'أهلًا، السبت بالليل؟', msgB: 'تمام، نتقابل الساعة 7.', post: 'بوست تجربة: سكوات الساعة 6، مين معايا؟ <img src=x onerror="window.__xss=1">', bio: 'بتمرن بالليل', newName: 'حسن ع.' },
 };
 const ALLOW = /Powered by Refka|Refka|InstaPay|QR|EGP|Atlas|PNG|JPG/g;
 
@@ -311,6 +311,8 @@ async function runLang(browser, lang) {
     must((await postEl.textContent()).includes(C.post), 'new post is not on top of the feed');
     await PA.check('feed-posted');
     await PB.seg('feed'); await PB.page.waitForSelector(`[data-post="${postId}"]`);
+    must((await PB.page.textContent(`[data-post="${postId}"] p`)).includes('<img src=x'), 'post body is not shown as plain text');
+    must(await PB.page.locator(`[data-post="${postId}"] p img, [data-post="${postId}"] p b`).count() === 0 && !(await PB.page.evaluate(() => window.__xss)), 'post body was parsed as HTML');
     must(await PB.page.locator(`[data-post="${postId}"] [data-respects]`).count() === 0, 'the Respect count shows to someone who is not the author');
     await PB.page.click(`[data-respect="${postId}"]`);
     await PB.page.waitForSelector(`[data-respect="${postId}"][aria-pressed="true"]`); await PB.check('feed-respected');
@@ -396,9 +398,8 @@ async function runLang(browser, lang) {
       await PB.tab('home'); await PB.page.waitForSelector('#qr svg'); await PB.shot('home');
       await PB.tab('refka'); await PB.seg('for'); await PB.shot('refka');
       await PB.seg('feed'); await PB.shot('feed');
-      await PK.tab('refka'); await PK.seg('mine');
       const omarChat = await (async () => { const gp = await PB.rpc('refkas_list', { p_gym: gid }); return gp[0]; })();
-      if (omarChat) { await PB.seg('mine'); await PB.page.click(`[data-refka="${omarChat.id}"]`); await PB.screen('chat'); await PB.page.waitForSelector('.bub'); await PB.shot('chat'); await PB.page.click('.ah .ib.flip'); }
+      if (omarChat) { R.learn(await PB.rpc('chat_list', { p_refka: omarChat.id, p_after: null })); await PB.seg('mine'); await PB.page.click(`[data-refka="${omarChat.id}"]`); await PB.screen('chat'); await PB.page.waitForSelector('.bub'); await PB.shot('chat'); await PB.page.click('.ah .ib.flip'); }
       await PB.tab('me'); await PB.shot('me-youssef');
     }
     for (const x of actors) for (const p of x.ctx.pages()) { /* last check for late errors */ }

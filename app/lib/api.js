@@ -4,7 +4,11 @@
   const cfg = window.REFKA_CONFIG;
   const sb = window.supabase.createClient(cfg.url, cfg.anon, { auth: { persistSession: true, autoRefreshToken: true } });
   class RfError extends Error { constructor(code, raw) { super(code); this.code = code; this.raw = raw; } }
-  const codeOf = e => { const m = (e && (e.message || e.error_description || e.msg)) || 'unknown'; return /^[a-z_]+$/.test(m) ? m : 'unknown'; };
+  const codeOf = e => {
+    if (e && (e.code === '42501' || e.code === 'PGRST301' || e.status === 401)) return 'not_auth';   // signed out or session ran out
+    const m = (e && (e.message || e.error_description || e.msg)) || 'unknown';
+    return /^[a-z_]+$/.test(m) ? m : 'unknown';
+  };
   function phoneDigits(p) {
     let d = String(p || '').replace(/[^\d]/g, '');
     if (d.startsWith('00')) d = d.slice(2);

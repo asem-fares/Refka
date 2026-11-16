@@ -22,7 +22,7 @@ screens.me = () => ({
     fill(scr,
       h('section', { class: 'card center', id: 'mecard' }, avatar(p, 84), h('h2', { class: 'big' }, p.name),
         p.phone ? h('span', { class: 'mu ltr' }, p.phone) : null,
-        p.bio ? h('p', { class: 'wrapany' }, p.bio) : null,
+        p.bio ? h('p', { class: 'wrapany', dir: 'auto' }, p.bio) : null,
         tags.length ? h('div', { class: 'tags', style: { 'justify-content': 'center' } }, tags.map(x => tag(x, 'g'))) : null),
       h('div', { class: 'card', style: { gap: '0', 'padding-block': '2px' } },
         li('edit', t('editProfile'), null, () => push('edit'), { id: 'li-edit' }),
